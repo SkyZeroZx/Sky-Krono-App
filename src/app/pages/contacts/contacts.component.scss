@@ -1,0 +1,26 @@
+.phone-small {
+  color: rgb(189, 180, 180) !important;
+}
+
+:host::ng-deep {
+  .search-list {
+    .search-list-item {
+      padding: 10px 0;
+
+      > img {
+        display: inline-block;
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+      }
+
+      > span {
+        padding-left: 15px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}

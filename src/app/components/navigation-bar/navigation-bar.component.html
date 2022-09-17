@@ -1,0 +1,9 @@
+<div class="tab-nav-container" (click)="tabNavigation()" [style]="darkTheme ? 'background-color:#1e1e2b;' : '' ">
+    <div class="tab {{menuItem.class}}" *ngFor="let menuItem of menuItems"
+        [style]="darkTheme ? 'background-color:#1e1e2b;' : '' " routerLinkActive="active"
+        [routerLink]="[menuItem.path]">
+        <i class="{{ menuItem.icon }}  {{menuItem.class}}"></i>
+        <p>{{ menuItem.title }}</p>
+    </div>
+
+</div>

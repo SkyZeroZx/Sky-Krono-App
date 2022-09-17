@@ -1,0 +1,106 @@
+.btn {
+  font-size: 12px !important;
+}
+
+.card-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+small {
+  color: red !important;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 12px 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form {
+  padding: 25px;
+  padding-bottom: 0px !important;
+}
+
+.success {
+  border-color: #04aa6d;
+  color: green;
+}
+
+.success:hover {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.info {
+  border-color: #5e72e4;
+  color: #5e72e4;
+}
+
+.info:hover {
+  background: #5e72e4 !important;
+  color: white;
+}
+
+.danger {
+  border-color: #f44336;
+  color: red;
+}
+
+button {
+  background: transparent !important;
+}
+
+button:hover {
+  background: transparent !important;
+}
+
+.danger:hover {
+  background: #f44336 !important;
+  color: white;
+}
+
+.danger::before {
+  background: #f44336 !important;
+  color: white;
+}
+
+
+.danger::after {
+  background: #f44336 !important;
+  color: white;
+}
+
+.col {
+  padding-left: 0px !important;
+  padding-right: 10px !important;
+}
+
+.card-header {
+  padding-left: 25px !important;
+}
+
+.bg-success {
+  background-color: #37b328 !important;
+  cursor: pointer;
+  color : whitesmoke
+}
+
+.bg-danger {
+  background-color: #f12b2b !important;
+  cursor: pointer;
+  color : whitesmoke
+}
+
+
+ 
+
+

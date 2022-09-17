@@ -1,0 +1,114 @@
+<div class="content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card card-user">
+
+                <div class=" card-body">
+                    <p class=" card-text">
+                        <button type="button" [routerLink]="['/contacts' ]" class="btn default">
+                            <i class="fa-solid fa-arrow-left fa-lg"></i>
+                        </button>
+                    </p>
+
+                    <div class="author">
+                        <div class=" block block-one"></div>
+                        <div class=" block block-two"></div>
+                        <div class=" block block-three"></div>
+                        <div class=" block block-four"></div>
+                        <img alt="Perfil" class="avatar" [width]="200" [height]="200" src="assets/img/none.png" />
+                        <p class="full-name">
+                            {{contact.name }}
+                            <br />
+                            <small> {{contact.fatherLastName}} </small>
+                            <br />
+                            <small> {{contact.motherLastName}}</small>
+                        </p>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class=" form-group"></div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class=" form-group">
+                                    <a href="tel:+1-907-212-7084" class="phone">
+                                        <i class="fa-solid fa-phone fa-lg"></i>
+                                        &nbsp; {{contact.phone | phone}}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class='col-md-2 px-md-1'>
+                                <div class=" form-group">
+                                    <a href="https://wa.me/+51{{contact.phone}}?text=Hola%20quiero%20contactarme%20?"
+                                        class="whatsapp" target="_blank">
+                                        <i class="fa-brands fa-whatsapp fa-xl"></i> &nbsp; {{contact.phone | phone}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" card">
+                <div class=" card-header">
+                    <h5 class=" title">Perfil</h5>
+                </div>
+                <div class=" card-body">
+                    <div class=" row">
+                        <div class="col-md-1 pr-md-1"></div>
+                        <div class="col-md-3 email">
+                            <div class=" form-group">
+                                <label>
+                                    <strong>
+                                        <i class="fa-solid fa-envelope"></i> Email
+                                    </strong>
+                                </label>
+                                <br />
+                                <label>
+                                    <a class="email" href="mailto:{{contact.username}}" style="text-decoration: none">
+                                        {{contact.username}}
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 pl-md-1">
+                            <div class=" form-group">
+                                <label>
+                                    <strong>
+                                        <i class="fa-solid fa-id-card"></i>
+                                        Cargo
+                                    </strong>
+                                </label>
+                                <br />
+                                <label>{{contact.chargue}} </label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 pr-md-1">
+                            <div class=" form-group">
+                                <label>
+                                    <strong>
+                                        <i class="fa-solid fa-id-card"></i>
+                                        Rol
+                                    </strong>
+                                </label>
+                                <br />
+                                <label>{{contact.role}} </label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 pr-md-1">
+                            <label>
+                                <strong>
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    Horario
+                                </strong>
+                            </label>
+                            <br />
+                            <label>{{contact.schedule}} </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+.email {
+  margin-right: 35px;
+  text-decoration: none;
+}
+.full-name {
+  font-weight: bold;
+}
+
+a.whatsapp {
+  color: #25be62;
+  font-weight: bold;
+}
+
+a.phone {
+  color: #5187eb;
+  font-weight: bold;
+}
+
+a.email {
+  text-decoration: none !important;
+  color: black;
+}
+
+a.email:hover {
+  color: black;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.btn {
+  z-index: 9999;
+  background: #ffffff;
+  background-image: linear-gradient(to bottom left, WhiteSmoke, WhiteSmoke, WhiteSmoke);
+  background-color: #d6dae5;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.default {
+  border-color: #e7e7e7 !important;
+  color: black !important;
+}
+
+.default:hover {
+  background: #e7e7e7 !important;
+}

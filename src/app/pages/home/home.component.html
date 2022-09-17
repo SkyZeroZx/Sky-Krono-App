@@ -1,0 +1,72 @@
+<div class="content">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 id="titleHome" class="mb-3">Bienvenido</h3>
+                    <h5><strong>{{ currentDate | date:'fullDate' }}</strong></h5>
+                </div>
+            </div>
+            <div class="card shadow">
+                <div class="card-header border-0 container d-flex justify-content-center">
+                    <h3 id="titleIndicatorAttendance" class="mb-3"><strong>Indicador de Asistencia</strong></h3>
+
+                </div>
+                <div class="card-header border-0 container d-flex align-items-center flex-column">
+                    <h4 id="titleCurrentWeek" class="mb-3 p-2">Semana actual</h4>
+                    <div class="d-flex current-week-title">
+                        <strong class="name p-2" *ngFor="let day of  currrentWeek.reverse()">
+                            {{ day.date | date:'EEEEE':'-5UTC' }}
+                        </strong>
+                        <div *ngIf="currrentWeek.length < totalDaysOfWeek">
+                            <strong class="name p-2" *ngFor="let day of  restDaysOfWeek">
+                                {{ day | date:'EEEEE':'-5UTC' }}
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <i class="btn disabled info p-2" [ngClass]="getClassStatus(day)"
+                            *ngFor="let day of  currrentWeek">
+                        </i>
+                        <div *ngIf="currrentWeek.length < totalDaysOfWeek">
+                            <i class="btn disabled info p-2" *ngFor="let day of  restDaysOfWeek">
+                            </i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-header border-0 container d-flex align-items-center flex-column">
+                    <h4 id="titleCurrentWeek" class="mb-3 p-2">Semana Anterior</h4>
+                    <div class="d-flex current-week-title">
+                        <strong class="name p-2" *ngFor="let day of  lastWeek.reverse()">
+                            {{ day.date | date:'EEEEE':'-5UTC' }}
+                        </strong>
+
+                    </div>
+                    <div class="d-flex">
+                        <i class="btn disabled info p-2" [ngClass]="getClassStatus(day)" *ngFor="let day of  lastWeek">
+                        </i>
+                    </div>
+                </div>
+
+                <div class="card-header border-0 container d-flex justify-content-center pt-4">
+                    <h5 class="mb-3 pr-5"><strong>A tiempo</strong></h5>
+                    <h5 class="mb-3 pl-5"><strong>{{totalDaysOnTime}} días</strong></h5>
+                </div>
+
+                <div class="card-header border-0 container d-flex justify-content-center pt-0">
+                    <h5 class="mb-3 pr-5"><strong>Atrasos</strong></h5>
+                    <h5 class="mb-3 pl-5 ml-2"><strong>{{totalDaysLater}} días</strong></h5>
+                </div>
+
+                <div class="card-header border-0 container d-flex justify-content-center pt-0">
+                    <h5 class="mb-3 pr-5"><strong>Faltas &nbsp;&nbsp;&nbsp; </strong></h5>
+                    <h5 class="mb-3 pl-5 ml-2"><strong>{{totalDaysAbsent}} días</strong></h5>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

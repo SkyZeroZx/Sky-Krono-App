@@ -1,0 +1,28 @@
+<div class="content contacts">
+    <ngx-contact-list [noSmoothScroll]="true" propAlphaOrder="name" (onClick)="selected($event)" [propsSearch]="filters"
+        placeholder="Contacto" [data]="listUsers" listClass="search-list" [withTemplate]="true"
+        [height]="height + 'px' ">
+        <ng-template let-item>
+            <div class="search-list-item">
+                <img [src]="imageExist(item)" alt="">
+                <span>
+                    <small>
+                        {{item.name }}
+                    </small>
+                    <br />
+                    <small>
+                        {{ item.fatherLastName}}
+                    </small>
+                    <br />
+                    <small>
+                        {{ item.motherLastName }}
+                    </small>
+                    <br />
+                    <small class="phone-small">
+                        {{item.phone | phone}}
+                    </small>
+                </span>
+            </div>
+        </ng-template>
+    </ngx-contact-list>
+</div>

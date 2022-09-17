@@ -1,0 +1,51 @@
+.mat-progress-spinner {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 100%;
+  box-shadow: 0px 0px 3px #6579de;
+}
+
+.border-box-animation {
+  box-shadow: 2px 2px 7px #6579de;
+  position: absolute;
+  animation: rotation 8s infinite linear;
+  height: 215px;
+  width: 215px;
+  border-radius: 100%;
+}
+
+#outer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.counter-down-center {
+  position: absolute;
+  text-align: center;
+  font-size: 33px !important;
+  font-weight: 600;
+  // top: 43%;
+  top: 38.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  @media screen and (max-width: 420px) {
+    padding-left: 15px !important;
+  }
+}

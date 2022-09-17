@@ -1,0 +1,55 @@
+<form [formGroup]="viewForm">
+    <div   class="modal-body">
+
+        <div class="col">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Titulo</label>
+                <input type="text" placeholder="Titulo" class="form-control" formControlName="title" readonly
+                    maxlength="120">
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Tipo</label>
+                <ng-select [items]="listTypes" [closeOnSelect]="true" [hideSelected]="true" bindValue="codType"
+                    [readonly]="true" [clearable]="false" bindLabel="typeDescription" placeholder="Seleccionar Tipo"
+                    formControlName="codType">
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Descripcion</label>
+                <input type="text" placeholder="Descripcion" class="form-control" formControlName="description" readonly
+                    maxlength="120">
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Rango Fechas</label>
+                <input readonly type="text" placeholder="Daterangepicker" class="form-control"
+                    formControlName="dateRange" readonly>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Usuarios</label>
+                <ng-select  [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [items]="listUsers"
+                    [readonly]="true" [clearable]="false" bindLabel="nombre" formControlName="users">
+                </ng-select>
+
+        
+
+            </div>
+        </div>
+    </div>
+
+</form>

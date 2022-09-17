@@ -1,0 +1,158 @@
+<form [formGroup]="createUserForm" (ngSubmit)="createUser()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="email" class="col-form-label">Email</label>
+                    <input type="text" placeholder="Email" class="form-control" formControlName="username"
+                        maxlength="120">
+                    <div *ngIf="createUserForm.controls.username.invalid && createUserForm.controls.username.touched">
+                        <small id="requiredNewUsername" class="text-left"
+                            *ngIf="createUserForm.controls.username.errors?.required">
+                            Se requiere email</small>
+                        <small id="patternNewUsername" class="text-left"
+                            *ngIf="createUserForm.controls.username.errors?.email">
+                            El email ingresado tiene formato invalido</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="status" class="col-form-label">Estado</label>
+                    <input type="text" name="status" class="form-control" placeholder="CREADO" readonly
+                        maxlength="120" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="role" class="col-form-label">Rol</label>
+                    <select id="inputEstado" class="form-control" formControlName="role">
+                        <option [value]="'admin'">admin</option>
+                        <option [value]="'viewer'">viewer</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="name" class="col-form-label">Nombres</label>
+                    <input type="text" placeholder="Nombres" class="form-control" formControlName="name"
+                        oninput="alpha(this)" maxlength="80">
+                    <div *ngIf="createUserForm.controls.name.invalid && createUserForm.controls.name.touched">
+                        <small id="requiredName" class="text-left"
+                            *ngIf="createUserForm.controls.name.errors?.required">
+                            Se requiere ingresar nombres</small>
+                        <small id="patternName" class="text-left" *ngIf="createUserForm.controls.name.errors?.pattern">
+                            El nombre ingresado tiene formato invalido</small>
+                        <small id="minlengthName" class="text-left"
+                            *ngIf="createUserForm.controls.name.errors?.minlength">
+                            La longitud minima del nombre es de 2 caracteres</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="fatherLastName" class="col-form-label">Apellido Paterno</label>
+                    <input type="text" placeholder="Apellido Paterno" class="form-control"
+                        formControlName="fatherLastName" oninput="alpha(this)" maxlength="120">
+                    <div
+                        *ngIf="createUserForm.controls.fatherLastName.invalid && createUserForm.controls.fatherLastName.touched">
+                        <small id="requiredFatherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.fatherLastName.errors?.required">
+                            Se requiere ingresar apellido paterno</small>
+                        <small id="patternFatherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.fatherLastName.errors?.pattern">
+                            El apellido paterno ingresado tiene formato invalido</small>
+                        <small id="minlengthFatherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.fatherLastName.errors?.minlength">
+                            La longitud minima del apellido paterno es de 2 caracteres</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="motherLastName" class="col-form-label">Apellido Materno</label>
+                    <input type="text" placeholder="Apellido Materno" class="form-control"
+                        formControlName="motherLastName" oninput="alpha(this)" maxlength="120">
+                    <div
+                        *ngIf="createUserForm.controls.motherLastName.invalid && createUserForm.controls.motherLastName.touched">
+                        <small id="requiredMotherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.motherLastName.errors?.required">
+                            Se requiere ingresar apellido materno</small>
+                        <small id="patternMotherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.motherLastName.errors?.pattern">
+                            El apellido materno ingresado tiene formato invalido</small>
+                        <small id="minlengtMotherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.motherLastName.errors?.minlength">
+                            La longitud minima del apellido materno es de 2 caracteres</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="labelPhone" class="col-form-label">Celular</label>
+                    <input type="text" class="form-control" formControlName="phone" maxlength="9" />
+                    <div *ngIf="createUserForm.controls.phone.invalid && createUserForm.controls.phone.touched">
+                        <small id="requiredMotherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.phone.errors?.required">
+                            Se requiere ingresar celular <br /></small>
+                        <small id="patternMotherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.phone.errors?.pattern">
+                            El celular ingresado tiene formato invalido <br /></small>
+                        <small id="minlengtMotherLastName" class="text-left"
+                            *ngIf="createUserForm.controls.phone.errors?.minlength">
+                            La longitud minima del celular es de 9 caracteres</small>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="labelChargue" class="col-form-label">Cargo</label>
+                    <ng-select [items]="listChargue" [closeOnSelect]="true" [hideSelected]="true" bindValue="id"
+                        [clearable]="false" bindLabel="name" placeholder="Seleccionar cargo"
+                        formControlName="codChargue">
+                    </ng-select>
+                    <div
+                        *ngIf="createUserForm.controls.codChargue.invalid && createUserForm.controls.codChargue.touched">
+                        <small id="requiredChargue" class="text-left"
+                            *ngIf="createUserForm.controls.codChargue.errors?.required">
+                            Se requiere seleccionar cargo</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="labelschedule" class="col-form-label">Horario</label>
+                    <ng-select [items]="listSchedule" bindLabel="name" bindValue="id" [clearable]="false"
+                        [closeOnSelect]="true" formControlName="codSchedule" placeholder="Seleccionar Horario"
+                        [hideSelected]="true">
+                        <ng-template ng-option-tmp let-item="item">
+                            <span> {{item.name}} </span>
+                            <span> - {{item.description}}</span>
+                        </ng-template>
+                    </ng-select>
+                    <div
+                        *ngIf="createUserForm.controls.codSchedule.invalid && createUserForm.controls.codSchedule.touched">
+                        <small id="requiredSchedule" class="text-left"
+                            *ngIf="createUserForm.controls.codSchedule.errors?.required">
+                            Se requiere seleccionar horario</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" id="btnCreateUser" class="btn btn-primary" [disabled]="createUserForm.invalid">Crear
+            Usuario</button>
+    </div>
+</form>

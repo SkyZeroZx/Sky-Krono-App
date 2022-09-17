@@ -1,0 +1,63 @@
+<br>
+<div class=" col-lg-4 col-md-6 ml-auto mr-auto" style="text-align: center;" id="bienvenido">
+  <h1>Bienvenido</h1>
+</div>
+
+
+<div class="container mt--8 pb-5  ">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card  shadow border-0" [style]="darkTheme ? 'background: rgb(30 31 50)' : '' ">
+        <div class="card-header bg-transparent pb-5">
+          <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center text-muted mb-4">
+              <p>Ingrese sus credenciales</p>
+            </div>
+            <form [formGroup]="loginForm">
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><em class=" tim-icons icon-email-85"></em></span>
+                  </div>
+                  <input class="form-control" formControlName='username' maxlength="50" placeholder="Email"
+                    type="email">
+                </div>
+                <div *ngIf="loginForm.controls.username.invalid && loginForm.controls.username.touched">
+                  <small id="validEmail" class="text-left" *ngIf="loginForm.controls.username.errors?.email">
+                    Debe ingresar un Email valido</small>
+                  <small id="requiredEmail" class="text-left" *ngIf="loginForm.controls.username.errors?.required">
+                    Se requiere ingresar Email</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><em class="tim-icons icon-lock-circle"></em></span>
+                  </div>
+                  <input class="form-control" autocomplete="off" formControlName='password' placeholder="Password"
+                    type="password" />
+                </div>
+                <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+                  <small id="minLenghtPass" class="text-left" *ngIf="loginForm.controls.password.errors?.minlength">
+                    La longitud minima es 6 caracteres</small>
+                  <small id="requiredPass" class="text-left" *ngIf="loginForm.controls.password.errors?.required">
+                    Se requiere ingresar password</small>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" (click)="onLogin()" class="btn btn-primary my-4"
+                  [disabled]="loginForm.invalid">Login</button>
+
+              </div>
+              <div class="text-center">
+                <button (click)="startAuthentication()" [disabled]="this.enableFingerPrint" class="btn btn-primary my-4"
+                  style="bottom: 35px">
+                  <em class="fas fa-fingerprint"></em></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

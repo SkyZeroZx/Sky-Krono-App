@@ -1,0 +1,67 @@
+<form [formGroup]="updateTaskForm" (ngSubmit)="updateTask()">
+    <div class="modal-body">
+
+        <div class="col">
+            <div class="form-group">
+                <label for="labelTitle" class="col-form-label">Titulo (*)</label>
+                <input type="text" placeholder="Titulo" class="form-control" formControlName="title" maxlength="120">
+                <div *ngIf="updateTaskForm.controls.title.invalid && updateTaskForm.controls.title.touched">
+                    <small class="text-left" *ngIf="updateTaskForm.controls.title.errors?.required">
+                        Se requiere titulo</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <label for="labelDateRange" class="col-form-label">Rango Fechas (*)</label>
+                <input readonly type="text" placeholder="Daterangepicker" bsDaterangepicker class="form-control"
+                    formControlName="dateRange" [bsConfig]="{ 
+                        rangeInputFormat :'YYYY-MM-DD' , 
+                        dateInputFormat: 'YYYY-MM-DD' ,
+                        containerClass:'theme-blue',  
+                        displayOneMonthRange: true}">
+
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="form-group">
+                <label for="labelType" class="col-form-label">Tipo (*)</label>
+                <ng-select [items]="listarTypes" [closeOnSelect]="true" [hideSelected]="true" bindValue="codType"
+                    [clearable]="false" bindLabel="typeDescription" placeholder="Seleccionar Tipo"
+                    formControlName="codType">
+                </ng-select>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="form-group">
+                <label for="labelDescription" class="col-form-label">Descripcion (*)</label>
+                <input type="text" placeholder="Descripcion" class="form-control" formControlName="description"
+                    maxlength="120">
+            </div>
+        </div>
+
+
+
+
+        <div class="col">
+            <div class="form-group">
+                <label for="labelUsers" class="col-form-label">Usuarios (*)</label>
+                <ng-select [items]="listUsers" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true"
+                    [clearable]="false" (remove)="removeUserToTask($event)" (add)="addUserToTask($event)"
+                    bindLabel="name" placeholder="Seleecionar usuario" formControlName="users">
+                </ng-select>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" id="btnUpdateTask" class="btn btn-primary" [disabled]="updateTaskForm.invalid">
+            Editar Task</button>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+<form [formGroup]="createChargueForm">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label for="labelName" class="col-form-label">Nombre</label>
+                    <input type="text" placeholder="Nombre" class="form-control" formControlName="name" maxlength="255">
+                    <div *ngIf="createChargueForm.controls.name.invalid && createChargueForm.controls.name.touched">
+                        <small id="requiredName" class="text-left"
+                            *ngIf="createChargueForm.controls.name.errors?.required">
+                            Se requiere nombre</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="form-group">
+                    <label for="status" class="col-form-label">Descripción</label>
+                    <input type="text" class="form-control" placeholder="Descripcion" formControlName="description"
+                        maxlength="255" />
+                    <div
+                        *ngIf="createChargueForm.controls.description.invalid && createChargueForm.controls.description.touched">
+                        <small id="requiredDescription" class="text-left"
+                            *ngIf="createChargueForm.controls.description.errors?.required">
+                            Se requiere descripción</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" id="btnCreateChargue" class="btn btn-primary" (click)="createChargue()"
+            [disabled]="createChargueForm.invalid">Crear
+            Cargo</button>
+    </div>
+</form>

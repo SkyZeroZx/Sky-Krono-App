@@ -1,0 +1,35 @@
+i {
+  cursor: pointer;
+}
+
+body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: visible !important; }
+
+
+.btn {
+  font-size: 12px !important;
+}
+
+.card-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+.show-content ::ng-deep .fc-header-toolbar {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  @media (max-width: 768px) {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+
+ 
+
+
+
+
+
+
+
+

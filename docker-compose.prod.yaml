@@ -1,0 +1,11 @@
+version: '2.5'
+services:
+  skycalendarapp:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: sky-calendar-angular
+    container_name: sky-calendar-angular
+    restart: always # reiniciar el contenedor si se detiene
+    ports:
+      - "7575:80"
