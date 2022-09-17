@@ -15,7 +15,7 @@
                 <div class="card-header border-0 container d-flex align-items-center flex-column">
                     <h4 id="titleCurrentWeek" class="mb-3 p-2">Semana actual</h4>
                     <div class="d-flex current-week-title">
-                        <strong class="name p-2" *ngFor="let day of  currrentWeek.reverse()">
+                        <strong class="name p-2" *ngFor="let day of  currrentWeek">
                             {{ day.date | date:'EEEEE':'-5UTC' }}
                         </strong>
                         <div *ngIf="currrentWeek.length < totalDaysOfWeek">
@@ -39,7 +39,7 @@
                 <div class="card-header border-0 container d-flex align-items-center flex-column">
                     <h4 id="titleCurrentWeek" class="mb-3 p-2">Semana Anterior</h4>
                     <div class="d-flex current-week-title">
-                        <strong class="name p-2" *ngFor="let day of  lastWeek.reverse()">
+                        <strong class="name p-2" *ngFor="let day of  lastWeek">
                             {{ day.date | date:'EEEEE':'-5UTC' }}
                         </strong>
 
