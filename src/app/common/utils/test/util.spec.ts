@@ -32,12 +32,12 @@ fdescribe('Util', () => {
   it('validate getRestDaysOfWeek', () => {
     const dayOfWeek = new Date('2022-09-12 00:00:00').getDay();
     const listDate: Date[] = [
-      new Date('2022-09-13T05:00:00.000Z'),
-      new Date('2022-09-14T05:00:00.000Z'),
-      new Date('2022-09-15T05:00:00.000Z'),
-      new Date('2022-09-16T05:00:00.000Z'),
-      new Date('2022-09-17T05:00:00.000Z'),
-      new Date('2022-09-18T05:00:00.000Z'),
+      new Date('2022-09-13T00:00:00.000Z'),
+      new Date('2022-09-14T00:00:00.000Z'),
+      new Date('2022-09-15T00:00:00.000Z'),
+      new Date('2022-09-16T00:00:00.000Z'),
+      new Date('2022-09-17T00:00:00.000Z'),
+      new Date('2022-09-18T00:00:00.000Z'),
     ];
     const listRestDaysOfWeek = Util.getRestDaysOfWeek(
       mockAttendanceHistoryUser,
@@ -70,6 +70,28 @@ fdescribe('Util', () => {
   it('Validate currentDayOfWeek', () => {
     // Sunday -> 6
     const mockCurrentDateSunday = '2022-09-18';
+    expect(Util.currentDayOfWeek(mockCurrentDateSunday)).toEqual(7);
+    // Monday -> 7
+    const mockCurrentDateMonday = '2022-09-19';
+    expect(Util.currentDayOfWeek(mockCurrentDateMonday)).toEqual(1);
+    // Tuesday -> 1
+    const mockCurrentDateTuesday = '2022-09-20';
+    expect(Util.currentDayOfWeek(mockCurrentDateTuesday)).toEqual(2);
+    // Wesnesday -> 2
+    const mockCurrentDateWesnesday = '2022-09-21';
+    expect(Util.currentDayOfWeek(mockCurrentDateWesnesday)).toEqual(3);
+    // Thursday -> 3
+    const mockCurrentDateThursday = '2022-09-22';
+    expect(Util.currentDayOfWeek(mockCurrentDateThursday)).toEqual(4);
+    // Friday -> 4
+    const mockCurrentDateFriday = '2022-09-23';
+    expect(Util.currentDayOfWeek(mockCurrentDateFriday)).toEqual(5);
+    // Saturday -> 5
+    const mockCurrentDateSaturday = '2022-09-24';
+    expect(Util.currentDayOfWeek(mockCurrentDateSaturday)).toEqual(6);
+    /*
+    // Sunday -> 6
+    const mockCurrentDateSunday = '2022-09-18';
     expect(Util.currentDayOfWeek(mockCurrentDateSunday)).toEqual(6);
     // Monday -> 7
     const mockCurrentDateMonday = '2022-09-19';
@@ -88,6 +110,6 @@ fdescribe('Util', () => {
     expect(Util.currentDayOfWeek(mockCurrentDateFriday)).toEqual(4);
     // Saturday -> 5
     const mockCurrentDateSaturday = '2022-09-24';
-    expect(Util.currentDayOfWeek(mockCurrentDateSaturday)).toEqual(5);
+    expect(Util.currentDayOfWeek(mockCurrentDateSaturday)).toEqual(5);*/
   });
 });
