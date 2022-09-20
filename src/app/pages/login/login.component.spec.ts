@@ -63,7 +63,6 @@ fdescribe('LoginComponent', () => {
   });
 
   beforeEach(() => {
-    localStorage.clear();
     fixture = TestBed.createComponent(LoginComponent);
     swPush = TestBed.inject(SwPush);
     authService = TestBed.inject(AuthService);

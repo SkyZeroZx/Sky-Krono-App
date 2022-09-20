@@ -63,7 +63,6 @@ fdescribe('UserProfileComponent', () => {
   });
 
   beforeEach(() => {
-    localStorage.clear();
     fixture = TestBed.createComponent(ChangePasswordComponent);
     swPush = TestBed.inject(SwPush);
     authService = TestBed.inject(AuthService);

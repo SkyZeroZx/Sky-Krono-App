@@ -45,7 +45,6 @@ fdescribe('AdminLayoutComponent', () => {
   }));
 
   beforeEach(() => {
-    localStorage.clear();
     fixture = TestBed.createComponent(AdminLayoutComponent);
     // Renderer2 to for fixture instance component
     renderer2 = fixture.componentRef.injector.get<Renderer2>(

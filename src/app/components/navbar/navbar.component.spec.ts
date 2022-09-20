@@ -32,10 +32,10 @@ fdescribe('NavbarComponent', () => {
   }));
 
   beforeEach(() => {
-    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
     fixture = TestBed.createComponent(NavbarComponent);
     authService = TestBed.inject(AuthService);
     component = fixture.componentInstance;
+    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
     fixture.detectChanges();
     jasmine.getEnv().allowRespy(true);
   });

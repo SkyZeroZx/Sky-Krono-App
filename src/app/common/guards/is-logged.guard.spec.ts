@@ -3,15 +3,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of, take } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
-import { UserLoginResponse } from '../interfaces/user';
 import { IsLogged } from './is-logged.guard';
 
-fdescribe('IsLogged', () => {
+describe('IsLogged', () => {
   let isLogged: IsLogged;
   let authService: AuthService;
-  let userMock: UserLoginResponse;
   let mockRouter = {
     routerState: { root: '' },
     navigate: jasmine.createSpy('navigate'),

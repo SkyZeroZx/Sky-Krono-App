@@ -33,6 +33,7 @@ fdescribe('SidebarComponent', () => {
     fixture = TestBed.createComponent(SidebarComponent);
     authService = TestBed.inject(AuthService);
     component = fixture.componentInstance;
+    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
     fixture.detectChanges();
   });
 

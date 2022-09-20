@@ -42,12 +42,12 @@ fdescribe('NavigationBarComponent', () => {
   });
 
   beforeEach(() => {
-    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
     fixture = TestBed.createComponent(NavigationBarComponent);
     authService = TestBed.inject(AuthService);
     themeService = TestBed.inject(ThemeService);
 
     component = fixture.componentInstance;
+    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
     fixture.detectChanges();
   });
 

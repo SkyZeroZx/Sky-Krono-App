@@ -6,7 +6,6 @@ fdescribe('ThemeService', () => {
   let themeService: ThemeService;
 
   beforeEach(() => {
-    localStorage.clear();
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
     themeService = TestBed.inject(ThemeService);
   });
