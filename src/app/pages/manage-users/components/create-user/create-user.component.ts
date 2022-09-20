@@ -1,21 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators,
-} from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import { UserService } from "src/app/services/users/user.service";
-import { Chargue } from "../../../../common/interfaces/chargue";
-import { Schedule } from "../../../../common/interfaces/schedule";
-import { ChargueService } from "../../../../services/chargue/chargue.service";
-import { ScheduleService } from "../../../../services/schedule/schedule.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/services/users/user.service';
+import { Chargue } from '../../../../common/interfaces/chargue';
+import { Schedule } from '../../../../common/interfaces/schedule';
+import { ChargueService } from '../../../../services/chargue/chargue.service';
+import { ScheduleService } from '../../../../services/schedule/schedule.service';
 
 @Component({
-  selector: "app-create-user",
-  templateUrl: "./create-user.component.html",
-  styleUrls: ["./create-user.component.scss"],
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent implements OnInit {
   @Output() close = new EventEmitter();
@@ -27,7 +22,7 @@ export class CreateUserComponent implements OnInit {
     private fb: FormBuilder,
     private toastrService: ToastrService,
     private scheduleService: ScheduleService,
-    private chargueService: ChargueService
+    private chargueService: ChargueService,
   ) {}
 
   ngOnInit(): void {
@@ -45,58 +40,58 @@ export class CreateUserComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.minLength(9),
-          Validators.pattern("[0-9]+"),
-        ])
+          Validators.pattern('[0-9]+'),
+        ]),
       ),
       username: new FormControl(
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(120),
           Validators.email,
-        ])
+        ]),
       ),
       name: new FormControl(
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(80),
-          Validators.pattern("[A-Za-z ]+"),
-        ])
+          Validators.pattern('[A-Za-z ]+'),
+        ]),
       ),
       fatherLastName: new FormControl(
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(120),
-          Validators.pattern("[A-Za-z ]+"),
-        ])
+          Validators.pattern('[A-Za-z ]+'),
+        ]),
       ),
       motherLastName: new FormControl(
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(120),
-          Validators.pattern("[A-Za-z ]+"),
-        ])
+          Validators.pattern('[A-Za-z ]+'),
+        ]),
       ),
-      role: new FormControl("admin"),
+      role: new FormControl('admin'),
     });
   }
 
   createUser() {
     this.userService.createUser(this.createUserForm.value).subscribe({
       next: (_res) => {
-        this.toastrService.success("Se creo exitosamente el usuario");
+        this.toastrService.success('Se creo exitosamente el usuario');
         this.createUserForm.reset();
         this.close.emit();
       },
       error: (_err) => {
-        this.toastrService.error("Hubo un error al crear el usuario");
+        this.toastrService.error('Hubo un error al crear el usuario');
       },
     });
   }
@@ -107,7 +102,7 @@ export class CreateUserComponent implements OnInit {
         this.listChargue = res;
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al listar los cargos");
+        this.toastrService.error('Sucedio un error al listar los cargos');
       },
     });
   }
@@ -118,7 +113,7 @@ export class CreateUserComponent implements OnInit {
         this.listSchedule = res;
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al listar los horarios");
+        this.toastrService.error('Sucedio un error al listar los horarios');
       },
     });
   }

@@ -1,24 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { ThemeService } from "src/app/services/theme/theme.service";
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: "app-auth-layout",
-  templateUrl: "./auth-layout.component.html",
-  styleUrls: ["./auth-layout.component.scss"],
+  selector: 'app-auth-layout',
+  templateUrl: './auth-layout.component.html',
+  styleUrls: ['./auth-layout.component.scss'],
 })
 export class AuthLayoutComponent implements OnInit {
-  constructor(
-    private themeService: ThemeService
-  ) { }
+  constructor(private themeService: ThemeService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    let body = document.getElementsByTagName("body")[0];
     this.themeService.theme.subscribe({
       next: (res) => {
         if (res) {
-          body.classList.remove("white-content");
+          this.renderer.removeClass(document.body, 'white-content');
         } else {
-          body.classList.add("white-content");
+          this.renderer.addClass(document.body, 'white-content');
         }
       },
     });

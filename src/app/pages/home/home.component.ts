@@ -20,6 +20,7 @@ export class HomeComponent implements AfterViewInit {
   totalDaysLater: number = 0;
   totalDaysAbsent: number = 0;
   totalDaysOnTime: number = 0;
+  totalDayOff: number = 0;
 
   constructor(
     private attendanceService: AttendanceService,
@@ -47,16 +48,17 @@ export class HomeComponent implements AfterViewInit {
     listHistoryStatusAttendance: StatusAttendance[],
   ): void {
     this.currentDate = currentDate;
-    this.dayOfWeek = new Date(currentDate).getDay();
+    this.dayOfWeek = Util.currentDayOfWeek(currentDate);
     this.validLastAttendance(listHistoryStatusAttendance);
-
     this.currrentWeek = listHistoryStatusAttendance.slice(0, this.dayOfWeek).reverse();
-
     this.lastWeek = listHistoryStatusAttendance
       .slice(this.dayOfWeek, this.dayOfWeek + this.totalDaysOfWeek)
       .reverse();
 
-    this.restDaysOfWeek = Util.getRestDaysOfWeek(this.currrentWeek[0], this.dayOfWeek);
+    this.restDaysOfWeek = Util.getRestDaysOfWeek(
+      this.currrentWeek.at(-1),
+      this.dayOfWeek,
+    );
   }
 
   validLastAttendance([lastAttendance]: StatusAttendance[]): void {
@@ -72,12 +74,18 @@ export class HomeComponent implements AfterViewInit {
 
     this.totalDaysAbsent = totalHistory.filter(({ isAbsent }) => isAbsent).length;
 
+    this.totalDayOff = totalHistory.filter(({ isDayOff }) => isDayOff).length;
+
     this.totalDaysOnTime =
-      this.totalDaysOfWeek + this.dayOfWeek - this.totalDaysLater - this.totalDaysAbsent;
+      this.totalDaysOfWeek +
+      this.dayOfWeek -
+      this.totalDaysLater -
+      this.totalDaysAbsent -
+      this.totalDayOff;
   }
 
-  getClassStatus({ isAbsent, isLater }: StatusAttendance): string {
-    if (isAbsent) {
+  getClassStatus({ isAbsent, isLater, isDayOff }: StatusAttendance): string {
+    if (isAbsent || isDayOff) {
       return 'disabled';
     }
 

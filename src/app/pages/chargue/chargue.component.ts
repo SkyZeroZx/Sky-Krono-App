@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { ModalDirective } from "ngx-bootstrap/modal";
-import { ToastrService } from "ngx-toastr";
-import Swal from "sweetalert2";
-import { Chargue } from "../../common/interfaces/chargue";
-import { ChargueService } from "../../services/chargue/chargue.service";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+import { Chargue } from '../../common/interfaces/chargue';
+import { ChargueService } from '../../services/chargue/chargue.service';
 
 @Component({
-  selector: "app-chargue",
-  templateUrl: "./chargue.component.html",
-  styleUrls: ["./chargue.component.scss"],
+  selector: 'app-chargue',
+  templateUrl: './chargue.component.html',
+  styleUrls: ['./chargue.component.scss'],
 })
 export class ChargueComponent implements OnInit {
   chargueForm: FormGroup;
@@ -19,15 +19,15 @@ export class ChargueComponent implements OnInit {
   p = 1;
   listChargue: Chargue[] = [];
   selectedChargue: Chargue;
-  @ViewChild("modalCreateChargue", { static: false })
+  @ViewChild('modalCreateChargue', { static: false })
   modalCreateChargue: ModalDirective;
-  @ViewChild("modalUpdateChargue", { static: false })
+  @ViewChild('modalUpdateChargue', { static: false })
   modalUpdateChargue: ModalDirective;
 
   constructor(
     private fb: FormBuilder,
     private chargueService: ChargueService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -37,11 +37,9 @@ export class ChargueComponent implements OnInit {
 
   createFormChargue(): void {
     this.chargueForm = this.fb.group({
-      name: new FormControl(""),
+      name: new FormControl(''),
     });
   }
-
-  exportPdf() {}
 
   getAllChargue() {
     this.chargueService.getAllChargue().subscribe({
@@ -50,7 +48,7 @@ export class ChargueComponent implements OnInit {
         this.listChargueOk = true;
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al listar los cargos");
+        this.toastrService.error('Sucedio un error al listar los cargos');
       },
     });
   }
@@ -68,14 +66,14 @@ export class ChargueComponent implements OnInit {
 
   alertDeleteChargue(chargue: Chargue) {
     Swal.fire({
-      title: "Eliminar Cargo",
+      title: 'Eliminar Cargo',
       text: `Se va eliminar el cargo ${chargue.name} , ¿Esta seguro?`,
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirmar",
-      cancelButtonText: "Cancelar",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
     }).then(({ isConfirmed }) => {
       if (isConfirmed) {
         this.deleteChargue(chargue.id);
@@ -86,11 +84,11 @@ export class ChargueComponent implements OnInit {
   deleteChargue(id: number) {
     this.chargueService.deleteChargue(id).subscribe({
       next: (_res) => {
-        this.toastrService.success("Se elimino exitosamente el cargo");
+        this.toastrService.success('Se elimino exitosamente el cargo');
         this.getAllChargue();
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al eliminar el cargo");
+        this.toastrService.error('Sucedio un error al eliminar el cargo');
       },
     });
   }

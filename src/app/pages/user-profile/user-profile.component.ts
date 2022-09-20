@@ -3,8 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
 import { startRegistration } from '@simplewebauthn/browser';
+import { RegistrationCredentialJSON } from '@simplewebauthn/typescript-types';
 import { ToastrService } from 'ngx-toastr';
-import { Constant } from 'src/app/common/constants/Constant';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 import { UserService } from 'src/app/services/users/user.service';
@@ -28,9 +28,15 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   // Creamos nuestro formControls para los switch de userTheme , NavBar , FingerPrint y Notificaciones
-  userTheme: FormControl = new FormControl(this.themeService.getLocalStorageItem('darkTheme'));
-  userNavBar: FormControl = new FormControl(this.themeService.getLocalStorageItem('navBar'));
-  userFingerPrint: FormControl = new FormControl(this.themeService.getLocalStorageItem('verified'));
+  userTheme: FormControl = new FormControl(
+    this.themeService.getLocalStorageItem('darkTheme'),
+  );
+  userNavBar: FormControl = new FormControl(
+    this.themeService.getLocalStorageItem('navBar'),
+  );
+  userFingerPrint: FormControl = new FormControl(
+    this.themeService.getLocalStorageItem('verified'),
+  );
   notificacionesControl: FormControl = new FormControl(
     this.themeService.getLocalStorageItem('notificaciones'),
   );
@@ -93,7 +99,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Nos suscribimos a nuestros formControls para escuchar los valores de los eventos y ejecutar segun sea necesario
   suscribeChange() {
     this.userTheme.valueChanges.subscribe((res) => {
       this.themeService.setTheme(res);
@@ -123,69 +128,50 @@ export class UserProfileComponent implements OnInit {
 
     this.installPWAControl.valueChanges.subscribe((res) => {
       if (res) {
-        // Si el usuario habilita el switch le proponemos instalar
         this.installPwa();
       }
     });
   }
 
-  // Metodo para llamar la propuesta de instalar nuestra PWA
   installPwa() {
     this.themeService.getInstallPwa.prompt();
   }
 
-  // Metodo para validar si esta instalado por lo cual no mostrara el boton
   shouldInstall(): boolean {
     return !this.isRunningStandalone() && this.themeService.getInstallPwa;
   }
 
-  //Metodo para validar si estamos en modo standalone
   isRunningStandalone(): boolean {
     return window.matchMedia('(display-mode: standalone)').matches;
   }
 
-  // Metodo que solicita al usuario habilitar las notificaciones en el navegador
   suscribeToNotifications() {
     this.swPush
       .requestSubscription({
         serverPublicKey: environment.VAPID_PUBLIC_KEY,
       })
       .then((token) => {
-        // Validamos que el usuario de permisos
         this.saveNotification(token);
       })
       .catch((_err) => {
-        this.disableNotificaciones();
-        // En caso contrario de suceder un error lo notificamos
+        this.disableNotifications();
         this.toastrService.error('Sucedio un error al suscribirse ', 'Error');
       });
   }
 
-  disableNotificaciones() {
+  disableNotifications() {
     this.notificacionesControl.setValue(false, { emitEvent: false });
     localStorage.setItem('notificaciones', 'false');
   }
 
-  formatSaveToken(token) {
-    return { tokenPush: JSON.stringify(token) };
-  }
-
-  // Metodo que guarda el token push con el usuario en la base de datos
-  saveNotification(token) {
-    this.userService.saveUserNotification(this.formatSaveToken(token)).subscribe({
-      next: (res) => {
-        // Para el caso de exito de respuesta del servicio saveUserNotification
-        if (res.message == Constant.MENSAJE_OK) {
-          this.toastrService.success('Las notificaciones fueron habilitadas exitosamente', 'Exito');
-        } else {
-          this.disableNotificaciones();
-          this.toastrService.error('Sucedio un error al suscribir sus notificaciones', 'Error');
-        }
+  saveNotification(token: PushSubscription) {
+    this.userService.saveUserNotification(token).subscribe({
+      next: (_res) => {
+        this.toastrService.success('Las notificaciones fueron habilitadas exitosamente');
       },
       error: (_err) => {
-        // En caso de un error con el servicio lo mostramos
         console.log('Error al suscribir notificaciones saveNotification ', _err);
-        this.disableNotificaciones();
+        this.disableNotifications();
         this.toastrService.error('Sucedio un error al suscribir sus notificaciones ');
       },
     });
@@ -196,17 +182,13 @@ export class UserProfileComponent implements OnInit {
     localStorage.setItem('verified', 'false');
   }
 
-  // Obtener solicitud de registro de WebAuthn para el usuario desde el servicio
   getRegistrationAuthnWeb() {
     this.authService.getRegistrationAuthnWeb().subscribe({
       next: async (res) => {
         try {
-          // Con la respuesta empezamos el proceso
           const attResp = await startRegistration(res);
-          // Si salio bien se llama al siguiente servicio para registrarlo
           this.registerAuthnWeb(attResp);
         } catch (e) {
-          // Validamos en caso el dispositivo fue registrado anteriormente
           if (e.toString().includes('The authenticator was previously registered')) {
             Swal.fire('', 'Su dispositivo ya se encuentra registrado', 'info');
             this.storageUserData();
@@ -222,11 +204,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Registrar el dispositivo el metodo de verificacion
-  registerAuthnWeb(data) {
-    this.authService.verifyRegistration(data).subscribe({
+  registerAuthnWeb(registrationCredentialJSON: RegistrationCredentialJSON) {
+    this.authService.verifyRegistration(registrationCredentialJSON).subscribe({
       next: (_res) => {
-        // Si va bien mostramos el mensaje de exito
         Swal.fire('Exito', 'Se registro exitosamente', 'success');
         this.storageUserData();
       },
@@ -237,7 +217,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Metodo que guarda la informacion en el localStorage del usuario
   storageUserData() {
     localStorage.setItem('username', JSON.parse(localStorage.getItem('user')).username);
     localStorage.setItem('verified', 'true');
@@ -265,10 +244,10 @@ export class UserProfileComponent implements OnInit {
   updateProfile() {
     this.userService.updateUser(this.userProfileForm.value).subscribe({
       next: (_res) => {
-        this.toastrService.success('Se actualizo exitosamente su perfil', 'Exito');
+        this.toastrService.success('Se actualizo exitosamente su perfil');
       },
       error: (_err) => {
-        this.toastrService.error('Error al actualizar su perfil ', 'Error');
+        this.toastrService.error('Error al actualizar su perfil');
       },
     });
   }

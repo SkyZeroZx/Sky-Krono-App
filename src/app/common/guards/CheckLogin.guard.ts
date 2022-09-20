@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from 'src/app/services/auth/auth.service';
- const helper = new JwtHelperService();
+const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root',
 })
@@ -13,7 +13,7 @@ export class CheckLogin implements CanActivate {
     console.log('Auth Guard Check Login');
     if (localStorage.getItem('user') !== null) {
       if (helper.decodeToken(JSON.parse(localStorage.getItem('user')).token.firstLogin)) {
-        localStorage.removeItem("user");
+        localStorage.removeItem('user');
         return true;
       }
       console.log('El rol es ', this.authService.getItemToken('role'));
@@ -24,15 +24,14 @@ export class CheckLogin implements CanActivate {
         case 'viewer':
           this.router.navigateByUrl('/calendar-view');
           break;
-        default :
-        localStorage.removeItem("user");
-        this.router.navigateByUrl('/login');
-        break;
+        default:
+          localStorage.removeItem('user');
+          this.router.navigateByUrl('/login');
+          break;
       }
     } else {
-      localStorage.removeItem("user");
+      localStorage.removeItem('user');
       return true;
     }
- 
   }
 }

@@ -167,7 +167,7 @@
       }
     }
   },
-  "defaultProject": "sky-calendar-pwa",
+  "defaultProject": "sky-krono-pwa",
   "cli": {
     "analytics": false
   }

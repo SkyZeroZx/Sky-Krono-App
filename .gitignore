@@ -10,6 +10,11 @@
 # dependencies
 /node_modules
 
+# tests
+/coverage-unit-test
+/coverage-e2e-test
+
+
 # profiling files
 chrome-profiler-events.json
 speed-measure-plugin.json

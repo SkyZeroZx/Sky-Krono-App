@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { CheckRole } from './common/guards/checkRole.guard';
+ 
 import { FirstLogin } from './common/guards/FirstLogin.guard';
 import { IsLogged } from './common/guards/IsLogged.guard';
+import { CheckRole } from './common/guards/checkRole.guard';
 
 const routes: Routes = [
   {

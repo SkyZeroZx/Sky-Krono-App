@@ -18,31 +18,31 @@
                 <div class=" form-group">
                   <label><i [class]="userTheme.value ? 'fas fa-moon' : 'fas fa-sun' "></i>Theme</label>
                   <br>
-                  <mat-slide-toggle [formControl]="userTheme"></mat-slide-toggle>
+                  <mat-slide-toggle   id="userTheme"     [formControl]="userTheme"></mat-slide-toggle>
                 </div>
               </div>
               <div [class]="shouldInstall() ? 'col-md-2 px-md-1'  : 'col-md-3 px-md-1' ">
                 <div class=" form-group">
                   <label><i class="fas fa-bars"></i> Nav Bar</label> <br>
-                  <mat-slide-toggle [formControl]="userNavBar"></mat-slide-toggle>
+                  <mat-slide-toggle  id="userNavBar"   [formControl]="userNavBar"></mat-slide-toggle>
                 </div>
               </div>
               <div [class]="shouldInstall() ? 'col-md-2 px-md-1'  : 'col-md-3 px-md-1' ">
                 <div class=" form-group">
                   <label><i class="fas fa-fingerprint"></i> FingerPrint</label> <br>
-                  <mat-slide-toggle [formControl]="userFingerPrint"></mat-slide-toggle>
+                  <mat-slide-toggle  id="userFingerPrint"  [formControl]="userFingerPrint"></mat-slide-toggle>
                 </div>
               </div>
               <div class="col-md-2 px-md-1" *ngIf="shouldInstall()">
                 <div class=" form-group">
                   <label><i class="fa fa-cloud-download"></i> Instalar</label> <br>
-                  <mat-slide-toggle [formControl]="installPWAControl"></mat-slide-toggle>
+                  <mat-slide-toggle id="installPWAControl"    [formControl]="installPWAControl"></mat-slide-toggle>
                 </div>
               </div>
               <div class="col-md-3 px-md-1">
                 <div class=" form-group">
                   <label><i class="fa-solid fa-bell"></i> Notificaciones</label> <br>
-                  <mat-slide-toggle [formControl]="notificacionesControl"></mat-slide-toggle>
+                  <mat-slide-toggle id="notificationsControl" [formControl]="notificacionesControl"></mat-slide-toggle>
                 </div>
               </div>
             </div>

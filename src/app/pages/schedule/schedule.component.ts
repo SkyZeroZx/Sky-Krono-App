@@ -13,15 +13,15 @@ import { ScheduleService } from "../../services/schedule/schedule.service";
   styleUrls: ["./schedule.component.scss"],
 })
 export class ScheduleComponent implements OnInit {
-  @ViewChild("modalNewSchedule", { static: false })
-  modalNewSchedule: ModalDirective;
-  @ViewChild("modalEditSchedule", { static: false })
-  modalEditSchedule: ModalDirective;
+  @ViewChild("modalCreateSchedule", { static: false })
+  modalCreateSchedule: ModalDirective;
+  @ViewChild("modalUpdateSchedule", { static: false })
+  modalUpdateSchedule: ModalDirective;
 
   scheduleForm: FormGroup;
   listScheduleOk: boolean = false;
-  showModalNewScheduleOk: boolean = false;
-  showModalEditScheduleOk: boolean = false;
+  showModalCreateScheduleOk: boolean = false;
+  showModalUpdateScheduleOk: boolean = false;
   listSchedule: Schedule[] = [];
   p = 1;
 
@@ -53,7 +53,6 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
-  exportPdf() {}
 
   alertUpdateNotification(schedule: Schedule) {
     Swal.fire({
@@ -71,7 +70,7 @@ export class ScheduleComponent implements OnInit {
       cancelButtonText: "Cancelar",
     }).then(({ isConfirmed }) => {
       if (isConfirmed) {
-        this.updateNotificacion(schedule);
+        this.updateNotification(schedule);
       }
     });
   }
@@ -93,18 +92,18 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
-  showModalNewSchedule() {
-    this.showModalNewScheduleOk = true;
-    this.modalNewSchedule.show();
+  showModalCreateSchedule() {
+    this.showModalCreateScheduleOk = true;
+    this.modalCreateSchedule.show();
   }
 
-  showModalEditSchedule(schedule: Schedule) {
-    this.showModalEditScheduleOk = true;
+  showModalUpdateSchedule(schedule: Schedule) {
+    this.showModalUpdateScheduleOk = true;
     this.selectedSchedule = schedule;
-    this.modalEditSchedule.show();
+    this.modalUpdateSchedule.show();
   }
 
-  updateNotificacion(schedule: Schedule) {
+  updateNotification(schedule: Schedule) {
     const updateSchedule: UpdateSchedule = schedule;
     updateSchedule.codSchedule = schedule.id;
     updateSchedule.entryHour = schedule.entryHour.slice(0, 5);

@@ -8,7 +8,7 @@
 
 
 <!-- Modal View Task -->
-<div bsModal class="modal fade" #modaViewTask="bs-modal" [config]="{backdrop: 'static'}" (onHidden)="listarTaskByUser()"
+<div bsModal class="modal fade" #modaViewTask="bs-modal" [config]="{backdrop: 'static'}" (onHidden)="listTaskByUser() ; taskViewOk = false"
     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-lg" style="    transform: translate(0, 10%);">
         <div class="modal-content card">

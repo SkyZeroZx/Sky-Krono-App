@@ -69,7 +69,7 @@ export class CalendarAdminComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getAllTask();
+    this.getAllTasks();
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
@@ -80,7 +80,7 @@ export class CalendarAdminComponent implements OnInit {
     calendarApi.unselect();
   }
 
-  getAllTask() {
+  getAllTasks() {
     this.taskService.getAllTasks().subscribe({
       next: (res) => {
         this.calendarOptions.events = res;
@@ -92,21 +92,39 @@ export class CalendarAdminComponent implements OnInit {
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    this.optionsClickEvent(clickInfo);
+    Swal.fire({
+      title: '¿Que acción desea realizar?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Editar',
+      denyButtonText: `Eliminar`,
+      cancelButtonText: 'Cancelar',
+    }).then(({ isConfirmed, isDenied }) => {
+      if (isConfirmed) {
+        this.taskEdit = clickInfo;
+        this.taskEditOk = true;
+        this.modalUpdateTask.show();
+      }
+      if (isDenied) {
+        this.removeTask(clickInfo.event?._def?.publicId);
+      }
+    });
   }
 
   eventDraggable(item: EventChangeArg) {
     item.event.remove();
     this.taskService
-      .updateTask(this.formatedTaskChange(item.event._def.publicId, item.event._instance.range))
+      .updateTask(
+        this.formatedTaskChange(item.event._def.publicId, item.event._instance.range),
+      )
       .subscribe({
         next: (_res) => {
           this.toastrService.success('Tarea actualizada exitosamente');
-          this.getAllTask();
+          this.getAllTasks();
         },
         error: (_err) => {
           this.toastrService.error('Error al actualizar tarea');
-          this.getAllTask();
+          this.getAllTasks();
         },
       });
   }
@@ -118,36 +136,15 @@ export class CalendarAdminComponent implements OnInit {
     };
   }
 
-  removeTask(id) {
+  removeTask(id: string) {
     this.taskService.deleteTask(parseInt(id)).subscribe({
       next: (_res) => {
-        this.getAllTask();
+        this.getAllTasks();
         this.toastrService.success('Tarea eliminada exitosamente');
       },
       error: (_err) => {
         this.toastrService.error('Error al eliminar la tarea');
       },
-    });
-  }
-
-  optionsClickEvent(item: any) {
-    Swal.fire({
-      title: '¿Que acción desea realizar?',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Editar',
-      denyButtonText: `Eliminar`,
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed, isDenied }) => {
-      if (isConfirmed) {
-        this.taskEdit = item;
-        this.taskEditOk = true;
-        this.modalUpdateTask.show();
-      }
-
-      if (isDenied) {
-        this.removeTask(item.event?._def?.publicId);
-      }
     });
   }
 }

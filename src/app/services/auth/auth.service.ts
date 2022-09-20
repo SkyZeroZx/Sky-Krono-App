@@ -1,17 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { UserLogin, ChangePassword, UserLoginResponse } from 'src/app/common/interfaces/user';
+import {
+  UserLogin,
+  ChangePassword,
+  UserLoginResponse,
+} from 'src/app/common/interfaces/user';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Response } from '../../common/interfaces/response';
+import {
+  PublicKeyCredentialCreationOptionsJSON,
+  RegistrationCredentialJSON,
+} from '@simplewebauthn/typescript-types';
 
 const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // Servicio de autenticacion
   private loggedIn = new BehaviorSubject<boolean>(false);
   private user = new BehaviorSubject<UserLoginResponse>(null);
 
@@ -27,28 +34,26 @@ export class AuthService {
     return this.user.getValue();
   }
 
-  login(authData: UserLogin): Observable<UserLoginResponse> {
-    return this.http.post<UserLoginResponse>(`${environment.API_URL}/auth/login`, authData).pipe(
-      map((user: UserLoginResponse) => {
-        this.saveLocalStorage(user);
-        this.user.next(user);
-        return user;
-      }),
-    );
-  }
-
-  changePassword(authPassword: ChangePassword): Observable<Response> {
+  login(userLogin: UserLogin): Observable<UserLoginResponse> {
     return this.http
-      .post<Response>(`${environment.API_URL}/auth/change-password`, authPassword)
+      .post<UserLoginResponse>(`${environment.API_URL}/auth/login`, userLogin)
       .pipe(
-        map((res) => {
-          return res;
+        map((user: UserLoginResponse) => {
+          this.saveLocalStorage(user);
+          this.user.next(user);
+          return user;
         }),
       );
   }
 
+  changePassword(changePassword: ChangePassword): Observable<Response> {
+    return this.http.post<Response>(
+      `${environment.API_URL}/auth/change-password`,
+      changePassword,
+    );
+  }
+
   logout(): void {
-    localStorage.removeItem('user');
     localStorage.removeItem('user');
     this.user.next(null);
     this.loggedIn.next(false);
@@ -74,28 +79,37 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  /********************** SERVICIOS FINGERPRINT **************************** */
-  getRegistrationAuthnWeb() {
-    return this.http.get<any>(`${environment.API_URL}/auth/generate-registration-options`);
+  getRegistrationAuthnWeb(): Observable<PublicKeyCredentialCreationOptionsJSON> {
+    return this.http.get<PublicKeyCredentialCreationOptionsJSON>(
+      `${environment.API_URL}/auth/generate-registration-options`,
+    );
   }
 
-  verifyRegistration(data) {
-    return this.http.post<any>(`${environment.API_URL}/auth/verify-registration`, data);
+  verifyRegistration(registrationCredentialJSON: RegistrationCredentialJSON) {
+    return this.http.post<any>(
+      `${environment.API_URL}/auth/verify-registration`,
+      registrationCredentialJSON,
+    );
   }
 
   startAuthentication(username: string) {
-    return this.http.post<any>(`${environment.API_URL}/auth/generate-authentication-options`, {
-      username,
-    });
+    return this.http.post<any>(
+      `${environment.API_URL}/auth/generate-authentication-options`,
+      {
+        username,
+      },
+    );
   }
 
   verifityAuthentication(data) {
-    return this.http.post<any>(`${environment.API_URL}/auth/verify-authentication`, data).pipe(
-      map((user) => {
-        this.saveLocalStorage(user.data);
-        this.user.next(user.data);
-        return user;
-      }),
-    );
+    return this.http
+      .post<any>(`${environment.API_URL}/auth/verify-authentication`, data)
+      .pipe(
+        map((user) => {
+          this.saveLocalStorage(user.data);
+          this.user.next(user.data);
+          return user;
+        }),
+      );
   }
 }

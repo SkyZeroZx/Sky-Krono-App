@@ -11,15 +11,17 @@ import { Response } from '../../common/interfaces/response';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  resetPassword(username): Observable<Response> {
-    return this.http.post<Response>(`${environment.API_URL}/auth/reset-password`, username);
+  resetUserPassword(username : string): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/auth/reset-password`, {
+      username: username,
+    });
   }
 
   updateUser(user: UserUpdate): Observable<Response> {
     return this.http.patch<Response>(`${environment.API_URL}/users`, user);
   }
 
-  deleteUser(id): Observable<Response> {
+  deleteUser(id: number): Observable<Response> {
     return this.http.delete<Response>(`${environment.API_URL}/users/${id}`);
   }
 
@@ -31,15 +33,17 @@ export class UserService {
     return this.http.get<User[]>(`${environment.API_URL}/users`);
   }
 
-  saveUserNotification(data): Observable<any> {
-    return this.http.post<any>(`${environment.API_URL}/notificacion`, data);
+  saveUserNotification(token: PushSubscription): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/notificacion`, {
+      tokenPush: JSON.stringify(token),
+    });
   }
 
   getProfile(): Observable<User> {
     return this.http.get<User>(`${environment.API_URL}/users/profile`);
   }
 
-  sendNotification(token): Observable<any> {
-    return this.http.post<any>(`${environment.API_URL}/notificacion/send`, token);
+  sendNotification(users : User[]): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/notificacion/send`, { users: users });
   }
 }

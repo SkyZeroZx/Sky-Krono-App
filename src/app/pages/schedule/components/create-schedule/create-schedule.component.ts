@@ -1,19 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators,
-} from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import { Schedule } from "../../../../common/interfaces/schedule";
-import { Util } from "../../../../common/utils/util";
-import { ScheduleService } from "../../../../services/schedule/schedule.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Schedule } from '../../../../common/interfaces/schedule';
+import { Util } from '../../../../common/utils/util';
+import { ScheduleService } from '../../../../services/schedule/schedule.service';
 
 @Component({
-  selector: "app-create-schedule",
-  templateUrl: "./create-schedule.component.html",
-  styleUrls: ["./create-schedule.component.scss"],
+  selector: 'app-create-schedule',
+  templateUrl: './create-schedule.component.html',
+  styleUrls: ['./create-schedule.component.scss'],
 })
 export class CreateScheduleComponent implements OnInit {
   @Output() close = new EventEmitter();
@@ -21,7 +16,7 @@ export class CreateScheduleComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private scheduleService: ScheduleService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -31,30 +26,24 @@ export class CreateScheduleComponent implements OnInit {
   createFormSchedule() {
     this.createScheduleForm = this.fb.group({
       name: new FormControl(
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(150),
-        ])
+        ]),
       ),
       description: new FormControl(
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(150),
-        ])
+        ]),
       ),
-      entryHour: new FormControl(
-        new Date(),
-        Validators.compose([Validators.required])
-      ),
-      exitHour: new FormControl("", Validators.compose([Validators.required])),
-      toleranceTime: new FormControl(
-        "",
-        Validators.compose([Validators.required])
-      ),
+      entryHour: new FormControl('', Validators.compose([Validators.required])),
+      exitHour: new FormControl('', Validators.compose([Validators.required])),
+      toleranceTime: new FormControl('', Validators.compose([Validators.required])),
       monday: new FormControl(false),
       tuesday: new FormControl(false),
       wednesday: new FormControl(false),
@@ -65,24 +54,20 @@ export class CreateScheduleComponent implements OnInit {
     });
   }
 
-  createNewSchedule() {
+  createSchedule() {
     const newSchedule: Schedule = this.createScheduleForm.getRawValue();
     newSchedule.entryHour = Util.formatDateToHour(
-      this.createScheduleForm.value.entryHour
+      this.createScheduleForm.value.entryHour,
     );
-    newSchedule.exitHour = Util.formatDateToHour(
-      this.createScheduleForm.value.exitHour
-    );
+    newSchedule.exitHour = Util.formatDateToHour(this.createScheduleForm.value.exitHour);
     this.scheduleService.createSchedule(newSchedule).subscribe({
       next: (_res) => {
-        this.toastrService.success("Se registro exitosamente el nuevo horario");
+        this.toastrService.success('Se registro exitosamente el nuevo horario');
         this.createScheduleForm.reset();
         this.close.emit();
       },
       error: (_err) => {
-        this.toastrService.error(
-          "Sucedio un error al registrar el nuevo horario"
-        );
+        this.toastrService.error('Sucedio un error al registrar el nuevo horario');
       },
     });
   }

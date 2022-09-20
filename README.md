@@ -9,10 +9,10 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
 - [Pre-Requisitos](#pre-requisitos-)
 - [Instalación](#instalación-)
 - [PWA](#ejecutando-como-pwa-)
-- [Web-Authentication](##web-authn-fingerprint-)
-- [Despligue](#despliegue-) 
-    -[Build](#build)
-    -[Docker](#docker)
+- [Web-Authentication](#web-authn-fingerprint-)
+    - [Despligue](#despliegue-) 
+    - [Build](#build)
+    - [Docker](#docker)
 - [Construido](#construido-con-)
 
 ## Comenzando 🚀

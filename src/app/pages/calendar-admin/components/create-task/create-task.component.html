@@ -1,4 +1,4 @@
-<form [formGroup]="createTaskForm" (ngSubmit)="createTask()">
+<form [formGroup]="createTaskForm">
     <div class="modal-body">
 
         <div class="col">
@@ -30,8 +30,7 @@
             <div class="form-group">
                 <label for="labelTypes" class="col-form-label">Tipo (*)</label>
                 <ng-select [items]="listTypes" [closeOnSelect]="true" [hideSelected]="true" bindValue="codType"
-                    [clearable]="false" (change)="validateTypeDate()" (keypress)="validateTypeDate()"
-                    (keydown)="validateTypeDate()" bindLabel="typeDescription" placeholder="Seleccionar Tipo"
+                    [clearable]="false" bindLabel="typeDescription" placeholder="Seleccionar Tipo"
                     formControlName="codType">
                 </ng-select>
 
@@ -63,7 +62,8 @@
 
     </div>
     <div class="modal-footer">
-        <button type="submit" id="btnCreateTask" class="btn btn-primary" [disabled]="createTaskForm.invalid">
+        <button type="submit" id="btnCreateTask" class="btn btn-primary" [disabled]="createTaskForm.invalid"
+            (click)="createTask()">
             Crear Task</button>
     </div>
 </form>

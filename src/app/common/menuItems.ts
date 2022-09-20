@@ -1,3 +1,5 @@
+import { RouteInfo } from "./interfaces/routerInfo";
+
 export const ROUTES: RouteInfo[] = [
   {
     path: '/home',

@@ -7,6 +7,7 @@ import { Constant } from 'src/app/common/constants/Constant';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 import Swal from 'sweetalert2';
+import { UserLoginResponse } from '../../common/interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -29,15 +30,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.removeItem('user');
-    console.log('verified', !this.themeService.getLocalStorageItem('verified'));
-    console.log('Dark Theme ', this.themeService.getLocalStorageItem('darkTheme'));
-    this.crearFormularioLogin();
-    this.loginForm.controls.username.setValue(this.userStorage == null ? '' : this.userStorage);
+    this.createFormLogin();
   }
 
-  crearFormularioLogin() {
+  createFormLogin() {
     this.loginForm = this.fb.group({
-      username: new FormControl('', [
+      username: new FormControl(this.userStorage == null ? '' : this.userStorage, [
         Validators.required,
         Validators.email,
         Validators.minLength(6),
@@ -50,11 +48,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        if (res.message == Constant.MENSAJE_OK) {
-          this.validateLogin(res);
-        } else {
-          this.toastrService.error(res.message);
-        }
+        this.isFirstLogin(res);
       },
       error: (_err) => {
         this.toastrService.error('Error al logearse');
@@ -62,7 +56,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  validateLogin(res) {
+  isFirstLogin(res : UserLoginResponse) {
     if (res.firstLogin) {
       this.alertFirstLogin();
     } else {
@@ -70,11 +64,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('verified', 'null');
       }
       localStorage.setItem('username', this.loginForm.value.username);
-      if (res.role == 'admin') {
-        this.router.navigate(['/calendar-admin']);
-      } else {
-        this.router.navigate(['/calendar-view']);
-      }
+      this.router.navigate(['/home']);
     }
   }
 
@@ -101,7 +91,7 @@ export class LoginComponent implements OnInit {
     this.authService.startAuthentication(this.userStorage).subscribe({
       next: async (res) => {
         try {
-          const asseRep = await startAuthentication(await res);
+          const asseRep = await startAuthentication(res);
           Object.assign(asseRep, { username: this.userStorage });
           this.verifityAuthentication(asseRep);
         } catch (_err) {
@@ -118,7 +108,7 @@ export class LoginComponent implements OnInit {
     this.authService.verifityAuthentication(data).subscribe({
       next: (res) => {
         if (res.verified) {
-          this.validateLogin(res.data);
+          this.isFirstLogin(res.data);
         } else {
           this.toastrService.error('Error al logearse');
         }

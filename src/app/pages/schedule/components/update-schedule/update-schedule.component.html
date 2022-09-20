@@ -6,10 +6,10 @@
                     <label for="recipient-name" class="col-form-label">Nombre</label>
                     <input type="text" placeholder="Nombre" class="form-control" formControlName="name" maxlength="150">
                     <div *ngIf="updateScheduleForm.controls.name.invalid && updateScheduleForm.controls.name.touched">
-                        <small id="requiredNewScheduleName" class="text-left"
+                        <small id="requiredScheduleName" class="text-left"
                             *ngIf="updateScheduleForm.controls.name.errors?.required">
                             Se requiere nombre</small>
-                        <small id="minLenghtNewScheduleName" class="text-left"
+                        <small id="minLenghtScheduleName" class="text-left"
                             *ngIf="updateScheduleForm.controls.name.errors?.minlength">
                             La longitud minima es 5 caracteres</small>
                     </div>
@@ -22,10 +22,10 @@
                         maxlength="200">
                     <div
                         *ngIf="updateScheduleForm.controls.description.invalid && updateScheduleForm.controls.description.touched">
-                        <small id="requiredNewScheduleDescription" class="text-left"
+                        <small id="requiredScheduleDescription" class="text-left"
                             *ngIf="updateScheduleForm.controls.description.errors?.required">
                             Se requiere descripción</small>
-                        <small id="minLenghtNewScheduleDescription" class="text-left"
+                        <small id="minLenghtScheduleDescription" class="text-left"
                             *ngIf="updateScheduleForm.controls.description.errors?.minlength">
                             La longitud minima es 5 caracteres</small>
                     </div>
@@ -38,7 +38,7 @@
                         min="0">
                     <div
                         *ngIf="updateScheduleForm.controls.toleranceTime.invalid && updateScheduleForm.controls.toleranceTime.touched">
-                        <small id="requiredNewScheduleDescription" class="text-left"
+                        <small id="requiredScheduleDescription" class="text-left"
                             *ngIf="updateScheduleForm.controls.toleranceTime.errors?.required">
                             Se requiere tiempo de tolerancia</small>
                     </div>
@@ -52,7 +52,7 @@
                 <timepicker formControlName="entryHour" [showMeridian]="false" [showSpinners]="true">
                 </timepicker>
                 <div *ngIf="updateScheduleForm.controls.entryHour.errors?.required">
-                    <small id="requiredNewScheduleEntryHour" class="text-left">
+                    <small id="requiredScheduleEntryHour" class="text-left">
                         Se requiere una hora de entrada valida</small>
                 </div>
             </div>
@@ -113,7 +113,7 @@
 
 
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" [disabled]="updateScheduleForm.invalid"
-            (click)="editSchedule()">Editar Horario</button>
+        <button type="submit" id="updateSchedule" class="btn btn-primary" [disabled]="updateScheduleForm.invalid"
+            (click)="updateSchedule()">Editar Horario</button>
     </div>
 </form>

@@ -1,33 +1,71 @@
-import { TestBed, waitForAsync } from "@angular/core/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { AppComponent } from "./app.component";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { of, throwError } from 'rxjs';
+import { environment } from '../environments/environment.prod';
+import { AppComponent } from './app.component';
+import { ThemeService } from './services/theme/theme.service';
 
-describe("AppComponent", () => {
+fdescribe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let swUpdate: SwUpdate;
+  let themeService: ThemeService;
+  let mockUpdate: any = {
+    versionUpdates: of(null),
+  };
+  let mockEvent: any = {
+    preventDefault() {
+      return;
+    },
+  };
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
       declarations: [AppComponent],
+      imports: [
+        HttpClientTestingModule,
+        ToastrModule.forRoot(),
+        NgxSpinnerModule,
+        FormsModule,
+        RouterTestingModule,
+        ServiceWorkerModule.register('custom-service-worker.js', {
+          enabled: environment.production,
+          registrationStrategy: 'registerWhenStable:5000',
+        }),
+      ],
+      providers: [
+        ToastrService,
+        ReactiveFormsModule,
+        ThemeService,
+        { provide: SwUpdate, useValue: mockUpdate },
+        { provide: ToastrService, useClass: ToastrService },
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
-  it("should create the app", () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    themeService = TestBed.inject(ThemeService);
+    swUpdate = TestBed.inject(SwUpdate);
+    component = fixture.debugElement.componentInstance;
   });
 
-  it(`should have as title 'black-dashboard-angular'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual("black-dashboard-angular");
+  it('AppComponent create', () => {
+    expect(component).toBeTruthy();
   });
 
-  it("should render title in a h1 tag", () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector("h1").textContent).toContain(
-      "Welcome to black-dashboard-angular!"
-    );
+  it('Validate onBeforeInstallPrompt', () => {
+    component.onBeforeInstallPrompt(mockEvent);
+    expect(themeService.promptEvent).toEqual(mockEvent);
+  });
+
+  it('Validate existUpdate', () => {
+    expect(component.existUpdate()).toBeUndefined();
   });
 });

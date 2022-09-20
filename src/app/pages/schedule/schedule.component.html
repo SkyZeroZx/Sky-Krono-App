@@ -17,12 +17,12 @@
                 </form>
 
                 <div class="card-header">
-                    <button id="newSchedule" type="button" class="btn info" (click)="showModalNewSchedule()">
+                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateSchedule()">
                         <a><i class="fa fa-user-plus" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
                     &nbsp;&nbsp;&nbsp;
-                    <button id="pdfSchedule" type="button" class="btn danger" (click)="exportPdf()">
+                    <button id="pdfSchedule" type="button" class="btn danger">
                         <a> <i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
                     </button>
                 </div>
@@ -80,7 +80,7 @@
 
                                 </td>
                                 <td style="padding-left: 35px;">
-                                    <i (click)="showModalEditSchedule(schedule)" class="tim-icons  icon-pencil"></i>
+                                    <i (click)="showModalUpdateSchedule(schedule)" class="tim-icons  icon-pencil"></i>
                                 </td>
                                 <td style="padding-left: 35px;" (click)="alertDeleteSchedule(schedule)">
                                     <i class="tim-icons  icon-simple-remove"></i>
@@ -102,8 +102,8 @@
 
 
 <!-- Modal Create Schedule -->
-<div bsModal class="modal fade" #modalNewSchedule="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllSchedule(); showModalNewScheduleOk = false" tabindex="-1" role="dialog"
+<div bsModal class="modal fade" #modalCreateSchedule="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllSchedule(); showModalCreateScheduleOk = false" tabindex="-1" role="dialog"
     aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
 
@@ -111,11 +111,11 @@
             <div class="modal-header">
                 <h4>Nuevo Horario</h4>
                 <button type="button" class="btn-close close pull-right" aria-label="Close"
-                    (click)="modalNewSchedule.hide()">
+                    (click)="modalCreateSchedule.hide()">
                     <span>&times;</span>
                 </button>
             </div>
-            <app-create-schedule (close)="modalNewSchedule.hide()" *ngIf="showModalNewScheduleOk"></app-create-schedule>
+            <app-create-schedule (close)="modalCreateSchedule.hide()" *ngIf="showModalCreateScheduleOk"></app-create-schedule>
         </div>
     </div>
 </div>
@@ -123,20 +123,20 @@
 
 
 <!-- Modal Edit Schedule-->
-<div bsModal class="modal fade" #modalEditSchedule="bs-modal" [config]="{backdrop: 'static'}"
-    (wishEvent)="showModalEditScheduleOk = false" (onHidden)="getAllSchedule() ; showModalEditScheduleOk = false"
+<div bsModal class="modal fade" #modalUpdateSchedule="bs-modal" [config]="{backdrop: 'static'}"
+    (wishEvent)="showModalUpdateScheduleOk = false" (onHidden)="getAllSchedule() ; showModalUpdateScheduleOk = false"
     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
         <div class="modal-content card">
             <div class="modal-header">
                 <h4>Editar Horario</h4>
-                <button id="modalEditClose" type="button" class="btn-close close pull-right" aria-label="Close"
-                    (click)="modalEditSchedule.hide()">
+                <button id="modalUpdateClose" type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalUpdateSchedule.hide()">
                     <span>&times;</span>
                 </button>
             </div>
-            <app-update-schedule (close)="modalEditSchedule.hide()" [inputSchedule]="selectedSchedule"
-                *ngIf="showModalEditScheduleOk"></app-update-schedule>
+            <app-update-schedule (close)="modalUpdateSchedule.hide()" [inputSchedule]="selectedSchedule"
+                *ngIf="showModalUpdateScheduleOk"></app-update-schedule>
         </div>
     </div>
 </div>

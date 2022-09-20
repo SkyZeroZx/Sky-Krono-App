@@ -1,16 +1,16 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-
 import { ChargueService } from './chargue.service';
 
-describe('ChargueService', () => {
-  let service: ChargueService;
+fdescribe('ChargueService', () => {
+  let chargueService: ChargueService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ChargueService);
+    TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
+    chargueService = TestBed.inject(ChargueService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('ChargueService be created', () => {
+    expect(chargueService).toBeTruthy();
   });
 });

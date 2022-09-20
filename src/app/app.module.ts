@@ -7,7 +7,6 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -15,8 +14,6 @@ import { InterceptorService } from './services/interceptor/interceptor.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ErrorInterceptorService } from './services/interceptor/error-interceptor.service';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs, 'es');
@@ -27,10 +24,8 @@ registerLocaleData(localeEs, 'es');
     FormsModule,
     HttpClientModule,
     ComponentsModule,
-    NgbModule,
     RouterModule,
     AppRoutingModule,
-    SweetAlert2Module.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3000,
       toastClass: 'alert',

@@ -1,167 +1,148 @@
-import { CommonModule } from "@angular/common";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormsModule, ReactiveFormsModule, FormBuilder } from "@angular/forms";
-import { RouterTestingModule } from "@angular/router/testing";
-import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ModalModule } from "ngx-bootstrap/modal";
-import { TabsModule } from "ngx-bootstrap/tabs";
-import { ToastrModule, ToastrService } from "ngx-toastr";
-import { of, throwError } from "rxjs";
-import { Constant } from "src/app/common/constants/Constant";
-import { ServiciosService } from "src/app/services/servicios.service";
+import { CommonModule } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { of, throwError } from 'rxjs';
+import { ChargueService } from '../../../../services/chargue/chargue.service';
+import { ScheduleService } from '../../../../services/schedule/schedule.service';
+import { UserService } from '../../../../services/users/user.service';
+import { ManageUsersMock } from '../../manage-users.mock';
+import { ManageUsersRouter } from '../../manage-users.routing';
+import { UpdateUserComponent } from './update-user.component';
 
-import { UpdateUserComponent } from "./update-user.component";
-
-fdescribe("EditUserComponent", () => {
+fdescribe('UpdateUserComponent', () => {
   let component: UpdateUserComponent;
   let fixture: ComponentFixture<UpdateUserComponent>;
-  let servicio: ServiciosService;
   let toastrService: ToastrService;
-  let MockUserEdit: any = {
-    id: "15    ",
-    username: "SkyZeroZx      ",
-    nombre: "sky      ",
-    apellidoPaterno: "zero     ",
-    apellidoMaterno: "sky     ",
-    role: "admin",
-    estado: "HABILITADO",
-    createdAt: "25/02/2022",
-    updateAt: "20/05/2022",
-  };
+  let chargueService: ChargueService;
+  let scheduleService: ScheduleService;
+  let userService: UserService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [UpdateUserComponent],
       imports: [
         HttpClientTestingModule,
+        BrowserAnimationsModule,
         RouterTestingModule,
         CommonModule,
+        RouterModule.forChild(ManageUsersRouter),
         FormsModule,
-        ModalModule.forRoot(),
         ReactiveFormsModule,
-        TabsModule.forRoot(),
+        NgSelectModule,
         ToastrModule.forRoot(),
+        ModalModule.forRoot(),
       ],
       providers: [
-        ServiciosService,
         ToastrService,
+        ChargueService,
+        ScheduleService,
+        UserService,
         FormBuilder,
-        NgbActiveModal,
-        NgbModal,
         ReactiveFormsModule,
         { provide: ToastrService, useClass: ToastrService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();
-  });
+  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditUserComponent);
-    servicio = TestBed.inject(ServiciosService);
-    toastrService = TestBed.inject(ToastrService);
+    fixture = TestBed.createComponent(UpdateUserComponent);
     component = fixture.componentInstance;
-    // Seteamos el valor de entra de nuestro component en este caso MockUserEdit
-    component.in_user = MockUserEdit;
+    component.inputUser = ManageUsersMock.userMock;
+    toastrService = TestBed.inject(ToastrService);
+    userService = TestBed.inject(UserService);
+    chargueService = TestBed.inject(ChargueService);
+    scheduleService = TestBed.inject(ScheduleService);
+    fixture.detectChanges();
+    jasmine.getEnv().allowRespy(true);
   });
 
-  it("EditUserComponent creado correctamente", () => {
+  it('UpdateUserComponent Create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("Verificamos ngOnInit()", () => {
-    const spycrearFormularioEditarUser = spyOn(
+  it('Validate ngOnInit', () => {
+    const spyCreateFormUpdateUser = spyOn(
       component,
-      "crearFormularioEditarUser"
+      'createFormUpdateUser',
     ).and.callThrough();
-    const spydetalleUsuario = spyOn(
-      component,
-      "detalleUsuario"
-    ).and.callThrough();
+    const spyGetAllSchedule = spyOn(component, 'getAllSchedule').and.callThrough();
+    const spyGetAllCargues = spyOn(component, 'getAllCargues').and.callThrough();
     component.ngOnInit();
-    expect(spydetalleUsuario).toHaveBeenCalled();
-    expect(spycrearFormularioEditarUser).toHaveBeenCalled();
+    expect(spyCreateFormUpdateUser).toHaveBeenCalled();
+    expect(spyGetAllSchedule).toHaveBeenCalled();
+    expect(spyGetAllCargues).toHaveBeenCalled();
   });
 
-  it("Verificamos ngOnChanges()", () => {
-    let simpleChanges: any;
-    const spycrearFormularioEditarUser = spyOn(
-      component,
-      "crearFormularioEditarUser"
-    ).and.callThrough();
-    const spydetalleUsuario = spyOn(
-      component,
-      "detalleUsuario"
-    ).and.callThrough();
-    component.ngOnChanges(simpleChanges);
-    expect(spydetalleUsuario).toHaveBeenCalled();
-    expect(spycrearFormularioEditarUser).toHaveBeenCalled();
+  it('Validate updateUser OK', () => {
+    const spyToastService = spyOn(toastrService, 'success').and.callThrough();
+    const spyCloseEvent = spyOn(component.close, 'emit').and.callThrough();
+    const spyUpdateUser = spyOn(userService, 'updateUser').and.returnValue(of(null));
+    component.updateUser();
+    expect(spyToastService).toHaveBeenCalled();
+    expect(spyCloseEvent).toHaveBeenCalled();
+    expect(spyUpdateUser).toHaveBeenCalled();
   });
 
-  it("Verificamos actualizarUsuario()", () => {
-    // Preparamos la data de nuestro formulario para invocar la funcion
-    component.crearFormularioEditarUser();
-    component.detalleUsuario();
-    // Espiamos y retornamos un MENSAJE_OK para el servicio updateUser
-    const mockResOK: any = {
-      message: Constant.MENSAJE_OK,
-    };
-    const spyupdateUser = spyOn(servicio, "updateUser").and.returnValue(
-      of(mockResOK)
+  it('Validate updateUser ERROR', () => {
+    const spyToastService = spyOn(toastrService, 'error').and.callThrough();
+    const spyUpdateUser = spyOn(userService, 'updateUser').and.returnValue(
+      throwError(() => {
+        new Error('Error');
+      }),
     );
-    const spytoastrSuccess = spyOn(toastrService, "success").and.callThrough();
-    component.actualizarUsuario();
-    expect(spyupdateUser).toHaveBeenCalled();
-    expect(spytoastrSuccess).toHaveBeenCalled();
-
-    // Espiamos y retornamos un diferente de MENSAJE_OK para el servicio updateUser
-    const mockResDif: any = {
-      message: "Something",
-    };
-    const spyupdateUsertDif = spyOn(servicio, "updateUser").and.returnValue(
-      of(mockResDif)
-    );
-    const spytoastrErr = spyOn(toastrService, "success").and.callThrough();
-    component.actualizarUsuario();
-    expect(spyupdateUsertDif).toHaveBeenCalled();
-    expect(spytoastrErr).toHaveBeenCalled();
-
-    // Validamos para el caso que el servicio nos retorne un error
-    const spyUserDocMockErr = spyOn(servicio, "updateUser").and.returnValue(
-      throwError(() => new Error("Error en el servicio"))
-    );
-    const spyToastError = spyOn(toastrService, "error").and.callThrough();
-    component.actualizarUsuario();
-    expect(spyUserDocMockErr).toHaveBeenCalled();
-    expect(spyToastError).toHaveBeenCalled();
+    component.updateUser();
+    expect(spyToastService).toHaveBeenCalled();
+    expect(spyUpdateUser).toHaveBeenCalled();
   });
 
-  it("Verificamos trimEditarUserForm()", () => {
-    component.crearFormularioEditarUser();
-    // Preparamos los valores a evaluar
-    component.editarUserForm.controls.id.setValue(MockUserEdit.id);
-    component.editarUserForm.controls.username.setValue(MockUserEdit.username);
-    component.editarUserForm.controls.nombre.setValue(MockUserEdit.nombre);
-    component.editarUserForm.controls.apellidoPaterno.setValue(
-      MockUserEdit.apellidoPaterno
+  it('Validate getAllCargues OK', () => {
+    const spyChargueService = spyOn(chargueService, 'getAllChargue').and.returnValue(
+      of(ManageUsersMock.listChargues),
     );
-    component.editarUserForm.controls.apellidoMaterno.setValue(
-      MockUserEdit.apellidoMaterno
+    component.getAllCargues();
+    expect(spyChargueService).toHaveBeenCalled();
+    expect(component.listChargue).toEqual(ManageUsersMock.listChargues);
+  });
+
+  it('Validate getAllCargues ERROR', () => {
+    const spyToastService = spyOn(toastrService, 'error').and.callThrough();
+    const spyChargueService = spyOn(chargueService, 'getAllChargue').and.returnValue(
+      throwError(() => {
+        new Error('Error');
+      }),
     );
-    // Llamamos nuestra funcion
-    component.trimEditarUserForm();
-    expect(component.editarUserForm.getRawValue().username).toEqual(
-      MockUserEdit.username.trim()
+    component.getAllCargues();
+    expect(spyChargueService).toHaveBeenCalled();
+    expect(spyToastService).toHaveBeenCalled();
+  });
+
+  it('Validate getAllSchedule OK', () => {
+    const spyScheduleService = spyOn(scheduleService, 'getAllSchedule').and.returnValue(
+      of(ManageUsersMock.mockListSchedule),
     );
-    expect(component.editarUserForm.getRawValue().nombre).toEqual(
-      MockUserEdit.nombre.trim()
+    component.getAllSchedule();
+    expect(spyScheduleService).toHaveBeenCalled();
+    expect(component.listSchedule).toEqual(ManageUsersMock.mockListSchedule);
+  });
+
+  it('Validate getAllSchedule ERROR', () => {
+    const spyToastService = spyOn(toastrService, 'error').and.callThrough();
+    const spyScheduleService = spyOn(scheduleService, 'getAllSchedule').and.returnValue(
+      throwError(() => {
+        new Error('Error');
+      }),
     );
-    expect(component.editarUserForm.getRawValue().apellidoPaterno).toEqual(
-      MockUserEdit.apellidoPaterno.trim()
-    );
-    expect(component.editarUserForm.getRawValue().apellidoMaterno).toEqual(
-      MockUserEdit.apellidoMaterno.trim()
-    );
+    component.getAllSchedule();
+    expect(spyScheduleService).toHaveBeenCalled();
+    expect(spyToastService).toHaveBeenCalled();
   });
 });

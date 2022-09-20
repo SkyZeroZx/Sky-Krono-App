@@ -1,22 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import {
-  Schedule,
-  UpdateSchedule,
-} from "../../../../common/interfaces/schedule";
-import { Util } from "../../../../common/utils/util";
-import { ScheduleService } from "../../../../services/schedule/schedule.service";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Schedule, UpdateSchedule } from '../../../../common/interfaces/schedule';
+import { Util } from '../../../../common/utils/util';
+import { ScheduleService } from '../../../../services/schedule/schedule.service';
 
 @Component({
-  selector: "app-update-schedule",
-  templateUrl: "./update-schedule.component.html",
-  styleUrls: ["./update-schedule.component.scss"],
+  selector: 'app-update-schedule',
+  templateUrl: './update-schedule.component.html',
+  styleUrls: ['./update-schedule.component.scss'],
 })
 export class UpdateScheduleComponent implements OnInit {
   @Input() inputSchedule: Schedule;
@@ -26,11 +18,10 @@ export class UpdateScheduleComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private scheduleService: ScheduleService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit(): void {
-    console.log("inputSchedule is ", this.inputSchedule);
     this.createEditScheduleForm();
   }
 
@@ -43,7 +34,7 @@ export class UpdateScheduleComponent implements OnInit {
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(150),
-        ])
+        ]),
       ),
       description: new FormControl(
         this.inputSchedule.description,
@@ -51,19 +42,19 @@ export class UpdateScheduleComponent implements OnInit {
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(150),
-        ])
+        ]),
       ),
       entryHour: new FormControl(
         Util.formatHourToDate(this.inputSchedule.entryHour),
-        Validators.compose([Validators.required])
+        Validators.compose([Validators.required]),
       ),
       exitHour: new FormControl(
         Util.formatHourToDate(this.inputSchedule.exitHour),
-        Validators.compose([Validators.required])
+        Validators.compose([Validators.required]),
       ),
       toleranceTime: new FormControl(
         this.inputSchedule.toleranceTime,
-        Validators.compose([Validators.required])
+        Validators.compose([Validators.required]),
       ),
       monday: new FormControl(this.inputSchedule.monday),
       tuesday: new FormControl(this.inputSchedule.tuesday),
@@ -72,28 +63,25 @@ export class UpdateScheduleComponent implements OnInit {
       friday: new FormControl(this.inputSchedule.friday),
       saturday: new FormControl(this.inputSchedule.saturday),
       sunday: new FormControl(this.inputSchedule.sunday),
-      notificationIsActive: new FormControl(
-        this.inputSchedule.notificationIsActive
-      ),
+      notificationIsActive: new FormControl(this.inputSchedule.notificationIsActive),
     });
   }
 
-  editSchedule() {
-    const updateSchedule: UpdateSchedule =
-      this.updateScheduleForm.getRawValue();
+  updateSchedule() {
+    const updateSchedule: UpdateSchedule = this.updateScheduleForm.getRawValue();
     updateSchedule.entryHour = Util.formatDateToHour(
-      this.updateScheduleForm.value.entryHour
+      this.updateScheduleForm.value.entryHour,
     );
     updateSchedule.exitHour = Util.formatDateToHour(
-      this.updateScheduleForm.value.exitHour
+      this.updateScheduleForm.value.exitHour,
     );
     this.scheduleService.updateSchedule(updateSchedule).subscribe({
       next: (_res) => {
         this.close.emit();
-        this.toastrService.success("Se actualizo exitosamente el horario");
+        this.toastrService.success('Se actualizo exitosamente el horario');
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al editar el horario");
+        this.toastrService.error('Sucedio un error al editar el horario');
       },
     });
   }

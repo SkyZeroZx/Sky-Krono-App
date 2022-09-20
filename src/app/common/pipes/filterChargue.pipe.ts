@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform } from "@angular/core";
-import { Constant } from "src/app/common/constants/Constant";
+import { Pipe, PipeTransform } from '@angular/core';
+import { Constant } from 'src/app/common/constants/Constant';
 
 @Pipe({
-  name: "filterChargue",
+  name: 'filterChargue',
 })
 export class FilterChargue implements PipeTransform {
   transform(value: any, args1: any): any {

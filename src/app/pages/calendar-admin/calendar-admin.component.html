@@ -11,7 +11,7 @@
 
 <!-- Modal Create Task -->
 <div bsModal class="modal fade" #modalCreateTask="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllTask(); taskCreateOk=false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    (onHidden)="getAllTasks(); taskCreateOk=false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-lg" style="    transform: translate(0, 10%);">
         <div class="modal-content card">
             <div class="modal-header">
@@ -21,7 +21,7 @@
                     <span aria-hidden="true" class="visually-hidden">&times;</span>
                 </button>
             </div>
-            <app-create-task (close)="modalCreateTask.hide(); getAllTask();" [inputDateSelected]="dateSelect"
+            <app-create-task (close)="modalCreateTask.hide(); getAllTasks();" [inputDateSelected]="dateSelect"
                 *ngIf="taskCreateOk"></app-create-task>
         </div>
     </div>
@@ -32,7 +32,7 @@
 
 <!-- Modal Update Task -->
 <div bsModal class="modal fade" #modalUpdateTask="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllTask(); taskEditOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    (onHidden)="getAllTasks(); taskEditOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-lg" style="    transform: translate(0, 10%);">
         <div class="modal-content card">
             <div class="modal-header">
@@ -42,7 +42,7 @@
                     <span aria-hidden="true" class="visually-hidden">&times;</span>
                 </button>
             </div>
-            <app-update-task (close)="modalUpdateTask.hide(); getAllTask();" [taskSelected]="taskEdit"
+            <app-update-task (close)="modalUpdateTask.hide(); getAllTasks();" [taskSelected]="taskEdit"
                 *ngIf="taskEditOk"></app-update-task>
         </div>
     </div>

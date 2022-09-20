@@ -1,14 +1,14 @@
 <div class="wrapper">
-  <div class="sidebar primary" data="blue" *ngIf="!enableNavBar">
+  <div class="sidebar primary" data="blue" *ngIf="!isActiveNavBar">
     <app-sidebar></app-sidebar>
   </div>
-  <div class="main-panel" data="blue" [class]="enableNavBar ? 'mobile' : '' ">
-    <app-navbar *ngIf="!enableNavBar"></app-navbar>
+  <div class="main-panel" data="blue" [class]="isActiveNavBar ? 'mobile' : '' ">
+    <app-navbar *ngIf="!isActiveNavBar"></app-navbar>
     <div [@routeAnimations]="getRouteAnimationData()" class="router-animation">
       <router-outlet></router-outlet>
     </div>
   </div>
-  <app-footer *ngIf="!enableNavBar"></app-footer>
+  <app-footer *ngIf="!isActiveNavBar"></app-footer>
 </div>
 
-<app-navigation-bar *ngIf="enableNavBar" class="navigation-mobile"></app-navigation-bar>
+<app-navigation-bar *ngIf="isActiveNavBar" class="navigation-mobile"></app-navigation-bar>

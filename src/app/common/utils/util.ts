@@ -23,9 +23,15 @@ export class Util {
   }
 
   static getRestDaysOfWeek(attendanceHistoryUser: StatusAttendance, dayOfWeek: number) {
+    const newDate = new Date();
+    const date =
+      attendanceHistoryUser == undefined
+        ? new Date(newDate.setDate(newDate.getDate() - 1))
+        : attendanceHistoryUser.date;
+    console.log('date is ', date);
     let arrayOfDate: Date[] = [];
     for (let i = 0; i < Constant.TOTAL_DAY_OF_WEEK - dayOfWeek; i++) {
-      const result = new Date(attendanceHistoryUser.date);
+      const result = new Date(date);
       arrayOfDate.push(new Date(result.setDate(result.getDate() + i + 1)));
     }
     return arrayOfDate;
@@ -43,7 +49,8 @@ export class Util {
     const minutesToSecondsExitHour = parseInt(exitHour.slice(3, 5)) * 60;
 
     return (
-      (hoursToSecondsExitHour + minutesToSecondsExitHour) -
+      hoursToSecondsExitHour +
+      minutesToSecondsExitHour -
       (hoursToSecondsEntryHour + minutesToSecondsEntryHour)
     );
   }
@@ -54,5 +61,14 @@ export class Util {
     const hoursToSecondsExitHour = parseInt(exitHour.slice(0, 2)) * 60 * 60;
     const minutesToSecondsExitHour = parseInt(exitHour.slice(3, 5)) * 60;
     return hoursToSecondsExitHour + minutesToSecondsExitHour - currentSeconds;
+  }
+
+  static currentDayOfWeek(currentDate: string): number {
+    const dayOfWeek: number = new Date(currentDate).getDay();
+    console.log('dayOfWeek ', dayOfWeek);
+    if (dayOfWeek == 0) {
+      return 7;
+    }
+    return dayOfWeek;
   }
 }

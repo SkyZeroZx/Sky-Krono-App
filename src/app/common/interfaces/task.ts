@@ -8,6 +8,7 @@ export interface Task {
   start: string;
   end: string;
 }
+
 export interface RegisterTask {
   title: string;
   codType: number;
@@ -16,13 +17,13 @@ export interface RegisterTask {
   user: [];
 }
 
- 
 export interface UserByTask {
   id: string;
-  nombre: string;
-  apellidoPaterno: string;
-  apellidoMaterno: string;
+  name: string;
+  fatherLastName: string;
+  motherLastName: string;
 }
+
 export interface UserTask{
   codUser: number;
   codTask: number;

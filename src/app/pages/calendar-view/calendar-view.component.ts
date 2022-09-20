@@ -47,14 +47,13 @@ export class CalendarViewComponent implements OnInit {
   constructor(private taskService: TaskService, private toastrService: ToastrService) {}
 
   ngOnInit(): void {
-    this.listarTaskByUser();
+    this.listTaskByUser();
   }
 
   // Llamamos al servicios que nos lista la tareas por usuario ( segun el usuario logeado)
-  listarTaskByUser() {
+  listTaskByUser() {
     this.taskService.getTaskByUser().subscribe({
       next: (res) => {
-        // Asigamos la respuesta de los eventos a nuestro calendario
         this.calendarOptions.events = res;
       },
       error: (_err) => {

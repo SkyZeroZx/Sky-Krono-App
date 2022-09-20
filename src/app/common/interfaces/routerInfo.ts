@@ -1,4 +1,4 @@
-declare interface RouteInfo {
+export interface RouteInfo {
     path: string;
     title: string;
     icon: string;
