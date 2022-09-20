@@ -19,7 +19,6 @@ export class SidebarComponent implements OnInit {
     }
     if (role == 'viewer') {
       this.menuItems = ROUTES_VIEWER.filter((menuItem) => menuItem);
-      return;
     }
   }
 }

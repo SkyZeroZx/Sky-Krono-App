@@ -1,4 +1,7 @@
-import { PublicKeyCredentialCreationOptionsJSON, RegistrationCredentialJSON } from '@simplewebauthn/typescript-types';
+import {
+  PublicKeyCredentialCreationOptionsJSON,
+  RegistrationCredentialJSON,
+} from '@simplewebauthn/typescript-types';
 import {
   ChangePassword,
   UserLogin,
@@ -19,10 +22,9 @@ export class AuthServiceMock {
     message: 'OK',
   };
 
-  public static readonly userDataWebAuthn : any = {
-    data : {},
-    
-  }
+  public static readonly userDataWebAuthn: any = {
+    data: {},
+  };
 
   public static readonly changePassword: ChangePassword = {
     oldPassword: 'Admin12345',
@@ -37,11 +39,11 @@ export class AuthServiceMock {
       pubKeyCredParams: [],
       rp: null,
     };
-  public static readonly registrationCredentialJSON : RegistrationCredentialJSON = {
+  public static readonly registrationCredentialJSON: RegistrationCredentialJSON = {
     rawId: '',
     response: null,
     clientExtensionResults: null,
     id: '',
-    type: ''
-  }
+    type: '',
+  };
 }

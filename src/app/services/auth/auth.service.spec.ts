@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { flush, TestBed } from '@angular/core/testing';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { of } from 'rxjs';
+import { map, of, take } from 'rxjs';
 import { AuthServiceMock } from '../mocks/auth.service.mock.spec';
 import { ResponseMock } from '../mocks/response.mock.spec';
 import { AuthService } from './auth.service';
@@ -104,6 +104,29 @@ fdescribe('AuthService', () => {
     authService.startAuthentication(username).subscribe({
       next: (res) => {
         expect(res).toEqual(null);
+        done();
+      },
+    });
+  });
+
+  it('Validate userValue', () => {
+    //Init with null value
+    expect(authService.userValue).toEqual(null);
+  });
+
+  it('Validate get user$', (done: DoneFn) => {
+    httpClientSpyPost.post.and.returnValue(of(AuthServiceMock.userLoginResponse));
+
+    authService = new AuthService(httpClientSpyPost as any);
+    authService.login(AuthServiceMock.userLogin).subscribe({
+      next: (res) => {
+        expect(res).toEqual(AuthServiceMock.userLoginResponse);
+        authService.user$.pipe(
+          map((user) => {
+            expect(user).toEqual(AuthServiceMock.userLoginResponse);
+            done();
+          }),
+        );
         done();
       },
     });

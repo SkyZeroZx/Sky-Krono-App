@@ -98,7 +98,5 @@ fdescribe('AdminLayoutComponent', () => {
     themeService.navBar = new BehaviorSubject(false);
     component.enabledNavBar();
     expect(component.isActiveNavBar).toBeFalsy();
-  })
-
-
+  });
 });

@@ -21,7 +21,7 @@ export class AppComponent {
 
   existUpdate() {
     this.swUpdate.versionUpdates.subscribe({
-      next: (res: any) => {
+      next: (res) => {
         console.log('Init PWA ->', res);
       },
     });

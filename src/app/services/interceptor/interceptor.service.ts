@@ -8,12 +8,12 @@ import { SpinnerService } from './spinner.service';
   providedIn: 'root',
 })
 export class InterceptorService {
-  constructor(private spinnerService: SpinnerService, private auth: AuthService) {}
+  constructor(private spinnerService: SpinnerService, private authService: AuthService) {}
   // Servicio para interceptar llamas HTTP para llamar al spinner de carga asi como envio de token en las cabeceras
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.spinnerService.initSpinner();
     if (!req.url.includes('auth/login')) {
-      const userValue = this.auth.userValue;
+      const userValue = this.authService.userValue;
       if (userValue !== null) {
         const authReq = req.clone({
           setHeaders: {

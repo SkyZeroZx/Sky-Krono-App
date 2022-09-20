@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Response } from '../../common/interfaces/response';
-import { Schedule, ScheduleByUser, UpdateSchedule } from '../../common/interfaces/schedule';
+import {
+  Schedule,
+  ScheduleByUser,
+  UpdateSchedule,
+} from '../../common/interfaces/schedule';
 @Injectable({
   providedIn: 'root',
 })

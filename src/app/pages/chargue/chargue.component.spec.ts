@@ -43,7 +43,7 @@ fdescribe('ChargueComponent', () => {
         FormBuilder,
         ReactiveFormsModule,
         { provide: ToastrService, useClass: ToastrService },
-      ]
+      ],
     }).compileComponents();
   });
 
@@ -128,7 +128,7 @@ fdescribe('ChargueComponent', () => {
     expect(spyGetAllChargue).toHaveBeenCalled();
     expect(spyChargueService).toHaveBeenCalledWith(ChargueMock.listChargue[0].id);
   });
-  
+
   it('Validate deleteChargue ERROR', () => {
     const spyToastService = spyOn(toastrService, 'error').and.callThrough();
     const spyGetAllChargue = spyOn(component, 'getAllChargue').and.callThrough();

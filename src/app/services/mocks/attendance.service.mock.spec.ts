@@ -4,7 +4,6 @@ import {
   AttendanceDescription,
 } from '../../common/interfaces/attendance';
 
-
 export class AttendanceServiceMock {
   public static readonly mockAttendance: Attendance = {
     isActive: false,

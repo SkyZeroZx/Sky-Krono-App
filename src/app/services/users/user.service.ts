@@ -11,10 +11,12 @@ import { Response } from '../../common/interfaces/response';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  resetUserPassword(username : string): Observable<Response> {
-    return this.http.post<Response>(`${environment.API_URL}/auth/reset-password`, {
-      username: username,
-    });
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.API_URL}/users`);
+  }
+
+  createUser(user: UserUpdate): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/users`, user);
   }
 
   updateUser(user: UserUpdate): Observable<Response> {
@@ -25,12 +27,10 @@ export class UserService {
     return this.http.delete<Response>(`${environment.API_URL}/users/${id}`);
   }
 
-  createUser(user: UserUpdate): Observable<Response> {
-    return this.http.post<Response>(`${environment.API_URL}/users`, user);
-  }
-
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.API_URL}/users`);
+  resetUserPassword(username: string): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/auth/reset-password`, {
+      username: username,
+    });
   }
 
   saveUserNotification(token: PushSubscription): Observable<Response> {
@@ -43,7 +43,9 @@ export class UserService {
     return this.http.get<User>(`${environment.API_URL}/users/profile`);
   }
 
-  sendNotification(users : User[]): Observable<Response> {
-    return this.http.post<Response>(`${environment.API_URL}/notificacion/send`, { users: users });
+  sendNotification(users: User[]): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/notificacion/send`, {
+      users: users,
+    });
   }
 }

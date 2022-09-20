@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
-import { CalendarViewComponent } from "./calendar-view.component";
- 
+import { Routes } from '@angular/router';
+import { CalendarViewComponent } from './calendar-view.component';
+
 export const CalendarViewRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: CalendarViewComponent,
-    data: { animation: 'calendar-view' }
-  }
+    data: { animation: 'calendar-view' },
+  },
 ];

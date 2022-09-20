@@ -19,7 +19,7 @@ export class UpdateUserComponent implements OnInit {
   listSchedule: Schedule[] = [];
   @Input() inputUser: User;
   @Output() close = new EventEmitter();
-  
+
   constructor(
     private userService: UserService,
     private fb: FormBuilder,

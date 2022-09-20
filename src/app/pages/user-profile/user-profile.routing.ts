@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
-import { UserProfileComponent } from "./user-profile.component";
- 
+import { Routes } from '@angular/router';
+import { UserProfileComponent } from './user-profile.component';
+
 export const UserProfileRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: UserProfileComponent,
-    data: { animation: 'user-profile' }
-  }
+    data: { animation: 'user-profile' },
+  },
 ];

@@ -1,5 +1,5 @@
 export class ContactsMock {
-  public static readonly contactSelected : any = {
+  public static readonly contactSelected: any = {
     id: 4,
     username: 'skyzerobot64A@gmail.com',
     role: 'admin',

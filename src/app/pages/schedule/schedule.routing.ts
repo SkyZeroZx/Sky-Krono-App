@@ -1,12 +1,10 @@
-import { Routes } from "@angular/router";
-import { ScheduleComponent } from "./schedule.component";
- 
- 
+import { Routes } from '@angular/router';
+import { ScheduleComponent } from './schedule.component';
 
 export const ScheduleRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: ScheduleComponent,
-    data: { animation: 'schedule' }
-  }
+    data: { animation: 'schedule' },
+  },
 ];

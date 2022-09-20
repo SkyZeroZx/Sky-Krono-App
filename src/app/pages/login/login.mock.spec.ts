@@ -39,10 +39,10 @@ export class LoginMock {
 
   public static readonly verifyAuthenticationOK: any = {
     verified: true,
-    data : LoginMock.userNotFirstLogin,
+    data: LoginMock.userNotFirstLogin,
   };
 
   public static readonly verifyAuthenticationError: any = {
-    verified: false
+    verified: false,
   };
 }

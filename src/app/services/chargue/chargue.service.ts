@@ -1,11 +1,11 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Chargue, UpdateChargue } from "../../common/interfaces/chargue";
-import { Response } from "../../common/interfaces/response";
-import { environment } from "src/environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Chargue, UpdateChargue } from '../../common/interfaces/chargue';
+import { Response } from '../../common/interfaces/response';
+import { environment } from 'src/environments/environment';
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ChargueService {
   constructor(private http: HttpClient) {}

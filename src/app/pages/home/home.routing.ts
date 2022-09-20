@@ -1,11 +1,10 @@
-import { Routes } from "@angular/router";
-import { HomeComponent } from "./home.component";
- 
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home.component';
 
 export const HomeRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: HomeComponent,
-    data: { animation: 'home' }
+    data: { animation: 'home' },
   },
 ];

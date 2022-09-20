@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { startAuthentication } from '@simplewebauthn/browser';
 import { ToastrService } from 'ngx-toastr';
-import { Constant } from 'src/app/common/constants/Constant';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 import Swal from 'sweetalert2';
@@ -56,7 +55,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  isFirstLogin(res : UserLoginResponse) {
+  isFirstLogin(res: UserLoginResponse) {
     if (res.firstLogin) {
       this.alertFirstLogin();
     } else {

@@ -102,8 +102,8 @@ export class ScheduleMock {
     toleranceTime: 15,
   };
 
-  public static readonly responseOk : Response = {
+  public static readonly responseOk: Response = {
     message: Constant.MENSAJE_OK,
-    info : 'Its fine'
-  }
+    info: 'Its fine',
+  };
 }

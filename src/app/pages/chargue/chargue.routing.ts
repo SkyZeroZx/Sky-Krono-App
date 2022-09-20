@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
-import { ChargueComponent } from "./chargue.component";
+import { Routes } from '@angular/router';
+import { ChargueComponent } from './chargue.component';
 
 export const ChargueRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: ChargueComponent,
-    data: { animation: 'chargue' }
+    data: { animation: 'chargue' },
   },
 ];

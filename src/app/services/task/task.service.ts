@@ -21,7 +21,9 @@ export class TaskService {
   }
 
   getUsersByTask(codTask: Object): Observable<UserByTask[]> {
-    return this.http.get<UserByTask[]>(`${environment.API_URL}/task/task_user/${codTask}`);
+    return this.http.get<UserByTask[]>(
+      `${environment.API_URL}/task/task_user/${codTask}`,
+    );
   }
 
   createNewTask(task: RegisterTask): Observable<Response> {
@@ -42,8 +44,8 @@ export class TaskService {
     return this.http.post<Response>(`${environment.API_URL}/task/add_user`, userToTask);
   }
 
-  deleteTask(task: number): Observable<Response> {
-    return this.http.delete<Response>(`${environment.API_URL}/task/remove_task/${task}`);
+  deleteTask(id: number): Observable<Response> {
+    return this.http.delete<Response>(`${environment.API_URL}/task/remove_task/${id}`);
   }
 
   /********************* SERVICIOS TYPE ******************************** */

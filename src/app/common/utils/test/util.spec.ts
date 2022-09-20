@@ -7,7 +7,7 @@ fdescribe('Util', () => {
     isLater: false,
     isAbsent: false,
     date: '2022-09-12 00:00:00',
-    isDayOff: false
+    isDayOff: false,
   };
 
   it('validate formatDateToHour', () => {

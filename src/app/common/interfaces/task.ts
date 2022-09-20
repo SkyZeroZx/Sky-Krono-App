@@ -13,8 +13,8 @@ export interface RegisterTask {
   title: string;
   codType: number;
   description: string;
-  dataRange: [];
-  user: [];
+  dataRange: any[];
+  user: any[];
 }
 
 export interface UserByTask {
@@ -24,7 +24,7 @@ export interface UserByTask {
   motherLastName: string;
 }
 
-export interface UserTask{
+export interface UserTask {
   codUser: number;
   codTask: number;
 }

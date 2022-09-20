@@ -6,8 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule, SwUpdate } from '@angular/service-worker';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { of, throwError } from 'rxjs';
-import { environment } from '../environments/environment.prod';
+import { of } from 'rxjs';
 import { AppComponent } from './app.component';
 import { ThemeService } from './services/theme/theme.service';
 
@@ -16,7 +15,7 @@ fdescribe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let swUpdate: SwUpdate;
   let themeService: ThemeService;
-  let mockUpdate: any = {
+  let mockSwUpdate: any = {
     versionUpdates: of(null),
   };
   let mockEvent: any = {
@@ -33,16 +32,13 @@ fdescribe('AppComponent', () => {
         NgxSpinnerModule,
         FormsModule,
         RouterTestingModule,
-        ServiceWorkerModule.register('custom-service-worker.js', {
-          enabled: environment.production,
-          registrationStrategy: 'registerWhenStable:5000',
-        }),
+        ServiceWorkerModule,
       ],
       providers: [
         ToastrService,
         ReactiveFormsModule,
         ThemeService,
-        { provide: SwUpdate, useValue: mockUpdate },
+        { provide: SwUpdate, useValue: mockSwUpdate },
         { provide: ToastrService, useClass: ToastrService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

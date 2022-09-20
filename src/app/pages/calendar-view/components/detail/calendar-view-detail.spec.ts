@@ -21,9 +21,8 @@ import { CalendarViewerMock } from '../../calendar-view.mock.spec';
 import { CalendarViewRouter } from '../../calendar-view.routing';
 import { CalendarViewDetailComponent } from './calendar-view-detail..component';
 import { NgSelectModule } from '@ng-select/ng-select';
- 
-fdescribe('CalendarViewDetailComponent', () => {
 
+fdescribe('CalendarViewDetailComponent', () => {
   let component: CalendarViewDetailComponent;
   let fixture: ComponentFixture<CalendarViewDetailComponent>;
   let taskService: TaskService;
@@ -137,5 +136,3 @@ fdescribe('CalendarViewDetailComponent', () => {
     expect(spyToastrService).toHaveBeenCalled();
   });
 });
-
- 

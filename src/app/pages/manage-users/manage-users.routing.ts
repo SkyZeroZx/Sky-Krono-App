@@ -1,11 +1,10 @@
-import { Routes } from "@angular/router";
-import { ManageUsersComponent } from "./manage-users.component";
- 
+import { Routes } from '@angular/router';
+import { ManageUsersComponent } from './manage-users.component';
 
 export const ManageUsersRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: ManageUsersComponent,
-    data: { animation: 'manage-users' }
-  }
+    data: { animation: 'manage-users' },
+  },
 ];
