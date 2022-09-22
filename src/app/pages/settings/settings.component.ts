@@ -27,5 +27,10 @@ export class SettingsComponent {
       title: 'Perfil',
       icon: 'fa-solid fa-id-card',
     },
+    {
+      path: '/types',
+      title: 'Tipos',
+      icon: 'fa-brands fa-typo3',
+    },
   ];
-}
+} 

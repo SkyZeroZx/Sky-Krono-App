@@ -1,0 +1,15 @@
+dist/
+node_modules/
+.gitignore
+.git/
+.github/
+.scannerwork/
+docs/
+e2e/
+LOG/
+log/
+.gitattributes
+.angular
+.nyc_output
+coverage-e2e/
+coverage-unit-test/

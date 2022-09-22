@@ -33,6 +33,13 @@ const routes: Routes = [
     canActivate: [FirstLogin, CheckRole, IsLogged],
     children: [
       {
+        path: 'calendar-admin',
+        loadChildren: () =>
+          import('./pages/calendar-admin/calendar-admin.module').then(
+            (m) => m.CalendarAdminModule,
+          ),
+      },
+      {
         path: 'calendar-view',
         loadChildren: () =>
           import('./pages/calendar-view/calendar-view.module').then(
@@ -81,6 +88,11 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () =>
           import('./pages/settings/settings.module').then((m) => m.SettingsModule),
+      },
+      {
+        path: 'types',
+        loadChildren: () =>
+          import('./pages/types/types.module').then((m) => m.TypesModule),
       },
     ],
   },

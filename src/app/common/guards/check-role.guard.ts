@@ -11,6 +11,7 @@ export class CheckRole implements CanActivate {
     console.log('Check Role');
     console.log(window.location.href);
     if (JSON.parse(localStorage.getItem('user')) == null) {
+      console.log('Deslogeo Entor aca?')
       this.router.navigate(['/login']);
       return false;
     }
@@ -28,6 +29,7 @@ export class CheckRole implements CanActivate {
           window.location.href.includes('calendar-admin') ||
           window.location.href.includes('users')
         ) {
+          console.log('Aca entonces?')
           return false;
         } else {
           return true;

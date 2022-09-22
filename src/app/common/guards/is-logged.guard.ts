@@ -10,6 +10,7 @@ export class IsLogged implements CanActivate {
     if (localStorage.getItem('user') !== null) {
       return true;
     } else {
+      console.log('Deslogeo')
       return false;
     }
   }

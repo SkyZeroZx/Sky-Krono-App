@@ -62,7 +62,7 @@ export class CalendarViewerMock {
   public static readonly listTypes: Type[] = [
     {
       codType: 1,
-      typeDescription: 'Test',
+      description: 'Test',
       backgroundColor: '#FFFF',
       borderColor: '#FFFF',
       start: 'START',

@@ -19,7 +19,7 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-_Puede visualizar una Demo del Proyecto en el siguiente enlace : https://sky-calendar-app.vercel.app/#/login_
+_Puede visualizar una Demo del Proyecto en el siguiente enlace : https://sky-krono-app.vercel.app/#/login_
 
 _**Administrador**_
 

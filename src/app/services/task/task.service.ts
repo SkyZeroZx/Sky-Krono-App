@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
 export class TaskService {
   constructor(private http: HttpClient) {}
 
-  getAllTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(`${environment.API_URL}/task`);
+  getAllTasks(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.API_URL}/task`);
   }
 
   getTaskByUser(): Observable<Task[]> {

@@ -1,0 +1,76 @@
+<form [formGroup]="createTypeForm">
+
+    <div class="d-flex  justify-content-center" style="text-align:center  ; align-content:center; align-items: center;">
+        <div class="form-group hour">
+            <label for="labelHourStart">Hora Inicio</label>
+            <timepicker formControlName="start" [showMeridian]="false" [showSpinners]="true">
+            </timepicker>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="labelHourEnd"> Hora Fin</label>
+            <timepicker formControlName="end" [showMeridian]="false" [showSpinners]="true">
+            </timepicker>
+
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">
+                        Descripción (*)</label>
+                    <input type="text" placeholder="Descripcion" class="form-control" formControlName="description"
+                        maxlength="200">
+
+                    <div
+                        *ngIf="createTypeForm.controls.description.invalid && createTypeForm.controls.description.touched">
+                        <small id="requiredDescription" class="text-left"
+                            *ngIf="createTypeForm.controls.description.errors?.required">
+                            Se requiere descripción</small>
+                        <small id="minLenghtDescription" class="text-left"
+                            *ngIf="createTypeForm.controls.description.errors?.minlength">
+                            La longitud minima es 5 caracteres</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" style="text-align:center  ;">
+                    <label for="recipient-name" class="col-form-label">Fondo</label>
+                    
+                    <div class="col-form-label"> <input type="color" formControlName="backgroundColor"></div>
+                    <div
+                        *ngIf="createTypeForm.controls.backgroundColor.invalid && createTypeForm.controls.backgroundColor.touched">
+                        <small id="requiredBackgroundColor" class="text-left"
+                            *ngIf="createTypeForm.controls.backgroundColor.errors?.required">
+                            Se requiere fondo</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" style="text-align:center  ;">
+                    <label for="recipient-name" class="col-form-label">Borde</label>
+
+                    <div class="col-form-label"> <input type="color" formControlName="borderColor"></div>
+
+                    <div
+                        *ngIf="createTypeForm.controls.borderColor.invalid && createTypeForm.controls.borderColor.touched">
+                        <small id="requiredBorderColor" class="text-left"
+                            *ngIf="createTypeForm.controls.borderColor.errors?.required">
+                            Se requiere border</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="createTypeForm.invalid" (click)="createType()">Crear
+            Tipo</button>
+    </div>
+</form>

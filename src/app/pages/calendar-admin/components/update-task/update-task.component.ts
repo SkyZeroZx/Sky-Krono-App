@@ -120,10 +120,13 @@ export class UpdateTaskComponent implements OnInit {
         Validators.compose([Validators.required]),
       ),
       codType: new FormControl(
+        this.taskSelected?.event?._def?.extendedProps?.codType,
+        Validators.compose([Validators.required]),
+      ),
+      description: new FormControl(
         this.taskSelected?.event?._def?.extendedProps?.description,
         Validators.compose([Validators.required]),
       ),
-      description: new FormControl('', Validators.compose([Validators.required])),
       dateRange: new FormControl(
         [
           this.taskSelected?.event?._instance?.range.start,
