@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/common/menuItems';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
     private element: ElementRef,
     private router: Router,
     private authService: AuthService,
+    private themeService: ThemeService,
   ) {
     this.location = location;
     this.sidebarVisible = false;
@@ -35,6 +37,16 @@ export class NavbarComponent implements OnInit {
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     this.username = JSON.parse(localStorage.getItem('user')).username;
     this.onChangeRouterEvents();
+    this.changeOnSwipe();
+  }
+
+  changeOnSwipe() {
+    this.themeService.swipeBar.subscribe((res) => {
+      if (res) {
+        console.log('Hubo swipe ?', res);
+        this.sidebarToggle();
+      }
+    });
   }
 
   onChangeRouterEvents() {
@@ -69,7 +81,7 @@ export class NavbarComponent implements OnInit {
 
     setTimeout(function () {
       toggleButton.classList.add('toggled');
-    }, 500);
+    }, 10);
 
     html.classList.add('nav-open');
 
@@ -85,7 +97,7 @@ export class NavbarComponent implements OnInit {
       if (mainPanel?.style !== undefined) {
         setTimeout(function () {
           mainPanel.style.position = '';
-        }, 500);
+        }, 10);
       }
     }
     this.sidebarVisible = false;

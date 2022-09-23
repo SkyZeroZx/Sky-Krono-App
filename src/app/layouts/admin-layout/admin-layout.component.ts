@@ -48,4 +48,10 @@ export class AdminLayoutComponent implements OnInit {
       },
     });
   }
+
+  onSwipe(event : Event){
+    event.preventDefault();
+    this.themeService.swipeBar.next(true);
+    console.log('onSwipe' , event)
+  }
 }

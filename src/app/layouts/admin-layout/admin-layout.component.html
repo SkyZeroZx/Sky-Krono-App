@@ -1,9 +1,9 @@
-<div class="wrapper">
+<div class="wrapper"  (swiperight)="onSwipe($event)"  (swipeleft)="onSwipe($event)">
   <div class="sidebar primary" data="blue" *ngIf="!isActiveNavBar">
     <app-sidebar></app-sidebar>
   </div>
-  <div class="main-panel" data="blue" [class]="isActiveNavBar ? 'mobile' : '' ">
-    <app-navbar *ngIf="!isActiveNavBar"></app-navbar>
+  <div class="main-panel" data="blue" [class]="isActiveNavBar ? 'mobile' : '' "   >
+    <app-navbar *ngIf="!isActiveNavBar"   ></app-navbar>
     <div [@routeAnimations]="getRouteAnimationData()" class="router-animation">
       <router-outlet></router-outlet>
     </div>

@@ -14,13 +14,25 @@ import { InterceptorService } from './services/interceptor/interceptor.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ErrorInterceptorService } from './services/interceptor/error-interceptor.service';
+import { HammerGestureConfig, HammerModule } from "../../node_modules/@angular/platform-browser";
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
-
+import * as Hammer from 'hammerjs';
 registerLocaleData(localeEs, 'es');
+
+
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    swipe: { direction: Hammer.DIRECTION_ALL },
+    pinch: { enable: false },
+    rotate: { enable: false }
+  };
+}
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+    HammerModule,
     FormsModule,
     HttpClientModule,
     ComponentsModule,

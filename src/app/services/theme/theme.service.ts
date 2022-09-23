@@ -9,6 +9,8 @@ export class ThemeService {
   public navBarPosition: boolean;
   public theme: BehaviorSubject<boolean>;
   public navBar: BehaviorSubject<boolean>;
+  public swipeBar: BehaviorSubject<boolean>;
+
   // Declaramos el evento que escucharemos para generar el boton de instalar la PWA
   public promptEvent;
 
@@ -17,6 +19,7 @@ export class ThemeService {
     this.navBarPosition = this.getLocalStorageItem('navBar');
     this.theme = new BehaviorSubject(this.darkTheme);
     this.navBar = new BehaviorSubject(this.navBarPosition);
+    this.swipeBar = new BehaviorSubject(false);
   }
 
   get getInstallPwa() {

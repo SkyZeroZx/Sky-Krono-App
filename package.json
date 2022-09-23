@@ -53,6 +53,7 @@
     "@simplewebauthn/typescript-types": "6.0.0",
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
     "file-saver": "^2.0.5",
+    "hammerjs": "^2.0.8",
     "jspdf": "2.5.1",
     "jspdf-autotable": "3.5.25",
     "ngx-bootstrap": "9.0.0",
