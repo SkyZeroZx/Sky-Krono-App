@@ -29,8 +29,8 @@
         <div class="col">
             <div class="form-group">
                 <label for="labelTypes" class="col-form-label">Tipo (*)</label>
-                <ng-select [items]="listTypes" [multiple]="false" [closeOnSelect]="false" [hideSelected]="true"
-                    bindValue="codType" formControlName="codType" [clearable]="false" bindLabel="description"
+                <ng-select [items]="listTypes" [multiple]="false" [closeOnSelect]="true" [hideSelected]="true"
+                    formControlName="codType" bindValue="codType" [clearable]="false" bindLabel="description"
                     placeholder="Seleccionar tipo">
                 </ng-select>
 

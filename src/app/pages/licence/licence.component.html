@@ -3,23 +3,23 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Tipos de Tarea</h3>
+                    <h3 class="mb-0">Licencias</h3>
                 </div>
                 <br />
-                <form [formGroup]="typeForm">
+                <form [formGroup]="licenceForm"  >
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" placeholder="Descripción" formControlName="description"
+                                <input type="text" placeholder="Empleado" formControlName="fullName"
                                     class="form-control">
                             </div>
                         </div>
                     </div>
                 </form>
-
+            
                 <div class="card-header">
-                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateType()">
-                        <a><i class="fa-brands fa-typo3" aria-hidden="true"></i>
+                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateLicence()">
+                        <a><i class="fa-solid fa-ticket-simple" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
                     &nbsp;&nbsp;&nbsp;
@@ -28,36 +28,32 @@
                     </button>
                 </div>
 
-                <div class="table-responsive" *ngIf="listTypesOk" style="padding:5px">
+                <div class="table-responsive" style="padding:5px">
                     <table class=" table ">
                         <thead class=" text-primary">
                             <tr>
-                                <th scope="col">Codigo</th>
+                                <th scope="col">Empleado</th>
                                 <th scope="col">Descripción</th>
-                                <th scope="col">Color</th>
+
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let type of listTypes   |      
-                        filterType : [typeForm.getRawValue().description]  |  
+                        <tbody *ngFor="let licence of listLicence   |      
+                        filterLicence : [licenceForm.getRawValue().fullName]  |  
                         paginate:{itemsPerPage: 5, currentPage:p}">
                             <tr>
                                 <td>
-                                    {{type.codType}}
+                                    {{licence.fullName}}
                                 </td>
                                 <td>
-                                    {{type.description}}
+                                    {{licence.description}}
                                 </td>
-                                <td>
-                                    <p class="color-example" [style.background]="type.backgroundColor"
-                                        [style.border-color]="type.borderColor">
-                                    </p>
-                                </td>
+
                                 <td style="padding-left: 35px;">
-                                    <i (click)="showModalUpdateSchedule(type)" class="tim-icons  icon-pencil"></i>
+                                    <i (click)="showModalUpdateLicence(licence)" class="tim-icons  icon-pencil"></i>
                                 </td>
-                                <td style="padding-left: 35px;" (click)="alertDeleteType(type)">
+                                <td style="padding-left: 35px;" (click)="alertDeleteLicence(licence)">
                                     <i class="tim-icons  icon-simple-remove"></i>
                                 </td>
                             </tr>
@@ -76,43 +72,44 @@
 
 
 
-<!-- Modal Create Type -->
-<div bsModal class="modal fade" #modalCreateType="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllTypes(); showModalCreateTypeOk = false" tabindex="-1" role="dialog"
+<!-- Modal Create Licence -->
+<div bsModal class="modal fade" #modalCreateLicence="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllLicence(); showModalCreateLicenceOk = false" tabindex="-1" role="dialog"
     aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
 
         <div class="modal-content card">
             <div class="modal-header">
-                <h4>Nuevo Tipo</h4>
+                <h4>Nueva Licencia</h4>
                 <button type="button" class="btn-close close pull-right" aria-label="Close"
-                    (click)="modalCreateType.hide()">
+                    (click)="modalCreateLicence.hide()">
                     <span>&times;</span>
                 </button>
             </div>
-            <app-create-types (close)="modalCreateType.hide()" *ngIf="showModalCreateTypeOk">
-            </app-create-types>
+            <app-create-licence (close)="modalCreateLicence.hide()" *ngIf="showModalCreateLicenceOk">
+            </app-create-licence>
         </div>
     </div>
 </div>
 
 
 
-<!-- Modal Update Type-->
-<div bsModal class="modal fade" #modalUpdateType="bs-modal" [config]="{backdrop: 'static'}"
-    (wishEvent)="showModalUpdateTypeOk = false" (onHidden)="getAllTypes() ; showModalUpdateTypeOk = false" tabindex="-1"
-    role="dialog" aria-labelledby="dialog-static-name">
+<!-- Modal Update Licence-->
+<div bsModal class="modal fade" #modalUpdateLicence="bs-modal" [config]="{backdrop: 'static'}"
+    (wishEvent)="showModalUpdateLicenceOk = false" (onHidden)="getAllLicence() ; showModalUpdateLicenceOk = false"
+    tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
         <div class="modal-content card">
             <div class="modal-header">
-                <h4>Editar Tipo</h4>
+                <h4>Editar Licencia</h4>
                 <button id="modalUpdateClose" type="button" class="btn-close close pull-right" aria-label="Close"
-                    (click)="modalUpdateType.hide()">
+                    (click)="modalUpdateLicence.hide()">
                     <span>&times;</span>
                 </button>
             </div>
-            <app-update-types (close)="modalUpdateType.hide()" [inputType]="selectedType" *ngIf="showModalUpdateTypeOk">
-            </app-update-types>
+            <app-update-licence (close)="modalUpdateLicence.hide()" [inputLicence]="selectedLicence"
+                *ngIf="showModalUpdateLicenceOk">
+            </app-update-licence>
         </div>
     </div>
 </div>

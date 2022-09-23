@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 import { Type } from '../../common/interfaces/type';
 import { TypeService } from '../../services/type/type.service';
 
@@ -63,5 +64,32 @@ export class TypesComponent implements OnInit {
     this.modalUpdateType.show();
   }
 
-  alertDeleteSchedule(type: Type) {}
+  alertDeleteType(type: Type) {
+    Swal.fire({
+      title: 'Eliminar Tipo',
+      text: `Se va eliminar el tipo ${type.description} , ¿Esta seguro?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+    }).then(({ isConfirmed }) => {
+      if (isConfirmed) {
+        this.deleteType(type.codType);
+      }
+    });
+  }
+
+  deleteType(codType: number) {
+    this.typeService.deleteType(codType).subscribe({
+      next: (_res) => {
+        this.getAllTypes();
+        this.toastrService.success('Se elimino exitosamente el tipo');
+      },
+      error: (_err) => {
+        this.toastrService.error('Sucedio un error al eliminar el tipo');
+      },
+    });
+  }
 }

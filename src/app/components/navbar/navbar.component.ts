@@ -115,8 +115,6 @@ export class NavbarComponent implements OnInit {
         return item.title;
       }
     }
-
-    return 'Dashboard';
   }
 
   onLogout() {

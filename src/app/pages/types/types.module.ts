@@ -10,15 +10,14 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TypesRouter } from './types.routing';
-import { ColorSketchModule } from 'ngx-color/sketch';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
- defineLocale('es', esLocale);
+import { FilterType } from '../../common/pipes/filterType.pipe';
+defineLocale('es', esLocale);
 
 @NgModule({
-  declarations: [TypesComponent, CreateTypesComponent, UpdateTypesComponent],
+  declarations: [TypesComponent, CreateTypesComponent, UpdateTypesComponent, FilterType],
   imports: [
     CommonModule,
-    ColorSketchModule,
     BsDatepickerModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,

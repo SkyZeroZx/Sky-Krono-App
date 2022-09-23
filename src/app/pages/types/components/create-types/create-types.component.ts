@@ -1,6 +1,5 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { ToastrService } from 'ngx-toastr';
 import { Type } from '../../../../common/interfaces/type';
 import { Util } from '../../../../common/utils/util';
@@ -41,7 +40,7 @@ export class CreateTypesComponent implements OnInit {
     const createType: Type = this.createTypeForm.getRawValue();
     createType.start = Util.formatDateToHour(this.createTypeForm.value.start);
     createType.end = Util.formatDateToHour(this.createTypeForm.value.end);
-    console.log('createType ', createType);
+
     this.typeService.createType(createType).subscribe({
       next: (_res) => {
         this.toastrService.success('Se registro exitosamente el nuevo tipo');
@@ -53,11 +52,4 @@ export class CreateTypesComponent implements OnInit {
       },
     });
   }
-  notClose($event: Event){
-    console.log('Not close' , $event);
-  }
-  eventoTest($event: Event) {
-    console.log('Donde hice click?' , $event);
-  }
-
 }

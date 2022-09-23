@@ -21,6 +21,9 @@ export class TypeService {
 
   updateType(updateType: Type): Observable<Response> {
     return this.http.patch<Response>(`${environment.API_URL}/type`, updateType);
+  }
 
+  deleteType(codType: number): Observable<Response> {
+    return this.http.delete<Response>(`${environment.API_URL}/type/${codType}`);
   }
 }

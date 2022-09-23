@@ -14,6 +14,7 @@ export class UpdateTypesComponent implements OnInit {
   @Input() inputType: Type;
   @Output() close = new EventEmitter();
   updateTypeForm: FormGroup;
+  
   constructor(
     private fb: FormBuilder,
     private typeService: TypeService,

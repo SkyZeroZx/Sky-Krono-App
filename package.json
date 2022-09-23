@@ -27,7 +27,6 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@angular-material-components/color-picker": "^8.0.0",
     "@angular/animations": "14.2.2",
     "@angular/cdk": "14.2.2",
     "@angular/common": "14.2.2",
@@ -47,7 +46,6 @@
     "@fullcalendar/list": "^6.0.0-beta.1",
     "@fullcalendar/timegrid": "^6.0.0-beta.1",
     "@fullcalendar/web-component": "^6.0.0-beta.1",
-    "@iplab/ngx-color-picker": "^14.2.1",
     "@ng-bootstrap/ng-bootstrap": "13.0.0",
     "@ng-select/ng-select": "9.0.2",
     "@popperjs/core": "2.11.6",
@@ -58,7 +56,6 @@
     "jspdf": "2.5.1",
     "jspdf-autotable": "3.5.25",
     "ngx-bootstrap": "9.0.0",
-    "ngx-color": "^8.0.3",
     "ngx-contact-list": "1.0.4",
     "ngx-countdown": "^14.0.0",
     "ngx-pagination": "6.0.2",

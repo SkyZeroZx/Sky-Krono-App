@@ -16,8 +16,8 @@ import { environment } from '../environments/environment';
 import { ErrorInterceptorService } from './services/interceptor/error-interceptor.service';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
-registerLocaleData(localeEs, 'es');
 
+registerLocaleData(localeEs, 'es');
 @NgModule({
   imports: [
     BrowserAnimationsModule,

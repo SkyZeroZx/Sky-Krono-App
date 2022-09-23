@@ -94,6 +94,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/types/types.module').then((m) => m.TypesModule),
       },
+      {
+        path: 'licence',
+        loadChildren: () =>
+          import('./pages/licence/licence.module').then((m) => m.LicenceModule),
+      },
     ],
   },
   {

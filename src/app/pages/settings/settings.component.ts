@@ -32,5 +32,10 @@ export class SettingsComponent {
       title: 'Tipos',
       icon: 'fa-brands fa-typo3',
     },
+    {
+      path: '/licence',
+      title: 'Permisos',
+      icon: 'fa-solid fa-ticket-simple',
+    },
   ];
-} 
+}

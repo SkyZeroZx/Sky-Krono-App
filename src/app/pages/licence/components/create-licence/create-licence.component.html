@@ -1,0 +1,69 @@
+<form [formGroup]="createLicenceForm">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="labelDateRange" class="col-form-label">Fechas</label>
+                    <input readonly type="text" placeholder="Rango de Fechas" class="form-control" bsDaterangepicker
+                        formControlName="dateRange" [bsConfig]="{ 
+                        rangeInputFormat :'YYYY-MM-DD' , 
+                        dateInputFormat: 'YYYY-MM-DD' ,
+                        containerClass:'theme-blue',  
+                        displayOneMonthRange: true
+                    }">
+                    <div
+                        *ngIf="createLicenceForm.controls.dateRange.invalid && createLicenceForm.controls.dateRange.touched">
+                        <small id="requiredUser" class="text-left"
+                            *ngIf="createLicenceForm.controls.dateRange.errors?.required">
+                            Se requieren fechas</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="labelUser" class="col-form-label">Usuario</label>
+                    <ng-select [items]="listUsers" [multiple]="false" [closeOnSelect]="true" [hideSelected]="true"
+                        bindValue="id" [clearable]="false" bindLabel="name" placeholder="Seleccionar usuario"
+                        formControlName="codUser">
+                    </ng-select>
+                    <div
+                        *ngIf="createLicenceForm.controls.codUser.invalid && createLicenceForm.controls.codUser.touched">
+                        <small id="requiredUser" class="text-left"
+                            *ngIf="createLicenceForm.controls.codUser.errors?.required">
+                            Se requiere usuario</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="labelDescription" class="col-form-label">Descripción</label>
+                    <input type="text" class="form-control" placeholder="Descripcion" formControlName="description"
+                        maxlength="255" />
+                    <div
+                        *ngIf="createLicenceForm.controls.description.invalid && createLicenceForm.controls.description.touched">
+                        <small id="requiredDescription" class="text-left"
+                            *ngIf="createLicenceForm.controls.description.errors?.required">
+                            Se requiere descripción</small>
+
+                        <small id="requiredDescriptionMinLength" class="text-left"
+                            *ngIf="createLicenceForm.controls.description.errors?.minlength">
+                            Se requiere al menos 5 caracteres</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <button type="submit" id="btnCreateChargue" class="btn btn-primary" (click)="createLicence()"
+            [disabled]="createLicenceForm.invalid">Crear
+            Licencia</button>
+    </div>
+</form>
