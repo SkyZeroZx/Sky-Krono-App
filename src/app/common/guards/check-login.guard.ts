@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
+const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root',
 })
 export class CheckLogin implements CanActivate {
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   canActivate() {
     console.log('Auth Guard Check Login');
     if (localStorage.getItem('user') !== null) {
-      if (this.authService.getItemToken('firstLogin')) {
+      if (helper.decodeToken(JSON.parse(localStorage.getItem('user')).token.firstLogin)) {
         localStorage.removeItem('user');
         return true;
       }
-      /*
-      Legacy code
       console.log('El rol es ', this.authService.getItemToken('role'));
-      if (this.authService.getItemToken('role')) {
-        this.router.navigateByUrl('/home');
-      } else {
-        localStorage.removeItem('user');
-        this.router.navigateByUrl('/login');
+      switch (this.authService.getItemToken('role')) {
+        case 'admin':
+          this.router.navigateByUrl('/calendar-admin');
+          break;
+        case 'viewer':
+          this.router.navigateByUrl('/calendar-view');
+          break;
+        default:
+          localStorage.removeItem('user');
+          this.router.navigateByUrl('/login');
+          break;
       }
-      */
     } else {
       localStorage.removeItem('user');
       return true;
