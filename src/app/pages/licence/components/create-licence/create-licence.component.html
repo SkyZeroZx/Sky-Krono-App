@@ -5,7 +5,9 @@
                 <div class="form-group">
                     <label for="labelDateRange" class="col-form-label">Fechas</label>
                     <input readonly type="text" placeholder="Rango de Fechas" class="form-control" bsDaterangepicker
-                        formControlName="dateRange" [bsConfig]="{ 
+                        formControlName="dateRange" 
+                        [minDate]="minDate"
+                        [bsConfig]="{ 
                         rangeInputFormat :'YYYY-MM-DD' , 
                         dateInputFormat: 'YYYY-MM-DD' ,
                         containerClass:'theme-blue',  

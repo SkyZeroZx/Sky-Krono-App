@@ -9,6 +9,7 @@ import {
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Licence } from '../../../../common/interfaces/licence';
+import { Util } from '../../../../common/utils/util';
 import { LicenceService } from '../../../../services/licence/licence.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class UpdateLicenceComponent implements OnInit {
   @Input() inputLicence: Licence;
   @Output() close = new EventEmitter();
   updateLicenceForm: FormGroup;
+  minDate: Date = new Date();
   constructor(
     private fb: FormBuilder,
     private licenceService: LicenceService,
