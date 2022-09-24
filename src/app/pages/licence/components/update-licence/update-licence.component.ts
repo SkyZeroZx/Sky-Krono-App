@@ -46,7 +46,7 @@ export class UpdateLicenceComponent implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(5)]),
       ),
       dateRange: new FormControl(
-        [new Date(this.inputLicence.dateInit), new Date(this.inputLicence.dateEnd)],
+        [this.inputLicence.dateInit, this.inputLicence.dateEnd],
         Validators.compose([Validators.required]),
       ),
     });

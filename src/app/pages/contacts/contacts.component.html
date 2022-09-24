@@ -1,11 +1,12 @@
-<div class="content contacts">
-    <ngx-contact-list [noSmoothScroll]="true" propAlphaOrder="name" (onClick)="selected($event)" [propsSearch]="filters"
-        placeholder="Contacto" [data]="listUsers" listClass="search-list" [withTemplate]="true"
+<div class="content contacts" >
+
+    <ngx-contact-list [noSmoothScroll]="false" propAlphaOrder="name" (onClick)="selected($event)" [propsSearch]="filters"
+        placeholder="Contacto" [data]="listUsers" listClass="search-list" [withTemplate]="true"  
         [height]="height + 'px' ">
-        <ng-template let-item>
-            <div class="search-list-item">
-                <img [src]="imageExist(item)" alt="">
-                <span>
+        <ng-template let-item  >
+            <div class="search-list-item"  >
+                <img [src]="imageExist(item)" alt=""  >
+                <span  >
                     <small>
                         {{item.name }}
                     </small>
@@ -25,4 +26,6 @@
             </div>
         </ng-template>
     </ngx-contact-list>
+
+
 </div>

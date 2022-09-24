@@ -25,13 +25,10 @@ export class AttendanceService {
     );
   }
 
-  registerEntryAttendance(
-    attendanceDescription: AttendanceDescription,
-  ): Observable<Response> {
-    return this.http.post<Response>(
-      `${environment.API_URL}/attendance`,
-      attendanceDescription,
-    );
+  registerEntryAttendance(description: string): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/attendance`, {
+      description: description,
+    });
   }
 
   registerExitAttendance(): Observable<Response> {

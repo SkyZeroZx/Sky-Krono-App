@@ -8,7 +8,7 @@ import {
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-import { Attendance } from '../../common/interfaces/attendance';
+import { Attendance, AttendanceDescription } from '../../common/interfaces/attendance';
 import { Util } from '../../common/utils/util';
 import { AttendanceService } from '../../services/attendance/attendance.service';
 import { ScheduleService } from '../../services/schedule/schedule.service';
@@ -119,8 +119,8 @@ export class AttendanceComponent
     }
   }
 
-  registerEntryAttendance() {
-    this.attendanceService.registerEntryAttendance(null).subscribe({
+  registerEntryAttendance(description : string) {
+    this.attendanceService.registerEntryAttendance(description).subscribe({
       next: (_res) => {
         this.getScheduleByUser();
         this.isActiveEntryAttendance = false;
@@ -128,6 +128,25 @@ export class AttendanceComponent
       error: (_err) => {
         this.toastrService.error('Sucedio un error al registrar su entrada');
       },
+    });
+  }
+
+  alertRegisterAttendance() {
+    Swal.fire({
+      input: 'textarea',
+      inputLabel: 'Registro de Entrada',
+      inputPlaceholder: 'Escribe alguna nota ...',
+      inputAttributes: {
+        'aria-label': 'Escribe alguna nota',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+    }).then(({ isConfirmed, value: description }) => {
+      if (isConfirmed) {
+        console.log('description is ', description);
+        this.registerEntryAttendance(description);
+      }
     });
   }
 

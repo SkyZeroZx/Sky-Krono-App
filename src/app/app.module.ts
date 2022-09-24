@@ -15,16 +15,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ErrorInterceptorService } from './services/interceptor/error-interceptor.service';
 import { HammerGestureConfig, HammerModule } from "../../node_modules/@angular/platform-browser";
-import localeEs from '@angular/common/locales/es';
-import { registerLocaleData } from '@angular/common';
 import * as Hammer from 'hammerjs';
-registerLocaleData(localeEs, 'es');
 
 
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
-    swipe: { direction: Hammer.DIRECTION_ALL },
+    swipe: { direction: Hammer.HORIZONTAL_ALL },
     pinch: { enable: false },
     rotate: { enable: false }
   };
@@ -53,7 +50,7 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: 'es' },
+   // { provide: LOCALE_ID, useValue: 'es' },
     { provide: ToastrService, useClass: ToastrService },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
