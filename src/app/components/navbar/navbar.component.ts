@@ -45,6 +45,8 @@ export class NavbarComponent implements OnInit {
       if (res) {
         console.log('Hubo swipe ?', res);
         this.sidebarToggle();
+      } else {
+        this.sidebarClose();
       }
     });
   }
