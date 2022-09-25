@@ -1,5 +1,5 @@
 <br>
-<div class=" col-lg-4 col-md-6 ml-auto mr-auto" style="text-align: center;" id="bienvenido">
+<div class=" col-lg-4 col-md-6 ml-auto mr-auto" style="text-align: center;" id="welcome">
   <h1>Bienvenido</h1>
 </div>
 
@@ -50,8 +50,8 @@
 
               </div>
               <div class="text-center">
-                <button (click)="startAuthentication()" [disabled]="this.enableFingerPrint" class="btn btn-primary my-4"
-                  style="bottom: 35px">
+                <button (click)="startAuthentication()" [disabled]="enableFingerPrint" id="fingerPrint"
+                  aria-label="FingerPrint-Authentication" class="btn btn-primary my-4">
                   <em class="fas fa-fingerprint"></em></button>
               </div>
             </form>

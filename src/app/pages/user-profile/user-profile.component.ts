@@ -27,6 +27,8 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
   ) {}
 
+    //TODO REFACTOR IN NEW COMPONENTS PROFILE OPTIONS FOR USER 
+
   // Creamos nuestro formControls para los switch de userTheme , NavBar , FingerPrint y Notificaciones
   userTheme: FormControl = new FormControl(
     this.themeService.getLocalStorageItem('darkTheme'),

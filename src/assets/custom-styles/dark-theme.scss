@@ -1,0 +1,74 @@
+.dark-content {
+  // Custom Styles for ngx contact list
+  $background-contact-list: #1b1c28;
+  $color-text: WhiteSmoke;
+  $color-input-search: WhiteSmoke;
+  $border-line-style: dotted;
+  $border-line-color: WhiteSmoke;
+  @import '/node_modules/ngx-contact-list/ngx-contact-list.scss';
+
+  // Styles ngSelect for darktheme
+  .ng-option {
+    background-color: #27293c !important;
+    background: #27293c !important;
+    color: #c6c7cc !important;
+  }
+
+  select {
+    color: #c6c7cc !important;
+    background-color: #27293c !important;
+    background: #27293c !important;
+    border-color: #2b3553 !important;
+  }
+
+  .ng-select-container {
+    color: #c6c7cc !important;
+    background-color: #27293c !important;
+    background: #27293c !important;
+    border-color: #2b3553 !important;
+  }
+
+  /*Calendario Estilos*/
+  .fc-list-day-cushion {
+    background: #27293c !important;
+    background-color: #27293c !important;
+    color: whitesmoke;
+  }
+
+  .fc-timegrid-slots {
+    td {
+      border: 1px;
+    }
+
+    th {
+      border: 1px;
+    }
+  }
+
+  /*Estilos paginator*/
+  .paginator {
+    .ng-star-inserted {
+      background-color: transparent !important;
+      background: transparent !important;
+    }
+  }
+
+  a.email {
+    text-decoration: none !important;
+    color: WhiteSmoke !important;
+  }
+
+  a.email:hover {
+    color: WhiteSmoke !important;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+
+  label {
+    color: WhiteSmoke !important;
+  }
+
+  footer {
+    background: #1e1e23;
+  }
+}
