@@ -43,7 +43,6 @@ export class NavbarComponent implements OnInit {
   changeOnSwipe() {
     this.themeService.swipeBar.subscribe((res) => {
       if (res) {
-        console.log('Hubo swipe ?', res);
         this.sidebarToggle();
       } else {
         this.sidebarClose();

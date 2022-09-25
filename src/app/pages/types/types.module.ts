@@ -6,7 +6,6 @@ import { UpdateTypesComponent } from './components/update-types/update-types.com
 import { defineLocale, esLocale } from 'ngx-bootstrap/chronos';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TypesRouter } from './types.routing';
@@ -18,7 +17,6 @@ defineLocale('es', esLocale);
   declarations: [TypesComponent, CreateTypesComponent, UpdateTypesComponent, FilterType],
   imports: [
     CommonModule,
-    BsDatepickerModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,

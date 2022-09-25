@@ -51,24 +51,34 @@
     <div class="d-flex  justify-content-center">
         <div class="form-group hour">
             <label for="labelHourEntry">Hora Entrada</label>
-            <timepicker formControlName="start" [showMeridian]="false" [showSpinners]="true">
+            <timepicker formControlName="start" [showMeridian]="false" [showSpinners]="true"
+                (isValid)=" isInvalidRangeHour()">
             </timepicker>
-
+            <div *ngIf="updateTypeForm.controls.start.errors?.required">
+                <small id="requiredStart">
+                    Se requiere una hora inicio</small>
+            </div>
         </div>
-
 
         <div class="form-group">
             <label for="labelHourExit">Hora Salida</label>
-            <timepicker formControlName="end" [showMeridian]="false" [showSpinners]="true">
+            <timepicker formControlName="end" [showMeridian]="false" [showSpinners]="true"
+                (isValid)=" isInvalidRangeHour()">
             </timepicker>
-
+            <div *ngIf="updateTypeForm.controls.end.errors?.required">
+                <small id="requiredStart">
+                    Se requiere una hora fin</small>
+            </div>
         </div>
     </div>
 
+    <div class="d-flex  justify-content-center center-timepicker" *ngIf="isInvalidRangeHour()">
+        <small>Rango de horas no permitido</small>
+    </div>
 
 
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" [disabled]="updateTypeForm.invalid" (click)="updateType()">Actualizar
-            Tipo</button>
+        <button type="submit" class="btn btn-primary" [disabled]="updateTypeForm.invalid || isInvalidRangeHour()"
+            (click)="updateType()">Actualizar Tipo</button>
     </div>
 </form>

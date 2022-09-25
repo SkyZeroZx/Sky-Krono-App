@@ -85,7 +85,11 @@ export class HomeComponent implements AfterViewInit {
   }
 
   getClassStatus({ isAbsent, isLater, isDayOff }: StatusAttendance): string {
-    if (isAbsent || isDayOff) {
+    if (isAbsent) {
+      return 'fa-solid fa-minus absent';
+    }
+
+    if (isDayOff) {
       return 'disabled';
     }
 
@@ -95,4 +99,6 @@ export class HomeComponent implements AfterViewInit {
 
     return 'fa-solid fa-check success';
   }
+
+  //<i class="fa-solid fa-minus"></i>
 }

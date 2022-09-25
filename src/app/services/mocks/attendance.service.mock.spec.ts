@@ -1,8 +1,4 @@
-import {
-  AttendanceHistoryUser,
-  Attendance,
-  AttendanceDescription,
-} from '../../common/interfaces/attendance';
+import { AttendanceHistoryUser, Attendance } from '../../common/interfaces/attendance';
 
 export class AttendanceServiceMock {
   public static readonly mockAttendance: Attendance = {
@@ -16,7 +12,5 @@ export class AttendanceServiceMock {
     listHistoryStatusAttendance: [],
   };
 
-  public static readonly attendanceDescription: AttendanceDescription = {
-    description: 'Is Optional',
-  };
+  public static readonly attendanceDescription: string = 'Is Optional';
 }

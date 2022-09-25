@@ -25,6 +25,13 @@ export class UpdateScheduleComponent implements OnInit {
     this.createEditScheduleForm();
   }
 
+  isInvalidRangeHour(): boolean {
+    return Util.isInvalidRangeHour(
+      this.updateScheduleForm.getRawValue().entryHour,
+      this.updateScheduleForm.getRawValue().exitHour,
+    );
+  }
+
   createEditScheduleForm(): void {
     this.updateScheduleForm = this.fb.group({
       codSchedule: new FormControl(this.inputSchedule.id),

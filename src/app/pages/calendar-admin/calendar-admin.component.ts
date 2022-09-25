@@ -26,7 +26,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 export class CalendarAdminComponent implements OnInit {
   locale = 'es';
   locales = listLocales();
-
   @ViewChild('modalCreateTask', { static: false })
   modalCreateTask: ModalDirective;
   @ViewChild('modalUpdateTask', { static: false })
@@ -120,7 +119,6 @@ export class CalendarAdminComponent implements OnInit {
   }
 
   eventDraggable(item: EventChangeArg) {
-    // item.event.remove();
     this.taskService
       .updateTask(
         this.formatedTaskChange(item.event._def.publicId, item.event._instance.range),
@@ -128,11 +126,9 @@ export class CalendarAdminComponent implements OnInit {
       .subscribe({
         next: (_res) => {
           this.toastrService.success('Tarea actualizada exitosamente');
-          //   this.getAllTasks();
         },
         error: (_err) => {
           this.toastrService.error('Error al actualizar tarea');
-          //       this.getAllTasks();
         },
       });
   }
@@ -147,7 +143,6 @@ export class CalendarAdminComponent implements OnInit {
   removeTask(id: string) {
     this.taskService.deleteTask(parseInt(id)).subscribe({
       next: (_res) => {
-        // this.getAllTasks();
         this.toastrService.success('Tarea eliminada exitosamente');
       },
       error: (_err) => {

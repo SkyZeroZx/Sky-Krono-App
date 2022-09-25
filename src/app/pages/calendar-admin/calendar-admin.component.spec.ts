@@ -1,8 +1,4 @@
-import { CalendarOptions, defineFullCalendarElement } from '@fullcalendar/web-component';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
-import interactionPlugin from '@fullcalendar/interaction';
+import { defineFullCalendarElement } from '@fullcalendar/web-component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -23,7 +19,7 @@ import { of, throwError } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarViewerMock } from '../calendar-view/calendar-view.mock.spec';
 import Swal from 'sweetalert2';
-import { defineLocale, esLocale, listLocales } from 'ngx-bootstrap/chronos';
+import { defineLocale, esLocale } from 'ngx-bootstrap/chronos';
 
 fdescribe('CalendarAdminComponent', () => {
   let component: CalendarAdminComponent;
@@ -105,7 +101,13 @@ fdescribe('CalendarAdminComponent', () => {
   });
 
   it('Validate handleEventClick', fakeAsync(() => {
-    const mockEvent: any = {};
+    const mockEvent: any = {
+      event: {
+        remove: function () {
+          return;
+        },
+      },
+    };
     // Case Show Modal Update
     const spyShowModal = spyOn(component.modalUpdateTask, 'show').and.callThrough();
     component.handleEventClick(mockEvent);
@@ -141,12 +143,10 @@ fdescribe('CalendarAdminComponent', () => {
       'formatedTaskChange',
     ).and.callThrough();
     const spyTaskService = spyOn(taskService, 'updateTask').and.returnValue(of(null));
-    const spyGetAllTasks = spyOn(taskService, 'getAllTasks').and.callThrough();
     const spyToastrService = spyOn(toastrService, 'success').and.callThrough();
     component.eventDraggable(CalendarViewerMock.eventChangeArg);
     expect(spyFormatedTaskChange).toHaveBeenCalled();
     expect(spyTaskService).toHaveBeenCalled();
-    expect(spyGetAllTasks).toHaveBeenCalled();
     expect(spyToastrService).toHaveBeenCalled();
   });
 
@@ -158,22 +158,18 @@ fdescribe('CalendarAdminComponent', () => {
     const spyTaskService = spyOn(taskService, 'updateTask').and.returnValue(
       throwError(() => new Error('ERROR')),
     );
-    const spyGetAllTasks = spyOn(taskService, 'getAllTasks').and.callThrough();
     const spyToastrService = spyOn(toastrService, 'error').and.callThrough();
     component.eventDraggable(CalendarViewerMock.eventChangeArg);
     expect(spyFormatedTaskChange).toHaveBeenCalled();
     expect(spyTaskService).toHaveBeenCalled();
-    expect(spyGetAllTasks).toHaveBeenCalled();
     expect(spyToastrService).toHaveBeenCalled();
   });
 
   it('Validate removeTask OK', () => {
     const spyTaskService = spyOn(taskService, 'deleteTask').and.returnValue(of(null));
-    const spyGetAllTasks = spyOn(taskService, 'getAllTasks').and.callThrough();
     const spyToastrService = spyOn(toastrService, 'success').and.callThrough();
     component.removeTask('1');
     expect(spyTaskService).toHaveBeenCalled();
-    expect(spyGetAllTasks).toHaveBeenCalled();
     expect(spyToastrService).toHaveBeenCalled();
   });
 

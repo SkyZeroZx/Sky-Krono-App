@@ -73,7 +73,6 @@ button:hover {
   color: white;
 }
 
-
 .danger::after {
   background: #f44336 !important;
   color: white;
@@ -91,16 +90,16 @@ button:hover {
 .bg-success {
   background-color: #37b328 !important;
   cursor: pointer;
-  color : whitesmoke
+  color: whitesmoke;
 }
 
 .bg-danger {
   background-color: #f12b2b !important;
   cursor: pointer;
-  color : whitesmoke
+  color: whitesmoke;
 }
 
-
- 
-
-
+.center {
+  text-align: center;
+  align-items: center;
+}

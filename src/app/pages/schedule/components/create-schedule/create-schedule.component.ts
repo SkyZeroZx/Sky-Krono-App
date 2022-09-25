@@ -23,6 +23,13 @@ export class CreateScheduleComponent implements OnInit {
     this.createFormSchedule();
   }
 
+  isInvalidRangeHour(): boolean {
+    return Util.isInvalidRangeHour(
+      this.createScheduleForm.getRawValue().entryHour,
+      this.createScheduleForm.getRawValue().exitHour,
+    );
+  }
+
   createFormSchedule() {
     this.createScheduleForm = this.fb.group({
       name: new FormControl(

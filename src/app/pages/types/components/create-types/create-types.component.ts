@@ -13,6 +13,7 @@ import { TypeService } from '../../../../services/type/type.service';
 export class CreateTypesComponent implements OnInit {
   @Output() close = new EventEmitter();
   createTypeForm: FormGroup;
+
   constructor(
     private typeService: TypeService,
     private toastrService: ToastrService,
@@ -21,6 +22,13 @@ export class CreateTypesComponent implements OnInit {
 
   ngOnInit(): void {
     this.createFormType();
+  }
+
+  isInvalidRangeHour(): boolean {
+    return Util.isInvalidRangeHour(
+      this.createTypeForm.getRawValue().start,
+      this.createTypeForm.getRawValue().end,
+    );
   }
 
   createFormType() {

@@ -30,6 +30,7 @@
                             <tr>
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Horario</th>
                                 <th scope="col">Color</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
@@ -44,6 +45,11 @@
                                 </td>
                                 <td>
                                     {{type.description}}
+                                </td>
+                                <td>
+                                    <span>
+                                        {{type.start.slice(0,5) + " - " + type.end.slice(0,5) }}
+                                    </span>
                                 </td>
                                 <td>
                                     <p class="color-example" [style.background]="type.backgroundColor"

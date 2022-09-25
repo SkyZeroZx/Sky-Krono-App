@@ -239,7 +239,7 @@ fdescribe('AttedanceComponent', () => {
       'registerEntryAttendance',
     ).and.returnValue(of(null));
     const spyGetScheduleByUser = spyOn(component, 'getScheduleByUser').and.callThrough();
-    component.registerEntryAttendance();
+    component.registerEntryAttendance(AttendanceMock.descriptionEntryAttendance);
     expect(spyGetScheduleByUser).toHaveBeenCalled();
     expect(component.isActiveEntryAttendance).toBeFalsy();
     expect(spyAttendanceService).toHaveBeenCalled();
@@ -251,7 +251,7 @@ fdescribe('AttedanceComponent', () => {
       'registerEntryAttendance',
     ).and.returnValue(throwError(() => new Error('Error')));
     const spyToastrService = spyOn(toastrService, 'error').and.callThrough();
-    component.registerEntryAttendance();
+    component.registerEntryAttendance(AttendanceMock.descriptionEntryAttendance);
     expect(spyToastrService).toHaveBeenCalled();
     expect(spyAttendanceService).toHaveBeenCalled();
   });

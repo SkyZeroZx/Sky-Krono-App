@@ -18,7 +18,7 @@
 
                 <div class="card-header">
                     <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateSchedule()">
-                        <a><i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <a><i class="fa-solid fa-clock" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
                     &nbsp;&nbsp;&nbsp;
@@ -34,10 +34,10 @@
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripción</th>
-                                <th scope="col" style="text-align: center;">Hora Entrada - Salida</th>
-                                <th scope="col" style="  text-align: center;">Dias</th>
-                                <th scope="col" style="  text-align: center;">Tolerancia</th>
-                                <th scope="col" style="  text-align: center;">Notificación</th>
+                                <th scope="col" class="center">Hora Entrada - Salida</th>
+                                <th scope="col" class="center">Dias</th>
+                                <th scope="col" class="center">Tolerancia</th>
+                                <th scope="col" class="center">Notificación</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
                             </tr>
@@ -55,11 +55,11 @@
                                 <td>
                                     {{schedule.description}}
                                 </td>
-                                <td style="text-align: center;">
-                                    {{schedule.entryHour | slice:0:5 }}
+                                <td class="center">
+                                    {{schedule.entryHour | slice:0:5 }} -
                                     {{schedule.exitHour | slice:0:5}}
                                 </td>
-                                <td style="text-align: center;">
+                                <td class="center">
                                     {{schedule.monday ? 'Lu ' : ''}}
                                     {{schedule.tuesday ? 'Ma ' : ''}}
                                     {{schedule.wednesday ? 'Mi ' : ''}}
@@ -68,21 +68,21 @@
                                     {{schedule.saturday ? 'Sa ' : ''}}
                                     {{schedule.sunday ? 'Do' : ''}}
                                 </td>
-                                <td style="text-align: center;">
+                                <td class="center">
                                     {{schedule.toleranceTime}} m
                                 </td>
 
-                                <td style="text-align: center;" (click)="alertUpdateNotification(schedule)">
+                                <td class="center" (click)="alertUpdateNotification(schedule)">
                                     <span *ngIf="!schedule.notificationIsActive"
                                         class="badge bg-danger">Desactivadas</span>
                                     <span *ngIf="schedule.notificationIsActive"
                                         class="badge bg-success">Activadas</span>
 
                                 </td>
-                                <td style="padding-left: 35px;">
+                                <td class="center">
                                     <i (click)="showModalUpdateSchedule(schedule)" class="tim-icons  icon-pencil"></i>
                                 </td>
-                                <td style="padding-left: 35px;" (click)="alertDeleteSchedule(schedule)">
+                                <td class="center" (click)="alertDeleteSchedule(schedule)">
                                     <i class="tim-icons  icon-simple-remove"></i>
                                 </td>
                             </tr>
@@ -115,7 +115,8 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-create-schedule (close)="modalCreateSchedule.hide()" *ngIf="showModalCreateScheduleOk"></app-create-schedule>
+            <app-create-schedule (close)="modalCreateSchedule.hide()" *ngIf="showModalCreateScheduleOk">
+            </app-create-schedule>
         </div>
     </div>
 </div>

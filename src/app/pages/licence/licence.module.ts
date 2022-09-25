@@ -7,12 +7,13 @@ import { LicenceRouter } from './licence.routing';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsDatepickerModule, BsDaterangepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FilterLicence } from '../../common/pipes/filterLicence.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { esLocale } from 'ngx-bootstrap/locale';
+import { getDatepickerConfig } from '../../common/config/Datepicker';
 defineLocale('es', esLocale);
 
 
@@ -29,11 +30,10 @@ defineLocale('es', esLocale);
     RouterModule.forChild(LicenceRouter),
     ModalModule.forRoot(),
     NgSelectModule,
-
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,{ provide: BsDaterangepickerConfig, useFactory: getDatepickerConfig }],
 })
 export class LicenceModule {}

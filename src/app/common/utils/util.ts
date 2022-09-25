@@ -15,6 +15,16 @@ export class Util {
     return `${hours}:${minutes}`;
   }
 
+  static isInvalidRangeHour(start: Date, end: Date): boolean {
+    if (start && end) {
+      if (start.getTime() >= end.getTime()) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }
+
   static formatHourToDate(hour): Date {
     let date = new Date();
     date.setHours(parseInt(hour.slice(0, 2)));

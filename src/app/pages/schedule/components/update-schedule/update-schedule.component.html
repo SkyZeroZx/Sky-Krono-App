@@ -52,7 +52,7 @@
                 <timepicker formControlName="entryHour" [showMeridian]="false" [showSpinners]="true">
                 </timepicker>
                 <div *ngIf="updateScheduleForm.controls.entryHour.errors?.required">
-                    <small id="requiredScheduleEntryHour" class="text-left">
+                    <small id="requiredScheduleEntryHour">
                         Se requiere una hora de entrada valida</small>
                 </div>
             </div>
@@ -63,11 +63,14 @@
                 <timepicker formControlName="exitHour" [showMeridian]="false" [showSpinners]="true">
                 </timepicker>
                 <div *ngIf="updateScheduleForm.controls.exitHour.errors?.required">
-                    <small id="requiredNewScheduleExitHour" class="text-left">
+                    <small id="requiredNewScheduleExitHour">
                         Se requiere una hora de salida valida</small>
                 </div>
-
             </div>
+        </div>
+
+        <div class="d-flex  justify-content-center" *ngIf="isInvalidRangeHour()">
+            <small>Rango de horas no permitido</small>
         </div>
 
 
@@ -113,7 +116,8 @@
 
 
     <div class="modal-footer">
-        <button type="submit" id="updateSchedule" class="btn btn-primary" [disabled]="updateScheduleForm.invalid"
-            (click)="updateSchedule()">Editar Horario</button>
+        <button type="submit" id="updateSchedule" class="btn btn-primary"
+            [disabled]="updateScheduleForm.invalid || isInvalidRangeHour()" (click)="updateSchedule()">Editar
+            Horario</button>
     </div>
 </form>

@@ -5,14 +5,7 @@
                 <div class="form-group">
                     <label for="labelDateRange" class="col-form-label">Fechas</label>
                     <input readonly type="text" placeholder="Rango de Fechas" class="form-control" bsDaterangepicker
-                        formControlName="dateRange" 
-                        [minDate]="minDate"
-                        [bsConfig]="{ 
-                        rangeInputFormat :'YYYY-MM-DD' , 
-                        dateInputFormat: 'YYYY-MM-DD' ,
-                        containerClass:'theme-blue',  
-                        displayOneMonthRange: true
-                    }">
+                        formControlName="dateRange" [minDate]="minDate">
                     <div
                         *ngIf="createLicenceForm.controls.dateRange.invalid && createLicenceForm.controls.dateRange.touched">
                         <small id="requiredUser" class="text-left"

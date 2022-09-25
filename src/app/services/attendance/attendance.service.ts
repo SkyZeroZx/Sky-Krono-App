@@ -3,11 +3,7 @@ import { Injectable } from '@angular/core';
 import { Response } from '../../common/interfaces/response';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import {
-  AttendanceHistoryUser,
-  Attendance,
-  AttendanceDescription,
-} from '../../common/interfaces/attendance';
+import { AttendanceHistoryUser, Attendance } from '../../common/interfaces/attendance';
 
 @Injectable({
   providedIn: 'root',

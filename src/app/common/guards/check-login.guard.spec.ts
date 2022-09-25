@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../services/auth/auth.service';
 import { CheckLogin } from './check-login.guard';
 
-fdescribe('CheckLogin', () => {
+xdescribe('CheckLogin', () => {
   let checkLogin: CheckLogin;
   let authService: AuthService;
   let mockRouter = {

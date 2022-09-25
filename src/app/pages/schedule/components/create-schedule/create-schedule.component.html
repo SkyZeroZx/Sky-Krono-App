@@ -49,26 +49,31 @@
         <div class="d-flex  justify-content-center">
             <div class="form-group hour">
                 <label for="labelHourEntry">Hora Entrada</label>
-                <timepicker formControlName="entryHour" [showMeridian]="false" [showSpinners]="true">
+                <timepicker formControlName="entryHour" [showMeridian]="false" [showSpinners]="true"
+                    (isValid)=" isInvalidRangeHour()">
                 </timepicker>
                 <div *ngIf="createScheduleForm.controls.entryHour.errors?.required">
                     <small id="requiredScheduleEntryHour" class="text-left">
-                        Se requiere una hora de entrada valida</small>
+                        Se requiere una hora de entrada</small>
                 </div>
             </div>
 
 
             <div class="form-group">
                 <label for="labelHourExit">Hora Salida</label>
-                <timepicker formControlName="exitHour" [showMeridian]="false" [showSpinners]="true">
+                <timepicker formControlName="exitHour" [showMeridian]="false" [showSpinners]="true"
+                    (isValid)=" isInvalidRangeHour()">
                 </timepicker>
                 <div *ngIf="createScheduleForm.controls.exitHour.errors?.required">
                     <small id="requiredScheduleExitHour" class="text-left">
-                        Se requiere una hora de salida valida</small>
+                        Se requiere una hora de salida</small>
                 </div>
             </div>
         </div>
 
+        <div class="d-flex  justify-content-center" *ngIf="isInvalidRangeHour()">
+            <small>Rango de horas no permitido</small>
+        </div>
 
         <div class="row">
             <div class="col-sm-3"></div>
@@ -107,11 +112,10 @@
                 <div class="col-sm-3"></div>
             </div>
         </div>
-
     </div>
 
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" [disabled]="createScheduleForm.invalid"
+        <button type="submit" class="btn btn-primary" [disabled]="createScheduleForm.invalid || isInvalidRangeHour()"
             (click)="createSchedule()">Crear Horario</button>
     </div>
 </form>

@@ -26,6 +26,13 @@ export class UpdateTypesComponent implements OnInit {
     console.log('inputType ', this.inputType);
   }
 
+  isInvalidRangeHour(): boolean {
+    return Util.isInvalidRangeHour(
+      this.updateTypeForm.getRawValue().start,
+      this.updateTypeForm.getRawValue().end,
+    );
+  }
+
   createFormType() {
     this.updateTypeForm = this.fb.group({
       codType: new FormControl(this.inputType.codType),

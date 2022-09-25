@@ -10,8 +10,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarAdminRouter } from './calendar-admin.routing';
 import { RouterModule } from '@angular/router';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CalendarAdminComponent } from './calendar-admin.component';
+import { BsDatepickerModule, BsDaterangepickerConfig } from 'ngx-bootstrap/datepicker';
+import { getDatepickerConfig } from '../../common/config/Datepicker';
 
 defineLocale('es', esLocale);
 defineFullCalendarElement();
@@ -25,7 +26,10 @@ defineFullCalendarElement();
     ModalModule.forRoot(),
     RouterModule.forChild(CalendarAdminRouter),
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    { provide: BsDaterangepickerConfig, useFactory: getDatepickerConfig },
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CalendarAdminModule {}

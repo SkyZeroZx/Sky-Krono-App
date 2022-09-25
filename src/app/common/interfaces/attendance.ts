@@ -20,7 +20,4 @@ export interface StatusAttendance {
   isAbsent: boolean;
   date: string;
 }
-
-export interface AttendanceDescription {
-  description?: string;
-}
+ 

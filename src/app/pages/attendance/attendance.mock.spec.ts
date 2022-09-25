@@ -31,4 +31,5 @@ export class AttendanceMock {
     entryTime: '14:14',
     exitTime: '17:17',
   };
+  public static readonly descriptionEntryAttendance: string = 'Mock Description';
 }

@@ -16,8 +16,9 @@ export class CheckLogin implements CanActivate {
         localStorage.removeItem('user');
         return true;
       }
-      console.log('El rol es ', this.authService.getItemToken('role'));
-      switch (this.authService.getItemToken('role')) {
+      this.router.navigateByUrl('/home');
+
+    /*  switch (this.authService.getItemToken('role')) {
         case 'admin':
           this.router.navigateByUrl('/calendar-admin');
           break;
@@ -28,7 +29,7 @@ export class CheckLogin implements CanActivate {
           localStorage.removeItem('user');
           this.router.navigateByUrl('/login');
           break;
-      }
+      }*/
     } else {
       localStorage.removeItem('user');
       return true;

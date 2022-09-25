@@ -10,7 +10,7 @@ import { ThemeService } from '../../services/theme/theme.service';
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
-  constructor(private authService: AuthService , private themeService: ThemeService) {}
+  constructor(private authService: AuthService, private themeService: ThemeService) {}
 
   ngOnInit() {
     const role = this.authService.getItemToken('role');
@@ -23,10 +23,8 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  onSwipe(event : Event){
+  onSwipe(event: Event) {
     event.preventDefault();
     this.themeService.swipeBar.next(false);
-   console.log('onSwipe Side' , event)
   }
-
 }
