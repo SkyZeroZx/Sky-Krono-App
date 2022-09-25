@@ -22,9 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "allowedCommonJsDependencies": [
-              "chart.js"
-            ],
+            "allowedCommonJsDependencies": [],
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -57,7 +55,7 @@
                 "scripts": true,
                 "styles": {
                   "minify": true,
-                  "inlineCritical": false
+                  "inlineCritical": true
                 },
                 "fonts": true
               },
@@ -177,9 +175,7 @@
               "src/tsconfig.spec.json",
               "cypress/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "cypress-run": {
@@ -203,7 +199,7 @@
       }
     }
   },
-  "defaultProject": "isekai-angular",
+  "defaultProject": "sky-krono-app",
   "cli": {
     "analytics": false
   }
