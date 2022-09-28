@@ -87,50 +87,6 @@ fdescribe('ScheduleComponent', () => {
     expect(spyToastService).toHaveBeenCalled();
   });
 
-  it('Validate alertUpdateNotification', fakeAsync(async () => {
-    // Case Notifications Enabled
-    const spySweetAlert = spyOn(Swal, 'fire').and.callThrough();
-    const spyUpdateNotificationService = spyOn(
-      component,
-      'updateNotification',
-    ).and.callThrough();
-    component.alertUpdateNotification(ScheduleMock.mockScheduleNotificationEnabled);
-    tick(1000);
-    expect(Swal.isVisible()).toBeTruthy();
-    Swal.clickConfirm();
-    tick(1000);
-    expect(spySweetAlert).toHaveBeenCalled();
-    expect(Swal.getTitle().textContent).toEqual('Deshabilitar');
-    expect(spyUpdateNotificationService).toHaveBeenCalledWith(
-      ScheduleMock.mockScheduleNotificationEnabled,
-    );
-    // Case Notifications Disabled
-
-    component.alertUpdateNotification(ScheduleMock.mockScheduleNotificationDisabled);
-    tick(1000);
-    expect(Swal.isVisible()).toBeTruthy();
-    Swal.clickConfirm();
-    tick(1000);
-    expect(spySweetAlert).toHaveBeenCalledTimes(2);
-    expect(Swal.getTitle().textContent).toEqual('Habilitar');
-    expect(spyUpdateNotificationService).toHaveBeenCalledWith(
-      ScheduleMock.mockScheduleNotificationDisabled,
-    );
-  }));
-
-  it('Validate alertDeleteSchedule', fakeAsync(async () => {
-    const spySweetAlert = spyOn(Swal, 'fire').and.callThrough();
-    const spyDeleteSchedule = spyOn(component, 'deleteSchedule').and.callThrough();
-    component.alertDeleteSchedule(ScheduleMock.mockScheduleDelete);
-    tick(1000);
-    expect(Swal.isVisible()).toBeTruthy();
-    Swal.clickConfirm();
-    tick(1000);
-    expect(spySweetAlert).toHaveBeenCalled();
-    expect(Swal.getTitle().textContent).toEqual('Eliminar Horario');
-    expect(spyDeleteSchedule).toHaveBeenCalledWith(ScheduleMock.mockScheduleDelete.id);
-  }));
-
   it('Validate showModalCreateSchedule', () => {
     const spyShowModal = spyOn(component.modalCreateSchedule, 'show').and.callThrough();
     component.showModalCreateSchedule();

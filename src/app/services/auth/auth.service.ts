@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import {
-  UserLogin,
-  ChangePassword,
-  UserLoginResponse,
-} from 'src/app/common/interfaces/user';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Response } from '../../common/interfaces/response';
 import {
   PublicKeyCredentialCreationOptionsJSON,
   RegistrationCredentialJSON,
 } from '@simplewebauthn/typescript-types';
+import {
+  ChangePassword,
+  UserLogin,
+  UserLoginResponse,
+  Response,
+} from '../../common/interfaces';
 
 const helper = new JwtHelperService();
 @Injectable({

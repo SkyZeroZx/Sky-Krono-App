@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
-import { Schedule, UpdateSchedule } from '../../common/interfaces/schedule';
+import { Schedule, UpdateSchedule } from '../../common/interfaces';
 import { ReporteService } from '../../services/report/report.service';
 import { ScheduleService } from '../../services/schedule/schedule.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-schedule',
@@ -50,44 +50,6 @@ export class ScheduleComponent implements OnInit {
       error: (_err) => {
         this.toastrService.error('Sucedio un error al listar los schedules');
       },
-    });
-  }
-
-  alertUpdateNotification(schedule: Schedule) {
-    Swal.fire({
-      title: `${schedule.notificationIsActive ? 'Deshabilitar' : 'Habilitar'}`,
-      text: `${
-        schedule.notificationIsActive
-          ? 'Esta seguro que desea deshabilitar las  notificaciones para'
-          : 'Esta seguro que desea deshabilitar las notificaciones para'
-      } ${schedule.name}`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.updateNotification(schedule);
-      }
-    });
-  }
-
-  alertDeleteSchedule(schedule: Schedule) {
-    Swal.fire({
-      title: 'Eliminar Horario',
-      text: `Se va eliminar el horario ${schedule.name} , ¿Esta seguro?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.deleteSchedule(schedule.id);
-      }
     });
   }
 

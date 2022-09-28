@@ -5,14 +5,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ThemeService {
-  public darkTheme: boolean;
-  public navBarPosition: boolean;
+  private darkTheme: boolean;
+  private navBarPosition: boolean;
   public theme: BehaviorSubject<boolean>;
   public navBar: BehaviorSubject<boolean>;
   public swipeBar: BehaviorSubject<boolean>;
 
   // Declaramos el evento que escucharemos para generar el boton de instalar la PWA
-  public promptEvent;
+  public promptEvent : any;
 
   constructor() {
     this.darkTheme = this.getLocalStorageItem('darkTheme');

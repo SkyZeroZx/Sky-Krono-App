@@ -6,7 +6,7 @@ import {
   ChangePassword,
   UserLogin,
   UserLoginResponse,
-} from '../../common/interfaces/user';
+} from '../../common/interfaces';
 
 export class AuthServiceMock {
   public static readonly userLogin: UserLogin = {

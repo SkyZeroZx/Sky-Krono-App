@@ -1,4 +1,4 @@
-import { UserUpdate } from '../../common/interfaces/user';
+import { UserUpdate } from '../../common/interfaces';
 
 export class UserServiceMock {
   public static readonly userUpdate: UserUpdate = {

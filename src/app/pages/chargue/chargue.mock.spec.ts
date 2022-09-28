@@ -1,4 +1,4 @@
-import { Chargue } from '../../common/interfaces/chargue';
+import { Chargue } from '../../common/interfaces';
 
 export class ChargueMock {
   public static readonly listChargue: Chargue[] = [

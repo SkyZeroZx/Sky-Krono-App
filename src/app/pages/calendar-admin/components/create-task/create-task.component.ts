@@ -2,10 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateSelectArg } from '@fullcalendar/core';
 import { ToastrService } from 'ngx-toastr';
-import { Type } from 'src/app/common/interfaces/type';
-import { User } from 'src/app/common/interfaces/user';
-import { TaskService } from 'src/app/services/task/task.service';
-import { UserService } from 'src/app/services/users/user.service';
+import { Type, User } from '../../../../common/interfaces';
+import { TaskService } from '../../../../services/task/task.service';
+import { UserService } from '../../../../services/users/user.service';
 
 @Component({
   selector: 'app-create-task',

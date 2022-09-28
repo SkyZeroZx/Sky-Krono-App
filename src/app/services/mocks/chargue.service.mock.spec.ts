@@ -1,4 +1,4 @@
-import { Chargue, UpdateChargue } from '../../common/interfaces/chargue';
+import { Chargue, UpdateChargue } from '../../common/interfaces';
 
 export class ChargueServiceMock {
   public static readonly listChargue: Chargue[] = [

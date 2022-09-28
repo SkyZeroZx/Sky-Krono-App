@@ -152,15 +152,28 @@
                                 <td>
                                     {{user.updateAt| date : 'd/MM/yyyy' }}
                                 </td>
-                                <td style="padding-left: 35px;" (click)="alertResetUser(user.username)">
+                                <td class="options" [swal]="{
+                                    title: 'Reseteo de contraseña de usuario',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    text: 'Se va resetear la contraseña del usuario ' +user.username  + ' , ¿Esta seguro?',
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)=" resetUserPassword(user.username);">
                                     <i class="tim-icons  icon-refresh-02"></i>
                                 </td>
-                                <td style="padding-left: 35px;">
+                                <td class="options">
                                     <i (click)="showModalUpdateUser(user)" class="tim-icons  icon-pencil"></i>
                                 </td>
-                                <td style="padding-left: 45px;" (click)="alertDeleteUser(user)">
+                                <td class="options" [swal]="{
+                                    title: 'Eliminar Usuario',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    text: 'Se va eliminar al usuario ' + user.username +' ¿Esta seguro?',
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="deleteUser(user.id);">
                                     <i class="tim-icons  icon-simple-remove"></i>
                                 </td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -207,7 +220,8 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-update-user (close)="modalUpdateUser.hide()" [inputUser]="userSelected" *ngIf="editUserOk"></app-update-user>
+            <app-update-user (close)="modalUpdateUser.hide()" [inputUser]="userSelected" *ngIf="editUserOk">
+            </app-update-user>
         </div>
     </div>
 </div>

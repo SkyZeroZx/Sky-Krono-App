@@ -16,7 +16,6 @@
                 <div class="card-header border-0   d-flex justify-content-center" *ngIf="dayIsValid">
                     <div id="#outer" *ngIf="initAnimation">
                         <div [ngClass]="initAnimation ? 'border-box-animation' : ''">
-
                         </div>
                     </div>
                     <mat-progress-spinner [diameter]="215" [color]="'accent'" [mode]="'determinate'"
@@ -26,7 +25,6 @@
                         <countdown #cd (event)="restartCountdown($event)" [config]="countDownConfig"></countdown>
                     </div>
 
-
                     <br />
                 </div>
 
@@ -35,18 +33,31 @@
                 </div>
 
                 <div class="card-header border-0   d-flex justify-content-center" *ngIf="dayIsValid">
-                    <button type="button" class="btn info" (click)="alertRegisterAttendance()"
+                    <button type="button" class="btn info" [swal]="swalRegisterEntryAttendance"
                         *ngIf="isActiveEntryAttendance">
                         Entrada</button>
                 </div>
                 <div class="card-header border-0   d-flex justify-content-center" *ngIf="dayIsValid">
-                    <button type="button" class="btn info" (click)="alertExitAttendance()"
+                    <button type="button" class="btn info" [swal]="swalRegisterExitAttendance"
                         *ngIf="isActiveExitAttendance">
                         Salida</button>
                 </div>
                 <br /> <br /> <br />
             </div>
-
         </div>
     </div>
 </div>
+
+
+
+<swal #swalRegisterEntryAttendance [input]="'textarea'" [inputPlaceholder]="'Escribe alguna nota ...'"
+    [showCancelButton]="true" [confirmButtonText]="'Registrar'" [cancelButtonText]="'Cancelar'"
+    (confirm)="registerEntryAttendance($event)">
+</swal>
+
+
+
+<swal #swalRegisterExitAttendance [title]="'¿Está seguro que desea salir?'" [text]="'Esta acción no se puede revertir'"
+    [icon]="'warning'" [showCancelButton]="true" [confirmButtonText]="'Salir'" [cancelButtonText]="'Cancelar'"
+    (confirm)="registerExitAttendance()">
+</swal>

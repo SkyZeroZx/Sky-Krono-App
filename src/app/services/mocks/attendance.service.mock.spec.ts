@@ -1,4 +1,4 @@
-import { AttendanceHistoryUser, Attendance } from '../../common/interfaces/attendance';
+import { AttendanceHistoryUser, Attendance } from '../../common/interfaces';
 
 export class AttendanceServiceMock {
   public static readonly mockAttendance: Attendance = {

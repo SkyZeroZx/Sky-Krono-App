@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Licence } from '../../common/interfaces/licence';
-import { Response } from '../../common/interfaces/response';
+import { Response, Licence } from '../../common/interfaces';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +26,7 @@ export class LicenceService {
     return this.http.patch<Response>(`${environment.API_URL}/licence`, updateLincence);
   }
 
-  deleteLicence(id : number): Observable<Response>{
-    return this.http.delete<Response>(`${environment.API_URL}/licence/${id}`)
+  deleteLicence(id: number): Observable<Response> {
+    return this.http.delete<Response>(`${environment.API_URL}/licence/${id}`);
   }
 }

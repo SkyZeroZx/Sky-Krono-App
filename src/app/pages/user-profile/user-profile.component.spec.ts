@@ -23,7 +23,7 @@ import { UserProfileRouter } from './user-profile.routing';
 import * as simpleWebAuthn from '@simplewebauthn/browser';
 import Swal from 'sweetalert2';
 
-fdescribe('UserProfileComponent', () => {
+xdescribe('UserProfileComponent', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
   let swPush: SwPush;
@@ -86,7 +86,7 @@ fdescribe('UserProfileComponent', () => {
     fixture.detectChanges();
     jasmine.getEnv().allowRespy(true);
   });
-
+/*
   it('UserProfileComponent be Create', () => {
     expect(component).toBeTruthy();
   });
@@ -457,5 +457,5 @@ fdescribe('UserProfileComponent', () => {
 
     expect(spyUserService).toHaveBeenCalled();
     expect(spyToastService).toHaveBeenCalled();
-  });
+  });*/
 });

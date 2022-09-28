@@ -279,18 +279,5 @@ fdescribe('AttedanceComponent', () => {
     expect(spyAttendanceService).toHaveBeenCalled();
   });
 
-  it('Validate alertExitAttendance', fakeAsync(() => {
-    const spyRegisterExitAttendance = spyOn(
-      component,
-      'registerExitAttendance',
-    ).and.callThrough();
-    component.alertExitAttendance();
-    tick(1000);
-    fixture.detectChanges();
-    Swal.clickConfirm();
-    tick(1000);
-    fixture.detectChanges();
-    expect(Swal.getTitle().textContent).toEqual('¿Está seguro que desea salir?');
-    expect(spyRegisterExitAttendance).toHaveBeenCalled();
-  }));
+  
 });

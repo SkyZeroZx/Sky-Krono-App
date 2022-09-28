@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 import Swal from 'sweetalert2';
-import { UserLoginResponse } from '../../common/interfaces/user';
+import { UserLoginResponse } from '../../common/interfaces';
 
 @Component({
   selector: 'app-login',

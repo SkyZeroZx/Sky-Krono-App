@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
 import { Constant } from '../../common/constants/Constant';
-import { StatusAttendance } from '../../common/interfaces/attendance';
+import { StatusAttendance } from '../../common/interfaces';
 import { Util } from '../../common/utils/util';
 import { AttendanceService } from '../../services/attendance/attendance.service';
 import { HomeComponent } from './home.component';
@@ -121,7 +121,7 @@ fdescribe('HomeComponent', () => {
       isActive: false,
       date: '',
     };
-    expect(component.getClassStatus(mockStatusAttendance)).toEqual('disabled');
+    expect(component.getClassStatus(mockStatusAttendance)).toEqual('fa-solid fa-minus absent');
     // Case isLater true
     mockStatusAttendance.isAbsent = false;
     mockStatusAttendance.isLater = true;

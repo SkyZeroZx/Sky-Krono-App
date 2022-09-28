@@ -1,4 +1,4 @@
-import { RegisterTask, UserByTask, UserTask } from '../../common/interfaces/task';
+import { RegisterTask, UserByTask, UserTask } from '../../common/interfaces';
 
 export class TaskServiceMock {
   public static readonly userByTask: UserByTask[] = [

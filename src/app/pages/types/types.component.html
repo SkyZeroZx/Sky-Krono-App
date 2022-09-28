@@ -56,10 +56,16 @@
                                         [style.border-color]="type.borderColor">
                                     </p>
                                 </td>
-                                <td style="padding-left: 35px;">
+                                <td class="options">
                                     <i (click)="showModalUpdateSchedule(type)" class="tim-icons  icon-pencil"></i>
                                 </td>
-                                <td style="padding-left: 35px;" (click)="alertDeleteType(type)">
+                                <td class="options" [swal]="{
+                                    title: 'Eliminar Tipo',
+                                    text: 'Se va eliminar el tipo' +type.description+ ', ¿Esta seguro?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="deleteType(type.codType)">
                                     <i class="tim-icons  icon-simple-remove"></i>
                                 </td>
                             </tr>

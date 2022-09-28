@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
-import { Chargue } from '../../common/interfaces/chargue';
+import { Chargue } from '../../common/interfaces';
 import { ChargueService } from '../../services/chargue/chargue.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-chargue',
@@ -62,23 +62,6 @@ export class ChargueComponent implements OnInit {
     this.selectedChargue = chargue;
     this.showModalUpdateChargueOk = true;
     this.modalUpdateChargue.show();
-  }
-
-  alertDeleteChargue(chargue: Chargue) {
-    Swal.fire({
-      title: 'Eliminar Cargo',
-      text: `Se va eliminar el cargo ${chargue.name} , ¿Esta seguro?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.deleteChargue(chargue.id);
-      }
-    });
   }
 
   deleteChargue(id: number) {

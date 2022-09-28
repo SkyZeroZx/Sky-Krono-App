@@ -1,8 +1,4 @@
-import {
-  Schedule,
-  ScheduleByUser,
-  UpdateSchedule,
-} from '../../common/interfaces/schedule';
+import { Schedule, ScheduleByUser, UpdateSchedule } from '../../common/interfaces';
 
 export class ScheduleServiceMock {
   public static readonly listSchedule: Schedule[] = [

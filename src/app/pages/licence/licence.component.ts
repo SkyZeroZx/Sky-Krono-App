@@ -4,8 +4,7 @@ import { listLocales } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
-import { Licence } from '../../common/interfaces/licence';
+import { Licence } from '../../common/interfaces';
 import { LicenceService } from '../../services/licence/licence.service';
 
 @Component({
@@ -26,7 +25,7 @@ export class LicenceComponent implements OnInit {
   showModalCreateLicenceOk: boolean = false;
   selectedLicence: Licence;
   p = 1;
-  
+
   constructor(
     private fb: FormBuilder,
     private licenceService: LicenceService,
@@ -48,7 +47,7 @@ export class LicenceComponent implements OnInit {
       dateEnd: new FormControl(''),
     });
   }
-  
+
   getAllLicence() {
     this.licenceService.getAllLicence().subscribe({
       next: (res) => {
@@ -69,23 +68,6 @@ export class LicenceComponent implements OnInit {
     this.selectedLicence = licence;
     this.showModalUpdateLicenceOk = true;
     this.modalUpdateLicence.show();
-  }
-
-  alertDeleteLicence(licence: Licence) {
-    Swal.fire({
-      title: 'Eliminar Licencia',
-      text: `Se va eliminar la licencia de ${licence.fullName} , ¿Esta seguro?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.deleteLicence(licence.id);
-      }
-    });
   }
 
   deleteLicence(id: number) {

@@ -102,11 +102,11 @@ fdescribe('ContactsComponent', () => {
   });
 
   it('Validate imageExist', () => {
-    const item = { image: null };
+    const item = { photo: null };
     expect(component.imageExist(item)).toEqual(' ../assets/img/none.png');
-    item.image = '';
+    item.photo = '';
     expect(component.imageExist(item)).toEqual(' ../assets/img/none.png');
-    item.image = 'www.example.com/image/test.jpg';
-    expect(component.imageExist(item)).toEqual(item.image);
+    item.photo = 'www.example.com/image/test.jpg';
+    expect(component.imageExist(item)).toEqual(item.photo);
   });
 });

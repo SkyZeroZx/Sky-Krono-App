@@ -3,7 +3,7 @@ import {
   PublicKeyCredentialRequestOptionsJSON,
 } from '@simplewebauthn/typescript-types';
 import { Constant } from '../../common/constants/Constant';
-import { UserLoginResponse } from '../../common/interfaces/user';
+import { UserLoginResponse } from '../../common/interfaces';
 
 export class LoginMock {
   public static readonly userFirstLogin: UserLoginResponse = {

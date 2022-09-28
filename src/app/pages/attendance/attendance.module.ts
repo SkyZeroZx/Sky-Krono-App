@@ -7,6 +7,7 @@ import { CountdownModule } from 'ngx-countdown';
 import { AttendanceComponent } from './attendance.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [AttendanceComponent],
@@ -17,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CountdownModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    SweetAlert2Module.forRoot(),
     RouterModule.forChild(AttendanceRouter),
   ],
 })

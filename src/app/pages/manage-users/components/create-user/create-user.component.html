@@ -94,7 +94,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="labelPhone" class="col-form-label">Celular</label>
-                    <input type="text" class="form-control" formControlName="phone" maxlength="9" />
+                    <input type="text" class="form-control" formControlName="phone" maxlength="9"  placeholder="celular"/>
                     <div *ngIf="createUserForm.controls.phone.invalid && createUserForm.controls.phone.touched">
                         <small id="requiredMotherLastName" class="text-left"
                             *ngIf="createUserForm.controls.phone.errors?.required">

@@ -1,5 +1,4 @@
-import { Attendance } from '../../common/interfaces/attendance';
-import { ScheduleByUser } from '../../common/interfaces/schedule';
+import { Attendance, ScheduleByUser } from '../../common/interfaces';
 
 export class AttendanceMock {
   public static readonly scheduleByUser: ScheduleByUser = {

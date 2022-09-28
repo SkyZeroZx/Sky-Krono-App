@@ -1,5 +1,4 @@
-import { User } from '../../common/interfaces/user';
-import { Response } from '../../common/interfaces/response';
+import { User, Response } from '../../common/interfaces';
 import { Constant } from '../../common/constants/Constant';
 import {
   PublicKeyCredentialCreationOptionsJSON,

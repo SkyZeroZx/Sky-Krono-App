@@ -11,6 +11,7 @@ import { ScheduleRouter } from './schedule.routing';
 import { FilterSchedule } from '../../common/pipes/filterSchedule.pipe';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    SweetAlert2Module.forRoot(),
     TimepickerModule.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forChild(ScheduleRouter),

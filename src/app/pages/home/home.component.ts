@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { StatusAttendance } from '../../common/interfaces/attendance';
+import { StatusAttendance } from '../../common/interfaces';
 import { Util } from '../../common/utils/util';
 import { Constant } from '../../common/constants/Constant';
 import { AttendanceService } from '../../services/attendance/attendance.service';

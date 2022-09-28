@@ -2,11 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {
-  HammerGestureConfig,
-  HammerModule,
-  HAMMER_GESTURE_CONFIG,
-} from '@angular/platform-browser';
+import { HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AppComponent } from './app.component';

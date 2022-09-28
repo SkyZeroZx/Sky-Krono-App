@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EventClickArg } from '@fullcalendar/core';
 import { ToastrService } from 'ngx-toastr';
-import { Type } from 'src/app/common/interfaces/type';
-import { User } from 'src/app/common/interfaces/user';
-import { TaskService } from 'src/app/services/task/task.service';
 import { UserService } from 'src/app/services/users/user.service';
+import { Type, User } from '../../../../common/interfaces';
+import { TaskService } from 'src/app/services/task/task.service';
+
 
 @Component({
   selector: 'app-update-task',
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/services/users/user.service';
 export class UpdateTaskComponent implements OnInit {
   updateTaskForm: FormGroup;
   @Output() close = new EventEmitter<any>();
-  @Input() taskSelected: any;
+  @Input() taskSelected: EventClickArg;
   listUsers: User[] = [];
   listTypes: Type[] = [];
   today: Date;

@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Response } from '../../common/interfaces/response';
 import {
   Schedule,
   ScheduleByUser,
   UpdateSchedule,
-} from '../../common/interfaces/schedule';
+  Response,
+} from '../../common/interfaces';
 @Injectable({
   providedIn: 'root',
 })

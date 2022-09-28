@@ -3,11 +3,10 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Constant } from 'src/app/common/constants/Constant';
+import { User } from '../../common/interfaces';
+import { ReporteService } from '../../services/report/report.service';
+import { UserService } from '../../services/users/user.service';
 import Swal from 'sweetalert2';
-import { ReporteService } from 'src/app/services/report/report.service';
-import { UserService } from 'src/app/services/users/user.service';
-import { User } from '../../common/interfaces/user';
-
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -118,39 +117,5 @@ export class ManageUsersComponent implements OnInit {
   showModalCreateUser() {
     this.createUserOk = true;
     this.modalCreateUser.show();
-  }
-
-  alertResetUser(username: string) {
-    Swal.fire({
-      title: 'Reseteo de contraseña de usuario',
-      text: `Se va resetear la contraseña del usuario ${username} ¿Esta seguro?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.resetUserPassword(username);
-      }
-    });
-  }
-
-  alertDeleteUser(user: User) {
-    Swal.fire({
-      title: 'Eliminar Usuario',
-      text: `Se va eliminar al usuario  ${user.username} ¿Esta seguro?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.deleteUser(user.id);
-      }
-    });
   }
 }

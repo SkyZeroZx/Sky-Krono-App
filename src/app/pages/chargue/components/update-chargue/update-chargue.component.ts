@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Chargue } from '../../../../common/interfaces/chargue';
+import { Chargue } from '../../../../common/interfaces';
 import { ChargueService } from '../../../../services/chargue/chargue.service';
 
 @Component({

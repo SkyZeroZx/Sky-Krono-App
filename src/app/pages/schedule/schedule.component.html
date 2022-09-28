@@ -71,18 +71,30 @@
                                 <td class="center">
                                     {{schedule.toleranceTime}} m
                                 </td>
-
-                                <td class="center" (click)="alertUpdateNotification(schedule)">
+                                <td class="center" [swal]="{
+                                    title : schedule.notificationIsActive ? 'Deshabilitar' : 'Habilitar',
+                                    text: schedule.notificationIsActive ? 
+                                    'Esta seguro que desea deshabilitar las  notificaciones para': 
+                                    'Esta seguro que desea deshabilitar las notificaciones para',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="updateNotification(schedule)">
                                     <span *ngIf="!schedule.notificationIsActive"
                                         class="badge bg-danger">Desactivadas</span>
                                     <span *ngIf="schedule.notificationIsActive"
                                         class="badge bg-success">Activadas</span>
-
                                 </td>
                                 <td class="center">
                                     <i (click)="showModalUpdateSchedule(schedule)" class="tim-icons  icon-pencil"></i>
                                 </td>
-                                <td class="center" (click)="alertDeleteSchedule(schedule)">
+                                <td class="center" [swal]="{
+                                    title: 'Eliminar Horario',
+                                    text:'Se va eliminar el horario '+ schedule.name +', ¿Esta seguro?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="deleteSchedule(schedule.id)">
                                     <i class="tim-icons  icon-simple-remove"></i>
                                 </td>
                             </tr>

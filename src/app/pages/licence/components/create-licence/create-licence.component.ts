@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../../../../common/interfaces/user';
-import { Util } from '../../../../common/utils/util';
+import { User } from '../../../../common/interfaces';
 import { LicenceService } from '../../../../services/licence/licence.service';
 import { UserService } from '../../../../services/users/user.service';
 

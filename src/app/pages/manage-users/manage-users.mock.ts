@@ -1,6 +1,4 @@
-import { Chargue } from '../../common/interfaces/chargue';
-import { Schedule } from '../../common/interfaces/schedule';
-import { User } from '../../common/interfaces/user';
+import { User, Schedule, Chargue } from '../../common/interfaces';
 
 export class ManageUsersMock {
   public static readonly userMock: User = {

@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { CalendarAdminComponent } from './calendar-admin.component';
 import { BsDatepickerModule, BsDaterangepickerConfig } from 'ngx-bootstrap/datepicker';
 import { getDatepickerConfig } from '../../common/config/Datepicker';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 defineLocale('es', esLocale);
 defineFullCalendarElement();
@@ -23,6 +24,7 @@ defineFullCalendarElement();
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
     NgSelectModule,
+    SweetAlert2Module.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forChild(CalendarAdminRouter),
   ],

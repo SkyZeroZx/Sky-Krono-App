@@ -1,5 +1,4 @@
-import { Task, UserByTask } from '../../common/interfaces/task';
-import { Type } from '../../common/interfaces/type';
+import { Task, UserByTask, Type } from '../../common/interfaces';
 
 export class CalendarViewerMock {
   public static readonly task: Task = {

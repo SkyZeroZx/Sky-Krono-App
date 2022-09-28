@@ -9,43 +9,19 @@
             <div class=" block block-two"></div>
             <div class=" block block-three"></div>
             <div class=" block block-four"></div>
-            <img alt="Perfil" class="avatar" [width]="200" [height]="200" src="assets/img/user.jpg" />
+
+
+
+            <div class="image-upload">
+              <label for="file-input">
+                <img alt="profile" class="avatar" [width]="200" [height]="200" src="assets/img/user.jpg" />
+              </label>
+              <input id="file-input" type="file" />
+            </div>
             <p> {{userProfileForm.value.name + " " + userProfileForm.value.fatherLastName + " " +
               userProfileForm.value.motherLastName }}</p>
-            <h5 class=" title">Opciones</h5>
-            <div class="row">
-              <div class="col-md-3 px-md-1">
-                <div class=" form-group">
-                  <label><i [class]="userTheme.value ? 'fas fa-moon' : 'fas fa-sun' "></i>Theme</label>
-                  <br>
-                  <mat-slide-toggle   id="userTheme"     [formControl]="userTheme"></mat-slide-toggle>
-                </div>
-              </div>
-              <div [class]="shouldInstall() ? 'col-md-2 px-md-1'  : 'col-md-3 px-md-1' ">
-                <div class=" form-group">
-                  <label><i class="fas fa-bars"></i> Nav Bar</label> <br>
-                  <mat-slide-toggle  id="userNavBar"   [formControl]="userNavBar"></mat-slide-toggle>
-                </div>
-              </div>
-              <div [class]="shouldInstall() ? 'col-md-2 px-md-1'  : 'col-md-3 px-md-1' ">
-                <div class=" form-group">
-                  <label><i class="fas fa-fingerprint"></i> FingerPrint</label> <br>
-                  <mat-slide-toggle  id="userFingerPrint"  [formControl]="userFingerPrint"></mat-slide-toggle>
-                </div>
-              </div>
-              <div class="col-md-2 px-md-1" *ngIf="shouldInstall()">
-                <div class=" form-group">
-                  <label><i class="fa fa-cloud-download"></i> Instalar</label> <br>
-                  <mat-slide-toggle id="installPWAControl"    [formControl]="installPWAControl"></mat-slide-toggle>
-                </div>
-              </div>
-              <div class="col-md-3 px-md-1">
-                <div class=" form-group">
-                  <label><i class="fa-solid fa-bell"></i> Notificaciones</label> <br>
-                  <mat-slide-toggle id="notificationsControl" [formControl]="notificacionesControl"></mat-slide-toggle>
-                </div>
-              </div>
-            </div>
+            <h5 id="options"> Opciones</h5>
+            <app-user-options></app-user-options>
           </div>
         </div>
       </div>
@@ -136,8 +112,6 @@
         </div>
       </div>
 
-
-
       <div class=" card">
         <div class=" card-header">
           <h5 class="title">Danger Zone</h5>
@@ -146,10 +120,8 @@
           <div class=" row">
             <div class=" col-md-5 pr-md-1">
               <div class=" form-group">
-                <button type="button" style="
-                background: #d83838 !important;
-                color : white !important;
-                " (click)="onLogout()" class="btn  danger"> <i class="tim-icons  icon-button-power"></i> &nbsp;&nbsp;
+                <button type="button" [swal]="swalLogout" class="btn logout  "> <i
+                    class="tim-icons  icon-button-power"></i> &nbsp;&nbsp;
                   Logout</button>
               </div>
               <div class=" form-group">
@@ -162,3 +134,8 @@
       </div>
     </div>
   </div>
+
+
+  <swal #swalLogout title="Va cerrar sesión" text="¿Esta seguro?" icon="warning" [showCancelButton]="true"
+    [focusCancel]="true" [confirmButtonText]="'Confirmar'" [cancelButtonText]="'Cancelar'" (confirm)=" logout()">
+  </swal>

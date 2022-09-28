@@ -10,6 +10,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { RouterModule } from '@angular/router';
 import { ManageUsersRouter } from './manage-users.routing';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ManageUsersRouter } from './manage-users.routing';
     ReactiveFormsModule,
     NgxPaginationModule,
     NgSelectModule,
+    SweetAlert2Module.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forChild(ManageUsersRouter),
   ],

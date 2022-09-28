@@ -1,9 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Task, UserByTask, RegisterTask, UserTask } from 'src/app/common/interfaces/task';
-import { Response } from '../../common/interfaces/response';
-import { Type } from 'src/app/common/interfaces/type';
+import {
+  Task,
+  UserByTask,
+  RegisterTask,
+  UserTask,
+  Type,
+  Response,
+} from 'src/app/common/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -26,8 +31,8 @@ export class TaskService {
     );
   }
 
-  createNewTask(task: RegisterTask): Observable<Response> {
-    return this.http.post<Response>(`${environment.API_URL}/task/`, task);
+  createNewTask(registerTask: RegisterTask): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/task/`, registerTask);
   }
 
   updateTask(task: any): Observable<Response> {

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Schedule } from '../../../../common/interfaces/schedule';
+import { Schedule } from '../../../../common/interfaces';
 import { Util } from '../../../../common/utils/util';
 import { ScheduleService } from '../../../../services/schedule/schedule.service';
 

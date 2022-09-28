@@ -1,3 +1,8 @@
 @import './assets/custom-styles/general.scss';
 
 @import './assets/custom-styles/dark-theme.scss';
+
+
+swal{
+    display:  none !important;
+ }

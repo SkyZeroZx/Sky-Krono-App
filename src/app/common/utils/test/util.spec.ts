@@ -1,4 +1,4 @@
-import { StatusAttendance } from '../../interfaces/attendance';
+import { StatusAttendance } from '../../interfaces';
 import { Util } from '../util';
 
 fdescribe('Util', () => {

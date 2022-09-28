@@ -49,10 +49,16 @@
                                     {{licence.description}}
                                 </td>
 
-                                <td style="padding-left: 35px;">
+                                <td class="options">
                                     <i (click)="showModalUpdateLicence(licence)" class="tim-icons  icon-pencil"></i>
                                 </td>
-                                <td style="padding-left: 35px;" (click)="alertDeleteLicence(licence)">
+                                <td class="options" [swal]="{
+                                    title: 'Eliminar Licencia',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    text: 'Se va eliminar la licencia de ' +licence.fullName  + ' , ¿Esta seguro?',
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="deleteLicence(licence.id)">
                                     <i class="tim-icons  icon-simple-remove"></i>
                                 </td>
                             </tr>

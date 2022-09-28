@@ -51,10 +51,18 @@
                                 <td>
                                     {{chargue.description}}
                                 </td>
-                                <td style="padding-left: 35px;">
+                                <td class="options">
                                     <i (click)="showModalUpdateChargue(chargue)" class="tim-icons  icon-pencil"></i>
                                 </td>
-                                <td style="padding-left: 35px;" (click)="alertDeleteChargue(chargue)">
+                                <td class="options" 
+                                    [swal]="{
+                                        title: 'Eliminar Cargo',
+                                        confirmButtonText: 'Confirmar',
+                                        cancelButtonText: 'Cancelar',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        text: 'Se va eliminar el cargo '+ chargue.name  +' ¿Esta seguro?'
+                                    }" (confirm)="deleteChargue(chargue.id)">
                                     <i class="tim-icons  icon-simple-remove"></i>
                                 </td>
                             </tr>
@@ -70,9 +78,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 

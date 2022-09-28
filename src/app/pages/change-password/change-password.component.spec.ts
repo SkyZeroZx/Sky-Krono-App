@@ -12,11 +12,10 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
-import * as simpleWebAuthn from '@simplewebauthn/browser';
-import Swal from 'sweetalert2';
-
 import { AuthLayoutRoutes } from '../../layouts/auth-layout/auth-layout.routing';
 import { ChangePasswordComponent } from './change-password.component';
+import { Location } from '@angular/common';
+
 
 fdescribe('UserProfileComponent', () => {
   let component: ChangePasswordComponent;
@@ -25,6 +24,7 @@ fdescribe('UserProfileComponent', () => {
   let authService: AuthService;
   let toastrService: ToastrService;
   let themeService: ThemeService;
+  let location : Location
   let mockRouter = {
     routerState: { root: '' },
     navigate: jasmine.createSpy('navigate'),
@@ -68,6 +68,7 @@ fdescribe('UserProfileComponent', () => {
     authService = TestBed.inject(AuthService);
     toastrService = TestBed.inject(ToastrService);
     themeService = TestBed.inject(ThemeService);
+    location = TestBed.inject(Location);
     component = fixture.componentInstance;
     fixture.detectChanges();
     jasmine.getEnv().allowRespy(true);
@@ -150,21 +151,9 @@ fdescribe('UserProfileComponent', () => {
     expect(spyToastService).toHaveBeenCalled();
   });
 
-  it('Validate back', () => {
-    //Case first login
-    const spyAuthServiceFirstLogin = spyOn(authService, 'getItemToken').and.returnValue(
-      true,
-    );
-    const spyLogout = spyOn(authService, 'logout').and.callThrough();
-    const spyRouterNavigate = spyOn(mockRouter, 'navigate').and.callThrough();
-    component.back();
-    expect(spyLogout).toHaveBeenCalled();
-    expect(spyRouterNavigate).toHaveBeenCalledWith(['/login']);
-    expect(spyAuthServiceFirstLogin).toHaveBeenCalled();
-    // Case Change Password On Demand
-    spyAuthServiceFirstLogin.and.returnValue(false);
-    component.back();
-    expect(spyLogout).not.toHaveBeenCalledTimes(2);
-    expect(spyRouterNavigate).toHaveBeenCalledWith(['/home']);
-  });
+  it('Validate goBack' , () => {
+    const spyBack = spyOn(location,'back').and.callThrough();
+    component.goBack();
+    expect(spyBack).toHaveBeenCalled()
+  })
 });

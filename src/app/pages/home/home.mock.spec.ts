@@ -1,7 +1,7 @@
 import {
   AttendanceHistoryUser,
   StatusAttendance,
-} from '../../common/interfaces/attendance';
+} from '../../common/interfaces';
 
 export class HomeMock {
   public static readonly attendanceHistoryUser: AttendanceHistoryUser = {

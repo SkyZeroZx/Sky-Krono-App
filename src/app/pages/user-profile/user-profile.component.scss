@@ -1,4 +1,9 @@
  
+.logout{
+  background: #d83838 !important;
+  color : white !important;
+}
+
 
 .outline{
   background: transparent !important
@@ -19,3 +24,10 @@
 .content{
   overflow: hidden;
 }
+
+
+.image-upload>input {
+  display: none;
+}
+
+ 

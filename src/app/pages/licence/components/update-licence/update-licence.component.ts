@@ -1,15 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Licence } from '../../../../common/interfaces/licence';
-import { Util } from '../../../../common/utils/util';
+import { Licence } from '../../../../common/interfaces';
 import { LicenceService } from '../../../../services/licence/licence.service';
 
 @Component({

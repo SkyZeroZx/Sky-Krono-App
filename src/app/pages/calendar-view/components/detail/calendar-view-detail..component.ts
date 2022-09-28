@@ -2,10 +2,11 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Type } from 'src/app/common/interfaces/type';
+import { Type, UserByTask } from '../../../../common/interfaces';
 import { EventClickArg } from '@fullcalendar/core';
-import { TaskService } from 'src/app/services/task/task.service';
-import { UserByTask } from '../../../../common/interfaces/task';
+import { TaskService } from '../../../../services/task/task.service';
+ 
+ 
 
 @Component({
   selector: 'app-calendar-view-detail',

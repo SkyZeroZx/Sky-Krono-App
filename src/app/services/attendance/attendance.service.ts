@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Response } from '../../common/interfaces/response';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { AttendanceHistoryUser, Attendance } from '../../common/interfaces/attendance';
+import { AttendanceHistoryUser, Attendance, Response } from '../../common/interfaces';
 
 @Injectable({
   providedIn: 'root',

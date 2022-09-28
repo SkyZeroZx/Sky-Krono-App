@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -9,7 +8,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
-import Swal from 'sweetalert2';
 import { ChargueService } from '../../services/chargue/chargue.service';
 import { ReporteService } from '../../services/report/report.service';
 import { ChargueComponent } from './chargue.component';
@@ -103,19 +101,6 @@ fdescribe('ChargueComponent', () => {
     expect(component.showModalUpdateChargueOk).toBeTruthy();
     expect(spyShowModal).toHaveBeenCalled();
   });
-
-  it('Validate alertDeleteChargue', fakeAsync(() => {
-    const spySweetAlert = spyOn(Swal, 'fire').and.callThrough();
-    const spyDeleteChargue = spyOn(component, 'deleteChargue').and.callThrough();
-    component.alertDeleteChargue(ChargueMock.listChargue[0]);
-    tick(1000);
-    expect(Swal.isVisible()).toBeTruthy();
-    Swal.clickConfirm();
-    tick(1000);
-    expect(spySweetAlert).toHaveBeenCalled();
-    expect(Swal.getTitle().textContent).toEqual('Eliminar Cargo');
-    expect(spyDeleteChargue).toHaveBeenCalledWith(ChargueMock.listChargue[0].id);
-  }));
 
   it('Validate deleteChargue OK', () => {
     const spyToastService = spyOn(toastrService, 'success').and.callThrough();

@@ -7,8 +7,7 @@ import {
 } from '@angular/core';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
-import { Attendance } from '../../common/interfaces/attendance';
+import { Attendance } from '../../common/interfaces';
 import { Util } from '../../common/utils/util';
 import { AttendanceService } from '../../services/attendance/attendance.service';
 import { ScheduleService } from '../../services/schedule/schedule.service';
@@ -119,24 +118,6 @@ export class AttendanceComponent
     }
   }
 
-  alertRegisterAttendance() {
-    Swal.fire({
-      input: 'textarea',
-      inputLabel: 'Registro de Entrada',
-      inputPlaceholder: 'Escribe alguna nota ...',
-      inputAttributes: {
-        'aria-label': 'Escribe alguna nota',
-      },
-      showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed, value: description }) => {
-      if (isConfirmed) {
-        this.registerEntryAttendance(description);
-      }
-    });
-  }
-
   registerEntryAttendance(description: string) {
     this.attendanceService.registerEntryAttendance(description).subscribe({
       next: (_res) => {
@@ -146,23 +127,6 @@ export class AttendanceComponent
       error: (_err) => {
         this.toastrService.error('Sucedio un error al registrar su entrada');
       },
-    });
-  }
-
-  alertExitAttendance() {
-    Swal.fire({
-      title: '¿Está seguro que desea salir?',
-      text: 'Esta acción no se puede revertir',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.registerExitAttendance();
-      }
     });
   }
 

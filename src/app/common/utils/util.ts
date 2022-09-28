@@ -1,5 +1,5 @@
 import { Constant } from '../constants/Constant';
-import { StatusAttendance } from '../interfaces/attendance';
+import { StatusAttendance } from '../interfaces';
 
 export class Util {
   static formatDateToHour(date): string {

@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../../common/interfaces/user';
+import { User } from '../../common/interfaces';
 import { UserService } from '../../services/users/user.service';
 
 @Component({
@@ -45,10 +45,10 @@ export class ContactsComponent implements OnInit, AfterContentInit {
   }
 
   imageExist(item) {
-    if (item.image == '' || item.image == null) {
+    if (item.photo == '' || item.photo == null) {
       return ' ../assets/img/none.png';
     }
-    return item.image;
+    return item.photo;
   }
 
   onSwipe(event : Event) {

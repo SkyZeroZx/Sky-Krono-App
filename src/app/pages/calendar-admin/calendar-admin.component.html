@@ -1,10 +1,17 @@
 <!-- onchange="document.getElementById('fullCalendar').fullCalendar('unselect')" -->
 <div class="content">
     <div class="row">
-        <full-calendar id="fullCalendar"   #calendar [options]='calendarOptions' style="width: 100%" class="show-content">
+        <full-calendar id="fullCalendar" #calendar [options]='calendarOptions' style="width: 100%" class="show-content">
         </full-calendar>
     </div>
 </div>
+
+
+<!--Sweet Alert Options-->
+<swal #swalOptions [title]="'¿Que acción desea realizar?'" [showDenyButton]="true" [showCancelButton]="true"
+    [confirmButtonText]="'Editar'" [denyButtonText]="'Eliminar'" [cancelButtonText]="'Cancelar'"
+    (confirm)="showModalUpdateTask()" (deny)=" removeTask()">
+</swal>
 
 
 
@@ -32,7 +39,7 @@
 
 <!-- Modal Update Task -->
 <div bsModal class="modal fade" #modalUpdateTask="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllTasks(); taskEditOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    (onHidden)="getAllTasks(); taskSelectedOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-lg" style="    transform: translate(0, 10%);">
         <div class="modal-content card">
             <div class="modal-header">
@@ -42,8 +49,8 @@
                     <span aria-hidden="true" class="visually-hidden">&times;</span>
                 </button>
             </div>
-            <app-update-task (close)="modalUpdateTask.hide(); getAllTasks();" [taskSelected]="taskEdit"
-                *ngIf="taskEditOk"></app-update-task>
+            <app-update-task (close)="modalUpdateTask.hide(); getAllTasks();" [taskSelected]="taskSelected"
+                *ngIf="taskSelectedOk"></app-update-task>
         </div>
     </div>
 </div>

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -19,6 +21,7 @@ export class ChangePasswordComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private themeService: ThemeService,
+    private location: Location,
   ) {}
 
   ngOnInit() {
@@ -62,12 +65,7 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  back() {
-    if (this.authService.getItemToken('firstLogin')) {
-      this.authService.logout();
-      this.router.navigate(['/login']);
-    } else {
-      this.router.navigate(['/home']);
-    }
+  goBack(): void {
+    this.location.back();
   }
 }

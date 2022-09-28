@@ -25,7 +25,10 @@
       <div class="col-sm-4">
         <div class="form-group">
           <label for="labelName" class="col-form-label">Nombres</label>
-          <input type="text" class="form-control" formControlName="name" oninput="alpha(this)" maxlength="80">
+          <input type="text" class="form-control" formControlName="name" oninput="alpha(this)" maxlength="80"
+          placeholder="Nombre"
+          
+          >
           <div *ngIf="updateUserForm.controls.name.invalid && updateUserForm.controls.name.touched">
             <small id="requiredNombres" class="text-left" *ngIf="updateUserForm.controls.name.errors?.required">
               Se requiere ingresar nombres</small>
@@ -40,6 +43,7 @@
         <div class="form-group">
           <label for="labelFatherLastName" class="col-form-label">Apellido Paterno</label>
           <input type="text" class="form-control" formControlName="fatherLastName" oninput="alpha(this)"
+          placeholder="Apellido Paterno"
             maxlength="120">
           <div *ngIf="updateUserForm.controls.fatherLastName.invalid && updateUserForm.controls.fatherLastName.touched">
             <small id="requiredPaterno" class="text-left"
@@ -57,6 +61,7 @@
         <div class="form-group">
           <label for="labelMotherLastName" class="col-form-label">Apellido Materno</label>
           <input type="text" class="form-control" formControlName="motherLastName" oninput="alpha(this)"
+          placeholder="Apellido Materno"
             maxlength="120">
           <div *ngIf="updateUserForm.controls.motherLastName.invalid && updateUserForm.controls.motherLastName.touched">
             <small id="requiredMotherLastName" class="text-left"
@@ -98,7 +103,7 @@
       <div class="col-sm-4">
         <div class="form-group">
           <label for="labelPhone" class="col-form-label">Celular</label>
-          <input type="text" class="form-control" formControlName="phone" maxlength="9" />
+          <input type="text" class="form-control" formControlName="phone" maxlength="9" placeholder="celular"/>
           <div *ngIf="updateUserForm.controls.phone.invalid && updateUserForm.controls.phone.touched">
             <small id="requiredMotherLastName" class="text-left" *ngIf="updateUserForm.controls.phone.errors?.required">
               Se requiere ingresar celular <br /></small>

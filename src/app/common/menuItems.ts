@@ -1,4 +1,4 @@
-import { RouteInfo } from './interfaces/routerInfo';
+import { RouteInfo } from './interfaces';
 
 export const ROUTES: RouteInfo[] = [
   {

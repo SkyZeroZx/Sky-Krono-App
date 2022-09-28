@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FilterChargue } from '../../common/pipes/filterChargue.pipe';
 import { ChargueRouter } from './chargue.routing';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ChargueRouter } from './chargue.routing';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    SweetAlert2Module.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forChild(ChargueRouter),
   ],

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Chargue, UpdateChargue } from '../../common/interfaces/chargue';
-import { Response } from '../../common/interfaces/response';
+import { Chargue, UpdateChargue, Response } from '../../common/interfaces';
 import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })

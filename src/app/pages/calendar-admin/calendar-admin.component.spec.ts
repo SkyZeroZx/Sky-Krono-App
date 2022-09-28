@@ -1,4 +1,4 @@
-import { defineFullCalendarElement } from '@fullcalendar/web-component';
+import { defineFullCalendarElement, EventClickArg } from '@fullcalendar/web-component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -18,8 +18,9 @@ import { TaskService } from '../../services/task/task.service';
 import { of, throwError } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarViewerMock } from '../calendar-view/calendar-view.mock.spec';
-import Swal from 'sweetalert2';
+ 
 import { defineLocale, esLocale } from 'ngx-bootstrap/chronos';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 fdescribe('CalendarAdminComponent', () => {
   let component: CalendarAdminComponent;
@@ -27,7 +28,13 @@ fdescribe('CalendarAdminComponent', () => {
   let taskService: TaskService;
   let toastrService: ToastrService;
   let bsLocaleService: BsLocaleService;
-
+  let mockTaskSelected: any = {
+    event: {
+      remove() {
+        return;
+      },
+    },
+  };
   beforeAll(() => {
     defineFullCalendarElement();
     defineLocale('es', esLocale);
@@ -42,6 +49,7 @@ fdescribe('CalendarAdminComponent', () => {
         BrowserAnimationsModule,
         NgSelectModule,
         CommonModule,
+        SweetAlert2Module.forRoot(),
         RouterModule.forChild(CalendarAdminRouter),
         FormsModule,
         ReactiveFormsModule,
@@ -100,42 +108,13 @@ fdescribe('CalendarAdminComponent', () => {
     expect(spyTaskService).toHaveBeenCalled();
   });
 
-  it('Validate handleEventClick', fakeAsync(() => {
-    const mockEvent: any = {
-      event: {
-        remove: function () {
-          return;
-        },
-      },
-    };
-    // Case Show Modal Update
-    const spyShowModal = spyOn(component.modalUpdateTask, 'show').and.callThrough();
-    component.handleEventClick(mockEvent);
-    tick(1000);
-    fixture.detectChanges();
-    expect(Swal.isVisible()).toBeTruthy();
-    expect(Swal.getTitle().textContent).toEqual('¿Que acción desea realizar?');
-    tick(1000);
-    fixture.detectChanges();
-    Swal.clickConfirm();
-    tick(1000);
-    fixture.detectChanges();
-    expect(component.taskEdit).toEqual(mockEvent);
-    expect(component.taskEditOk).toBeTruthy();
-    expect(spyShowModal).toHaveBeenCalled();
-    flush();
-    // Case is Remove Task
-    const spyRemoveTask = spyOn(component, 'removeTask').and.callThrough();
-    component.handleEventClick(mockEvent);
-    tick(1000);
-    fixture.detectChanges();
-    expect(Swal.isVisible()).toBeTruthy();
-    Swal.clickDeny();
-    tick(1000);
-    fixture.detectChanges();
-    expect(Swal.isVisible()).toBeTruthy();
-    expect(spyRemoveTask).toHaveBeenCalled();
-  }));
+  it('Validate handleEventClick', () => {
+    let clickInfoMock: EventClickArg;
+    const spySwalOptions = spyOn(component.swalOptions, 'fire').and.callThrough();
+    component.handleEventClick(clickInfoMock);
+    expect(component.taskSelected).toEqual(clickInfoMock);
+    expect(spySwalOptions).toHaveBeenCalled();
+  });
 
   it('Validate eventDraggable OK', () => {
     const spyFormatedTaskChange = spyOn(
@@ -166,19 +145,21 @@ fdescribe('CalendarAdminComponent', () => {
   });
 
   it('Validate removeTask OK', () => {
+    component.taskSelected = mockTaskSelected;
     const spyTaskService = spyOn(taskService, 'deleteTask').and.returnValue(of(null));
     const spyToastrService = spyOn(toastrService, 'success').and.callThrough();
-    component.removeTask('1');
+    component.removeTask();
     expect(spyTaskService).toHaveBeenCalled();
     expect(spyToastrService).toHaveBeenCalled();
   });
 
   it('Validate removeTask ERROR', () => {
+    component.taskSelected = mockTaskSelected;
     const spyTaskService = spyOn(taskService, 'deleteTask').and.returnValue(
       throwError(() => new Error('ERROR')),
     );
     const spyToastrService = spyOn(toastrService, 'error').and.callThrough();
-    component.removeTask('1');
+    component.removeTask();
     expect(spyTaskService).toHaveBeenCalled();
     expect(spyToastrService).toHaveBeenCalled();
   });

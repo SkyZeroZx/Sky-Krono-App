@@ -179,27 +179,4 @@ fdescribe('ManageUsersComponent', () => {
     expect(component.createUserOk).toBeTruthy();
     expect(spyShowModal).toHaveBeenCalled();
   });
-
-  it('Validate alertResetUser', fakeAsync(() => {
-    const spySweetAlert = spyOn(Swal, 'fire').and.callThrough();
-    const spyResetUserPassword = spyOn(component, 'resetUserPassword').and.callThrough();
-    component.alertResetUser(username);
-    expect(Swal.isVisible()).toBeTruthy();
-    expect(Swal.getTitle().textContent).toEqual('Reseteo de contraseña de usuario');
-    Swal.clickConfirm();
-    tick(1000);
-
-    expect(spySweetAlert).toHaveBeenCalled();
-    expect(spyResetUserPassword).toHaveBeenCalledWith(username);
-  }));
-
-  it('Validate alertDeleteUser', fakeAsync(() => {
-    const spyDeleteUser = spyOn(userService, 'deleteUser').and.callThrough();
-    component.alertDeleteUser(ManageUsersMock.userMock);
-    expect(Swal.isVisible()).toBeTruthy();
-    expect(Swal.getTitle().textContent).toEqual('Eliminar Usuario');
-    Swal.clickConfirm();
-    tick(1000);
-    expect(spyDeleteUser).toHaveBeenCalledWith(id);
-  }));
 });
