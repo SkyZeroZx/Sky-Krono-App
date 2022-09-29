@@ -66,10 +66,10 @@ fdescribe('NavigationBarComponent', () => {
   });
 
   it('Validate enabledDarkTheme', () => {
-    themeService.theme = new BehaviorSubject(true);
+    themeService.setTheme(true);
     component.enabledDarkTheme();
     expect(component.darkTheme).toBeTruthy();
-    themeService.theme = new BehaviorSubject(false);
+    themeService.setTheme(false);
     component.enabledDarkTheme();
     expect(component.darkTheme).toBeFalsy();
   });

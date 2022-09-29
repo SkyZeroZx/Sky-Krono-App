@@ -25,6 +25,6 @@ export class SidebarComponent implements OnInit {
 
   onSwipe(event: Event) {
     event.preventDefault();
-    this.themeService.swipeBar.next(false);
+    this.themeService.setSwipeBar(false);
   }
 }

@@ -4,9 +4,9 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { of } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
+import { ThemeService } from '../../services/theme/theme.service';
 import { ComponentsMock } from '../components.mock.spec';
 import { NavbarComponent } from './navbar.component';
 
@@ -14,11 +14,13 @@ fdescribe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
   let authService: AuthService;
+  let themeService: ThemeService;
   let mockRouter = {
     navigate: jasmine.createSpy('navigate'),
     events: of(null),
   };
   let dummyElement = document.getElementsByTagName('nav');
+
   document.getElementById = jasmine
     .createSpy('HTML Element')
     .and.returnValue(dummyElement);
@@ -34,6 +36,7 @@ fdescribe('NavbarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     authService = TestBed.inject(AuthService);
+    themeService = TestBed.inject(ThemeService);
     component = fixture.componentInstance;
     localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
     fixture.detectChanges();
@@ -136,5 +139,18 @@ fdescribe('NavbarComponent', () => {
 
     spyOn(component.location, 'prepareExternalUrl').and.returnValue('contact-detail');
     expect(component.getTitle()).toEqual('Detalle de Contacto');
+  });
+
+  it('Validate changeOnSwipe', () => {
+    spyOnProperty(themeService, 'swipeBar', 'get').and.returnValue(of(true));
+    const spySideBarToggle = spyOn(component, 'sidebarToggle').and.returnValue(null);
+    component.changeOnSwipe();
+    expect(spySideBarToggle).toHaveBeenCalled();
+
+    spyOnProperty(themeService, 'swipeBar', 'get').and.returnValue(of(false));
+    const spySidebarClose = spyOn(component, 'sidebarClose').and.returnValue(null);
+    component.changeOnSwipe();
+    expect(spySideBarToggle).not.toHaveBeenCalledTimes(2);
+    expect(spySidebarClose).toHaveBeenCalled();
   });
 });

@@ -1,7 +1,5 @@
 import { Component, HostListener } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { listLocales } from 'ngx-bootstrap/chronos';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { ThemeService } from './services/theme/theme.service';
 
 @Component({

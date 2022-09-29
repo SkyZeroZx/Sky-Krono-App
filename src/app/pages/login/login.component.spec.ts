@@ -13,10 +13,10 @@ import { of, throwError } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
 import * as simpleWebAuthn from '@simplewebauthn/browser';
-import Swal from 'sweetalert2';
 import { LoginComponent } from './login.component';
 import { AuthLayoutRoutes } from '../../layouts/auth-layout/auth-layout.routing';
 import { LoginMock } from './login.mock.spec';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
@@ -44,6 +44,7 @@ fdescribe('LoginComponent', () => {
         RouterModule.forChild(AuthLayoutRoutes),
         FormsModule,
         ReactiveFormsModule,
+        SweetAlert2Module.forRoot(),
         ToastrModule.forRoot(),
         ModalModule.forRoot(),
       ],
@@ -90,9 +91,11 @@ fdescribe('LoginComponent', () => {
       of(LoginMock.userNotFirstLogin),
     );
     const spyIsFirstLogin = spyOn(component, 'isFirstLogin').and.callThrough();
+    const spyIsUserStorage = spyOn(component, 'isUserStorage').and.callThrough();
     component.onLogin();
     expect(spyIsFirstLogin).toHaveBeenCalled();
     expect(spyAuthService).toHaveBeenCalled();
+    expect(spyIsUserStorage).toHaveBeenCalled();
   });
 
   it('Validate login ERROR', () => {
@@ -107,19 +110,37 @@ fdescribe('LoginComponent', () => {
     expect(spyAuthService).toHaveBeenCalled();
   });
 
+  it('Validate confirmFirstLogin', () => {
+    const spyRouter = spyOn(mockRouter, 'navigate').and.callThrough();
+    component.confirmFirstLogin();
+    expect(spyRouter).toHaveBeenCalledWith(['/change-password']);
+  });
+
+  it('Validate dismissFirstLogin', () => {
+    const spyLocalStorageRemove = spyOn(localStorage, 'removeItem').and.callThrough();
+    component.dismissFirstLogin();
+    expect(spyLocalStorageRemove).toHaveBeenCalledWith('user');
+  });
+
   it('Validate isFirstLogin TRUE', () => {
-    const spyAlertFirstLogin = spyOn(component, 'alertFirstLogin').and.callThrough();
+    const spySwalIsFirstLogin = spyOn(
+      component.swalIsFirstLogin,
+      'fire',
+    ).and.callThrough();
     component.isFirstLogin(LoginMock.userFirstLogin);
-    expect(spyAlertFirstLogin).toHaveBeenCalled();
+    expect(spySwalIsFirstLogin).toHaveBeenCalled();
   });
 
   it('Validate isFirstLogin FALSE', () => {
     component.loginForm.patchValue({ username: LoginMock.userNotFirstLogin.username });
-    const spyAlertFirstLogin = spyOn(component, 'alertFirstLogin').and.callThrough();
+    const spySwalIsFirstLogin = spyOn(
+      component.swalIsFirstLogin,
+      'fire',
+    ).and.callThrough();
     const spyRouterNavigate = spyOn(mockRouter, 'navigate').and.callThrough();
     const spyLocalStorage = spyOn(localStorage, 'setItem').and.callThrough();
     component.isFirstLogin(LoginMock.userNotFirstLogin);
-    expect(spyAlertFirstLogin).not.toHaveBeenCalled();
+    expect(spySwalIsFirstLogin).not.toHaveBeenCalled();
     expect(spyRouterNavigate).toHaveBeenCalledWith(['/home']);
     expect(spyLocalStorage).toHaveBeenCalledWith(
       'username',
@@ -127,41 +148,14 @@ fdescribe('LoginComponent', () => {
     );
   });
 
-  it('Validate alertFirstLogin Confirmed', fakeAsync(() => {
-    const spySweetAlert = spyOn(Swal, 'fire').and.callThrough();
-    const spyRouterNavigate = spyOn(mockRouter, 'navigate').and.callThrough();
-    const spyLocalStorage = spyOn(localStorage, 'removeItem').and.callThrough();
-    component.alertFirstLogin();
-    tick(1000);
-    fixture.detectChanges();
-    expect(Swal.isVisible()).toBeTruthy();
-    expect(Swal.getTitle().textContent).toEqual('Es su primer login');
-    tick(1000);
-    fixture.detectChanges();
-    Swal.clickConfirm();
-    tick(1000);
-    fixture.detectChanges();
-    expect(spySweetAlert).toHaveBeenCalled();
-    expect(spyRouterNavigate).toHaveBeenCalledWith(['/change-password']);
-    expect(spyLocalStorage).not.toHaveBeenCalled();
-  }));
-
-  it('Validate alertFirstLogin NOT Confirmed', fakeAsync(() => {
-    const spySweetAlert = spyOn(Swal, 'fire').and.callThrough();
-    const spyLocalStorage = spyOn(localStorage, 'removeItem').and.callThrough();
-    component.alertFirstLogin();
-    tick(1000);
-    fixture.detectChanges();
-    expect(Swal.isVisible()).toBeTruthy();
-    expect(Swal.getTitle().textContent).toEqual('Es su primer login');
-    tick(1000);
-    fixture.detectChanges();
-    Swal.clickCancel();
-    tick(1000);
-    fixture.detectChanges();
-    expect(spySweetAlert).toHaveBeenCalled();
-    expect(spyLocalStorage).toHaveBeenCalled();
-  }));
+  it('Validate isUserStorage', () => {
+    const mockUserStorage = 'UserTestStorage';
+    component.userStorage = mockUserStorage;
+    component.loginForm.controls.username.setValue(mockUserStorage + 'something');
+    const spyLocalStorage = spyOn(localStorage, 'setItem').and.callThrough();
+    component.isUserStorage();
+    expect(spyLocalStorage).toHaveBeenCalledWith('verified', 'null');
+  });
 
   it('Validate startAutehntication OK', fakeAsync(() => {
     const spyVerifityAuthentication = spyOn(

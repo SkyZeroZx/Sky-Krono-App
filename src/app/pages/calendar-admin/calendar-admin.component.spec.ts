@@ -2,7 +2,7 @@ import { defineFullCalendarElement, EventClickArg } from '@fullcalendar/web-comp
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -18,7 +18,6 @@ import { TaskService } from '../../services/task/task.service';
 import { of, throwError } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarViewerMock } from '../calendar-view/calendar-view.mock.spec';
- 
 import { defineLocale, esLocale } from 'ngx-bootstrap/chronos';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
@@ -114,6 +113,13 @@ fdescribe('CalendarAdminComponent', () => {
     component.handleEventClick(clickInfoMock);
     expect(component.taskSelected).toEqual(clickInfoMock);
     expect(spySwalOptions).toHaveBeenCalled();
+  });
+
+  it('Validate showModalUpdateTask', () => {
+    const spyShowModalUpdate = spyOn(component.modalUpdateTask, 'show').and.callThrough();
+    component.showModalUpdateTask();
+    expect(component.taskSelectedOk).toBeTruthy();
+    expect(spyShowModalUpdate).toHaveBeenCalled();
   });
 
   it('Validate eventDraggable OK', () => {

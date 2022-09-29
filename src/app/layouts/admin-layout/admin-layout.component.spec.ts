@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Renderer2, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Type } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChildrenOutletContexts } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { ThemeService } from '../../services/theme/theme.service';
 import { AdminLayoutComponent } from './admin-layout.component';
 
@@ -71,6 +71,7 @@ fdescribe('AdminLayoutComponent', () => {
   });
 
   it('Validate enabledDarkTheme FALSE', () => {
+    spyOnProperty(themeService, 'theme', 'get').and.returnValue(of(false));
     component.enabledDarkTheme();
     expect(renderer2.removeClass).toHaveBeenCalledWith(
       jasmine.any(Object),
@@ -80,7 +81,7 @@ fdescribe('AdminLayoutComponent', () => {
   });
 
   it('Validate enabledDarkTheme TRUE', () => {
-    themeService.theme = new BehaviorSubject(true);
+    themeService.setTheme(true)
     component.enabledDarkTheme();
     expect(renderer2.removeClass).toHaveBeenCalledWith(
       jasmine.any(Object),
@@ -90,12 +91,19 @@ fdescribe('AdminLayoutComponent', () => {
   });
 
   it('Validate enabledNavBar', () => {
-    themeService.navBar = new BehaviorSubject(true);
-    component.enabledNavBar();
-    expect(component.isActiveNavBar).toBeTruthy();
-
-    themeService.navBar = new BehaviorSubject(false);
+    spyOnProperty(themeService, 'theme', 'get').and.returnValue(of(false));
+    component.enabledNavBar()
+    expect(component.isActiveNavBar).toBeFalsy();
+    themeService.setTheme(false)
     component.enabledNavBar();
     expect(component.isActiveNavBar).toBeFalsy();
+  });
+
+
+  it('Validate onSwipe', () => {
+    let mockEvent: Event = new Event('swipe');
+    const spySetSwipeBar = spyOn(themeService, 'setSwipeBar').and.callThrough();
+    component.onSwipe(mockEvent);
+    expect(spySetSwipeBar).toHaveBeenCalled();
   });
 });

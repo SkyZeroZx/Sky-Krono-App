@@ -51,6 +51,6 @@ export class AdminLayoutComponent implements OnInit {
 
   onSwipe(event: Event) {
     event.preventDefault();
-    this.themeService.swipeBar.next(true);
+    this.themeService.setSwipeBar(true);
   }
 }

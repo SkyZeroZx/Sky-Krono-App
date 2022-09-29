@@ -50,9 +50,4 @@ export class ContactsComponent implements OnInit, AfterContentInit {
     }
     return item.photo;
   }
-
-  onSwipe(event : Event) {
-    event.preventDefault();
-    
-  }
 }

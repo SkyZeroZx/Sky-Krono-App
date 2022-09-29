@@ -56,7 +56,7 @@ const routes: Routes = [
       {
         path: 'gestion-usuarios',
         loadChildren: () =>
-          import('./pages/manage-users/manage-users.module').then(
+          import('./pages/settings/pages/manage-users/manage-users.module').then(
             (m) => m.ManageUsersModule,
           ),
       },
@@ -68,12 +68,16 @@ const routes: Routes = [
       {
         path: 'schedule',
         loadChildren: () =>
-          import('./pages/schedule/schedule.module').then((m) => m.ScheduleModule),
+          import('./pages/settings/pages/schedule/schedule.module').then(
+            (m) => m.ScheduleModule,
+          ),
       },
       {
         path: 'chargue',
         loadChildren: () =>
-          import('./pages/chargue/chargue.module').then((m) => m.ChargueModule),
+          import('./pages/settings/pages/chargue/chargue.module').then(
+            (m) => m.ChargueModule,
+          ),
       },
       {
         path: 'attendance',
@@ -92,12 +96,14 @@ const routes: Routes = [
       {
         path: 'types',
         loadChildren: () =>
-          import('./pages/types/types.module').then((m) => m.TypesModule),
+          import('./pages/settings/pages/types/types.module').then((m) => m.TypesModule),
       },
       {
         path: 'licence',
         loadChildren: () =>
-          import('./pages/licence/licence.module').then((m) => m.LicenceModule),
+          import('./pages/settings/pages/licence/licence.module').then(
+            (m) => m.LicenceModule,
+          ),
       },
     ],
   },

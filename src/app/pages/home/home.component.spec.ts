@@ -121,15 +121,24 @@ fdescribe('HomeComponent', () => {
       isActive: false,
       date: '',
     };
-    expect(component.getClassStatus(mockStatusAttendance)).toEqual('fa-solid fa-minus absent');
+    expect(component.getClassStatus(mockStatusAttendance)).toEqual(
+      'fa-solid fa-minus absent',
+    );
+    mockStatusAttendance.isDayOff = true;
+    mockStatusAttendance.isAbsent = false;
+    //Case isDayOff is true
+    expect(component.getClassStatus(mockStatusAttendance)).toEqual('disabled');
+
     // Case isLater true
     mockStatusAttendance.isAbsent = false;
+    mockStatusAttendance.isDayOff = false;
     mockStatusAttendance.isLater = true;
     expect(component.getClassStatus(mockStatusAttendance)).toEqual(
       'fa-solid fa-exclamation warning',
     );
     //Case OnTime is AttendanceOk
     mockStatusAttendance.isAbsent = false;
+    mockStatusAttendance.isDayOff = false;
     mockStatusAttendance.isLater = false;
     expect(component.getClassStatus(mockStatusAttendance)).toEqual(
       'fa-solid fa-check success',

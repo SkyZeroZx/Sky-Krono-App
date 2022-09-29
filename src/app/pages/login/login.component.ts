@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { startAuthentication } from '@simplewebauthn/browser';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
-import Swal from 'sweetalert2';
 import { UserLoginResponse } from '../../common/interfaces';
 
 @Component({
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   userStorage: string = localStorage.getItem('username');
   enableFingerPrint: boolean = !this.themeService.getLocalStorageItem('verified');
   darkTheme: boolean = this.themeService.getLocalStorageItem('darkTheme');
-
+  @ViewChild('swalIsFirstLogin')
+  readonly swalIsFirstLogin: SwalComponent;
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
         this.isFirstLogin(res);
+        this.isUserStorage();
       },
       error: (_err) => {
         this.toastrService.error('Error al logearse');
@@ -57,36 +59,28 @@ export class LoginComponent implements OnInit {
 
   isFirstLogin(res: UserLoginResponse) {
     if (res.firstLogin) {
-      this.alertFirstLogin();
+      this.swalIsFirstLogin.fire();
     } else {
-      if (this.loginForm.value.username !== this.userStorage) {
-        localStorage.setItem('verified', 'null');
-      }
       localStorage.setItem('username', this.loginForm.value.username);
       this.router.navigate(['/home']);
     }
   }
 
-  alertFirstLogin() {
-    Swal.fire({
-      title: 'Es su primer login',
-      text: 'Se recomienda cambiar su contraseña',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.router.navigate(['/change-password']);
-      } else {
-        localStorage.removeItem('user');
-      }
-    });
+  isUserStorage() {
+    if (this.loginForm.value.username !== this.userStorage) {
+      localStorage.setItem('verified', 'null');
+    }
   }
 
-  async startAuthentication() {
+  confirmFirstLogin() {
+    this.router.navigate(['/change-password']);
+  }
+
+  dismissFirstLogin() {
+    localStorage.removeItem('user');
+  }
+
+  startAuthentication() {
     this.authService.startAuthentication(this.userStorage).subscribe({
       next: async (res) => {
         try {

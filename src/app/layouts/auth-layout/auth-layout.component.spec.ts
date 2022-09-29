@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { ThemeService } from '../../services/theme/theme.service';
 import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthLayoutRoutes } from './auth-layout.routing';
@@ -64,13 +64,14 @@ fdescribe('AuthLayoutComponent', () => {
   it('Validate ngOnInit Dark Theme false', () => {
     // themeService.theme = new BehaviorSubject(true);
     // Dark Theme is FALSE
+    spyOnProperty(themeService, 'theme', 'get').and.returnValue(of(false));
     component.ngOnInit();
     expect(renderer2.addClass).toHaveBeenCalledWith(jasmine.any(Object), 'white-content');
   });
 
   it('Validate ngOnInit Dark Theme true', () => {
     // Dark Theme is TRUE
-    themeService.theme = new BehaviorSubject(true);
+    themeService.setTheme(true)
     component.ngOnInit();
     expect(renderer2.removeClass).toHaveBeenCalledWith(
       jasmine.any(Object),

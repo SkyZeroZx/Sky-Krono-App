@@ -61,3 +61,10 @@
     </div>
   </div>
 </div>
+
+
+<!--Sweet Alert Is First Login -->
+<swal #swalIsFirstLogin [title]="'¿Que acción desea realizar?'" [text]="'Se recomienda cambiar su contraseña'"
+  [icon]="'warning'" [showCancelButton]="true" [confirmButtonText]="'Confirmar'" [cancelButtonText]="'Cancelar'"
+  (confirm)="confirmFirstLogin()" (dismiss)="dismissFirstLogin()">
+</swal>

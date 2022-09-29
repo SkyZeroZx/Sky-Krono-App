@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SwPush } from '@angular/service-worker';
 import { startRegistration } from '@simplewebauthn/browser';
 import { RegistrationCredentialJSON } from '@simplewebauthn/typescript-types';
@@ -16,65 +16,63 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-options.component.scss'],
 })
 export class UserOptionsComponent implements OnInit {
+  userOptionsForm: FormGroup;
+
   constructor(
     private themeService: ThemeService,
     private swPush: SwPush,
     private authService: AuthService,
     private toastrService: ToastrService,
     private userService: UserService,
+    private fb: FormBuilder,
   ) {}
 
-  userTheme: FormControl = new FormControl(
-    this.themeService.getLocalStorageItem('darkTheme'),
-  );
-  userNavBar: FormControl = new FormControl(
-    this.themeService.getLocalStorageItem('navBar'),
-  );
-  userFingerPrint: FormControl = new FormControl(
-    this.themeService.getLocalStorageItem('verified'),
-  );
-  notifications: FormControl = new FormControl(
-    this.themeService.getLocalStorageItem('notificaciones'),
-  );
-  installPWAControl: FormControl = new FormControl(false);
-  userProfileForm: FormGroup = new FormGroup({});
-
   ngOnInit(): void {
-    this.suscribeChange();
+    this.createUserOptionsForm();
   }
 
-  suscribeChange() {
-    this.userTheme.valueChanges.subscribe((res) => {
-      this.themeService.setTheme(res);
+  createUserOptionsForm(): void {
+    this.userOptionsForm = this.fb.group({
+      userTheme: new FormControl(this.themeService.getLocalStorageItem('darkTheme')),
+      userNavBar: new FormControl(this.themeService.getLocalStorageItem('navBar')),
+      userFingerPrint: new FormControl(this.themeService.getLocalStorageItem('verified')),
+      notifications: new FormControl(
+        this.themeService.getLocalStorageItem('notificaciones'),
+      ),
+      userInstallPwa: new FormControl(false),
     });
+  }
 
-    this.userNavBar.valueChanges.subscribe((res) => {
-      this.themeService.setNavBar(res);
-    });
+  onChangeTheme({ checked }) {
+    this.themeService.setTheme(checked);
+  }
 
-    this.userFingerPrint.valueChanges.subscribe((res) => {
-      if (res) {
-        this.getRegistrationAuthnWeb();
-      } else {
-        this.disableFingerPrint();
-      }
-      localStorage.setItem('verified', res);
-    });
+  onChangeFinterPrint({ checked }) {
+    if (checked) {
+      this.getRegistrationAuthnWeb();
+    } else {
+      this.disableFingerPrint();
+    }
+    localStorage.setItem('verified', checked);
+  }
 
-    this.notifications.valueChanges.subscribe((res) => {
-      if (res) {
-        this.suscribeToNotifications();
-        localStorage.setItem('notificaciones', 'true');
-      } else {
-        localStorage.setItem('notificaciones', 'false');
-      }
-    });
+  onChangeNavBar({ checked }) {
+    this.themeService.setNavBar(checked);
+  }
 
-    this.installPWAControl.valueChanges.subscribe((res) => {
-      if (res) {
-        this.installPwa();
-      }
-    });
+  onChangeInstallPwa({ checked }) {
+    if (checked) {
+      this.installPwa();
+    }
+  }
+
+  onChangeNotifications({ checked }) {
+    if (checked) {
+      this.suscribeToNotifications();
+      localStorage.setItem('notificaciones', 'true');
+    } else {
+      localStorage.setItem('notificaciones', 'false');
+    }
   }
 
   installPwa() {
@@ -107,7 +105,7 @@ export class UserOptionsComponent implements OnInit {
   }
 
   disableFingerPrint() {
-    this.userFingerPrint.setValue(false, { emitEvent: false });
+    this.userOptionsForm.controls.userFingerPrint.setValue(false, { emitEvent: false });
     localStorage.setItem('verified', 'false');
   }
 
@@ -126,7 +124,7 @@ export class UserOptionsComponent implements OnInit {
   }
 
   disableNotifications() {
-    this.notifications.setValue(false, { emitEvent: false });
+    this.userOptionsForm.controls.notifications.setValue(false, { emitEvent: false });
     localStorage.setItem('notificaciones', 'false');
   }
 

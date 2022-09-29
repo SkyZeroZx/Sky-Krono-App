@@ -9,7 +9,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
 import { PhonePipe } from '../../common/pipes/phone.pipe';
 import { UserService } from '../../services/users/user.service';
-import { ManageUsersMock } from '../manage-users/manage-users.mock';
+import { ManageUsersMock } from '../settings/pages/manage-users/manage-users.mock.spec';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
 import { ContactsComponent } from './contacts.component';
 import { ContactsMock } from './contacts.mock.spec';

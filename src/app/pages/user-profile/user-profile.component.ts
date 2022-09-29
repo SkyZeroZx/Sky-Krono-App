@@ -74,12 +74,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-    localStorage.removeItem('user');
-  }
-
   updateProfile() {
     this.userService.updateUser(this.userProfileForm.value).subscribe({
       next: (_res) => {
@@ -89,5 +83,11 @@ export class UserProfileComponent implements OnInit {
         this.toastrService.error('Error al actualizar su perfil');
       },
     });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+    localStorage.removeItem('user');
   }
 }

@@ -19,9 +19,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TaskService } from '../../../../services/task/task.service';
 import { CalendarAdminRouter } from '../../calendar-admin.routing';
 import { UserService } from '../../../../services/users/user.service';
-import { ManageUsersMock } from '../../../manage-users/manage-users.mock';
 import { CalendarViewerMock } from '../../../calendar-view/calendar-view.mock.spec';
 import { UpdateTaskComponent } from './update-task.component';
+import { ManageUsersMock } from '../../../settings/pages/manage-users/manage-users.mock.spec';
 
 fdescribe('UpdateTaskComponent', () => {
   let component: UpdateTaskComponent;

@@ -20,8 +20,9 @@ import { TaskService } from '../../../../services/task/task.service';
 import { CreateTaskComponent } from './create-task.component';
 import { CalendarAdminRouter } from '../../calendar-admin.routing';
 import { UserService } from '../../../../services/users/user.service';
-import { ManageUsersMock } from '../../../manage-users/manage-users.mock';
 import { CalendarViewerMock } from '../../../calendar-view/calendar-view.mock.spec';
+import { ManageUsersMock } from '../../../settings/pages/manage-users/manage-users.mock.spec';
+
 fdescribe('CreateTaskComponent', () => {
   let component: CreateTaskComponent;
   let fixture: ComponentFixture<CreateTaskComponent>;

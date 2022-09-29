@@ -7,11 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { ChangePasswordComponent } from 'src/app/pages/change-password/change-password.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
+    SweetAlert2Module.forRoot(),
     FormsModule,
     HttpClientModule,
     NgbModule,
