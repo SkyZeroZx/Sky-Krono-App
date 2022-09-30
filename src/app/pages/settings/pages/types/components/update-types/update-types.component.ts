@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Type } from '../../../../../../common/interfaces';
 import { Util } from '../../../../../../common/utils/util';
 import { TypeService } from '../../../../../../services/type/type.service';
- 
 
 @Component({
   selector: 'app-update-types',
@@ -15,7 +14,7 @@ export class UpdateTypesComponent implements OnInit {
   @Input() inputType: Type;
   @Output() close = new EventEmitter();
   updateTypeForm: FormGroup;
-  
+
   constructor(
     private fb: FormBuilder,
     private typeService: TypeService,
@@ -23,8 +22,7 @@ export class UpdateTypesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.createFormType();
-    console.log('inputType ', this.inputType);
+    this.createUpdateTypeForm();
   }
 
   isInvalidRangeHour(): boolean {
@@ -34,7 +32,7 @@ export class UpdateTypesComponent implements OnInit {
     );
   }
 
-  createFormType() {
+  createUpdateTypeForm() {
     this.updateTypeForm = this.fb.group({
       codType: new FormControl(this.inputType.codType),
       description: new FormControl(

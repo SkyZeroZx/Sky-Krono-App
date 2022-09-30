@@ -47,4 +47,10 @@ export class UserService {
       users: users,
     });
   }
+
+  uploadPhoto(file): Observable<Response> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.http.post<Response>(`${environment.API_URL}/users/photo`,formData);
+  }
 }

@@ -68,7 +68,6 @@ export class CreateTaskComponent implements OnInit {
     this.taskService.getAllTypes().subscribe({
       next: (res) => {
         this.listTypes = res;
-        console.log(this.listTypes);
       },
       error: (_err) => {
         this.toastrService.error('Error al listar tipos de tarea');
@@ -98,7 +97,6 @@ export class CreateTaskComponent implements OnInit {
   }
 
   createTask() {
-    console.log('this.createTaskForm.value is ', this.createTaskForm.value);
     this.taskService.createNewTask(this.createTaskForm.value).subscribe({
       next: (_res) => {
         this.toastrService.success('Task registrada exitosamente');

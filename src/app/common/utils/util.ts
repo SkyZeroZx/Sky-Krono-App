@@ -38,7 +38,6 @@ export class Util {
       attendanceHistoryUser == undefined
         ? new Date(newDate.setDate(newDate.getDate() - 1))
         : attendanceHistoryUser.date;
-    console.log('date is ', date);
     let arrayOfDate: Date[] = [];
     for (let i = 0; i < Constant.TOTAL_DAY_OF_WEEK - dayOfWeek; i++) {
       const result = new Date(date);
@@ -67,7 +66,6 @@ export class Util {
 
   static restSecondsOfDay(exitHour: string): number {
     const currentSeconds = Util.currentSeconds();
-    console.log('currentSeconds ', currentSeconds);
     const hoursToSecondsExitHour = parseInt(exitHour.slice(0, 2)) * 60 * 60;
     const minutesToSecondsExitHour = parseInt(exitHour.slice(3, 5)) * 60;
     return hoursToSecondsExitHour + minutesToSecondsExitHour - currentSeconds;
@@ -75,7 +73,6 @@ export class Util {
 
   static currentDayOfWeek(currentDate: string): number {
     const dayOfWeek: number = new Date(currentDate).getDay();
-    console.log('dayOfWeek ', dayOfWeek);
     if (dayOfWeek == 0) {
       return 7;
     }

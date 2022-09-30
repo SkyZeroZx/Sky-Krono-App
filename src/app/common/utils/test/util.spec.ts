@@ -20,6 +20,13 @@ fdescribe('Util', () => {
     expect(formatedTwoDigit).toEqual('12:12');
   });
 
+  it('validate isInvalidRangeHour', () => {
+    const dateStart = new Date();
+    const dateEnd = new Date();
+    expect(Util.isInvalidRangeHour(dateStart, dateEnd)).toBeTruthy();
+    expect(Util.isInvalidRangeHour(null, null)).toBeFalsy();
+  });
+
   it('validate formatHourToDate ', () => {
     const dateString = '12:12';
     const date = new Date();
@@ -68,7 +75,7 @@ fdescribe('Util', () => {
   });
 
   it('Validate currentDayOfWeek', () => {
-   /* // Sunday -> 6
+    // Sunday -> 6
     const mockCurrentDateSunday = '2022-09-18';
     expect(Util.currentDayOfWeek(mockCurrentDateSunday)).toEqual(7);
     // Monday -> 7
@@ -88,8 +95,8 @@ fdescribe('Util', () => {
     expect(Util.currentDayOfWeek(mockCurrentDateFriday)).toEqual(5);
     // Saturday -> 5
     const mockCurrentDateSaturday = '2022-09-24';
-    expect(Util.currentDayOfWeek(mockCurrentDateSaturday)).toEqual(6);*/
-    
+    expect(Util.currentDayOfWeek(mockCurrentDateSaturday)).toEqual(6);
+    /*
     // Sunday -> 6
     const mockCurrentDateSunday = '2022-09-18';
     expect(Util.currentDayOfWeek(mockCurrentDateSunday)).toEqual(6);
@@ -110,6 +117,6 @@ fdescribe('Util', () => {
     expect(Util.currentDayOfWeek(mockCurrentDateFriday)).toEqual(4);
     // Saturday -> 5
     const mockCurrentDateSaturday = '2022-09-24';
-    expect(Util.currentDayOfWeek(mockCurrentDateSaturday)).toEqual(5);
+    expect(Util.currentDayOfWeek(mockCurrentDateSaturday)).toEqual(5);*/
   });
 });

@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/users/user.service';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
+  photoUser: string;
+
   userProfileForm: FormGroup = new FormGroup({});
   constructor(
     private fb: FormBuilder,
@@ -67,6 +69,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.getProfile().subscribe({
       next: (res) => {
         this.userProfileForm.patchValue(res);
+        this.photoUser = res.photo;
       },
       error: (_err) => {
         this.toastrService.error('Sucedio un error al obtener el perfil');

@@ -1,6 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, RouterModule } from '@angular/router';
@@ -43,7 +42,6 @@ fdescribe('ContactsComponent', () => {
         { provide: Router, useValue: mockRouter },
         { provide: ToastrService, useClass: ToastrService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
@@ -102,11 +100,11 @@ fdescribe('ContactsComponent', () => {
   });
 
   it('Validate imageExist', () => {
-    const item = { photo: null };
-    expect(component.imageExist(item)).toEqual(' ../assets/img/none.png');
-    item.photo = '';
-    expect(component.imageExist(item)).toEqual(' ../assets/img/none.png');
-    item.photo = 'www.example.com/image/test.jpg';
-    expect(component.imageExist(item)).toEqual(item.photo);
+    const user: any = { photo: null };
+    expect(component.imageExist(user)).toEqual('../assets/img/none.png');
+    user.photo = '';
+    expect(component.imageExist(user)).toEqual('../assets/img/none.png');
+    user.photo = 'www.example.com/image/test.jpg';
+    expect(component.imageExist(user)).toEqual(user.photo);
   });
 });

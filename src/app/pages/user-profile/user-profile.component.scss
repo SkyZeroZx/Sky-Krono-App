@@ -1,33 +1,27 @@
- 
-.logout{
+.logout {
   background: #d83838 !important;
-  color : white !important;
+  color: white !important;
 }
 
 
-.outline{
-  background: transparent !important
+.outline {
+  background: transparent !important;
 }
 
 .danger {
   font-size: 12px;
-  border: 1px solid ;
+  border: 1px solid;
   border-color: #d83838 !important;
-  color: #d83838!important;
+  color: #d83838 !important;
 }
 .danger:hover {
   background: #d83838 !important;
   color: white !important;
 }
- 
+
 // For WebCam Component Fixed scroolling
-.content{
+.content {
   overflow: hidden;
-}
-
-
-.image-upload>input {
-  display: none;
 }
 
  

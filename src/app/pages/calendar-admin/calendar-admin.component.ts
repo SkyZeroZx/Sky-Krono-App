@@ -77,7 +77,6 @@ export class CalendarAdminComponent implements OnInit {
   handleDateSelect(selectInfo: DateSelectArg) {
     const calendarApi = selectInfo.view.calendar;
     this.dateSelect = selectInfo;
-    console.log('selectInfo ', selectInfo);
     this.taskCreateOk = true;
     this.modalCreateTask.show();
     calendarApi.unselect();

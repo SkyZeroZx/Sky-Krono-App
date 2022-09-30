@@ -47,7 +47,6 @@ export class UpdateLicenceComponent implements OnInit {
   }
 
   updateLicence() {
-    console.log('this.updateLicenceForm.value ', this.updateLicenceForm.value);
     this.licenceService.updateLicence(this.updateLicenceForm.value).subscribe({
       next: (_res) => {
         this.toastrService.success('Se actualizo la licencia exitosamente');

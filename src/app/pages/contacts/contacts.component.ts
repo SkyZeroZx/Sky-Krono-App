@@ -39,15 +39,15 @@ export class ContactsComponent implements OnInit, AfterContentInit {
     });
   }
 
-  selected(event: any): void {
-    localStorage.setItem('contact-detail', JSON.stringify(event));
+  selected(user: User): void {
+    localStorage.setItem('contact-detail', JSON.stringify(user));
     this.router.navigate(['/contacts/contact-detail']);
   }
 
-  imageExist(item) {
-    if (item.photo == '' || item.photo == null) {
-      return ' ../assets/img/none.png';
+  imageExist(user: User) {
+    if (user.photo == '' || user.photo == null) {
+      return '../assets/img/none.png';
     }
-    return item.photo;
+    return user.photo;
   }
 }

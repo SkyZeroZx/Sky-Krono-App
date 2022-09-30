@@ -12,24 +12,12 @@ export class CheckLogin implements CanActivate {
   canActivate() {
     console.log('Auth Guard Check Login');
     if (localStorage.getItem('user') !== null) {
-      if (helper.decodeToken(JSON.parse(localStorage.getItem('user')).token.firstLogin)) {
+      if (this.authService.getItemToken('firstLogin')) {
         localStorage.removeItem('user');
         return true;
       }
       this.router.navigateByUrl('/home');
-
-    /*  switch (this.authService.getItemToken('role')) {
-        case 'admin':
-          this.router.navigateByUrl('/calendar-admin');
-          break;
-        case 'viewer':
-          this.router.navigateByUrl('/calendar-view');
-          break;
-        default:
-          localStorage.removeItem('user');
-          this.router.navigateByUrl('/login');
-          break;
-      }*/
+      return false;
     } else {
       localStorage.removeItem('user');
       return true;

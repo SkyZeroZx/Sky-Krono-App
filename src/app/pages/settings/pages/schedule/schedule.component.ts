@@ -12,11 +12,10 @@ import { ScheduleService } from '../../../../services/schedule/schedule.service'
   styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent implements OnInit {
-  @ViewChild('modalCreateSchedule', { static: false })
+  @ViewChild('modalCreateSchedule')
   modalCreateSchedule: ModalDirective;
-  @ViewChild('modalUpdateSchedule', { static: false })
+  @ViewChild('modalUpdateSchedule')
   modalUpdateSchedule: ModalDirective;
-
   scheduleForm: FormGroup;
   listScheduleOk: boolean = false;
   showModalCreateScheduleOk: boolean = false;
@@ -34,10 +33,14 @@ export class ScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.createScheduleFrom();
+    this.getAllSchedule();
+  }
+
+  createScheduleFrom(): void {
     this.scheduleForm = this.fb.group({
       name: new FormControl(''),
     });
-    this.getAllSchedule();
   }
 
   getAllSchedule() {

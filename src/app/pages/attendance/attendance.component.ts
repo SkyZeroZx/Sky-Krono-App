@@ -50,7 +50,6 @@ export class AttendanceComponent
     this.initAnimation = false;
     this.isActiveEntryAttendance = false;
     this.spinnerValue = 101;
-    console.log('On destroy');
     clearInterval(this.countInterval);
   }
 
@@ -100,7 +99,6 @@ export class AttendanceComponent
   }
 
   initSpinner() {
-    console.log('initSpinner');
     this.countInterval = setInterval(() => {
       let diferent =
         this.totalSecondsOfSchedule - Util.restSecondsOfDay(this.rememberExitHour);

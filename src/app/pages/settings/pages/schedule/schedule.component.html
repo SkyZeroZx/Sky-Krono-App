@@ -137,8 +137,8 @@
 
 <!-- Modal Edit Schedule-->
 <div bsModal class="modal fade" #modalUpdateSchedule="bs-modal" [config]="{backdrop: 'static'}"
-    (wishEvent)="showModalUpdateScheduleOk = false" (onHidden)="getAllSchedule() ; showModalUpdateScheduleOk = false"
-    tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    (onHidden)="getAllSchedule() ; showModalUpdateScheduleOk = false" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
         <div class="modal-content card">
             <div class="modal-header">

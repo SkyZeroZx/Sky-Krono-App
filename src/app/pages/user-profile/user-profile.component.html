@@ -9,17 +9,12 @@
             <div class=" block block-two"></div>
             <div class=" block block-three"></div>
             <div class=" block block-four"></div>
-
-
-
-            <div class="image-upload">
-              <label for="file-input">
-                <img alt="profile" class="avatar" [width]="200" [height]="200" src="assets/img/user.jpg" />
-              </label>
-              <input id="file-input" type="file" />
-            </div>
-            <p> {{userProfileForm.value.name + " " + userProfileForm.value.fatherLastName + " " +
-              userProfileForm.value.motherLastName }}</p>
+            <app-user-photo [inputUserPhoto]="photoUser">
+            </app-user-photo>
+            <p>
+              {{userProfileForm.value.name + " " + userProfileForm.value.fatherLastName + " " +
+              userProfileForm.value.motherLastName }}
+            </p>
             <h5 id="options"> Opciones</h5>
             <app-user-options></app-user-options>
           </div>
@@ -108,7 +103,8 @@
           </form>
         </div>
         <div class=" card-footer">
-          <button class="btn btn-primary" [disabled]="userProfileForm.invalid" (click)="updateProfile()">Editar</button>
+          <button class="btn btn-primary" [disabled]="userProfileForm.invalid"
+            (click)="updateProfile()">Actualizar</button>
         </div>
       </div>
 

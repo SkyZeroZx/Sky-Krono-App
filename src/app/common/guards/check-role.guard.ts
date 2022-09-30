@@ -11,12 +11,10 @@ export class CheckRole implements CanActivate {
     console.log('Check Role');
     console.log(window.location.href);
     if (JSON.parse(localStorage.getItem('user')) == null) {
-      console.log('Deslogeo Entor aca?');
       this.router.navigate(['/login']);
       return false;
     }
     if (this.authService.getItemToken('role')) {
- 
       return true;
     } else {
       return false;

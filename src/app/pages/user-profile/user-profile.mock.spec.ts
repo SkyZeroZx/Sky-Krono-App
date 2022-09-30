@@ -46,4 +46,8 @@ export class UserProfileMock {
     id: '',
     type: '',
   };
+
+  public static readonly mockServiceWorker = {
+    requestSubscription: jasmine.createSpy('requestSubscription'),
+  };
 }

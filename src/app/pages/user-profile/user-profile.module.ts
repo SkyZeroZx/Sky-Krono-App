@@ -12,9 +12,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UserOptionsComponent } from './components/user-options/user-options.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { UserPhotoComponent } from './components/user-photo/user-photo.component';
 
 @NgModule({
-  declarations: [UserProfileComponent, UserOptionsComponent],
+  declarations: [UserProfileComponent, UserOptionsComponent, UserPhotoComponent],
   imports: [
     CommonModule,
     NgSelectModule,
