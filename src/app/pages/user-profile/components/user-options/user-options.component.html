@@ -1,0 +1,40 @@
+<form [formGroup]="userOptionsForm">
+  <div class="row">
+    <div class="col-md-3 px-md-1">
+      <div class=" form-group">
+        <label><i [class]="userOptionsForm.value.userTheme ? 'fas fa-moon' : 'fas fa-sun' "></i>Theme</label>
+        <br>
+        <mat-slide-toggle id="userTheme" (change)="onChangeTheme($event)" formControlName="userTheme">
+        </mat-slide-toggle>
+      </div>
+    </div>
+    <div [class]="shouldInstall() ? 'col-md-2 px-md-1'  : 'col-md-3 px-md-1' ">
+      <div class=" form-group">
+        <label><i class="fas fa-bars"></i> Nav Bar</label> <br>
+        <mat-slide-toggle id="userNavBar" formControlName="userNavBar" (change)="onChangeNavBar($event)">
+        </mat-slide-toggle>
+      </div>
+    </div>
+    <div [class]="shouldInstall() ? 'col-md-2 px-md-1'  : 'col-md-3 px-md-1' ">
+      <div class=" form-group">
+        <label><i class="fas fa-fingerprint"></i> FingerPrint</label> <br>
+        <mat-slide-toggle id="userFingerPrint" formControlName="userFingerPrint" (change)="onChangeFinterPrint($event)">
+        </mat-slide-toggle>
+      </div>
+    </div>
+    <div class="col-md-2 px-md-1" *ngIf="shouldInstall()">
+      <div class=" form-group">
+        <label><i class="fa fa-cloud-download"></i> Instalar</label> <br>
+        <mat-slide-toggle id="userInstallPwa" formControlName="userInstallPwa" (change)="onChangeInstallPwa($event)">
+        </mat-slide-toggle>
+      </div>
+    </div>
+    <div class="col-md-3 px-md-1">
+      <div class=" form-group">
+        <label><i class="fa-solid fa-bell"></i> Notificaciones</label> <br>
+        <mat-slide-toggle id="notificationsControl" formControlName="notifications"
+          (change)="onChangeNotifications($event)"></mat-slide-toggle>
+      </div>
+    </div>
+  </div>
+</form>

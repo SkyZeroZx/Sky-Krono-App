@@ -1,0 +1,84 @@
+<form [formGroup]="updateTypeForm">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">
+                        Descripción (*)</label>
+                    <input type="text" placeholder="Descripcion" class="form-control" formControlName="description"
+                        maxlength="200">
+
+                    <div
+                        *ngIf="updateTypeForm.controls.description.invalid && updateTypeForm.controls.description.touched">
+                        <small id="requiredDescription" class="text-left"
+                            *ngIf="updateTypeForm.controls.description.errors?.required">
+                            Se requiere descripción</small>
+                        <small id="minLenghtDescription" class="text-left"
+                            *ngIf="updateTypeForm.controls.description.errors?.minlength">
+                            La longitud minima es 5 caracteres</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" style="text-align:center  ;">
+                    <label for="recipient-name" class="col-form-label">Fondo (*)</label>
+                    <div class="col-form-label"> <input type="color" formControlName="backgroundColor"></div>
+                    <div
+                        *ngIf="updateTypeForm.controls.backgroundColor.invalid && updateTypeForm.controls.backgroundColor.touched">
+                        <small id="requiredBackgroundColor" class="text-left"
+                            *ngIf="updateTypeForm.controls.backgroundColor.errors?.required">
+                            Se requiere fondo</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" style="text-align:center  ;">
+                    <label for="recipient-name" class="col-form-label">Borde (*)</label>
+
+                    <div class="col-form-label"> <input type="color" formControlName="borderColor"></div>
+
+                    <div
+                        *ngIf="updateTypeForm.controls.borderColor.invalid && updateTypeForm.controls.borderColor.touched">
+                        <small id="requiredBorderColor" class="text-left"
+                            *ngIf="updateTypeForm.controls.borderColor.errors?.required">
+                            Se requiere border</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex  justify-content-center">
+        <div class="form-group hour">
+            <label for="labelHourEntry">Hora Entrada</label>
+            <timepicker formControlName="start" [showMeridian]="false" [showSpinners]="true"
+                (isValid)=" isInvalidRangeHour()">
+            </timepicker>
+            <div *ngIf="updateTypeForm.controls.start.errors?.required">
+                <small id="requiredStart">
+                    Se requiere una hora inicio</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="labelHourExit">Hora Salida</label>
+            <timepicker formControlName="end" [showMeridian]="false" [showSpinners]="true"
+                (isValid)=" isInvalidRangeHour()">
+            </timepicker>
+            <div *ngIf="updateTypeForm.controls.end.errors?.required">
+                <small id="requiredStart">
+                    Se requiere una hora fin</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex  justify-content-center center-timepicker" *ngIf="isInvalidRangeHour()">
+        <small>Rango de horas no permitido</small>
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="updateTypeForm.invalid || isInvalidRangeHour()"
+            (click)="updateType()">Actualizar Tipo</button>
+    </div>
+</form>

@@ -1,36 +1,32 @@
- 
-*{
+* {
   box-sizing: border-box;
 }
- 
-h1{
-  color: rgb(226,226, 226);
+
+h1 {
+  color: rgb(226, 226, 226);
   position: absolute;
   top: 20px;
 }
 
 .darkTheme {
-  .tab-nav-container{
-    background-color:#1e1e2b !important
+  .tab-nav-container {
+    background-color: #1e1e2b !important;
   }
-  .tab{
-    background-color:#1e1e2b !important
+  .tab {
+    background-color: #1e1e2b !important;
   }
 }
 
-.tab-nav-container{
-
+.tab-nav-container {
   background-color: whitesmoke;
-  box-shadow:0 15px 10px rgba(0,0, 0, 0.16),
-  0 3px 6px rgba(0,0, 0, 0.16);
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
   display: flex;
   padding: 25px;
   justify-content: space-between;
   width: 100%;
 }
-.tab{
- // background-color: rgb(226, 226, 226);
- 
+
+.tab {
   border-radius: 50px;
   cursor: pointer;
   display: flex;
@@ -40,41 +36,43 @@ h1{
   margin: 0 5px;
   transition: background 0.4s linear;
 }
-.tab i{
+
+.tab i {
   font-size: 1.2em;
 }
-.tab p{
+
+.tab p {
   font-weight: bold;
   overflow: hidden;
   max-width: 0;
 }
-.tab.active p{
+
+.tab.active p {
   margin-left: 10px;
   max-width: 100px;
   transition: max-width 0.4s linear;
 }
-.tab.active.purple{
-  background-color: rgba(91,55, 183, 0.2);
-  color: rgba(91,55, 183, 1);
+.tab.active.purple {
+  background-color: rgba(91, 55, 183, 0.2);
+  color: rgba(91, 55, 183, 1);
 }
-.tab.active.pink{
-  background-color: rgba(201,55, 157, 0.2);
-  color: rgba(201,55, 157, 1);
+.tab.active.pink {
+  background-color: rgba(201, 55, 157, 0.2);
+  color: rgba(201, 55, 157, 1);
 }
-.tab.active.yellow{
-  background-color: rgba(230,169, 25, 0.2);
-  color: rgba(230,169, 25, 1);
+.tab.active.yellow {
+  background-color: rgba(230, 169, 25, 0.2);
+  color: rgba(230, 169, 25, 1);
 }
-.tab.active.teal{
-  background-color: rgba(28,150,162,0.2);
-  color: rgba(28,150,162,1);
+.tab.active.teal {
+  background-color: rgba(28, 150, 162, 0.2);
+  color: rgba(28, 150, 162, 1);
 }
-.tab.active.azure{
+.tab.active.azure {
   background-color: rgba(25, 89, 184, 0.2);
   color: rgb(37, 64, 216);
 }
 
-
-p{
+p {
   margin-bottom: 0px !important;
 }

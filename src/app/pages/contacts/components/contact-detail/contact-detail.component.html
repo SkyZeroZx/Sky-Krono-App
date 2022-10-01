@@ -15,7 +15,8 @@
                         <div class=" block block-two"></div>
                         <div class=" block block-three"></div>
                         <div class=" block block-four"></div>
-                        <img alt="Perfil" class="avatar" [width]="200" [height]="200" src="assets/img/none.png" />
+                        <img alt="Perfil" class="avatar" [width]="200" [height]="200"
+                            [src]="contact.photo == null ? '../assets/img/none.png' : contact.photo" />
                         <p class="full-name">
                             {{contact.name }}
                             <br />
@@ -31,7 +32,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class=" form-group">
-                                    <a href="tel:+1-907-212-7084" class="phone">
+                                    <a class="phone" href="tel:+51{{contact.phone}}">
                                         <i class="fa-solid fa-phone fa-lg"></i>
                                         &nbsp; {{contact.phone | phone}}
                                     </a>

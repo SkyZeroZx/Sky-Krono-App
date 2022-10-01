@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { CheckRole } from './common/guards/checkRole.guard';
-import { FirstLogin } from './common/guards/FirstLogin.guard';
-import { IsLogged } from './common/guards/IsLogged.guard';
+import { FirstLogin } from './common/guards/first-login.guard';
+import { IsLogged } from './common/guards/is-logged.guard';
+import { CheckRole } from './common/guards/check-role.guard';
 
 const routes: Routes = [
   {
@@ -21,7 +21,9 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./layouts/auth-layout/auth-layout.module').then((m) => m.AuthLayoutModule),
+          import('./layouts/auth-layout/auth-layout.module').then(
+            (m) => m.AuthLayoutModule,
+          ),
       },
     ],
   },
@@ -33,22 +35,30 @@ const routes: Routes = [
       {
         path: 'calendar-admin',
         loadChildren: () =>
-          import('./pages/calendar-admin/calendar-admin.module').then((m) => m.CalendarAdminModule),
+          import('./pages/calendar-admin/calendar-admin.module').then(
+            (m) => m.CalendarAdminModule,
+          ),
       },
       {
         path: 'calendar-view',
         loadChildren: () =>
-          import('./pages/calendar-view/calendar-view.module').then((m) => m.CalendarViewModule),
+          import('./pages/calendar-view/calendar-view.module').then(
+            (m) => m.CalendarViewModule,
+          ),
       },
       {
         path: 'user-profile',
         loadChildren: () =>
-          import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+          import('./pages/user-profile/user-profile.module').then(
+            (m) => m.UserProfileModule,
+          ),
       },
       {
         path: 'gestion-usuarios',
         loadChildren: () =>
-          import('./pages/manage-users/manage-users.module').then((m) => m.ManageUsersModule),
+          import('./pages/settings/pages/manage-users/manage-users.module').then(
+            (m) => m.ManageUsersModule,
+          ),
       },
       {
         path: 'contacts',
@@ -58,11 +68,16 @@ const routes: Routes = [
       {
         path: 'schedule',
         loadChildren: () =>
-          import('./pages/schedule/schedule.module').then((m) => m.ScheduleModule),
+          import('./pages/settings/pages/schedule/schedule.module').then(
+            (m) => m.ScheduleModule,
+          ),
       },
       {
         path: 'chargue',
-        loadChildren: () => import('./pages/chargue/chargue.module').then((m) => m.ChargueModule),
+        loadChildren: () =>
+          import('./pages/settings/pages/chargue/chargue.module').then(
+            (m) => m.ChargueModule,
+          ),
       },
       {
         path: 'attendance',
@@ -77,6 +92,18 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () =>
           import('./pages/settings/settings.module').then((m) => m.SettingsModule),
+      },
+      {
+        path: 'types',
+        loadChildren: () =>
+          import('./pages/settings/pages/types/types.module').then((m) => m.TypesModule),
+      },
+      {
+        path: 'licence',
+        loadChildren: () =>
+          import('./pages/settings/pages/licence/licence.module').then(
+            (m) => m.LicenceModule,
+          ),
       },
     ],
   },

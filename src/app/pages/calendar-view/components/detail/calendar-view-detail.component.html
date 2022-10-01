@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Tipo</label>
                 <ng-select [items]="listTypes" [closeOnSelect]="true" [hideSelected]="true" bindValue="codType"
-                    [readonly]="true" [clearable]="false" bindLabel="typeDescription" placeholder="Seleccionar Tipo"
+                    [readonly]="true" [clearable]="false" bindLabel="description" placeholder="Seleccionar Tipo"
                     formControlName="codType">
                 </ng-select>
             </div>
@@ -43,7 +43,7 @@
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Usuarios</label>
                 <ng-select  [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [items]="listUsers"
-                    [readonly]="true" [clearable]="false" bindLabel="nombre" formControlName="users">
+                    [readonly]="true" [clearable]="false" bindLabel="name" formControlName="users">
                 </ng-select>
 
         

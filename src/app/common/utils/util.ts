@@ -1,5 +1,5 @@
 import { Constant } from '../constants/Constant';
-import { StatusAttendance } from '../interfaces/attendance';
+import { StatusAttendance } from '../interfaces';
 
 export class Util {
   static formatDateToHour(date): string {
@@ -15,6 +15,16 @@ export class Util {
     return `${hours}:${minutes}`;
   }
 
+  static isInvalidRangeHour(start: Date, end: Date): boolean {
+    if (start && end) {
+      if (start.getTime() >= end.getTime()) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }
+
   static formatHourToDate(hour): Date {
     let date = new Date();
     date.setHours(parseInt(hour.slice(0, 2)));
@@ -23,9 +33,14 @@ export class Util {
   }
 
   static getRestDaysOfWeek(attendanceHistoryUser: StatusAttendance, dayOfWeek: number) {
+    const newDate = new Date();
+    const date =
+      attendanceHistoryUser == undefined
+        ? new Date(newDate.setDate(newDate.getDate() - 1))
+        : attendanceHistoryUser.date;
     let arrayOfDate: Date[] = [];
     for (let i = 0; i < Constant.TOTAL_DAY_OF_WEEK - dayOfWeek; i++) {
-      const result = new Date(attendanceHistoryUser.date);
+      const result = new Date(date);
       arrayOfDate.push(new Date(result.setDate(result.getDate() + i + 1)));
     }
     return arrayOfDate;
@@ -43,16 +58,24 @@ export class Util {
     const minutesToSecondsExitHour = parseInt(exitHour.slice(3, 5)) * 60;
 
     return (
-      (hoursToSecondsExitHour + minutesToSecondsExitHour) -
+      hoursToSecondsExitHour +
+      minutesToSecondsExitHour -
       (hoursToSecondsEntryHour + minutesToSecondsEntryHour)
     );
   }
 
   static restSecondsOfDay(exitHour: string): number {
     const currentSeconds = Util.currentSeconds();
-    console.log('currentSeconds ', currentSeconds);
     const hoursToSecondsExitHour = parseInt(exitHour.slice(0, 2)) * 60 * 60;
     const minutesToSecondsExitHour = parseInt(exitHour.slice(3, 5)) * 60;
     return hoursToSecondsExitHour + minutesToSecondsExitHour - currentSeconds;
+  }
+
+  static currentDayOfWeek(currentDate: string): number {
+    const dayOfWeek: number = new Date(currentDate).getDay();
+    if (dayOfWeek == 0) {
+      return 7;
+    }
+    return dayOfWeek;
   }
 }

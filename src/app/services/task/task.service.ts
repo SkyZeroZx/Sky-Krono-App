@@ -1,9 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Task, UserByTask, RegisterTask, UserTask } from 'src/app/common/interfaces/task';
-import { Response } from '../../common/interfaces/response';
-import { Type } from 'src/app/common/interfaces/type';
+import {
+  Task,
+  UserByTask,
+  RegisterTask,
+  UserTask,
+  Type,
+  Response,
+} from 'src/app/common/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,8 +17,8 @@ import { environment } from 'src/environments/environment';
 export class TaskService {
   constructor(private http: HttpClient) {}
 
-  getAllTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(`${environment.API_URL}/task`);
+  getAllTasks(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.API_URL}/task`);
   }
 
   getTaskByUser(): Observable<Task[]> {
@@ -21,11 +26,13 @@ export class TaskService {
   }
 
   getUsersByTask(codTask: Object): Observable<UserByTask[]> {
-    return this.http.get<UserByTask[]>(`${environment.API_URL}/task/task_user/${codTask}`);
+    return this.http.get<UserByTask[]>(
+      `${environment.API_URL}/task/task_user/${codTask}`,
+    );
   }
 
-  createNewTask(task: RegisterTask): Observable<Response> {
-    return this.http.post<Response>(`${environment.API_URL}/task/`, task);
+  createNewTask(registerTask: RegisterTask): Observable<Response> {
+    return this.http.post<Response>(`${environment.API_URL}/task/`, registerTask);
   }
 
   updateTask(task: any): Observable<Response> {
@@ -42,8 +49,8 @@ export class TaskService {
     return this.http.post<Response>(`${environment.API_URL}/task/add_user`, userToTask);
   }
 
-  deleteTask(task: number): Observable<Response> {
-    return this.http.delete<Response>(`${environment.API_URL}/task/remove_task/${task}`);
+  deleteTask(id: number): Observable<Response> {
+    return this.http.delete<Response>(`${environment.API_URL}/task/remove_task/${id}`);
   }
 
   /********************* SERVICIOS TYPE ******************************** */

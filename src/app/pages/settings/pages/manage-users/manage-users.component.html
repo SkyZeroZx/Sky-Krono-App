@@ -1,0 +1,227 @@
+<div class="content">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 class="mb-0">Gestion Usuarios</h3>
+                </div>
+                <br />
+                <form [formGroup]="userForm" (change)="onChangeForm()">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Nombres" formControlName="name"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Apellido Paterno"
+                                    formControlName="fatherLastName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Apellido Materno"
+                                    formControlName="motherLastName" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Codigo Usuario"
+                                    formControlName="codUser" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Email Usuario"
+                                    formControlName="username" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Rol Usuario"
+                                    formControlName="role" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <select id="inputEstado" class="form-control" formControlName="status">
+                                    <option value="">Elija Estado...</option>
+                                    <option [value]="'CREADO'">CREADO</option>
+                                    <option [value]="'HABILITADO'">HABILITADO</option>
+                                    <option [value]="'RESETEADO'">RESETEADO</option>
+                                    <option [value]="'BLOQUEADO'">BLOQUEADO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Cargo"
+                                    formControlName="chargue" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Horario"
+                                    formControlName="schedule" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="card-header">
+                    <button type="button" class="btn info" (click)="showModalCreateUser()">
+                        <a><i class="fa fa-user-plus" aria-hidden="true"></i>
+                            Nuevo</a>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button id="pdfUsers" type="button" class="btn danger" (click)="exportPdf()">
+                        <a> <i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                    </button>
+                </div>
+
+                <div class="table-responsive" *ngIf="listUsersOk" style="padding:5px">
+                    <table class=" table ">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th scope="col">Codigo</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellido Paterno</th>
+                                <th scope="col">Apellido Materno</th>
+                                <th scope="col">Rol</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Cargo</th>
+                                <th scope="col">Horario</th>
+                                <th scope="col">Fecha Creacion</th>
+                                <th scope="col">Fecha Modificado</th>
+                                <th scope="col">Reseteo</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let user of listUsers| 
+                        filterUsers:[
+                        userForm.getRawValue().codUser,
+                        userForm.getRawValue().status,
+                        userForm.getRawValue().username,
+                        userForm.getRawValue().role,
+                        userForm.getRawValue().name,
+                        userForm.getRawValue().fatherLastName, 
+                        userForm.getRawValue().motherLastName, 
+                        userForm.getRawValue().chargue,
+                        userForm.getRawValue().schedule,
+                        ] |  
+                        paginate:{itemsPerPage: 5, currentPage:p}">
+                            <tr>
+                                <td>
+                                    {{user.id}}
+                                </td>
+                                <td>
+                                    {{user.username}}
+                                </td>
+                                <td>
+                                    {{user.name}}
+                                </td>
+                                <td>
+                                    {{user.fatherLastName}}
+                                </td>
+                                <td>
+                                    {{user.motherLastName}}
+                                </td>
+                                <td>
+                                    {{user.role}}
+                                </td>
+                                <td>
+                                    {{user.status}}
+                                </td>
+                                <td>
+                                    {{user.chargue}}
+                                </td>
+                                <td>
+                                    {{user.schedule}}
+                                </td>
+                                <td>
+                                    {{user.createdAt | date : 'd/MM/yyyy'}}
+                                </td>
+                                <td>
+                                    {{user.updateAt| date : 'd/MM/yyyy' }}
+                                </td>
+                                <td class="options" [swal]="{
+                                    title: 'Reseteo de contraseña de usuario',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    text: 'Se va resetear la contraseña del usuario ' +user.username  + ' , ¿Esta seguro?',
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)=" resetUserPassword(user.username);">
+                                    <i class="tim-icons  icon-refresh-02"></i>
+                                </td>
+                                <td class="options">
+                                    <i (click)="showModalUpdateUser(user)" class="tim-icons  icon-pencil"></i>
+                                </td>
+                                <td class="options" [swal]="{
+                                    title: 'Eliminar Usuario',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    text: 'Se va eliminar al usuario ' + user.username +' ¿Esta seguro?',
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="deleteUser(user.id);">
+                                    <i class="tim-icons  icon-simple-remove"></i>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container d-flex justify-content-center ">
+                    <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="paginator" [responsive]="true">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Create User -->
+<div bsModal class="modal fade" #modalCreateUser="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllUsers(); createUserOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Nuevo Usuario</h4>
+                <button type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalCreateUser.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-create-user (close)="modalCreateUser.hide()" *ngIf="createUserOk"></app-create-user>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Edit User-->
+<div bsModal class="modal fade" #modalUpdateUser="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllUsers() ; editUserOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Editar Usuario</h4>
+                <button id="btnCloseUpdateUser" type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalUpdateUser.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-update-user (close)="modalUpdateUser.hide()" [inputUser]="userSelected" *ngIf="editUserOk">
+            </app-update-user>
+        </div>
+    </div>
+</div>

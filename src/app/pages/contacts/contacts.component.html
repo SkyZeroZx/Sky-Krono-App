@@ -1,28 +1,68 @@
 <div class="content contacts">
-    <ngx-contact-list [noSmoothScroll]="true" propAlphaOrder="name" (onClick)="selected($event)" [propsSearch]="filters"
-        placeholder="Contacto" [data]="listUsers" listClass="search-list" [withTemplate]="true"
+    <ngx-contact-list [noSmoothScroll]="false" propAlphaOrder="name" [propsSearch]="filters" placeholder="Contacto"
+        (onClick)="selected($any($event))" [data]="listUsers" listClass="search-list" [withTemplate]="true"
         [height]="height + 'px' ">
-        <ng-template let-item>
+        <ng-template let-user>
             <div class="search-list-item">
-                <img [src]="imageExist(item)" alt="">
+                <img alt="user-image" [src]="isImage(user)" (click)="previewContact($event,user)">
                 <span>
                     <small>
-                        {{item.name }}
+                        {{user.name }}
                     </small>
                     <br />
                     <small>
-                        {{ item.fatherLastName}}
+                        {{ user.fatherLastName}}
                     </small>
                     <br />
                     <small>
-                        {{ item.motherLastName }}
+                        {{ user.motherLastName }}
                     </small>
                     <br />
                     <small class="phone-small">
-                        {{item.phone | phone}}
+                        {{user.phone | phone}}
                     </small>
                 </span>
             </div>
         </ng-template>
     </ngx-contact-list>
 </div>
+
+
+<swal #swalPreviewContact [showCancelButton]="false" [showConfirmButton]="false">
+    <ng-container *swalPortal="swalPortalTargets.content">
+        <strong class="mb-2">
+            {{
+            userPreview.name
+            + ' ' +
+            userPreview.fatherLastName
+            + ' ' +
+            userPreview.motherLastName
+            }}</strong>
+        <hr>
+        <img id="swalPhotoUser" alt="avatarUser" class="avatar" [src]="isImage(userPreview)" />
+    </ng-container>
+
+    <ng-container *swalPortal="swalPortalTargets.footer">
+        <div class="d-flex flex-row">
+            <div class="p-2 mr-4 mt-1">
+                <a class="email" href="mailto:{{userPreview.username}}">
+                    <i class="fa-solid fa-envelope fa-2xl"></i>
+                </a>
+            </div>
+
+            <div class="p-2 mr-4 mt-1">
+                <a class="phone" href="tel:+51{{userPreview.phone}}">
+                    <i class="fa-solid fa-phone fa-2xl"></i>
+                </a>
+            </div>
+
+            <div class="p-2 mr-4" style="margin-top:1px !important;">
+                <a href="https://wa.me/+51{{userPreview.phone}}?text=Hola%20quiero%20contactarme%20?" class="whatsapp"
+                    target="_blank">
+                    <i class="fa-brands fa-whatsapp fa-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </ng-container>
+
+</swal>

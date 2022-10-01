@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EventClickArg } from '@fullcalendar/core';
 import { ToastrService } from 'ngx-toastr';
-import { Type } from 'src/app/common/interfaces/type';
-import { User } from 'src/app/common/interfaces/user';
-import { TaskService } from 'src/app/services/task/task.service';
 import { UserService } from 'src/app/services/users/user.service';
+import { Type, User } from '../../../../common/interfaces';
+import { TaskService } from 'src/app/services/task/task.service';
 
 @Component({
   selector: 'app-update-task',
@@ -14,9 +14,9 @@ import { UserService } from 'src/app/services/users/user.service';
 export class UpdateTaskComponent implements OnInit {
   updateTaskForm: FormGroup;
   @Output() close = new EventEmitter<any>();
-  @Input() taskSelected: any;
+  @Input() taskSelected: EventClickArg;
   listUsers: User[] = [];
-  listarTypes: Type[] = [];
+  listTypes: Type[] = [];
   today: Date;
   maxDate: Date;
   minDate: Date;
@@ -33,7 +33,6 @@ export class UpdateTaskComponent implements OnInit {
     this.getUsersByTask();
     this.getAllUsers();
     this.getAllTypes();
-    this.detailsEdit();
   }
 
   updateTask() {
@@ -63,7 +62,7 @@ export class UpdateTaskComponent implements OnInit {
   getAllTypes() {
     this.taskService.getAllTypes().subscribe({
       next: (res) => {
-        this.listarTypes = res;
+        this.listTypes = res;
       },
       error: (_err) => {
         this.toastrService.error('Error al listar usuarios');
@@ -83,14 +82,16 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   removeUserToTask(item: any) {
-    this.taskService.deleteUserToTask(this.formatDataUserToTask(item.value.id)).subscribe({
-      next: (_res) => {
-        this.toastrService.success('Se removio exitosamente al usuario');
-      },
-      error: (_err) => {
-        this.toastrService.error('Error al remover usuario');
-      },
-    });
+    this.taskService
+      .deleteUserToTask(this.formatDataUserToTask(item.value.id))
+      .subscribe({
+        next: (_res) => {
+          this.toastrService.success('Se removio exitosamente al usuario');
+        },
+        error: (_err) => {
+          this.toastrService.error('Error al remover usuario');
+        },
+      });
   }
 
   formatDataUserToTask(id: any) {
@@ -108,26 +109,31 @@ export class UpdateTaskComponent implements OnInit {
     });
   }
 
-  detailsEdit() {
-    this.updateTaskForm.patchValue({
-      codTask: this.taskSelected?.event?._def?.publicId,
-      title: this.taskSelected?.event?._def?.title,
-      description: this.taskSelected?.event?._def?.extendedProps?.description,
-      codType: this.taskSelected?.event?._def?.extendedProps?.codType,
-      dateRange: [
-        this.taskSelected?.event?._instance?.range.start,
-        this.taskSelected?.event?._instance?.range.end,
-      ],
-    });
-  }
-
   createFormUpdateTask() {
     this.updateTaskForm = this.fb.group({
-      codTask: new FormControl('', Validators.compose([Validators.required])),
-      title: new FormControl('', Validators.compose([Validators.required])),
-      codType: new FormControl('', Validators.compose([Validators.required])),
-      description: new FormControl('', Validators.compose([Validators.required])),
-      dateRange: new FormControl(null, Validators.compose([Validators.required])),
+      codTask: new FormControl(
+        this.taskSelected?.event?._def?.publicId,
+        Validators.compose([Validators.required]),
+      ),
+      title: new FormControl(
+        this.taskSelected?.event?._def?.title,
+        Validators.compose([Validators.required]),
+      ),
+      codType: new FormControl(
+        this.taskSelected?.event?._def?.extendedProps?.codType,
+        Validators.compose([Validators.required]),
+      ),
+      description: new FormControl(
+        this.taskSelected?.event?._def?.extendedProps?.description,
+        Validators.compose([Validators.required]),
+      ),
+      dateRange: new FormControl(
+        [
+          this.taskSelected?.event?._instance?.range.start,
+          this.taskSelected?.event?._instance?.range.end,
+        ],
+        Validators.compose([Validators.required]),
+      ),
       users: new FormControl('', Validators.compose([Validators.required])),
     });
   }

@@ -1,0 +1,16 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "all": true,
+  "exclude": [
+    "./coverage/**",
+    "./coverage-unit-test/**",
+    "Sky-Krono-App/**",
+    "./coverage-e2e/**",
+    "cypress/**",
+    "./dist/**",
+    "**/*.spec.ts",
+    "./src/main.ts",
+    "./src/test.ts",
+    "**/*.conf.js"
+  ]
+}

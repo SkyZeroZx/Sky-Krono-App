@@ -1,6 +1,6 @@
 {
-  "name": "Sky Calendar PWA",
-  "short_name": "Sky Calendar",
+  "name": "Sky Krono",
+  "short_name": "Sky Krono",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
@@ -27,7 +27,7 @@
     },
     {
       "src": "assets/icons/icon-144x144.png",
-      "sizes": "144x144",
+      "sizes": "144x138",
       "type": "image/png",
       "purpose": "maskable any"
     },

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -19,6 +21,7 @@ export class ChangePasswordComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private themeService: ThemeService,
+    private location: Location,
   ) {}
 
   ngOnInit() {
@@ -29,14 +32,18 @@ export class ChangePasswordComponent implements OnInit {
     this.changePasswordForm = this.fb.group({
       oldPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
       newPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      confirmedPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmedPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
 
   onChangePassword() {
     this.diferent = false;
     if (
-      this.changePasswordForm.value.newPassword !== this.changePasswordForm.value.confirmedPassword
+      this.changePasswordForm.value.newPassword !==
+      this.changePasswordForm.value.confirmedPassword
     ) {
       this.diferent = true;
       return;
@@ -48,31 +55,17 @@ export class ChangePasswordComponent implements OnInit {
           this.authService.logout();
           this.router.navigate(['/login']);
         } else {
-          switch (this.authService.getItemToken('role')) {
-            case 'admin':
-              this.router.navigate(['/calendar-admin']);
-              break;
-            case 'viewer':
-              this.router.navigate(['/calendar-view']);
-              break;
-            default:
-              break;
-          }
+          this.router.navigate(['/home']);
         }
         this.toastrService.success('Se cambio con exitosa la contraseña');
       },
       error: (_err) => {
-        this.toastrService.error('Error al cambiar contraseña ');
+        this.toastrService.error('Error al cambiar contraseña');
       },
     });
   }
 
-  back() {
-    if (this.authService.getItemToken('firstLogin')) {
-      this.authService.logout();
-      this.router.navigate(['/login']);
-    } else {
-      this.router.navigate(['/home']);
-    }
+  goBack(): void {
+    this.location.back();
   }
 }

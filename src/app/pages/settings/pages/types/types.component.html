@@ -1,0 +1,126 @@
+<div class="content">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 class="mb-0">Tipos de Tarea</h3>
+                </div>
+                <br />
+                <form [formGroup]="typeForm">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <input type="text" placeholder="Descripción" formControlName="description"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="card-header">
+                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateType()">
+                        <a><i class="fa-brands fa-typo3" aria-hidden="true"></i>
+                            Nuevo</a>
+                    </button>
+                </div>
+
+                <div class="table-responsive" *ngIf="listTypesOk" style="padding:5px">
+                    <table class=" table ">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th scope="col">Codigo</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Horario</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let type of listTypes   |      
+                        filterType : [typeForm.getRawValue().description]  |  
+                        paginate:{itemsPerPage: 5, currentPage:p}">
+                            <tr>
+                                <td>
+                                    {{type.codType}}
+                                </td>
+                                <td>
+                                    {{type.description}}
+                                </td>
+                                <td>
+                                    <span>
+                                        {{type.start.slice(0,5) + " - " + type.end.slice(0,5) }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <p class="color-example" [style.background]="type.backgroundColor"
+                                        [style.border-color]="type.borderColor">
+                                    </p>
+                                </td>
+                                <td class="options">
+                                    <i (click)="showModalUpdateSchedule(type)" class="tim-icons  icon-pencil"></i>
+                                </td>
+                                <td class="options" [swal]="{
+                                    title: 'Eliminar Tipo',
+                                    text: 'Se va eliminar el tipo' +type.description+ ', ¿Esta seguro?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="deleteType(type.codType)">
+                                    <i class="tim-icons  icon-simple-remove"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container d-flex justify-content-center ">
+                    <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="paginator" [responsive]="true">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Create Type -->
+<div bsModal class="modal fade" #modalCreateType="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllTypes(); showModalCreateTypeOk = false" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Nuevo Tipo</h4>
+                <button type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalCreateType.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-create-types (close)="modalCreateType.hide()" *ngIf="showModalCreateTypeOk">
+            </app-create-types>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Update Type-->
+<div bsModal class="modal fade" #modalUpdateType="bs-modal" [config]="{backdrop: 'static'}"
+    (wishEvent)="showModalUpdateTypeOk = false" (onHidden)="getAllTypes() ; showModalUpdateTypeOk = false" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Editar Tipo</h4>
+                <button id="modalUpdateClose" type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalUpdateType.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-update-types (close)="modalUpdateType.hide()" [inputType]="selectedType" *ngIf="showModalUpdateTypeOk">
+            </app-update-types>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@ export interface UserLoginResponse {
   role: string;
   token: string;
   message: string;
+  firstLogin?: boolean;
 }
 
 export interface User {

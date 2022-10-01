@@ -3,13 +3,16 @@
 }
 
 :host::ng-deep {
+  touch-action: pan-y pan-right !important;
   .search-list {
+    touch-action: pan-y pan-right !important;
     .search-list-item {
       padding: 10px 0;
-
+      touch-action: pan-y pan-right !important;
       > img {
         display: inline-block;
         vertical-align: middle;
+        touch-action: pan-y pan-right !important;
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -18,9 +21,26 @@
 
       > span {
         padding-left: 15px;
+        touch-action: pan-y pan-right !important;
         display: inline-block;
         vertical-align: middle;
       }
     }
   }
+}
+
+a.email {
+  color: #545454 !important;
+  cursor: pointer;
+}
+
+a.whatsapp {
+  color: #63d454;
+  cursor: pointer;
+  font-size: 1.2em !important;
+}
+
+a.phone {
+  color: #5187eb;
+  cursor: pointer;
 }

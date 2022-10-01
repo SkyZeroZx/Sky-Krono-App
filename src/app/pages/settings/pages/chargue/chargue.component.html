@@ -1,0 +1,122 @@
+<div class="content">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 id="titleChargue" class="mb-0">Gestión Cargos</h3>
+                </div>
+                <br />
+                <form [formGroup]="chargueForm">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="Nombre" formControlName="name" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="card-header">
+                    <button id="btnNewChargue" type="button" class="btn info" (click)="showModalCreateChargue()">
+                        <a><i class="fa fa-user-plus" aria-hidden="true"></i>
+                            Nuevo</a>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button id="btnPdfChargue" type="button" class="btn danger">
+                        <a> <i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                    </button>
+                </div>
+
+                <div class="table-responsive" *ngIf="listChargueOk" style="padding:5px">
+                    <table class=" table ">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th scope="col">Codigo</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let chargue of listChargue |      
+                        filterChargue : [ chargueForm.getRawValue().name ]  | 
+                        paginate:{itemsPerPage: 10, currentPage:p}">
+                            <tr>
+                                <td>
+                                    {{chargue.id}}
+                                </td>
+                                <td>
+                                    {{chargue.name}}
+                                </td>
+                                <td>
+                                    {{chargue.description}}
+                                </td>
+                                <td class="options">
+                                    <i (click)="showModalUpdateChargue(chargue)" class="tim-icons  icon-pencil"></i>
+                                </td>
+                                <td class="options" [swal]="{
+                                        title: 'Eliminar Cargo',
+                                        confirmButtonText: 'Confirmar',
+                                        cancelButtonText: 'Cancelar',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        text: 'Se va eliminar el cargo '+ chargue.name  +' ¿Esta seguro?'
+                                    }" (confirm)="deleteChargue(chargue.id)">
+                                    <i class="tim-icons  icon-simple-remove"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container d-flex justify-content-center ">
+                    <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="paginator" [responsive]="true">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Create Chargue -->
+<div bsModal class="modal fade" #modalCreateChargue="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllChargue(); showModalCreateChargueOk = false" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Nuevo Cargo</h4>
+                <button type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalCreateChargue.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-create-chargue (close)="modalCreateChargue.hide()" *ngIf="showModalCreateChargueOk">
+            </app-create-chargue>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Update Chargue-->
+<div bsModal class="modal fade" #modalUpdateChargue="bs-modal" [config]="{backdrop: 'static'}"
+    (wishEvent)="showModalUpdateChargueOk = false" (onHidden)="getAllChargue() ; showModalUpdateChargueOk = false"
+    tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Editar Cargo</h4>
+                <button id="modalEditClose" type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalUpdateChargue.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-update-chargue (close)="modalUpdateChargue.hide()" [inputChargue]="selectedChargue"
+                *ngIf="showModalUpdateChargueOk"></app-update-chargue>
+        </div>
+    </div>
+</div>

@@ -1,17 +1,16 @@
-import { Routes } from "@angular/router";
-import { ContactDetailComponent } from "./components/contact-detail/contact-detail.component";
-import { ContactsComponent } from "./contacts.component";
+import { Routes } from '@angular/router';
+import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
+import { ContactsComponent } from './contacts.component';
 
 export const ContactsRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: ContactsComponent,
-    data: { animation: 'contact' }
-
+    data: { animation: 'contact' },
   },
   {
-    path: "contact-detail",
+    path: 'contact-detail',
     component: ContactDetailComponent,
-    data: { animation: 'contact-detail' }
+    data: { animation: 'contact-detail' },
   },
 ];

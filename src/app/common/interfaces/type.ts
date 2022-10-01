@@ -1,6 +1,6 @@
 export interface Type {
   codType: number;
-  typeDescription: string;
+  description: string;
   backgroundColor: string;
   borderColor: string;
   start: string;

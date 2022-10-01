@@ -3,22 +3,23 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  OnDestroy
-} from "@angular/core";
-import { CountdownConfig, CountdownEvent } from "ngx-countdown";
-import { ToastrService } from "ngx-toastr";
-import Swal from "sweetalert2";
-import { Attendance } from "../../common/interfaces/attendance";
-import { Util } from "../../common/utils/util";
-import { AttendanceService } from "../../services/attendance/attendance.service";
-import { ScheduleService } from "../../services/schedule/schedule.service";
+  OnDestroy,
+} from '@angular/core';
+import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
+import { ToastrService } from 'ngx-toastr';
+import { Attendance } from '../../common/interfaces';
+import { Util } from '../../common/utils/util';
+import { AttendanceService } from '../../services/attendance/attendance.service';
+import { ScheduleService } from '../../services/schedule/schedule.service';
 
 @Component({
-  selector: "app-attendance",
-  templateUrl: "./attendance.component.html",
-  styleUrls: ["./attendance.component.scss"],
+  selector: 'app-attendance',
+  templateUrl: './attendance.component.html',
+  styleUrls: ['./attendance.component.scss'],
 })
-export class AttendanceComponent implements AfterViewInit, OnDestroy, AfterContentChecked {
+export class AttendanceComponent
+  implements AfterViewInit, OnDestroy, AfterContentChecked
+{
   date: string = new Date().toString();
   countDownConfig: CountdownConfig = { leftTime: 0, demand: true };
   restSeconds: number;
@@ -34,9 +35,8 @@ export class AttendanceComponent implements AfterViewInit, OnDestroy, AfterConte
     private attendanceService: AttendanceService,
     private scheduleService: ScheduleService,
     private toastrService: ToastrService,
-    private cdr: ChangeDetectorRef
-  ) { }
-
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   ngAfterContentChecked() {
     this.cdr.detectChanges();
@@ -55,14 +55,14 @@ export class AttendanceComponent implements AfterViewInit, OnDestroy, AfterConte
 
   getScheduleByUser() {
     this.scheduleService.getScheduleByUser().subscribe({
-      next: ({ dayIsValid, schedule: { exitHour, entryHour } }) => {
+      next: ({ dayIsValid, schedule: { entryHour, exitHour } }) => {
         this.dayIsValid = dayIsValid;
         this.rememberExitHour = exitHour;
         this.totalSecondsOfSchedule = Util.totalSecondsOfSchedule(entryHour, exitHour);
         this.getAttendanceToday();
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al obtener el horario");
+        this.toastrService.error('Sucedio un error al obtener el horario');
       },
     });
   }
@@ -73,7 +73,7 @@ export class AttendanceComponent implements AfterViewInit, OnDestroy, AfterConte
         this.initCountDown(res);
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al obtener la asistencia");
+        this.toastrService.error('Sucedio un error al obtener la asistencia');
       },
     });
   }
@@ -93,16 +93,16 @@ export class AttendanceComponent implements AfterViewInit, OnDestroy, AfterConte
   }
 
   restartCountdown({ action }: CountdownEvent) {
-    if (action == "restart") {
+    if (action == 'restart') {
       this.initSpinner();
     }
   }
 
   initSpinner() {
     this.countInterval = setInterval(() => {
-      let diferent = this.totalSecondsOfSchedule - Util.restSecondsOfDay(this.rememberExitHour);
+      let diferent =
+        this.totalSecondsOfSchedule - Util.restSecondsOfDay(this.rememberExitHour);
       this.spinnerValue = (diferent / this.totalSecondsOfSchedule) * 100;
-
       if (this.spinnerValue >= 100) {
         this.ngOnDestroy();
       }
@@ -116,32 +116,15 @@ export class AttendanceComponent implements AfterViewInit, OnDestroy, AfterConte
     }
   }
 
-  registerEntryAttendance() {
-    this.attendanceService.registerEntryAttendance(null).subscribe({
+  registerEntryAttendance(description: string) {
+    this.attendanceService.registerEntryAttendance(description).subscribe({
       next: (_res) => {
         this.getScheduleByUser();
         this.isActiveEntryAttendance = false;
       },
       error: (_err) => {
         this.toastrService.error('Sucedio un error al registrar su entrada');
-      }
-    })
-  }
-
-  alertExitAttendance() {
-    Swal.fire({
-      title: "¿Está seguro que desea salir?",
-      text: "Esta acción no se puede revertir",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirmar",
-      cancelButtonText: "Cancelar",
-    }).then(({ isConfirmed }) => {
-      if (isConfirmed) {
-        this.registerExitAttendance()
-      }
+      },
     });
   }
 
@@ -153,7 +136,7 @@ export class AttendanceComponent implements AfterViewInit, OnDestroy, AfterConte
       },
       error: (_err) => {
         this.toastrService.error('Sucedio un error al registrar su salida');
-      }
-    })
+      },
+    });
   }
 }

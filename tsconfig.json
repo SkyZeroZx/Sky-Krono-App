@@ -1,7 +1,9 @@
 {
   "compileOnSave": false,
+  "include": ["src/**/*"],
   "compilerOptions": {
     "baseUrl": "./",
+    "types": ["node", "jasmine"],
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

@@ -16,11 +16,7 @@ export interface AttendanceHistoryUser {
 export interface StatusAttendance {
   isActive: boolean;
   isLater: boolean;
+  isDayOff: boolean;
   isAbsent: boolean;
   date: string;
-}
-
-
-export interface AttendanceDescription {
-  description?: string;
 }

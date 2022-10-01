@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform } from "@angular/core";
-import { Constant } from "src/app/common/constants/Constant";
+import { Pipe, PipeTransform } from '@angular/core';
+import { Constant } from 'src/app/common/constants/Constant';
 
 @Pipe({
-  name: "filterUsers",
+  name: 'filterUsers',
 })
 export class FilterPipeUser implements PipeTransform {
   transform(value: any, args1: any): any {
@@ -14,14 +14,12 @@ export class FilterPipeUser implements PipeTransform {
         user.username.toLowerCase().indexOf(args1[2].toLowerCase()) > -1 &&
         user.role.toLowerCase().indexOf(args1[3].toLowerCase()) > -1 &&
         user.name.toLowerCase().indexOf(args1[4].toLowerCase()) > -1 &&
-        user.fatherLastName.toLowerCase().indexOf(args1[5].toLowerCase()) >
-          -1 &&
-        user.motherLastName.toLowerCase().indexOf(args1[6].toLowerCase()) >
-          -1 &&
+        user.fatherLastName.toLowerCase().indexOf(args1[5].toLowerCase()) > -1 &&
+        user.motherLastName.toLowerCase().indexOf(args1[6].toLowerCase()) > -1 &&
         user.chargue.toLowerCase().indexOf(args1[7].toLowerCase()) > -1 &&
         user.schedule.toLowerCase().indexOf(args1[8].toLowerCase()) > -1
       ) {
-        if (user.status === args1[1] || args1[1] === "") {
+        if (user.status === args1[1] || args1[1] === '') {
           resultSearch.push(user);
         }
       }

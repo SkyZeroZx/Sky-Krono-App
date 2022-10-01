@@ -1,14 +1,14 @@
-import { AfterViewInit, Component } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { StatusAttendance } from "../../common/interfaces/attendance";
-import { Util } from "../../common/utils/util";
-import { Constant } from "../../common/constants/Constant";
-import { AttendanceService } from "../../services/attendance/attendance.service";
+import { AfterViewInit, Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { StatusAttendance } from '../../common/interfaces';
+import { Util } from '../../common/utils/util';
+import { Constant } from '../../common/constants/Constant';
+import { AttendanceService } from '../../services/attendance/attendance.service';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements AfterViewInit {
   currentDate: string;
@@ -20,10 +20,12 @@ export class HomeComponent implements AfterViewInit {
   totalDaysLater: number = 0;
   totalDaysAbsent: number = 0;
   totalDaysOnTime: number = 0;
+  totalDayOff: number = 0;
+
   constructor(
     private attendanceService: AttendanceService,
-    private toastrService: ToastrService
-  ) { }
+    private toastrService: ToastrService,
+  ) {}
 
   ngAfterViewInit(): void {
     this.getHistoryAttendanceUser();
@@ -36,36 +38,31 @@ export class HomeComponent implements AfterViewInit {
         this.totalDaysStatus();
       },
       error: (_err) => {
-        this.toastrService.error("Sucedio un error al obtener el historial");
+        this.toastrService.error('Sucedio un error al obtener el historial');
       },
     });
   }
 
   getDataWeeks(
     currentDate: string,
-    listHistoryStatusAttendance: StatusAttendance[]
+    listHistoryStatusAttendance: StatusAttendance[],
   ): void {
     this.currentDate = currentDate;
-    this.dayOfWeek = new Date(currentDate).getDay();
+    this.dayOfWeek = Util.currentDayOfWeek(currentDate);
     this.validLastAttendance(listHistoryStatusAttendance);
-
-    this.currrentWeek = listHistoryStatusAttendance.slice(0, this.dayOfWeek);
-
-    this.lastWeek = listHistoryStatusAttendance.slice(
-      this.dayOfWeek,
-      this.dayOfWeek + this.totalDaysOfWeek
-    );
+    this.currrentWeek = listHistoryStatusAttendance.slice(0, this.dayOfWeek).reverse();
+    this.lastWeek = listHistoryStatusAttendance
+      .slice(this.dayOfWeek, this.dayOfWeek + this.totalDaysOfWeek)
+      .reverse();
 
     this.restDaysOfWeek = Util.getRestDaysOfWeek(
-      this.currrentWeek[0],
-      this.dayOfWeek
+      this.currrentWeek.at(-1),
+      this.dayOfWeek,
     );
   }
 
   validLastAttendance([lastAttendance]: StatusAttendance[]): void {
-    if (
-      lastAttendance.date.substring(0, 10) !== this.currentDate.substring(0, 10)
-    ) {
+    if (lastAttendance.date.substring(0, 10) !== this.currentDate.substring(0, 10)) {
       this.dayOfWeek--;
     }
   }
@@ -73,30 +70,35 @@ export class HomeComponent implements AfterViewInit {
   totalDaysStatus(): void {
     const totalHistory = this.currrentWeek.concat(this.lastWeek);
 
-    this.totalDaysLater = totalHistory.filter(
-      ({ isLater }) => isLater // == true
-    ).length;
+    this.totalDaysLater = totalHistory.filter(({ isLater }) => isLater).length;
 
-    this.totalDaysAbsent = totalHistory.filter(
-      ({ isAbsent }) => isAbsent // == true
-    ).length;
+    this.totalDaysAbsent = totalHistory.filter(({ isAbsent }) => isAbsent).length;
+
+    this.totalDayOff = totalHistory.filter(({ isDayOff }) => isDayOff).length;
 
     this.totalDaysOnTime =
       this.totalDaysOfWeek +
       this.dayOfWeek -
       this.totalDaysLater -
-      this.totalDaysAbsent;
+      this.totalDaysAbsent -
+      this.totalDayOff;
   }
 
-  getClassStatus({ isAbsent, isLater }: StatusAttendance): string {
+  getClassStatus({ isAbsent, isLater, isDayOff }: StatusAttendance): string {
     if (isAbsent) {
-      return "disabled";
+      return 'fa-solid fa-minus absent';
+    }
+
+    if (isDayOff) {
+      return 'disabled';
     }
 
     if (isLater) {
-      return "fa-solid fa-exclamation warning";
+      return 'fa-solid fa-exclamation warning';
     }
 
-    return "fa-solid fa-check success";
+    return 'fa-solid fa-check success';
   }
+
+  //<i class="fa-solid fa-minus"></i>
 }

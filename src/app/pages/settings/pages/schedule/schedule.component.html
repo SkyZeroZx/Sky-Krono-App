@@ -1,0 +1,155 @@
+<div class="content">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 class="mb-0">Gestión Horarios</h3>
+                </div>
+                <br />
+                <form [formGroup]="scheduleForm">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" placeholder="Nombre" formControlName="name" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="card-header">
+                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateSchedule()">
+                        <a><i class="fa-solid fa-clock" aria-hidden="true"></i>
+                            Nuevo</a>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button id="pdfSchedule" type="button" class="btn danger">
+                        <a> <i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                    </button>
+                </div>
+
+                <div class="table-responsive" *ngIf="listScheduleOk" style="padding:5px">
+                    <table class=" table ">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th scope="col">Codigo</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col" class="center">Hora Entrada - Salida</th>
+                                <th scope="col" class="center">Dias</th>
+                                <th scope="col" class="center">Tolerancia</th>
+                                <th scope="col" class="center">Notificación</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let schedule of listSchedule |      
+                        filterSchedule : [ scheduleForm.getRawValue().name ]  | 
+                        paginate:{itemsPerPage: 5, currentPage:p}">
+                            <tr>
+                                <td>
+                                    {{schedule.id}}
+                                </td>
+                                <td>
+                                    {{schedule.name}}
+                                </td>
+                                <td>
+                                    {{schedule.description}}
+                                </td>
+                                <td class="center">
+                                    {{schedule.entryHour | slice:0:5 }} -
+                                    {{schedule.exitHour | slice:0:5}}
+                                </td>
+                                <td class="center">
+                                    {{schedule.monday ? 'Lu ' : ''}}
+                                    {{schedule.tuesday ? 'Ma ' : ''}}
+                                    {{schedule.wednesday ? 'Mi ' : ''}}
+                                    {{schedule.thursday ? 'Ju ' : ''}}
+                                    {{schedule.friday ? 'Vi ' : ''}}
+                                    {{schedule.saturday ? 'Sa ' : ''}}
+                                    {{schedule.sunday ? 'Do' : ''}}
+                                </td>
+                                <td class="center">
+                                    {{schedule.toleranceTime}} m
+                                </td>
+                                <td class="center" [swal]="{
+                                    title : schedule.notificationIsActive ? 'Deshabilitar' : 'Habilitar',
+                                    text: schedule.notificationIsActive ? 
+                                    'Esta seguro que desea deshabilitar las  notificaciones para': 
+                                    'Esta seguro que desea deshabilitar las notificaciones para',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="updateNotification(schedule)">
+                                    <span *ngIf="!schedule.notificationIsActive"
+                                        class="badge bg-danger">Desactivadas</span>
+                                    <span *ngIf="schedule.notificationIsActive"
+                                        class="badge bg-success">Activadas</span>
+                                </td>
+                                <td class="center">
+                                    <i (click)="showModalUpdateSchedule(schedule)" class="tim-icons  icon-pencil"></i>
+                                </td>
+                                <td class="center" [swal]="{
+                                    title: 'Eliminar Horario',
+                                    text:'Se va eliminar el horario '+ schedule.name +', ¿Esta seguro?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Confirmar',
+                                    cancelButtonText: 'Cancelar'}" (confirm)="deleteSchedule(schedule.id)">
+                                    <i class="tim-icons  icon-simple-remove"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container d-flex justify-content-center ">
+                    <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="paginator" [responsive]="true">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Create Schedule -->
+<div bsModal class="modal fade" #modalCreateSchedule="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllSchedule(); showModalCreateScheduleOk = false" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Nuevo Horario</h4>
+                <button type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalCreateSchedule.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-create-schedule (close)="modalCreateSchedule.hide()" *ngIf="showModalCreateScheduleOk">
+            </app-create-schedule>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Edit Schedule-->
+<div bsModal class="modal fade" #modalUpdateSchedule="bs-modal" [config]="{backdrop: 'static'}"
+    (onHidden)="getAllSchedule() ; showModalUpdateScheduleOk = false" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h4>Editar Horario</h4>
+                <button id="modalUpdateClose" type="button" class="btn-close close pull-right" aria-label="Close"
+                    (click)="modalUpdateSchedule.hide()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <app-update-schedule (close)="modalUpdateSchedule.hide()" [inputSchedule]="selectedSchedule"
+                *ngIf="showModalUpdateScheduleOk"></app-update-schedule>
+        </div>
+    </div>
+</div>

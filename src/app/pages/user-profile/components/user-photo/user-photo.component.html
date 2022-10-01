@@ -1,0 +1,15 @@
+<div class="image-upload">
+    <label for="file-input">
+        <img alt="profile" class="avatar" [width]="200" [height]="200"
+            [src]="inputUserPhoto  ?   inputUserPhoto  : 'assets/img/user.jpg'  " />
+    </label>
+    <input id="file-input" #inputFileAvatarUser type="file" (change)="userAvatarSelected($any($event))"
+        accept="image/*" />
+</div>
+
+<swal #swalUploadPhoto [title]="'Actualizar Foto'" [showCancelButton]="true" [focusCancel]="true"
+    [confirmButtonText]="'Confirmar'" [cancelButtonText]="'Cancelar'" (confirm)="uploadPhoto()">
+    <ng-container *swalPortal="swalPortalTargets.content">
+        <img id="swalPhotoUser" alt="avatarUser" class="avatar" [width]="300" [height]="300" [src]="swalPhotoUser" />
+    </ng-container>
+</swal>

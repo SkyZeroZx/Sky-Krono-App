@@ -1,14 +1,25 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { CommonModule } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer.component';
 
-import { FooterComponent } from "./footer.component";
-
-describe("FooterComponent", () => {
+fdescribe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FooterComponent]
+      declarations: [FooterComponent],
+      imports: [
+        CommonModule,
+        RouterModule,
+        NgbModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+      ],
     }).compileComponents();
   }));
 
@@ -18,7 +29,7 @@ describe("FooterComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('FooterComponent create', () => {
     expect(component).toBeTruthy();
   });
 });

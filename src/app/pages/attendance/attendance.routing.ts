@@ -1,11 +1,10 @@
-import { Routes } from "@angular/router";
-import { AttendanceComponent } from "./attendance.component";
- 
- 
+import { Routes } from '@angular/router';
+import { AttendanceComponent } from './attendance.component';
+
 export const AttendanceRouter: Routes = [
   {
-    path: "",
+    path: '',
     component: AttendanceComponent,
-    data: { animation: 'attendance' }
-  }
+    data: { animation: 'attendance' },
+  },
 ];

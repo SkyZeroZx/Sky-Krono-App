@@ -1,0 +1,31 @@
+input[type='color'] {
+  -webkit-appearance: none;
+  align-items: center;
+  border-radius: 100%;
+  border: solid 0.05px #ddd;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+}
+input[type='color']::-webkit-color-swatch-wrapper {
+  border: none !important;
+  padding: 0;
+}
+input[type='color']::-webkit-color-swatch {
+  border: none !important;
+  border-radius: 100%;
+}
+
+.hour {
+  padding-right: 35px;
+}
+
+small {
+  color: red !important;
+}
+
+.center-timepicker {
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}

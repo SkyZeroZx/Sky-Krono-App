@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
-import esLocale from '@fullcalendar/core/locales/es';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { listLocales } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { TaskService } from 'src/app/services/task/task.service';
@@ -12,11 +11,14 @@ import {
   EventChangeArg,
   EventClickArg,
   EventInput,
+  FullCalendarElement,
 } from '@fullcalendar/web-component';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import esLocale from '@fullcalendar/core/locales/es';
+
 @Component({
   selector: 'app-calendar-admin',
   templateUrl: './calendar-admin.component.html',
@@ -25,18 +27,19 @@ import interactionPlugin from '@fullcalendar/interaction';
 export class CalendarAdminComponent implements OnInit {
   locale = 'es';
   locales = listLocales();
-
   @ViewChild('modalCreateTask', { static: false })
-  modalCreateTask: ModalDirective;
+  readonly modalCreateTask: ModalDirective;
   @ViewChild('modalUpdateTask', { static: false })
-  modalUpdateTask: ModalDirective;
-
+  readonly modalUpdateTask: ModalDirective;
+  @ViewChild('calendar')
+  readonly calendarRef: ElementRef<FullCalendarElement>;
+  @ViewChild('swalOptions')
+  readonly swalOptions: SwalComponent;
   taskList: EventInput[] = [];
-  taskEdit: any;
-  dateSelect: any;
-  taskEditOk: boolean = false;
+  taskSelected: EventClickArg;
+  dateSelect: DateSelectArg;
+  taskSelectedOk: boolean = false;
   taskCreateOk: boolean = false;
-
   constructor(
     private taskService: TaskService,
     private toastrService: ToastrService,
@@ -44,8 +47,7 @@ export class CalendarAdminComponent implements OnInit {
   ) {
     this.localeService.use(this.locale);
   }
-
-  // Creamos nuestro calendario con las configuraciones respectivas para el administrador
+  // Create Calendar Options With Admin
   calendarOptions: CalendarOptions = {
     contentHeight: 'auto',
     headerToolbar: {
@@ -69,7 +71,7 @@ export class CalendarAdminComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getAllTask();
+    this.getAllTasks();
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
@@ -80,10 +82,12 @@ export class CalendarAdminComponent implements OnInit {
     calendarApi.unselect();
   }
 
-  getAllTask() {
+  getAllTasks() {
     this.taskService.getAllTasks().subscribe({
       next: (res) => {
-        this.calendarOptions.events = res;
+        const calendarApi = this.calendarRef.nativeElement.getApi();
+        calendarApi.removeAllEvents();
+        calendarApi.addEventSource(res);
       },
       error: (_err) => {
         this.toastrService.error('Sucedio un error al listar las tareas');
@@ -92,21 +96,26 @@ export class CalendarAdminComponent implements OnInit {
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    this.optionsClickEvent(clickInfo);
+    this.taskSelected = clickInfo;
+    this.swalOptions.fire();
+  }
+
+  showModalUpdateTask() {
+    this.taskSelectedOk = true;
+    this.modalUpdateTask.show();
   }
 
   eventDraggable(item: EventChangeArg) {
-    item.event.remove();
     this.taskService
-      .updateTask(this.formatedTaskChange(item.event._def.publicId, item.event._instance.range))
+      .updateTask(
+        this.formatedTaskChange(item.event._def.publicId, item.event._instance.range),
+      )
       .subscribe({
         next: (_res) => {
           this.toastrService.success('Tarea actualizada exitosamente');
-          this.getAllTask();
         },
         error: (_err) => {
           this.toastrService.error('Error al actualizar tarea');
-          this.getAllTask();
         },
       });
   }
@@ -118,36 +127,17 @@ export class CalendarAdminComponent implements OnInit {
     };
   }
 
-  removeTask(id) {
-    this.taskService.deleteTask(parseInt(id)).subscribe({
-      next: (_res) => {
-        this.getAllTask();
-        this.toastrService.success('Tarea eliminada exitosamente');
-      },
-      error: (_err) => {
-        this.toastrService.error('Error al eliminar la tarea');
-      },
-    });
-  }
-
-  optionsClickEvent(item: any) {
-    Swal.fire({
-      title: '¿Que acción desea realizar?',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Editar',
-      denyButtonText: `Eliminar`,
-      cancelButtonText: 'Cancelar',
-    }).then(({ isConfirmed, isDenied }) => {
-      if (isConfirmed) {
-        this.taskEdit = item;
-        this.taskEditOk = true;
-        this.modalUpdateTask.show();
-      }
-
-      if (isDenied) {
-        this.removeTask(item.event?._def?.publicId);
-      }
-    });
+  removeTask() {
+    this.taskService
+      .deleteTask(parseInt(this.taskSelected.event?._def?.publicId))
+      .subscribe({
+        next: (_res) => {
+          this.taskSelected.event.remove();
+          this.toastrService.success('Tarea eliminada exitosamente');
+        },
+        error: (_err) => {
+          this.toastrService.error('Error al eliminar la tarea');
+        },
+      });
   }
 }

@@ -1,4 +1,9 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpRequest,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -33,7 +38,9 @@ export class ErrorInterceptorService {
           this.toastr.error('Error desconocido');
         } else {
           this.toastr.error(
-            `${returnedError.error.message || returnedError.error || 'Error desconocido'}`,
+            `${
+              returnedError.error.message || returnedError.error || 'Error desconocido'
+            }`,
           );
         }
         if (!handled) {

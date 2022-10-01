@@ -4,11 +4,20 @@
 /dist
 /tmp
 /out-tsc
+
+#Sonar
+.scannerwork
+
 # Only exists if Bazel was run
 /bazel-out
 
 # dependencies
 /node_modules
+
+# tests
+/coverage-unit-test
+/coverage-e2e-test
+
 
 # profiling files
 chrome-profiler-events.json
