@@ -1,10 +1,10 @@
 <h1 align="center">Sky Krono App</h1>
   <p align="center">
-  Es el modulo web del sistema de registro de asistencias y tareas de calendario con notificaciones push a traves del API Sky Krono en NestJS [repository](https://github.com/SkyZeroZx/API-Sky-Krono)
+  Es el modulo web del sistema de registro de asistencias y tareas de calendario con notificaciones push a traves del <a href="https://github.com/SkyZeroZx/API-Sky-Krono" target="_blank"> API Sky Krono en NestJS 
   </p>
 <p align="center">
 <a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_API-NestJS-Sky-Calendar&metric=alert_status" alt="Quality Gate" />
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_Sky-Krono-App&metric=alert_status" alt="Quality Gate" />
 </a>
 
 <a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
