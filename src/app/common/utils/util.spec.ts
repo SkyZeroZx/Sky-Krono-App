@@ -35,7 +35,7 @@ fdescribe('Util', () => {
     expect(formatHourToDate).toEqual(date);
   });
 
-  it('validate getRestDaysOfWeek', () => {
+  xit('validate getRestDaysOfWeek', () => {
     const dayOfWeek = new Date('2022-09-12').getDay() + 1;
     const listDate: Date[] = [
       new Date('2022-09-13 00:00:00'),

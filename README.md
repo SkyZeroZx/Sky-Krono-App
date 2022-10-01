@@ -1,6 +1,7 @@
-# Sky Krono
-
-_Es el modulo web del sistema de registro de asistencias y tareas de calendario con notificaciones push a traves del API Sky Krono en NestJS [repository](https://github.com/SkyZeroZx/API-Sky-Krono). _
+<h1 align="center">Sky Krono App</h1>
+  <p align="center">
+  Es el modulo web del sistema de registro de asistencias y tareas de calendario con notificaciones push a traves del API Sky Krono en NestJS [repository](https://github.com/SkyZeroZx/API-Sky-Krono)
+  </p>
 
 _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cualquier dispositivo movil_
 
@@ -13,8 +14,8 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
   - [Unit-Test](#unit-test)
 - [Web-Authentication](#web-authn-fingerprint-)
 - [Despligue](#despliegue-)
-    - [Build](#build)
-    - [Docker](#docker)
+  - [Build](#build)
+  - [Docker](#docker)
 - [Analisis de Codigo](#analisis-de-codigo-)
 - [Integración Continua](#integración-continua)
 - [Construido](#construido-con-)
@@ -101,6 +102,8 @@ _**Licencias**:Apartado para registrar licencias de los empleados asi como vacac
 
 _**Horarios**: Apartado para registrar horarios de entrada/salida de los empleados_
 
+<img src="docs/demo.gif" width="414" height="884"/>
+
 ## Ejecutando como PWA 👨🏻‍💻
 
 _Para ejecutar como PWA(Progressive Web App) , previamente debe tenerse instalado la libreria http-serve_
@@ -142,7 +145,6 @@ _Para ejecutar todos los Unit Test desarrollados en Jasmine/Karma y reporte de c
 _La carpeta con la cobertura del codigo se creara en la raiz del proyecto con la siguiente ruta coverage-unit-test/Sky_Krono/index.html el cual se puede visualizar_
 
 ![Unit Test Coverage](/docs/unit-test/unit-test-1.jpg)
-
 
 ## Web Authn FingerPrint 👨🏻‍💻
 
@@ -219,15 +221,14 @@ _Las pruebas fueron realizas sobre *SonarQube 9.5* y *SonarCloud* para ejecutar 
 ```
 npm run sonar
 ```
+
 _Reporte de Cobertura en SonarQube_
 
 ![SonarQube 1](/docs/sonar/sonarqube-1.jpg)
 
-
 _Reporte de Cobertura en SonarCloud_
 
 ![SonarCloud 1](/docs/sonar/sonar-cloud-1.jpg)
-
 
 ## Integración Continua
 
@@ -236,7 +237,6 @@ _Se realizo un CI con SonarCloud para ejecuta de manera automatica los test_
 _Se creo la carpeta `.github/workflows` con el archivo `build.yml` que contiene los pasos para desplegar mediante GitHub Actions nuestro CI_
 
 ![CI 1](/docs/ci/ci-1.jpg)
-
 
 ## Construido con 🛠️
 
