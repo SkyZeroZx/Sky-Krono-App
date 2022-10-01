@@ -2,6 +2,38 @@
   <p align="center">
   Es el modulo web del sistema de registro de asistencias y tareas de calendario con notificaciones push a traves del API Sky Krono en NestJS [repository](https://github.com/SkyZeroZx/API-Sky-Krono)
   </p>
+<p align="center">
+<a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_API-NestJS-Sky-Calendar&metric=alert_status" alt="Quality Gate" />
+</a>
+
+<a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_Sky-Krono-App&metric=coverage" alt="Coverage" />
+</a>
+
+<a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_Sky-Krono-App&metric=vulnerabilities" alt="Vulnerabilities" />
+</a>
+
+<a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_Sky-Krono-App&metric=bugs" alt="Bugs" />
+</a>
+
+<a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_Sky-Krono-App&metric=security_rating" alt="Security Rating" />
+</a>
+
+<a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_Sky-Krono-App&metric=code_smells" alt="Code Smells"/>
+</a>
+
+<a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=SkyZeroZx_Sky-Krono-App&metric=sqale_rating" alt="Maintainability Rating"/>
+</a>
+
+<img src="https://badgen.net/badge/Built%20With/TypeScript/bl" alt="Build With TypeScript" />
+<img src="https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg" alt="Build With VSCode" />
+</p>
 
 _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cualquier dispositivo movil_
 
@@ -76,7 +108,7 @@ _Para ejecutar un servidor de pruebas local usar el comando donde **"PUERTO"** s
 ng serve --port [PUERTO]
 ```
 
-_Dirigirse a la ruta http://localhost:4200/#/login/ se tendra la pantalla de Login del sistema existiendo 2 roles_
+_Dirigirse a la ruta http://localhost:4200/#/login/ se tendra la pantalla de Login del sistema_
 
 _**Login** : Apartado de inicio de sesion para ambos tipos de roles_
 
@@ -102,7 +134,8 @@ _**Licencias**:Apartado para registrar licencias de los empleados asi como vacac
 
 _**Horarios**: Apartado para registrar horarios de entrada/salida de los empleados_
 
-<img src="docs/demo/demo.gif" width="414" height="884"/>
+  <p align="center">
+<img src="docs/demo/demo.gif" width="414" height="884"/></p>
 
 ## Ejecutando como PWA 👨🏻‍💻
 
