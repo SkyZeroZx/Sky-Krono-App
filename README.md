@@ -102,7 +102,7 @@ _**Licencias**:Apartado para registrar licencias de los empleados asi como vacac
 
 _**Horarios**: Apartado para registrar horarios de entrada/salida de los empleados_
 
-<img src="docs/demo.gif" width="414" height="884"/>
+<img src="docs/demo/demo.gif" width="414" height="884"/>
 
 ## Ejecutando como PWA 👨🏻‍💻
 
