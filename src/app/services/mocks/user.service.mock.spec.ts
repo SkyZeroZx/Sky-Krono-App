@@ -1,4 +1,4 @@
-import { UserUpdate } from '../../common/interfaces';
+import { User, UserUpdate } from '../../common/interfaces';
 
 export class UserServiceMock {
   public static readonly userUpdate: UserUpdate = {
@@ -12,4 +12,6 @@ export class UserServiceMock {
     name: '',
     username: '',
   };
+
+  public static readonly filePhotoUser : any = {};
 }

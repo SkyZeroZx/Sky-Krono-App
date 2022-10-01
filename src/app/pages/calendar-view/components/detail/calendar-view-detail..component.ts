@@ -5,8 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Type, UserByTask } from '../../../../common/interfaces';
 import { EventClickArg } from '@fullcalendar/core';
 import { TaskService } from '../../../../services/task/task.service';
- 
- 
 
 @Component({
   selector: 'app-calendar-view-detail',

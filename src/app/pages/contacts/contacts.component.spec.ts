@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, RouterModule } from '@angular/router';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgxContactListModule } from 'ngx-contact-list';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
@@ -32,6 +33,7 @@ fdescribe('ContactsComponent', () => {
         HttpClientTestingModule,
         BrowserAnimationsModule,
         NgxContactListModule,
+        SweetAlert2Module.forRoot(),
         RouterModule.forChild(ContactsRouter),
         ToastrModule.forRoot(),
       ],
@@ -99,12 +101,22 @@ fdescribe('ContactsComponent', () => {
     expect(spyLocalStorage).toHaveBeenCalled();
   });
 
-  it('Validate imageExist', () => {
+  it('Validate isImage', () => {
     const user: any = { photo: null };
-    expect(component.imageExist(user)).toEqual('../assets/img/none.png');
+    expect(component.isImage(user)).toEqual('../assets/img/none.png');
     user.photo = '';
-    expect(component.imageExist(user)).toEqual('../assets/img/none.png');
+    expect(component.isImage(user)).toEqual('../assets/img/none.png');
     user.photo = 'www.example.com/image/test.jpg';
-    expect(component.imageExist(user)).toEqual(user.photo);
+    expect(component.isImage(user)).toEqual(user.photo);
+  });
+
+  it('Validate previewContact', () => {
+    const spySwalPreviewContact = spyOn(
+      component.swalPreviewContact,
+      'fire',
+    ).and.callThrough();
+    component.previewContact(ContactsMock.mockEvent, ContactsMock.contactSelected);
+    expect(spySwalPreviewContact).toHaveBeenCalled();
+    expect(component.userPreview).toEqual(ContactsMock.contactSelected);
   });
 });

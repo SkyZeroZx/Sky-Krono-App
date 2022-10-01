@@ -1,5 +1,6 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../common/interfaces';
 import { UserService } from '../../services/users/user.service';
@@ -10,14 +11,17 @@ import { UserService } from '../../services/users/user.service';
   styleUrls: ['./contacts.component.scss'],
 })
 export class ContactsComponent implements OnInit, AfterContentInit {
+  @ViewChild('swalPreviewContact')
+  readonly swalPreviewContact: SwalComponent;
   height: number;
   listUsers: User[] = [];
   filters: string[] = ['name', 'motherLastName', 'fatherLastName'];
-
+  userPreview: User;
   constructor(
     private userService: UserService,
     private toastrService: ToastrService,
     private router: Router,
+    public readonly swalPortalTargets: SwalPortalTargets,
   ) {}
 
   ngAfterContentInit(): void {
@@ -44,10 +48,17 @@ export class ContactsComponent implements OnInit, AfterContentInit {
     this.router.navigate(['/contacts/contact-detail']);
   }
 
-  imageExist(user: User) {
-    if (user.photo == '' || user.photo == null) {
+  previewContact(event: Event, user: User): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.userPreview = user;
+    this.swalPreviewContact.fire();
+  }
+
+  isImage({ photo }: User): string {
+    if (photo == '' || photo == null) {
       return '../assets/img/none.png';
     }
-    return user.photo;
+    return photo;
   }
 }

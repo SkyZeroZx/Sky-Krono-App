@@ -20,4 +20,3 @@ export interface StatusAttendance {
   isAbsent: boolean;
   date: string;
 }
- 

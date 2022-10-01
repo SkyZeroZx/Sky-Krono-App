@@ -49,4 +49,31 @@ fdescribe('UserService', () => {
       done();
     });
   });
+
+  it('Validate uploadPhoto', (done: DoneFn) => {
+    httpClientSpyPost.post.and.returnValue(of(ResponseMock.genericResponse));
+    userService = new UserService(httpClientSpyPost as any);
+    userService.uploadPhoto(UserServiceMock.filePhotoUser).subscribe((res) => {
+      expect(res).toEqual(ResponseMock.genericResponse);
+      done();
+    });
+  });
+
+  it('Validate deleteUser', (done: DoneFn) => {
+    httpClientSpyDelete.delete.and.returnValue(of(ResponseMock.genericResponse));
+    userService = new UserService(httpClientSpyDelete as any);
+    userService.deleteUser(UserServiceMock.userUpdate.id).subscribe((res) => {
+      expect(res).toEqual(ResponseMock.genericResponse);
+      done();
+    });
+  });
+
+  it('Validate resetUserPassword', (done: DoneFn) => {
+    httpClientSpyPost.post.and.returnValue(of(ResponseMock.genericResponse));
+    userService = new UserService(httpClientSpyPost as any);
+    userService.resetUserPassword('user-unit-test@example.com').subscribe((res) => {
+      expect(res).toEqual(ResponseMock.genericResponse);
+      done();
+    });
+  });
 });

@@ -4,7 +4,6 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Chargue } from '../../../../common/interfaces';
 import { ChargueService } from '../../../../services/chargue/chargue.service';
- 
 
 @Component({
   selector: 'app-chargue',

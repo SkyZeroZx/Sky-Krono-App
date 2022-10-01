@@ -1,21 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  ChangeDetectorRef,
-  CUSTOM_ELEMENTS_SCHEMA,
-  NO_ERRORS_SCHEMA,
-} from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ChangeDetectorRef } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CountdownModule } from 'ngx-countdown';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
-import Swal from 'sweetalert2';
 import { Util } from '../../common/utils/util';
 import { AttendanceService } from '../../services/attendance/attendance.service';
 import { ReporteService } from '../../services/report/report.service';
@@ -49,8 +44,8 @@ fdescribe('AttedanceComponent', () => {
         RouterModule.forChild(AttendanceRouter),
         FormsModule,
         ReactiveFormsModule,
+        SweetAlert2Module.forRoot(),
         ToastrModule.forRoot(),
-        ModalModule.forRoot(),
       ],
       providers: [
         ToastrService,
@@ -62,7 +57,6 @@ fdescribe('AttedanceComponent', () => {
         ReactiveFormsModule,
         { provide: ToastrService, useClass: ToastrService },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
@@ -278,6 +272,4 @@ fdescribe('AttedanceComponent', () => {
     expect(spyToastrService).toHaveBeenCalled();
     expect(spyAttendanceService).toHaveBeenCalled();
   });
-
-  
 });

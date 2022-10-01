@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Renderer2, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Type } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChildrenOutletContexts } from '@angular/router';
@@ -81,7 +88,7 @@ fdescribe('AdminLayoutComponent', () => {
   });
 
   it('Validate enabledDarkTheme TRUE', () => {
-    themeService.setTheme(true)
+    themeService.setTheme(true);
     component.enabledDarkTheme();
     expect(renderer2.removeClass).toHaveBeenCalledWith(
       jasmine.any(Object),
@@ -92,13 +99,12 @@ fdescribe('AdminLayoutComponent', () => {
 
   it('Validate enabledNavBar', () => {
     spyOnProperty(themeService, 'theme', 'get').and.returnValue(of(false));
-    component.enabledNavBar()
+    component.enabledNavBar();
     expect(component.isActiveNavBar).toBeFalsy();
-    themeService.setTheme(false)
+    themeService.setTheme(false);
     component.enabledNavBar();
     expect(component.isActiveNavBar).toBeFalsy();
   });
-
 
   it('Validate onSwipe', () => {
     let mockEvent: Event = new Event('swipe');

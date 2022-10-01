@@ -15,14 +15,14 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-const fs = require("fs");
-const xlsx = require("node-xlsx").default;
-const PDF = require("pdf-parse");
-const path = require("path");
-import * as registerCodeCoverageTasks from "@cypress/code-coverage/task";
+const fs = require('fs');
+const xlsx = require('node-xlsx').default;
+const PDF = require('pdf-parse');
+const path = require('path');
+import * as registerCodeCoverageTasks from '@cypress/code-coverage/task';
 
 export default (on, config) => {
-  on("task", {
+  on('task', {
     filesInDownload(folderName) {
       return fs.readdirSync(folderName);
     },

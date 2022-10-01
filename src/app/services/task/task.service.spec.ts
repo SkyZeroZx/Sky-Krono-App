@@ -66,4 +66,13 @@ fdescribe('TaskService', () => {
       done();
     });
   });
+
+  it('Validate deleteTask', (done: DoneFn) => {
+    httpClientSpyDelete.delete.and.returnValue(of(ResponseMock.genericResponse));
+    taskService = new TaskService(httpClientSpyDelete as any);
+    taskService.deleteTask(TaskServiceMock.deleteTaskId).subscribe((res) => {
+      expect(res).toEqual(ResponseMock.genericResponse);
+      done();
+    });
+  });
 });

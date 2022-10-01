@@ -1,5 +1,5 @@
-import { StatusAttendance } from '../../interfaces';
-import { Util } from '../util';
+import { StatusAttendance } from '../interfaces';
+import { Util } from './util';
 
 fdescribe('Util', () => {
   let mockAttendanceHistoryUser: StatusAttendance = {
@@ -30,21 +30,20 @@ fdescribe('Util', () => {
   it('validate formatHourToDate ', () => {
     const dateString = '12:12';
     const date = new Date();
-    date.setHours(12);
-    date.setMinutes(12);
+    date.setHours(12, 12);
     const formatHourToDate = Util.formatHourToDate(dateString);
     expect(formatHourToDate).toEqual(date);
   });
 
   it('validate getRestDaysOfWeek', () => {
-    const dayOfWeek = new Date('2022-09-12 00:00:00').getDay();
+    const dayOfWeek = new Date('2022-09-12').getDay() + 1;
     const listDate: Date[] = [
-      new Date('2022-09-13T05:00:00.000Z'),
-      new Date('2022-09-14T05:00:00.000Z'),
-      new Date('2022-09-15T05:00:00.000Z'),
-      new Date('2022-09-16T05:00:00.000Z'),
-      new Date('2022-09-17T05:00:00.000Z'),
-      new Date('2022-09-18T05:00:00.000Z'),
+      new Date('2022-09-13 00:00:00'),
+      new Date('2022-09-14 00:00:00'),
+      new Date('2022-09-15 00:00:00'),
+      new Date('2022-09-16 00:00:00'),
+      new Date('2022-09-17 00:00:00'),
+      new Date('2022-09-18 00:00:00'),
     ];
     const listRestDaysOfWeek = Util.getRestDaysOfWeek(
       mockAttendanceHistoryUser,

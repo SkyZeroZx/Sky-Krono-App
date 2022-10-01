@@ -131,6 +131,11 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
+            "codeCoverageExclude": [
+              "src/app/common/helpers/**",
+              "src/app/common/guards/**",
+              "src/app/common/pipes/**"
+            ],
             "scripts": [],
             "assets": [
               "src/favicon.ico",

@@ -71,7 +71,7 @@ fdescribe('AuthLayoutComponent', () => {
 
   it('Validate ngOnInit Dark Theme true', () => {
     // Dark Theme is TRUE
-    themeService.setTheme(true)
+    themeService.setTheme(true);
     component.ngOnInit();
     expect(renderer2.removeClass).toHaveBeenCalledWith(
       jasmine.any(Object),

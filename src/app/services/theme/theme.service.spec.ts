@@ -31,20 +31,20 @@ fdescribe('ThemeService', () => {
   it('Validate setTheme', () => {
     themeService.setTheme(true);
     expect(localStorage.getItem('darkTheme')).toEqual('true');
-  //  expect(themeService.theme.getValue()).toEqual(true);
+    //  expect(themeService.theme.getValue()).toEqual(true);
 
     themeService.setTheme(false);
     expect(localStorage.getItem('darkTheme')).toEqual('false');
-  //  expect(themeService.theme.getValue()).toEqual(false);
+    //  expect(themeService.theme.getValue()).toEqual(false);
   });
 
   it('Validate setNavBar', () => {
     themeService.setNavBar(true);
     expect(localStorage.getItem('navBar')).toEqual('true');
-   // expect(themeService.navBar.getValue()).toEqual(true);
+    // expect(themeService.navBar.getValue()).toEqual(true);
 
     themeService.setNavBar(false);
     expect(localStorage.getItem('navBar')).toEqual('false');
-   // expect(themeService.navBar.getValue()).toEqual(false);
+    // expect(themeService.navBar.getValue()).toEqual(false);
   });
 });

@@ -1,5 +1,5 @@
-import { Constant } from "../../../../common/constants/Constant";
-import { Schedule , Response } from "../../../../common/interfaces";
+import { Constant } from '../../../../common/constants/Constant';
+import { Schedule, Response } from '../../../../common/interfaces';
 
 export class ScheduleMock {
   public static readonly mockListSchedule: Schedule[] = [

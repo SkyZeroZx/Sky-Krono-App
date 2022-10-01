@@ -1,21 +1,30 @@
+import { User } from '../../common/interfaces';
+
 export class ContactsMock {
-  public static readonly contactSelected: any = {
+  public static readonly contactSelected: User = {
     id: 4,
     username: 'skyzerobot64A@gmail.com',
     role: 'admin',
-    createdAt: '2022-09-07T06:18:52.108Z',
-    updateAt: '2022-09-12T06:12:44.000Z',
+    createdAt: '2022-09-29T00:00:00.000Z' as any,
+    updateAt: '2022-09-29T00:00:00.000Z' as any,
     name: 'ATesting',
     fatherLastName: 'fatherLastName',
     motherLastName: 'motherLastName',
     status: 'CREADO',
     photo: null,
     phone: '961008127',
-    codChargue: 1,
+    codChargue: '1',
     chargue: 'admin',
-    codSchedule: 2,
+    codSchedule: '2',
     schedule: 'Schedule Test',
-    $letter: 'A',
-    $class: 'let-a',
+  };
+
+  public static readonly mockEvent: any = {
+    preventDefault() {
+      return;
+    },
+    stopPropagation() {
+      return;
+    },
   };
 }

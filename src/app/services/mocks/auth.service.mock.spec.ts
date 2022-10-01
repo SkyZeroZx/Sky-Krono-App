@@ -2,11 +2,7 @@ import {
   PublicKeyCredentialCreationOptionsJSON,
   RegistrationCredentialJSON,
 } from '@simplewebauthn/typescript-types';
-import {
-  ChangePassword,
-  UserLogin,
-  UserLoginResponse,
-} from '../../common/interfaces';
+import { ChangePassword, UserLogin, UserLoginResponse } from '../../common/interfaces';
 
 export class AuthServiceMock {
   public static readonly userLogin: UserLogin = {

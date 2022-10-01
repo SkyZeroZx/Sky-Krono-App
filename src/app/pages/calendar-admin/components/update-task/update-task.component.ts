@@ -6,7 +6,6 @@ import { UserService } from 'src/app/services/users/user.service';
 import { Type, User } from '../../../../common/interfaces';
 import { TaskService } from 'src/app/services/task/task.service';
 
-
 @Component({
   selector: 'app-update-task',
   templateUrl: './update-task.component.html',

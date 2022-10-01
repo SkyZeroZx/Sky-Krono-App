@@ -17,6 +17,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
 import { UserService } from '../../services/users/user.service';
 import { UserOptionsComponent } from './components/user-options/user-options.component';
+import { UserPhotoComponent } from './components/user-photo/user-photo.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserProfileMock } from './user-profile.mock.spec';
 import { UserProfileRouter } from './user-profile.routing';
@@ -35,7 +36,7 @@ fdescribe('UserProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserProfileComponent, UserOptionsComponent],
+      declarations: [UserProfileComponent, UserOptionsComponent, UserPhotoComponent],
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,

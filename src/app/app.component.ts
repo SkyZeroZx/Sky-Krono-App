@@ -8,10 +8,8 @@ import { ThemeService } from './services/theme/theme.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
-  constructor(private swUpdate: SwUpdate, private themeService: ThemeService  ) {
+  constructor(private swUpdate: SwUpdate, private themeService: ThemeService) {
     this.existUpdate();
-
   }
 
   //FOR INSTALL PWA BUTTON

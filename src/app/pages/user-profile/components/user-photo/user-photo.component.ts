@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { previewUrlFile } from '../../../../common/helpers/helper';
@@ -9,7 +9,7 @@ import { UserService } from '../../../../services/users/user.service';
   templateUrl: './user-photo.component.html',
   styleUrls: ['./user-photo.component.scss'],
 })
-export class UserPhotoComponent implements OnInit {
+export class UserPhotoComponent {
   @Input()
   inputUserPhoto: string;
   @ViewChild('userAvatarFile')
@@ -25,12 +25,15 @@ export class UserPhotoComponent implements OnInit {
     private toastrService: ToastrService,
   ) {}
 
-  ngOnInit(): void {}
   async userAvatarSelected(event: any) {
     if (typeof event.target.files[0] !== 'undefined') {
-      this.swalPhotoUser = await previewUrlFile(event.target.files[0]);
-      this.fileUserAvatar = event.target.files[0];
-      this.swalUploadPhoto.fire();
+      try {
+        this.swalPhotoUser = await previewUrlFile(event.target.files[0]);
+        this.fileUserAvatar = event.target.files[0];
+        this.swalUploadPhoto.fire();
+      } catch (error) {
+        this.toastrService.error('Sucedio un error al seleccionar su foto');
+      }
     }
   }
 

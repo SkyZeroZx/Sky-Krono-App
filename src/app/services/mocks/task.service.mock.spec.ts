@@ -16,6 +16,8 @@ export class TaskServiceMock {
     },
   ];
 
+  public static readonly deleteTaskId : number = 1;
+
   public static readonly registerTask: RegisterTask = {
     title: 'title mock',
     codType: 1,

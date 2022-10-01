@@ -1,7 +1,7 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Router } from '@angular/router';
@@ -16,7 +16,6 @@ import { AuthLayoutRoutes } from '../../layouts/auth-layout/auth-layout.routing'
 import { ChangePasswordComponent } from './change-password.component';
 import { Location } from '@angular/common';
 
-
 fdescribe('UserProfileComponent', () => {
   let component: ChangePasswordComponent;
   let fixture: ComponentFixture<ChangePasswordComponent>;
@@ -24,7 +23,7 @@ fdescribe('UserProfileComponent', () => {
   let authService: AuthService;
   let toastrService: ToastrService;
   let themeService: ThemeService;
-  let location : Location
+  let location: Location;
   let mockRouter = {
     routerState: { root: '' },
     navigate: jasmine.createSpy('navigate'),
@@ -151,9 +150,9 @@ fdescribe('UserProfileComponent', () => {
     expect(spyToastService).toHaveBeenCalled();
   });
 
-  it('Validate goBack' , () => {
-    const spyBack = spyOn(location,'back').and.callThrough();
+  it('Validate goBack', () => {
+    const spyBack = spyOn(location, 'back').and.callThrough();
     component.goBack();
-    expect(spyBack).toHaveBeenCalled()
-  })
+    expect(spyBack).toHaveBeenCalled();
+  });
 });

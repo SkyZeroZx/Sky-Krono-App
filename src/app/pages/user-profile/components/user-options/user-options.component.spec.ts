@@ -1,14 +1,14 @@
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { UserOptionsComponent } from './user-options.component';
 import * as simpleWebAuthn from '@simplewebauthn/browser';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SwPush } from '@angular/service-worker';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -59,7 +59,6 @@ fdescribe('UserOptionsComponent', () => {
         ThemeService,
         SwPush,
         FormBuilder,
-        DatePipe,
         { provide: SwPush, useValue: UserProfileMock.mockServiceWorker },
         { provide: ToastrService, useClass: ToastrService },
       ],
@@ -290,7 +289,7 @@ fdescribe('UserOptionsComponent', () => {
 
     component.suscribeToNotifications();
     tick(1000);
-    
+
     expect(spySwPush).toHaveBeenCalledWith({
       serverPublicKey: environment.VAPID_PUBLIC_KEY,
     });
