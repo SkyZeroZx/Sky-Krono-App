@@ -14,7 +14,7 @@
     "start:pwa": "ng build --configuration production && http-server -p 8080 -c-1 dist/",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner",
-    "unit-test": "ng test --code-coverage --watch=false",
+    "unit-test": "ng test --code-coverage --browsers ChromeHeadless --watch=false",
     "e2e:ci": "ng run sky-krono-app:e2e-ci",
     "e2e:coverage": "npx nyc report --reporter=lcov --reporter=text-summary",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
