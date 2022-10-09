@@ -103,7 +103,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
           server-dir: /
-          protocol: ftp
+          protocol: ftps-legacy
           log-level: verbose
           exclude: |
             **/.git*
