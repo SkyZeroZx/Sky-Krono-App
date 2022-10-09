@@ -96,10 +96,10 @@ jobs:
           name: dist
           path: dist
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
           server: ftp.skyzerozx.com
-          username:  ${{ secrets.FTP_USER }}
+          username: skykrono@skyzerozx.com
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
           server-dir: /
