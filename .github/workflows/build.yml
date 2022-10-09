@@ -98,7 +98,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: sftp.skyzerozx.com
+          server: ftp.skyzerozx.com
           username:  ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
