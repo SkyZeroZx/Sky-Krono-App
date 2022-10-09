@@ -87,21 +87,24 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps: 
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Download Build Artifact
         uses: actions/download-artifact@v3
         with:
           name: dist
           path: dist
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Sync files
-        uses: milanmk/actions-file-deployer@master
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
-          remote-protocol: "ftp"
-          remote-host: ftp.skyzerozx.com
-          remote-user: ${{ secrets.FTP_USER }}
-          remote-password: ${{ secrets.FTP_PASSWORD }}
-          remote-port: 21 
-          local-path: dist/
-          timeout: 600000
+          server: ftp.skyzerozx.com
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21 
+          dry-run: true
+          dangerous-clean-slate: true #Delete Old Files
+          security: loose
+          log-level: verbose
+          local-dir: dist/
+          server-dir: /
