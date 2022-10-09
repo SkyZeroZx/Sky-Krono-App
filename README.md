@@ -49,7 +49,7 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
   - [Build](#build)
   - [Docker](#docker)
 - [Analisis de Codigo](#analisis-de-codigo-)
-- [Integración Continua](#integración-continua)
+- [CI / CD](#integración-continua-despligue)
 - [Construido](#construido-con-)
 
 ## Comenzando 🚀
@@ -263,13 +263,16 @@ _Reporte de Cobertura en SonarCloud_
 
 ![SonarCloud 1](/docs/sonar/sonar-cloud-1.jpg)
 
-## Integración Continua
+## Integración Continua - Despligue
 
 _Se realizo un CI con SonarCloud para ejecuta de manera automatica los test_
+
+_Se realizo un CD mediante las github actions para desplegar mediante FTP en un hosting_
 
 _Se creo la carpeta `.github/workflows` con el archivo `build.yml` que contiene los pasos para desplegar mediante GitHub Actions nuestro CI_
 
 ![CI 1](/docs/ci/ci-1.jpg)
+
 
 ## Construido con 🛠️
 
