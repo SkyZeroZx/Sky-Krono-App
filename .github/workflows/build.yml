@@ -30,58 +30,58 @@ jobs:
         with:
           name: dist
           path: dist/*
-  # unit-test:
-  #   name: Unit Test Jasmine/Karma
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0  
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 16
-  #     - uses: actions/cache@v3
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-  #     - name: Run All Unit Tests
-  #       run:  npm run unit-test  
-  #     - uses: actions/cache@v3
-  #       id: build-unit-test
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-  #     - uses: actions/upload-artifact@v3
-  #       with:
-  #         name: coverage-unit-test
-  #         path: coverage-unit-test/*
-  # sonarcloud: 
-  #   name: SonarCloud
-  #   needs: [build , unit-test]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0  
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 16
-  #     - uses: actions/cache@v3
-  #       id: build-unit-test
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-  #     - uses: actions/download-artifact@v3
-  #       with:
-  #         name: coverage-unit-test
-  #         path: coverage-unit-test
-  #     - name: SonarCloud Scan
-  #       uses: SonarSource/sonarcloud-github-action@master
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+  unit-test:
+    name: Unit Test Jasmine/Karma
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Run All Unit Tests
+        run:  npm run unit-test  
+      - uses: actions/cache@v3
+        id: build-unit-test
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage-unit-test
+          path: coverage-unit-test/*
+  sonarcloud: 
+    name: SonarCloud
+    needs: [build , unit-test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - uses: actions/cache@v3
+        id: build-unit-test
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage-unit-test
+          path: coverage-unit-test
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
   web-deploy:
     name: Deploy
     needs: [build]
@@ -95,24 +95,25 @@ jobs:
         with:
           name: dist
           path: dist
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      - name: Sync files
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          server: ftp.skyzerozx.com
-          username: skykrono@skyzerozx.com
+          host: ftp.skyzerozx.com
+          user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          dry-run: true
-          protocol: ftps
-          log-level: verbose
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/*
-      # - name: Sync files
-      #   uses: sebastianpopp/ftp-action@releases/v2
+          localDir: dist/
+          options: "--delete --asci"          
+      # - name: 📂 Sync files
+      #   uses: SamKirkland/FTP-Deploy-Action@4.3.2
       #   with:
-      #     host: ftp.skyzerozx.com
-      #     user: ${{ secrets.FTP_USER }}
+      #     server: ftp.skyzerozx.com
+      #     username: skykrono@skyzerozx.com
       #     password: ${{ secrets.FTP_PASSWORD }}
-      #     localDir: dist/
-      #     options: "--delete --asci"
+      #     dry-run: true
+      #     protocol: ftps
+      #     state-name: /.sync-state.json
+      #     log-level: verbose
+      #     exclude: |
+      #       **/.git*
+      #       **/.git*/**
+      #       **/node_modules/*
