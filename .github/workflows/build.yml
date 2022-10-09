@@ -98,11 +98,12 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-          server: sftp.skyzerozx.com
+          ftp-server: sftp.skyzerozx.com
           username:  ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
           server-dir: /
+          --state-name : /.ftp-deploy-sync-state.json
           log-level: verbose
           exclude: |
             **/.git*
