@@ -95,12 +95,13 @@ jobs:
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ftp.skyzerozx.com
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21 
           dry-run: true
           dangerous-clean-slate: true #Delete Old Files
+          security: loose
           log-level: verbose
           local-dir: dist/
           server-dir: ./
