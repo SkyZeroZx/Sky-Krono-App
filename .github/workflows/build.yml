@@ -30,58 +30,58 @@ jobs:
         with:
           name: dist
           path: dist/*
-  unit-test:
-    name: Unit Test Jasmine/Karma
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - uses: actions/cache@v3
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-      - name: Run All Unit Tests
-        run:  npm run unit-test  
-      - uses: actions/cache@v3
-        id: build-unit-test
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-      - uses: actions/upload-artifact@v3
-        with:
-          name: coverage-unit-test
-          path: coverage-unit-test/*
-  sonarcloud: 
-    name: SonarCloud
-    needs: [build , unit-test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - uses: actions/cache@v3
-        id: build-unit-test
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-      - uses: actions/download-artifact@v3
-        with:
-          name: coverage-unit-test
-          path: coverage-unit-test
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+  # unit-test:
+  #   name: Unit Test Jasmine/Karma
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0  
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 16
+  #     - uses: actions/cache@v3
+  #       id: restore-build
+  #       with:
+  #         path: ./*
+  #         key: ${{ github.sha }}
+  #     - name: Run All Unit Tests
+  #       run:  npm run unit-test  
+  #     - uses: actions/cache@v3
+  #       id: build-unit-test
+  #       with:
+  #         path: ./*
+  #         key: ${{ github.sha }}
+  #     - uses: actions/upload-artifact@v3
+  #       with:
+  #         name: coverage-unit-test
+  #         path: coverage-unit-test/*
+  # sonarcloud: 
+  #   name: SonarCloud
+  #   needs: [build , unit-test]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0  
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 16
+  #     - uses: actions/cache@v3
+  #       id: build-unit-test
+  #       with:
+  #         path: ./*
+  #         key: ${{ github.sha }}
+  #     - uses: actions/download-artifact@v3
+  #       with:
+  #         name: coverage-unit-test
+  #         path: coverage-unit-test
+  #     - name: SonarCloud Scan
+  #       uses: SonarSource/sonarcloud-github-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
   web-deploy:
     name: Deploy
     needs: [build , unit-test , sonarcloud]
@@ -98,8 +98,12 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
+          port: 21 
           dry-run: true
+          dangerous-clean-slate: true #Delete Old Files
+          log-level: verbose
           local-dir: dist/
+          server-dir: ./
           exclude: |
             .vscode/**
             **/.git*
