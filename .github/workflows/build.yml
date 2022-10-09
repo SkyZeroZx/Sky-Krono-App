@@ -13,19 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - uses: actions/setup-node@v1
         with:
           node-version: 16
       - name: Run Install Dependences
         run: npm i
       - name: Run Build Production
-        run: npm run production  
+        run: npm run production
       - uses: actions/cache@v3
         id: restore-build
         with:
           path: ./*
-          key: ${{ github.sha }}  
+          key: ${{ github.sha }}
       - uses: actions/upload-artifact@v3
         with:
           name: dist
@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: 16
@@ -47,7 +47,7 @@ jobs:
           path: ./*
           key: ${{ github.sha }}
       - name: Run All Unit Tests
-        run:  npm run unit-test  
+        run: npm run unit-test
       - uses: actions/cache@v3
         id: build-unit-test
         with:
@@ -57,14 +57,14 @@ jobs:
         with:
           name: coverage-unit-test
           path: coverage-unit-test/*
-  sonarcloud: 
+  sonarcloud:
     name: SonarCloud
-    needs: [build , unit-test]
+    needs: [build, unit-test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: 16
@@ -80,13 +80,13 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   web-deploy:
     name: Deploy
-    needs: [build]
+    needs: [build, SonarCloud, unit-test]
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -102,7 +102,7 @@ jobs:
           user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           localDir: dist/
-          options: "--delete --asci"          
+          options: '--delete --asci'
       # - name: 📂 Sync files
       #   uses: SamKirkland/FTP-Deploy-Action@4.3.2
       #   with:
