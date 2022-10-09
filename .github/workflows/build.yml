@@ -92,6 +92,9 @@ jobs:
         with:
           name: dist
           path: dist
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Sync files
         uses: milanmk/actions-file-deployer@master
         with:
