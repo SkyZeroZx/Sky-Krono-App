@@ -102,8 +102,7 @@ jobs:
           username: skykrono@skyzerozx.com
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
-          server-dir: /
-          protocol: ftps-legacy
+          protocol: ftps
           log-level: verbose
           exclude: |
             **/.git*
