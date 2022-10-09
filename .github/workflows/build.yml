@@ -19,6 +19,8 @@ jobs:
           node-version: 16
       - name: Run Install Dependences
         run: npm i
+      - name: Run Build Production
+        run: npm run production  
       - uses: actions/cache@v3
         id: restore-build
         with:
@@ -85,7 +87,8 @@ jobs:
     needs: [build , unit-test , sonarcloud]
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/download-artifact@v3
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
         with:
           name: dist
           path: dist
