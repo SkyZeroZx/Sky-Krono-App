@@ -2,6 +2,7 @@
   "name": "sky-krono-app",
   "version": "1.0.0",
   "description": "Sky Krono App by SkyZeroZx",
+  "repository": "https://github.com/SkyZeroZx/Sky-Krono-App",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +11,7 @@
     "lint": "ng lint",
     "format": "prettier --write \"src/**/**.ts\" \"cypress/**/**.ts\"",
     "production": "ng build --configuration production",
-    "start:pwa": "ng build --prod && http-server -p 8080 -c-1 dist/",
+    "start:pwa": "ng build --configuration production && http-server -p 8080 -c-1 dist/",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner",
     "unit-test": "ng test --code-coverage --watch=false",

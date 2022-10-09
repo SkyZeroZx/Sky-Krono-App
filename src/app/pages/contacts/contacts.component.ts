@@ -57,7 +57,7 @@ export class ContactsComponent implements OnInit, AfterContentInit {
 
   isImage({ photo }: User): string {
     if (photo == '' || photo == null) {
-      return '../assets/img/none.png';
+      return './assets/img/none.png';
     }
     return photo;
   }

@@ -14,14 +14,14 @@
 
                 <div class="card-header border-0 container d-flex align-items-center flex-column">
                     <h4 id="titleCurrentWeek" class="mb-3 p-2">Semana actual</h4>
-                    <div class="d-flex current-week-title">
+                  <div class="d-flex current-week-title">
                         <strong class="name p-2" *ngFor="let day of  currrentWeek">
                             {{ day.date | date:'EEEEE':'-5UTC' }}
                         </strong>
 
                         <div *ngIf="currrentWeek.length < totalDaysOfWeek">
                             <strong class="name p-2" *ngFor="let day of  restDaysOfWeek">
-                                {{ day | date:'EEEEE':'-5UTC' }}
+                                {{ day | date:'EEEEE':'-5UTC' }}                          
                             </strong>
                         </div>
                     </div>

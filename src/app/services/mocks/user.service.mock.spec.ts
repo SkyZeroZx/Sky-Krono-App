@@ -13,5 +13,5 @@ export class UserServiceMock {
     username: '',
   };
 
-  public static readonly filePhotoUser : any = {};
+  public static readonly filePhotoUser: any = {};
 }

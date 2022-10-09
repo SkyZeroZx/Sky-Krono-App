@@ -49,8 +49,10 @@ export class HomeComponent implements AfterViewInit {
   ): void {
     this.currentDate = currentDate;
     this.dayOfWeek = Util.currentDayOfWeek(currentDate);
+
     this.validLastAttendance(listHistoryStatusAttendance);
     this.currrentWeek = listHistoryStatusAttendance.slice(0, this.dayOfWeek).reverse();
+
     this.lastWeek = listHistoryStatusAttendance
       .slice(this.dayOfWeek, this.dayOfWeek + this.totalDaysOfWeek)
       .reverse();
@@ -99,6 +101,4 @@ export class HomeComponent implements AfterViewInit {
 
     return 'fa-solid fa-check success';
   }
-
-  //<i class="fa-solid fa-minus"></i>
 }

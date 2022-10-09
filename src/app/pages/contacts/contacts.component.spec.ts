@@ -103,9 +103,9 @@ fdescribe('ContactsComponent', () => {
 
   it('Validate isImage', () => {
     const user: any = { photo: null };
-    expect(component.isImage(user)).toEqual('../assets/img/none.png');
+    expect(component.isImage(user)).toEqual('./assets/img/none.png');
     user.photo = '';
-    expect(component.isImage(user)).toEqual('../assets/img/none.png');
+    expect(component.isImage(user)).toEqual('./assets/img/none.png');
     user.photo = 'www.example.com/image/test.jpg';
     expect(component.isImage(user)).toEqual(user.photo);
   });

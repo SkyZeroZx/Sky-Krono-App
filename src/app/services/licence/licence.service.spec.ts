@@ -11,7 +11,7 @@ fdescribe('LicenceService', () => {
   let httpClientSpyGet: { get: jasmine.Spy };
   let httpClientSpyPatch: { patch: jasmine.Spy };
   let httpClientSpyDelete: { delete: jasmine.Spy };
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
     licenceService = TestBed.inject(LicenceService);

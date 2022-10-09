@@ -19,13 +19,13 @@
     <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
       <ul class=" navbar-nav ml-auto">
 
-        <li class=" nav-item" ngbDropdown>
+        <li class="nav-item pointer" ngbDropdown>
           <a class=" nav-link" data-toggle="dropdown" ngbDropdownToggle>
             <div class=" photo">
-              <img alt="Profile Photo" src="assets/img/anime3.png" />
+              <img alt="Profile Photo" src="{{user.photo}}" />
             </div>
             <b class=" caret d-none d-lg-block d-xl-block"> </b>
-            <p class=" d-lg-none">{{username}}</p>
+            <p class=" d-lg-none">{{user.username}}</p>
           </a>
           <ul class=" dropdown-navbar" ngbDropdownMenu>
             <li class=" nav-link">

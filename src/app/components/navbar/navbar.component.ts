@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/common/menuItems';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
+import { User } from '../../common/interfaces';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
   location: Location;
   private toggleButton: any;
   private sidebarVisible: boolean;
-  username: string;
+  user: User;
   public isCollapsed = true;
   closeResult: string;
   $layer: any;
@@ -35,7 +36,7 @@ export class NavbarComponent implements OnInit {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-    this.username = JSON.parse(localStorage.getItem('user')).username;
+    this.user = JSON.parse(localStorage.getItem('user'))
     this.onChangeRouterEvents();
     this.changeOnSwipe();
   }

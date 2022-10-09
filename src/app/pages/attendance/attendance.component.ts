@@ -25,7 +25,7 @@ export class AttendanceComponent
   restSeconds: number;
   countInterval: NodeJS.Timer;
   totalSecondsOfSchedule: number;
-  rememberExitHour: string;
+  userExitHour: string;
   dayIsValid: boolean = false;
   initAnimation: boolean = false;
   spinnerValue: number = 0;
@@ -57,7 +57,7 @@ export class AttendanceComponent
     this.scheduleService.getScheduleByUser().subscribe({
       next: ({ dayIsValid, schedule: { entryHour, exitHour } }) => {
         this.dayIsValid = dayIsValid;
-        this.rememberExitHour = exitHour;
+        this.userExitHour = exitHour;
         this.totalSecondsOfSchedule = Util.totalSecondsOfSchedule(entryHour, exitHour);
         this.getAttendanceToday();
       },
@@ -83,7 +83,7 @@ export class AttendanceComponent
       this.isActiveExitAttendance = attendanceByUser.isActive;
       this.initAnimation = true;
       this.countDownConfig = {
-        leftTime: Util.restSecondsOfDay(this.rememberExitHour),
+        leftTime: Util.restSecondsOfDay(this.userExitHour),
       };
     }
 
@@ -101,7 +101,7 @@ export class AttendanceComponent
   initSpinner() {
     this.countInterval = setInterval(() => {
       let diferent =
-        this.totalSecondsOfSchedule - Util.restSecondsOfDay(this.rememberExitHour);
+        this.totalSecondsOfSchedule - Util.restSecondsOfDay(this.userExitHour);
       this.spinnerValue = (diferent / this.totalSecondsOfSchedule) * 100;
       if (this.spinnerValue >= 100) {
         this.ngOnDestroy();
