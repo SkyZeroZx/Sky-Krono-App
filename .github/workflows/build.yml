@@ -104,6 +104,7 @@ jobs:
           log-level: verbose
           local-dir: dist/
           server-dir: ./
+          timeout: 600000
           exclude: |
             .vscode/**
             **/.git*
