@@ -84,24 +84,23 @@ jobs:
     name: Deploy
     needs: [build , unit-test , sonarcloud]
     runs-on: ubuntu-latest
-    steps:
-    - name: Get Build For Deploy    
-      uses: actions/download-artifact@v3
+    steps: 
+      - uses: actions/download-artifact@v3
         with:
           name: dist
           path: dist
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        dry-run: true
-        local-dir: dist/
-        exclude: |
-          .vscode/**
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          coverage-unit-test/**
-          cypress/**
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          dry-run: true
+          local-dir: dist/
+          exclude: |
+            .vscode/**
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            coverage-unit-test/**
+            cypress/**
