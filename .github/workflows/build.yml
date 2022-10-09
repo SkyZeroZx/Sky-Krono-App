@@ -87,7 +87,7 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Download Build Artifact
@@ -95,10 +95,25 @@ jobs:
         with:
           name: dist
           path: dist
-      - name: Sync files
-        uses: sebastianpopp/ftp-action@releases/v2
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          host: ftp.skyzerozx.com
-          user: ${{ secrets.FTP_USER }}
+          server: ftp.skyzerozx.com
+          username:  ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          localDir: dist/
+          dry-run: true
+          server-dir: /
+          log-level: verbose
+          timeout: 9999999
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/*
+      # - name: Sync files
+      #   uses: sebastianpopp/ftp-action@releases/v2
+      #   with:
+      #     host: ftp.skyzerozx.com
+      #     user: ${{ secrets.FTP_USER }}
+      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     localDir: dist/
+      #     options: "--delete --asci"
