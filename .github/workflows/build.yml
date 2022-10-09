@@ -96,15 +96,14 @@ jobs:
           name: dist
           path: dist
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-          server: ftp.skyzerozx.com
+          server: sftp.skyzerozx.com
           username:  ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
           server-dir: /
           log-level: verbose
-          timeout: 9999999
           exclude: |
             **/.git*
             **/.git*/**
