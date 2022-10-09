@@ -1,6 +1,6 @@
 <h1 align="center">Sky Krono App</h1>
   <p align="center">
-  Es el modulo web del sistema de registro de asistencias y tareas de calendario con notificaciones push a traves del API Sky Krono en NestJS [repository](https://github.com/SkyZeroZx/API-Sky-Krono)
+ Es el modulo web del sistema de registro de asistencias y tareas de calendario con notificaciones push a traves del <a href="https://github.com/SkyZeroZx/API-Sky-Krono" target="_blank"> API Sky Krono en NestJS 
   </p>
 <p align="center">
 <a href="https://sonarcloud.io/project/overview?id=SkyZeroZx_Sky-Krono-App" target="_blank">
@@ -49,7 +49,7 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
   - [Build](#build)
   - [Docker](#docker)
 - [Analisis de Codigo](#analisis-de-codigo-)
-- [CI / CD](#integración-continua-despligue)
+- [CI / CD](#integración-continua---despligue)
 - [Construido](#construido-con-)
 
 ## Comenzando 🚀
