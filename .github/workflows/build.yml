@@ -84,7 +84,7 @@ jobs:
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
   web-deploy:
     name: Deploy
-    needs: [build , unit-test , sonarcloud]
+    needs: [build]
     runs-on: ubuntu-latest
     steps: 
       - name: Download Build Artifact
