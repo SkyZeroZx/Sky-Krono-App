@@ -96,15 +96,9 @@ jobs:
           name: dist
           path: dist
       - name: Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          server: ftp.skyzerozx.com
-          username: ${{ secrets.FTP_USER }}
+          host: ftp.skyzerozx.com
+          user: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 21 
-          dry-run: true
-          dangerous-clean-slate: true #Delete Old Files
-          security: loose
-          log-level: verbose
-          local-dir: dist/
-          server-dir: /
+          localDir: dist/
