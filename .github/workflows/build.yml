@@ -103,7 +103,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           dry-run: true
           server-dir: /
-          --state-name : /.ftp-deploy-sync-state.json
+          protocol: ftp
           log-level: verbose
           exclude: |
             **/.git*
