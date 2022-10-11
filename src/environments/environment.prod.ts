@@ -5,5 +5,5 @@ export const environment = {
   // API_URL: "https://skyzerozx.com",
   API_URL: 'https://api-sky-krono.skyzerozx.com',
   // API_URL: 'https://api-sky-krono-production.up.railway.app',
-  //API_URL: "http://localhost:3000",
+  // API_URL: 'http://localhost:3000',
 };

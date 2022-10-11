@@ -28,7 +28,7 @@
                     <label for="role" class="col-form-label">Rol</label>
                     <select id="inputEstado" class="form-control" formControlName="role">
                         <option [value]="'admin'">admin</option>
-                        <option [value]="'viewer'">viewer</option>
+                        <option [value]="'employee'">empleado</option>
                     </select>
                 </div>
             </div>
@@ -94,7 +94,8 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="labelPhone" class="col-form-label">Celular</label>
-                    <input type="text" class="form-control" formControlName="phone" maxlength="9"  placeholder="celular"/>
+                    <input type="text" class="form-control" formControlName="phone" maxlength="9"
+                        placeholder="celular" />
                     <div *ngIf="createUserForm.controls.phone.invalid && createUserForm.controls.phone.touched">
                         <small id="requiredMotherLastName" class="text-left"
                             *ngIf="createUserForm.controls.phone.errors?.required">

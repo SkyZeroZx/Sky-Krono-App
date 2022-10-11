@@ -42,7 +42,6 @@ export class CalendarViewDetailComponent implements OnInit {
   }
 
   getUsersByTask() {
-    // Enviamos el id del task
     this.taskService.getUsersByTask(this.taskSelected?.event?._def?.publicId).subscribe({
       next: (res) => {
         this.listUsers = res;

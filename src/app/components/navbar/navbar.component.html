@@ -10,8 +10,8 @@
       </div>
       <a class=" navbar-brand"> {{ getTitle() }} </a>
     </div>
-    <button aria-label="Toggle navigation" class=" navbar-toggler" (click)="collapse()"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" id="navigation" type="button">
+    <button aria-label="Toggle navigation" class=" navbar-toggler" (click)="collapse()" 
+      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" id="btn-collapse" type="button">
       <span class=" navbar-toggler-bar navbar-kebab"> </span>
       <span class=" navbar-toggler-bar navbar-kebab"> </span>
       <span class=" navbar-toggler-bar navbar-kebab"> </span>
@@ -19,10 +19,10 @@
     <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
       <ul class=" navbar-nav ml-auto">
 
-        <li class="nav-item pointer" ngbDropdown>
+        <li class="nav-item pointer" ngbDropdown id="dropdown-options">
           <a class=" nav-link" data-toggle="dropdown" ngbDropdownToggle>
             <div class=" photo">
-              <img alt="Profile Photo" src="{{user.photo}}" />
+              <img alt="Profile Photo" [src]="user.photo ? user.photo : '/assets/img/none.png'" />
             </div>
             <b class=" caret d-none d-lg-block d-xl-block"> </b>
             <p class=" d-lg-none">{{user.username}}</p>

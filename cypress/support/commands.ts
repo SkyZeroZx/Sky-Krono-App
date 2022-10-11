@@ -11,7 +11,19 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('login', (username: string, password: string) => {
+  cy.intercept('auth/login').as('login');
+  cy.get('input[formControlName=username').clear().type(username);
+  cy.get('input[formControlName=password]').type(password);
+  cy.get('#btnLogin').click();
+  cy.wait('@login');
+});
+
+Cypress.Commands.add('changePasswordNavigate', (username: string, password: string) => {
+  cy.login(username, password);
+  cy.get('#dropdown-options').click();
+  cy.get(':nth-child(1) > .dropdown-item').click();
+});
 //
 //
 // -- This is a child command --
@@ -25,13 +37,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare namespace Cypress {
+  interface Chainable {
+    login(username: string, password: string): any;
+    changePasswordNavigate(username: string, password: string): any;
+  }
+}

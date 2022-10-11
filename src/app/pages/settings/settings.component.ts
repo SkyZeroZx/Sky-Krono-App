@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class SettingsComponent {
   menuItems: any[] = [
     {
-      path: '/gestion-usuarios',
+      path: '/manage-users',
       title: 'Usuarios',
       icon: 'fa-solid fa-bars',
     },

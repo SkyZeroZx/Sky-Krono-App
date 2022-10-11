@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES, ROUTES_VIEWER } from 'src/app/common/menuItems';
+import { ROUTES, ROUTES_EMPLOYEE } from 'src/app/common/menuItems';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
 
@@ -18,8 +18,8 @@ export class SidebarComponent implements OnInit {
       this.menuItems = ROUTES.filter((menuItem) => menuItem);
       return;
     }
-    if (role == 'viewer') {
-      this.menuItems = ROUTES_VIEWER.filter((menuItem) => menuItem);
+    if (role == 'employee') {
+      this.menuItems = ROUTES_EMPLOYEE.filter((menuItem) => menuItem);
     }
   }
 
