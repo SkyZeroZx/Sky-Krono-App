@@ -80,7 +80,7 @@ jobs:
         uses: cypress-io/github-action@v4
         continue-on-error: true
         with:
-          config: 'viewportWidth=390,viewportHeight=844'
+          config: 'viewportWidth=390,viewportHeight=844,video=true'
           start: npm run e2e:ci
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 125
@@ -121,7 +121,7 @@ jobs:
         continue-on-error: true
         uses: cypress-io/github-action@v4
         with:
-          config: 'viewportWidth=1920,viewportHeight=1920'
+          config: 'viewportWidth=1920,viewportHeight=1920,video=true'
           start: npm run e2e:ci
           wait-on: 'http://localhost:4200'
           wait-on-timeout: 125
