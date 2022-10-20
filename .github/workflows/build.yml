@@ -58,7 +58,7 @@ jobs:
         with:
           name: coverage-unit-test
           path: coverage-unit-test/*
-  e2e-testing-desktop:
+  e2e-testing-mobile:
     name: E2E Mobile Cypress
     needs: build
     runs-on: windows-latest
