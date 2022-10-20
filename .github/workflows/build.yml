@@ -4,13 +4,12 @@ on:
     branches:
       - main
       - develop
-      - test_workflow
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -34,7 +33,7 @@ jobs:
   unit-test:
     name: Unit Test Jasmine/Karma
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -61,7 +60,7 @@ jobs:
   e2e-testing-mobile:
     name: E2E Mobile Cypress
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -74,60 +73,25 @@ jobs:
         with:
           path: ./*
           key: ${{ github.sha }}
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: 'UI Tests - Chrome - Mobile'
-        uses: cypress-io/github-action@v4
-        with:
-          config: 'viewportWidth=390,viewportHeight=844,video=false'
-          start: npm run e2e:ci
-          wait-on: 'http://localhost:4200'
-          wait-on-timeout: 125
-          browser: chrome
-          spec: cypress/e2e/**/**/**
-          config-file: cypress.config.ts
-      - name: 'Update Videos E2E Mobile'
-        uses: actions/upload-artifact@v3
+      - name: Install Cypress Dependences
+        run: ./node_modules/.bin/cypress install --force
+      - name: Cypress E2E Test
+        continue-on-error: true
+        run: npm run e2e:ci
+      - uses: actions/upload-artifact@v3
         continue-on-error: true
         with:
-          name: reports-e2e-videos-desktop
-          path: cypress/videos/*        
-  # e2e-testing-mobile:
-  #   name: E2E Mobile Cypress
-  #   needs: build
-  #   runs-on: ubuntu-22.04
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #     - uses: actions/cache@v3
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-  #     - name: Install Cypress Dependences
-  #       run: ./node_modules/.bin/cypress install --force
-  #     - name: Cypress E2E Test
-  #       continue-on-error: true
-  #       run: npm run e2e:ci
-  #     - uses: actions/upload-artifact@v3
-  #       continue-on-error: true
-  #       with:
-  #         name: reports-e2e-test
-  #         path: coverage-e2e/*
-  #     - name: 'Update Videos E2E Mobile'
-  #       uses: actions/upload-artifact@v3
-  #       continue-on-error: true
-  #       with:
-  #         name: reports-e2e-videos-mobile
-  #         path: cypress/videos/*
+          name: reports-e2e-test
+          path: coverage-e2e/*
+      - uses: actions/upload-artifact@v3
+        continue-on-error: true
+        with:
+          name: reports-e2e-videos-mobile
+          path: cypress/videos/*
   e2e-testing-desktop:
     name: E2E Desktop Cypress
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -152,8 +116,7 @@ jobs:
           browser: chrome
           spec: cypress/e2e/**/**/**
           config-file: cypress.config.ts
-      - name: 'Update Videos E2E Desktop'
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         continue-on-error: true
         with:
           name: reports-e2e-videos-desktop
