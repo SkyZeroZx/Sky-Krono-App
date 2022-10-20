@@ -18,6 +18,7 @@
     "dev:e2e:desktop": "ng s && npx cypress open --config viewportWidth=600,viewportHeight=1000",
     "unit-test": "ng test --code-coverage --browsers ChromeHeadless --watch=false",
     "e2e:ci": "ng run sky-krono-app:e2e-ci",
+    "e2e:ci:mobile": "ng run sky-krono-app:e2e-ci-mobile",
     "e2e:coverage": "npx nyc report --reporter=lcov --reporter=text-summary",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "cypress:open": "cypress open",

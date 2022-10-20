@@ -1,9 +1,7 @@
 {
-  "material-icon-theme.folders.associations": {
-    
-},
-"material-icon-theme.files.associations": {
-
-},
-"material-icon-theme.activeIconPack": "angular"
+  "material-icon-theme.folders.associations": {},
+  "material-icon-theme.files.associations": {
+    "cypress.config.mobile.ts": "cypress"
+  },
+  "material-icon-theme.activeIconPack": "angular"
 }

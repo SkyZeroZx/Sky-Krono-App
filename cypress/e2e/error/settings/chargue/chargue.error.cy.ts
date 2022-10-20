@@ -25,8 +25,8 @@ describe('Chargue Error', () => {
     cy.wait('@getAllChargues');
     cy.get('#btn-new-chargue').click();
 
-    cy.get('input[formControlName="name"]').type(generateRandomString(10));
-    cy.get('input[formControlName="description"]').type(generateRandomString(15));
+    cy.get('input[formControlName="name"]').click().type(generateRandomString(10));
+    cy.get('input[formControlName="description"]').click().type(generateRandomString(15));
     cy.get('#btn-create-chargue').click();
     cy.wait('@createChargue');
     cy.valiteToastText('cargo', 'Sucedio un error al registrar el cargo');
