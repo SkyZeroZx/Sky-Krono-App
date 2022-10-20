@@ -78,6 +78,7 @@ jobs:
         uses: actions/checkout@v3
       - name: 'UI Tests - Chrome - Desktop'
         uses: cypress-io/github-action@v4
+        continue-on-error: true
         with:
           config: 'viewportWidth=390,viewportHeight=844,video=false'
           start: npm run e2e:ci
@@ -117,6 +118,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: 'UI Tests - Chrome - Desktop'
+        continue-on-error: true
         uses: cypress-io/github-action@v4
         with:
           config: 'viewportWidth=1920,viewportHeight=1920,video=false'
