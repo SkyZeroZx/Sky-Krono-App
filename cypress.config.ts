@@ -5,7 +5,7 @@ export default defineConfig({
   videosFolder: 'cypress/videos',
   screenshotsFolder: 'cypress/screenshots',
   fixturesFolder: 'cypress/fixtures',
-  video: false,
+  video: true,
   viewportHeight: 844,
   viewportWidth: 390,
   experimentalStudio: true,
