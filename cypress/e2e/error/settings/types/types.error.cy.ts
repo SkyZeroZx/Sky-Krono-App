@@ -34,11 +34,17 @@ describe('Type Error', () => {
     cy.wait('@getAllTypes');
     cy.get('#btn-new-type').click();
     cy.get('input[formControlName=description]').click();
+
     cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
     ).click();
+
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).click();
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
     ).click();
 
     cy.get('input[formControlName=borderColor]').click();
@@ -82,20 +88,29 @@ describe('Type Error', () => {
       });
 
     // Type invalid range hour
-    cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('12');
-    cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('25');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('12');
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('25');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('12');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('12');
 
     cy.get('input[formControlName=description]').click();
     cy.get('#invalid-range-hour')
@@ -105,27 +120,35 @@ describe('Type Error', () => {
       });
   });
 
-  it.only('Validate Create New Type Error', () => {
+  it('Validate Create New Type Error', () => {
     cy.intercept('POST', '/type', { forceNetworkError: true }).as('createType');
     cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('#btn-new-type').click();
-
     // Type values in type timepicker
     cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('00');
-    cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('00');
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('00');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('00');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('00');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('00');
 
     cy.get('input[formControlName=description]').type('Mock Description');
     cy.get('input[formControlName=backgroundColor]')

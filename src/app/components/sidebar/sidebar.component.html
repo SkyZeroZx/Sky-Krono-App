@@ -8,7 +8,7 @@
 <div class="sidebar-wrapper"  (swiperight)="onSwipe($event)"  (swipeleft)="onSwipe($event)">
   <ul class="nav">
     <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
-      <a [routerLink]="[menuItem.path]">
+      <a [routerLink]="[menuItem.path]"    id="{{menuItem.id}}">
         <i class="  {{ menuItem.icon }}"></i>
         <p>{{ menuItem.title }}</p>
       </a>
