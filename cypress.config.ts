@@ -10,7 +10,7 @@ export default defineConfig({
   viewportWidth: 390,
   experimentalStudio: true,
   waitForAnimations : true,
-  defaultCommandTimeout: 30000,
+  defaultCommandTimeout: 40000,
   env: {
     mobileViewportWidthBreakpoint: 600,
     baseUrl: 'https://api-sky-krono.skyzerozx.com',
