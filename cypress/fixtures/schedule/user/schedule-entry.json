@@ -1,0 +1,16 @@
+{
+  "dayIsValid": 1,
+  "schedule": {
+    "notificationIsActive": 1,
+    "entryHour": "20:07:00",
+    "exitHour": "23:35:00",
+    "monday": 1,
+    "tuesday": 1,
+    "wednesday": 1,
+    "thursday": 1,
+    "friday": 1,
+    "saturday": 0,
+    "sunday": 0,
+    "toleranceTime": 15
+  }
+}

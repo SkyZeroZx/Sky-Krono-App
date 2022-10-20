@@ -1,10 +1,8 @@
 import { generateRandomString } from '../../../helper/helper';
 
 describe('Change Password Error', () => {
-  const { visit } = Cypress.env('service');
   const { admin } = Cypress.env('users');
   beforeEach(() => {
-    cy.visit(visit);
     cy.changePasswordNavigate(admin.username, admin.password);
   });
 
@@ -17,14 +15,7 @@ describe('Change Password Error', () => {
     cy.get('input[formControlName=confirmedPassword]').type('newPasswordAwesome');
     cy.get('#btn-change-password').click();
     cy.wait('@changePassword');
-    cy.get('#toast-container')
-      .find('div')
-      .find('div')
-      .contains('cambiar')
-      .invoke('text')
-      .then((text) => {
-        expect(text.trim()).to.equal('Error al cambiar contraseña');
-      });
+    cy.valiteToastText('cambiar', 'Error al cambiar contraseña');
   });
 
   it('Change Password Required Fields , min lenght , max lenght', () => {

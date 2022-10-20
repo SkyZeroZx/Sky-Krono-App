@@ -11,7 +11,7 @@ import { ScheduleRouter } from './schedule.routing';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { FilterSchedule } from '../../../../common/pipes/filterSchedule.pipe';
+import { FilterSchedule } from '../../../../common/pipes/filter-schedule.pipe';
 
 @NgModule({
   declarations: [

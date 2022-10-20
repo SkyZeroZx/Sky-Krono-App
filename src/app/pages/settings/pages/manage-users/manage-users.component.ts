@@ -39,15 +39,8 @@ export class ManageUsersComponent implements OnInit {
 
   createFormFilterUsers() {
     this.userForm = this.fb.group({
-      codUser: new FormControl(''),
-      username: new FormControl(''),
-      role: new FormControl(''),
-      name: new FormControl(''),
-      fatherLastName: new FormControl(''),
-      motherLastName: new FormControl(''),
+      filter: new FormControl(''),
       status: new FormControl(''),
-      chargue: new FormControl(''),
-      schedule: new FormControl(''),
     });
   }
 

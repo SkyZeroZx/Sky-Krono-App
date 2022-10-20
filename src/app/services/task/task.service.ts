@@ -32,7 +32,7 @@ export class TaskService {
   }
 
   createNewTask(registerTask: RegisterTask): Observable<Response> {
-    return this.http.post<Response>(`${environment.API_URL}/task/`, registerTask);
+    return this.http.post<Response>(`${environment.API_URL}/task`, registerTask);
   }
 
   updateTask(task: any): Observable<Response> {

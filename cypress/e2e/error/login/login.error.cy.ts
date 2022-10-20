@@ -13,14 +13,7 @@ describe('Login Error', () => {
   it('Login Error Web Authentication', () => {
     addVirtualAuthenticator();
     cy.get('#btn-fingerprint').click();
-    cy.get('#toast-container')
-      .find('div')
-      .find('div')
-      .contains('error')
-      .invoke('text')
-      .then((text) => {
-        expect(text.trim()).to.equal('Sucedio un error al intentar autenticarse');
-      });
+    cy.valiteToastText('error', 'Sucedio un error al intentar autenticarse');
   });
 
   it('Login Error Web Authentication Network', () => {
@@ -29,28 +22,14 @@ describe('Login Error', () => {
     }).as('generateAuthenticationOptions');
     cy.get('#btn-fingerprint').click();
     cy.wait('@generateAuthenticationOptions');
-    cy.get('#toast-container')
-      .find('div')
-      .find('div')
-      .contains('error')
-      .invoke('text')
-      .then((text) => {
-        expect(text.trim()).to.equal('Sucedio un error al intentar autenticarse');
-      });
+    cy.valiteToastText('error', 'Sucedio un error al intentar autenticarse');
   });
 
   it('Login Error Credentials Incorrrects', () => {
     cy.get('input[formControlName=username').clear().type(admin.username);
     cy.get('input[formControlName=password]').type('SomeThingWrong64@');
     cy.get('#btnLogin').click();
-    cy.get('#toast-container')
-      .find('div')
-      .find('div')
-      .contains('Unauthorized')
-      .invoke('text')
-      .then((text) => {
-        expect(text.trim()).to.equal('Unauthorized');
-      });
+    cy.valiteToastText('Unauthorized', 'Unauthorized');
   });
 
   it('Login Error message inputs', () => {
@@ -89,13 +68,6 @@ describe('Login Error', () => {
     cy.get('input[formControlName=username').clear().type(admin.username);
     cy.get('input[formControlName=password').type(admin.password);
     cy.get('#btnLogin').click();
-    cy.get('#toast-container')
-      .find('div')
-      .find('div')
-      .contains('logearse')
-      .invoke('text')
-      .then((text) => {
-        expect(text.trim()).to.equal('Error al logearse');
-      });
+    cy.valiteToastText('logearse', 'Error al logearse');
   });
 });

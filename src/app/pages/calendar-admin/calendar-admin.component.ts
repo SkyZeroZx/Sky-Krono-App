@@ -7,6 +7,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { TaskService } from 'src/app/services/task/task.service';
 import {
   CalendarOptions,
+  DateRange,
   DateSelectArg,
   EventChangeArg,
   EventClickArg,
@@ -120,7 +121,7 @@ export class CalendarAdminComponent implements OnInit {
       });
   }
 
-  formatedTaskChange(codTask, dateRange) {
+  formatedTaskChange(codTask: string, dateRange: DateRange) {
     return {
       codTask: codTask,
       dateRange: [dateRange.start, dateRange.end],

@@ -48,7 +48,7 @@ export class TypesComponent implements OnInit {
 
   createFormTypes(): void {
     this.typeForm = this.fb.group({
-      description: new FormControl(''),
+      filter: new FormControl(''),
     });
   }
 

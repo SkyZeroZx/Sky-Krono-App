@@ -85,17 +85,6 @@ export class CreateTaskComponent implements OnInit {
     });
   }
 
-  sendNotification(users) {
-    this.userService.sendNotification(users).subscribe({
-      next: (_res) => {
-        this.toastrService.success('Notificaciones enviadas exitosamente');
-      },
-      error: (_err) => {
-        this.toastrService.error('Error al enviar notificacion task');
-      },
-    });
-  }
-
   createTask() {
     this.taskService.createNewTask(this.createTaskForm.value).subscribe({
       next: (_res) => {
@@ -106,6 +95,17 @@ export class CreateTaskComponent implements OnInit {
       error: (_err) => {
         this.toastrService.error('Error al registrar task');
         this.close.emit();
+      },
+    });
+  }
+
+  sendNotification(users) {
+    this.userService.sendNotification(users).subscribe({
+      next: (_res) => {
+        this.toastrService.success('Notificaciones enviadas exitosamente');
+      },
+      error: (_err) => {
+        this.toastrService.error('Error al enviar notificaciones');
       },
     });
   }

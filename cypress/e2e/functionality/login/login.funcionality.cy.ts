@@ -1,4 +1,4 @@
-import { addVirtualAuthenticator } from '../../../helper/helper';
+import { addVirtualAuthenticator, isMobile, optionsSwipe } from '../../../helper/helper';
 
 describe('Login Funcionality', () => {
   const { visit } = Cypress.env('service');
@@ -12,12 +12,23 @@ describe('Login Funcionality', () => {
   it('Login Web Authentication', () => {
     cy.login(admin.username, admin.password);
     addVirtualAuthenticator();
+    if (isMobile()) {
+      cy.get('.content').realSwipe('toRight', optionsSwipe);
+    }
     cy.get('.sidebar-wrapper').find('p').contains('opciones').click();
     cy.get('button').contains('Perfil').click();
     cy.get('#userFingerPrint').click();
     cy.get('.swal2-confirm').click();
-    cy.get('#dropdown-options').click();
-    cy.get('a').contains('Log out').click();
+    // if (isMobile()) {
+    //   cy.get('#btn-collapse').click();
+    //   cy.get('.dropdown-toggle').click();
+    // } else {
+    //   cy.get('#dropdown-options').click();
+    // }
+    // cy.get(':nth-child(1) > .dropdown-item').click();
+    // cy.get('#dropdown-options').click();     cy.get('a').contains('Log out').click();
+    cy.get('#btn-logout').click();
+    cy.get('.swal2-confirm').click();
     cy.get('#btn-fingerprint').click();
     cy.url().should('include', 'home');
   });
@@ -52,11 +63,17 @@ describe('Login Funcionality', () => {
 
   it('Login is FirstLogin of user , redirect to change password', () => {
     cy.login(firstLogin.username, firstLogin.password);
-    cy.get('.swal2-confirm').click()
+    cy.get('.swal2-confirm').click();
     cy.url().should('include', 'change-password');
+  });
 
-
-
-
+  it('Login is FirstLogin of user , and dismiss remove user of storage', () => {
+    cy.login(firstLogin.username, firstLogin.password);
+    cy.get('.swal2-cancel').click();
+    cy.url()
+      .should('include', 'login')
+      .then(() => {
+        expect(localStorage.getItem('user')).be.null;
+      });
   });
 });

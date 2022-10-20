@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-    this.user = JSON.parse(localStorage.getItem('user'))
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.onChangeRouterEvents();
     this.changeOnSwipe();
   }

@@ -10,14 +10,14 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="Nombre" formControlName="name" class="form-control">
+                                <input type="text" placeholder="Nombre" formControlName="filter" class="form-control">
                             </div>
                         </div>
                     </div>
                 </form>
 
                 <div class="card-header">
-                    <button id="btnNewChargue" type="button" class="btn info" (click)="showModalCreateChargue()">
+                    <button id="btn-new-chargue" type="button" class="btn info" (click)="showModalCreateChargue()">
                         <a><i class="fa fa-user-plus" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody *ngFor="let chargue of listChargue |      
-                        filterChargue : [ chargueForm.getRawValue().name ]  | 
+                        filterChargue : [ chargueForm.getRawValue().filter ]  | 
                         paginate:{itemsPerPage: 10, currentPage:p}">
                             <tr>
                                 <td>

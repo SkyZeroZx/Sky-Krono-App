@@ -95,7 +95,7 @@ export class UpdateUserComponent implements OnInit {
         this.close.emit();
       },
       error: (_err) => {
-        this.toastrService.error('Error al editar usuario');
+        this.toastrService.error('Sucedio un error al actualizar el usuario');
       },
     });
   }

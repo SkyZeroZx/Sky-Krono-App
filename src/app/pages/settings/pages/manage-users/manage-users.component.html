@@ -3,50 +3,18 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Gestion Usuarios</h3>
+                    <h3 id="title" class="mb-0">Gestion Usuarios</h3>
                 </div>
                 <br />
                 <form [formGroup]="userForm" (change)="onChangeForm()">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Nombres" formControlName="name"
-                                    class="form-control">
+                                <input type="text" (keyup)="onChangeForm()" placeholder="Buscar ..."
+                                    formControlName="filter" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Apellido Paterno"
-                                    formControlName="fatherLastName" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Apellido Materno"
-                                    formControlName="motherLastName" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Codigo Usuario"
-                                    formControlName="codUser" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Email Usuario"
-                                    formControlName="username" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Rol Usuario"
-                                    formControlName="role" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
                             <div class="form-group">
                                 <select id="inputEstado" class="form-control" formControlName="status">
                                     <option value="">Elija Estado...</option>
@@ -58,29 +26,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Cargo"
-                                    formControlName="chargue" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" (keyup)="onChangeForm()" placeholder="Horario"
-                                    formControlName="schedule" class="form-control">
-                            </div>
-                        </div>
-                    </div>
                 </form>
 
                 <div class="card-header">
-                    <button type="button" class="btn info" (click)="showModalCreateUser()">
+                    <button id="btn-create-user"    type="button" class="btn info" (click)="showModalCreateUser()">
                         <a><i class="fa fa-user-plus" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
                     &nbsp;&nbsp;&nbsp;
-                    <button id="pdfUsers" type="button" class="btn danger" (click)="exportPdf()">
+                    <button id="btn-pdf-user" type="button" class="btn danger" (click)="exportPdf()">
                         <a> <i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
                     </button>
                 </div>
@@ -107,15 +61,8 @@
                         </thead>
                         <tbody *ngFor="let user of listUsers| 
                         filterUsers:[
-                        userForm.getRawValue().codUser,
-                        userForm.getRawValue().status,
-                        userForm.getRawValue().username,
-                        userForm.getRawValue().role,
-                        userForm.getRawValue().name,
-                        userForm.getRawValue().fatherLastName, 
-                        userForm.getRawValue().motherLastName, 
-                        userForm.getRawValue().chargue,
-                        userForm.getRawValue().schedule,
+                        userForm.getRawValue().filter,
+                        userForm.getRawValue().status
                         ] |  
                         paginate:{itemsPerPage: 5, currentPage:p}">
                             <tr>

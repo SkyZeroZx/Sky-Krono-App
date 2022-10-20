@@ -1,0 +1,13 @@
+{
+  "id": 20221011,
+  "codUser": 1,
+  "description": "test",
+  "isActive": true,
+  "isLater": false,
+  "isAbsent": false,
+  "date": "2022-10-11T17:34:01.633Z",
+  "entryTime": "2022-10-11T17:34:01.633Z",
+  "exitTime": "2022-10-11T17:34:01.633Z",
+  "isDayOff": false,
+  "isLicence": false
+}

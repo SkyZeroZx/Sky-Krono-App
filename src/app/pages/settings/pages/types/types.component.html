@@ -3,14 +3,14 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Tipos de Tarea</h3>
+                    <h3  id="title" class="mb-0">Tipos de Tarea</h3>
                 </div>
                 <br />
                 <form [formGroup]="typeForm">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <input type="text" placeholder="Descripción" formControlName="description"
+                                <input type="text" placeholder="Descripción" formControlName="filter"
                                     class="form-control">
                             </div>
                         </div>
@@ -18,7 +18,7 @@
                 </form>
 
                 <div class="card-header">
-                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateType()">
+                    <button id="btn-new-type" type="button" class="btn info" (click)="showModalCreateType()">
                         <a><i class="fa-brands fa-typo3" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
@@ -37,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody *ngFor="let type of listTypes   |      
-                        filterType : [typeForm.getRawValue().description]  |  
+                        filterType : [typeForm.getRawValue().filter]  |  
                         paginate:{itemsPerPage: 5, currentPage:p}">
                             <tr>
                                 <td>
@@ -61,7 +61,7 @@
                                 </td>
                                 <td class="options" [swal]="{
                                     title: 'Eliminar Tipo',
-                                    text: 'Se va eliminar el tipo' +type.description+ ', ¿Esta seguro?',
+                                    text: 'Se va eliminar el tipo ' + type.description+ ', ¿Esta seguro?',
                                     icon: 'warning',
                                     showCancelButton: true,
                                     confirmButtonText: 'Confirmar',

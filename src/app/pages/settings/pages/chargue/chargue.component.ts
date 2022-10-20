@@ -36,7 +36,7 @@ export class ChargueComponent implements OnInit {
 
   createFormChargue(): void {
     this.chargueForm = this.fb.group({
-      name: new FormControl(''),
+      filter: new FormControl(''),
     });
   }
 

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
-import { ROUTES, ROUTES_EMPLOYEE,   } from '../../common/menuItems';
+import { ROUTES, ROUTES_EMPLOYEE } from '../../common/menuItems';
 import { CalendarAdminComponent } from '../../pages/calendar-admin/calendar-admin.component';
 import { SettingsComponent } from '../../pages/settings/settings.component';
 import { AuthService } from '../../services/auth/auth.service';

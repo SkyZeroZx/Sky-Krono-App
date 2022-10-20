@@ -60,11 +60,23 @@ export class AuthService {
   }
 
   getItemToken(item: string) {
-    return helper.decodeToken(JSON.parse(localStorage.getItem('user')).token)[item];
+    const user = JSON.parse(localStorage.getItem('user')) || null;
+    if (user) {
+      return helper.decodeToken(JSON.parse(localStorage.getItem('user')).token)[item];
+    } else {
+      this.user.next(user);
+      return null;
+    }
   }
 
   private checkToken(): void {
-    const user = JSON.parse(localStorage.getItem('user')) || null;
+    if (localStorage.getItem('user') == 'undefined') {
+      this.logout();
+      return;
+    }
+
+    const user = JSON.parse(localStorage.getItem('user')) || null || undefined;
+
     if (user) {
       const isExpired = helper.isTokenExpired(user.token);
       if (isExpired) {

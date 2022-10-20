@@ -1,8 +1,6 @@
 describe('Change Password Interface', () => {
-  const { visit } = Cypress.env('service');
   const { admin } = Cypress.env('users');
   beforeEach(() => {
-    cy.visit(visit);
     cy.changePasswordNavigate(admin.username, admin.password);
   });
 

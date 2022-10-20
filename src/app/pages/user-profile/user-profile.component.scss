@@ -1,15 +1,9 @@
-.logout {
-  background: #d83838 !important;
-  color: white !important;
-}
+@import '../../../assets/custom-styles/pages.scss';
 
-
-.outline {
-  background: transparent !important;
-}
-
+ 
+ 
 .danger {
-  font-size: 12px;
+  font-size: 15px;
   border: 1px solid;
   border-color: #d83838 !important;
   color: #d83838 !important;

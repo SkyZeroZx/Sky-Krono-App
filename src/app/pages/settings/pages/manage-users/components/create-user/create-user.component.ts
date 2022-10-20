@@ -90,7 +90,7 @@ export class CreateUserComponent implements OnInit {
         this.close.emit();
       },
       error: (_err) => {
-        this.toastrService.error('Hubo un error al crear el usuario');
+        this.toastrService.error('Sucedio un error al crear al usuario');
       },
     });
   }

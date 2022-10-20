@@ -1,9 +1,7 @@
 describe('Home Interface', () => {
-  const { visit } = Cypress.env('service');
   const { employee } = Cypress.env('users');
 
   beforeEach(() => {
-    cy.visit(visit);
     cy.login(employee.username, employee.password);
   });
 

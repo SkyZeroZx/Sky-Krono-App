@@ -28,11 +28,11 @@ export class UpdateChargueComponent implements OnInit {
       codChargue: new FormControl(this.inputChargue.id),
       name: new FormControl(
         this.inputChargue.name,
-        Validators.compose([Validators.required, Validators.minLength(5)]),
+        Validators.compose([Validators.required, Validators.minLength(2)]),
       ),
       description: new FormControl(
         this.inputChargue.description,
-        Validators.compose([Validators.required, Validators.minLength(5)]),
+        Validators.compose([Validators.required, Validators.minLength(2)]),
       ),
     });
   }

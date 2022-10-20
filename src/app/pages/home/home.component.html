@@ -16,12 +16,12 @@
                     <h4 id="title-current-week" class="mb-3 p-2">Semana actual</h4>
                     <div class="d-flex current-week-title">
                         <strong class="name p-2" *ngFor="let day of  currrentWeek">
-                            {{ day.date | date:'EEEEE':'-5UTC' }}
+                            {{ day.date | date:'EEEEE'   }}
                         </strong>
 
                         <div *ngIf="currrentWeek.length < totalDaysOfWeek">
                             <strong class="name p-2" *ngFor="let day of  restDaysOfWeek">
-                                {{ day | date:'EEEEE':'-5UTC' }}
+                                {{ day | date:'EEEEE' }}
                             </strong>
                         </div>
                     </div>

@@ -11,7 +11,7 @@
             <div class=" block block-four"></div>
             <app-user-photo [inputUserPhoto]="photoUser">
             </app-user-photo>
-            <p>
+            <p id="full-name">
               {{userProfileForm.value.name + " " + userProfileForm.value.fatherLastName + " " +
               userProfileForm.value.motherLastName }}
             </p>
@@ -20,9 +20,9 @@
           </div>
         </div>
       </div>
-      <div class=" card">
-        <div class=" card-header">
-          <h5 class=" title">Mi Perfil</h5>
+      <div class="card">
+        <div class="card-header  mt-3">
+          <h5 class="title" id="title-my-profile">Mi Perfil</h5>
         </div>
         <div class=" card-body">
           <form [formGroup]="userProfileForm">
@@ -46,17 +46,17 @@
                 </div>
               </div>
             </div>
-            <div class=" row">
+            <div class="row">
               <div class="col-md-4 pr-md-1">
                 <div class=" form-group">
                   <label> Nombre </label>
                   <input class="form-control" placeholder="Nombre" type="text" formControlName="name" maxlength="120" />
                   <div *ngIf="userProfileForm.controls.name.invalid && userProfileForm.controls.name.touched">
-                    <small id="requiredName" class="text-left" *ngIf="userProfileForm.controls.name.errors?.required">
+                    <small id="required-name" class="text-left" *ngIf="userProfileForm.controls.name.errors?.required">
                       Se requiere ingresar nombres</small>
-                    <small id="patternNombres" class="text-left" *ngIf="userProfileForm.controls.name.errors?.pattern">
+                    <small id="format-name" class="text-left" *ngIf="userProfileForm.controls.name.errors?.pattern">
                       El nombre ingresado tiene formato invalido</small><br />
-                    <small id="minlengthName" class="text-left" *ngIf="userProfileForm.controls.name.errors?.minlength">
+                    <small id="min-name" class="text-left" *ngIf="userProfileForm.controls.name.errors?.minlength">
                       La longitud minima del nombre es de 2 caracteres</small>
                   </div>
                 </div>
@@ -68,13 +68,13 @@
                     formControlName="fatherLastName" maxlength="120" />
                   <div
                     *ngIf="userProfileForm.controls.fatherLastName.invalid && userProfileForm.controls.fatherLastName.touched">
-                    <small id="requiredPaterno" class="text-left"
+                    <small id="required-father-lastname" class="text-left"
                       *ngIf="userProfileForm.controls.fatherLastName.errors?.required">
                       Se requiere ingresar apellido paterno</small>
-                    <small id="patternPaterno" class="text-left"
+                    <small id="format-father-lastname" class="text-left"
                       *ngIf="userProfileForm.controls.fatherLastName.errors?.pattern">
                       El apellido paterno ingresado tiene formato invalido</small><br />
-                    <small id="minlengthPaterno" class="text-left"
+                    <small id="min-father-lastname" class="text-left"
                       *ngIf="userProfileForm.controls.fatherLastName.errors?.minlength">
                       La longitud minima del apellido paterno es de 2 caracteres</small>
                   </div>
@@ -87,13 +87,13 @@
                     formControlName="motherLastName" maxlength="120" />
                   <div
                     *ngIf="userProfileForm.controls.motherLastName.invalid && userProfileForm.controls.motherLastName.touched">
-                    <small id="requiredPaterno" class="text-left"
+                    <small id="required-mother-lastname" class="text-left"
                       *ngIf="userProfileForm.controls.motherLastName.errors?.required">
-                      Se requiere ingresar apellido paterno</small>
-                    <small id="patternPaterno" class="text-left"
+                      Se requiere ingresar apellido materno</small>
+                    <small id="format-mother-lastname" class="text-left"
                       *ngIf="userProfileForm.controls.motherLastName.errors?.pattern">
-                      El apellido paterno ingresado tiene formato invalido</small><br />
-                    <small id="minlengthPaterno" class="text-left"
+                      El apellido materno ingresado tiene formato invalido</small><br />
+                    <small id="min-mother-lastname" class="text-left"
                       *ngIf="userProfileForm.controls.motherLastName.errors?.minlength">
                       La longitud minima del apellido paterno es de 2 caracteres</small>
                   </div>
@@ -102,27 +102,28 @@
             </div>
           </form>
         </div>
-        <div class=" card-footer">
-          <button class="btn btn-primary" [disabled]="userProfileForm.invalid"
+        <div class="card-footer ml-4">
+          <button class="btn info" [disabled]="userProfileForm.invalid" id="btn-update-profile"
             (click)="updateProfile()">Actualizar</button>
         </div>
       </div>
 
       <div class=" card">
-        <div class=" card-header">
-          <h5 class="title">Danger Zone</h5>
+        <div class="card-header mt-3">
+          <h5 class="title" id="title-danger-zone">Danger Zone</h5>
         </div>
-        <div class=" card-body">
+        <div class="card-body  ml-4">
           <div class=" row">
             <div class=" col-md-5 pr-md-1">
               <div class=" form-group">
-                <button type="button" [swal]="swalLogout" class="btn logout  "> <i
+                <button type="button" [swal]="swalLogout" class="btn outline danger" id="btn-logout"> <i
                     class="tim-icons  icon-button-power"></i> &nbsp;&nbsp;
                   Logout</button>
               </div>
               <div class=" form-group">
-                <button type="button" [routerLink]="['/change-password']" class="btn outline danger"> <i
-                    class="tim-icons  icon-key-25"></i> &nbsp;&nbsp; Change Password</button>
+                <button type="button" [routerLink]="['/change-password']" class="btn outline danger"
+                  id="btn-change-password"> <i class="tim-icons  icon-key-25"></i> &nbsp;&nbsp; Cambiar
+                  Contraseña</button>
               </div>
             </div>
           </div>
