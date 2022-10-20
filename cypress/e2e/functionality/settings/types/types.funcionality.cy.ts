@@ -14,7 +14,7 @@ describe('Type Funcionality', () => {
 
   it('Validate Create New Type OK', () => {
     cy.intercept('POST', '/type').as('createType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('#btn-new-type').click();
 
@@ -50,7 +50,7 @@ describe('Type Funcionality', () => {
 
   it('Validate Update Type OK', () => {
     cy.intercept('PATCH', '/type', { fixture: 'response/response-ok' }).as('updateType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-type').click();
@@ -62,7 +62,7 @@ describe('Type Funcionality', () => {
     cy.intercept('DELETE', '/type/*', { fixture: 'response/response-ok' }).as(
       'deleteType',
     );
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('.swal2-confirm').click();

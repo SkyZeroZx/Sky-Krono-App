@@ -13,7 +13,7 @@ describe('Manage User Error', () => {
 
   it('Validate Manage User List Users Error', () => {
     cy.intercept('GET', '/users', { forceNetworkError: true }).as('getAllUsers');
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.valiteToastText('usuarios', 'Error al listar usuarios');
   });
@@ -22,7 +22,7 @@ describe('Manage User Error', () => {
     cy.intercept('POST', '/auth/reset-password', { forceNetworkError: true }).as(
       'resetPassword',
     );
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('input[formControlName=filter]').type(reset.username);
     cy.get('i.tim-icons.icon-refresh-02').first().click();
@@ -34,7 +34,7 @@ describe('Manage User Error', () => {
 
   it('Validate Manage User Delete User Error', () => {
     cy.intercept('DELETE', '/users/*', { forceNetworkError: true }).as('deleteUser');
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('input[formControlName=filter]').type(reset.username);
     cy.get('i.tim-icons.icon-simple-remove').first().click();
@@ -46,7 +46,7 @@ describe('Manage User Error', () => {
 
   it('Valite Create New User Error', () => {
     cy.intercept('POST', '/users', { forceNetworkError: true }).as('createUser');
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('#btn-create-user').click();
 
@@ -64,7 +64,7 @@ describe('Manage User Error', () => {
   });
 
   it('Validate Create New User Inputs Messages Restriction Error', () => {
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('#btn-create-user').click();
     cy.get('input[formControlName=username]').click();
@@ -162,7 +162,7 @@ describe('Manage User Error', () => {
 
   it('Validate Update User Error', () => {
     cy.intercept('PATCH', '/users', { forceNetworkError: true }).as('updateUser');
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-user').click();
@@ -173,7 +173,7 @@ describe('Manage User Error', () => {
   it('Validate Update List Chargue/Schedule Error', () => {
     cy.intercept('GET', '/chargue', { forceNetworkError: true }).as('getAllChargue');
     cy.intercept('GET', '/schedule', { forceNetworkError: true }).as('getAllSchedule');
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-user').click();
@@ -181,7 +181,7 @@ describe('Manage User Error', () => {
   });
 
   it('Validate Update User Inputs Messages Restriction Error', () => {
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('input[formControlName=name]').clear().click();

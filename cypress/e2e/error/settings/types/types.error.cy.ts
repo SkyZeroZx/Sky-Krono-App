@@ -14,14 +14,14 @@ describe('Type Error', () => {
 
   it('Validate List Types Error', () => {
     cy.intercept('GET', '/type', { forceNetworkError: true }).as('getAllTypes');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.valiteToastText('tipos', 'Error al listar tipos');
   });
 
   it('Validate Delete Type Error', () => {
     cy.intercept('DELETE', '/type/*', { forceNetworkError: true }).as('deleteType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('.swal2-confirm').click();
@@ -30,7 +30,7 @@ describe('Type Error', () => {
   });
 
   it('Validate Create New Type Inputs Message Restriction', () => {
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('#btn-new-type').click();
     cy.get('input[formControlName=description]').click();
@@ -107,7 +107,7 @@ describe('Type Error', () => {
 
   it.only('Validate Create New Type Error', () => {
     cy.intercept('POST', '/type', { forceNetworkError: true }).as('createType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('#btn-new-type').click();
 
@@ -143,7 +143,7 @@ describe('Type Error', () => {
 
   it('Vlidate Update Type Error', () => {
     cy.intercept('PATCH', '/type', { forceNetworkError: true }).as('updateType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-type').click();

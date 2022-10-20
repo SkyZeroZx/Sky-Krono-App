@@ -14,14 +14,14 @@ describe('Chargue Error', () => {
 
   it('Validate List Chargue Error', () => {
     cy.intercept('GET', '/chargue', { forceNetworkError: true }).as('getAllChargues');
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.wait('@getAllChargues');
     cy.valiteToastText('cargos', 'Sucedio un error al listar los cargos');
   });
 
   it('Create New Chargue Error', () => {
     cy.intercept('POST', '/chargue', { forceNetworkError: true }).as('createChargue');
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.wait('@getAllChargues');
     cy.get('#btn-new-chargue').click();
 
@@ -34,7 +34,7 @@ describe('Chargue Error', () => {
 
   it('Delete Chargue Error', () => {
     cy.intercept('DELETE', '/chargue/*', { forceNetworkError: true }).as('deleteChargue');
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('.swal2-confirm').click();
     cy.wait('@deleteChargue');
@@ -43,7 +43,7 @@ describe('Chargue Error', () => {
 
   it('Update Chargue Error', () => {
     cy.intercept('PATCH', '/chargue', { forceNetworkError: true }).as('updateChargue');
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-chargue').click();
     cy.wait('@updateChargue');
@@ -51,7 +51,7 @@ describe('Chargue Error', () => {
   });
 
   it('Validate Create Chargue Message Error Inputs Restriction', () => {
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.get('#btn-new-chargue').click();
     cy.get('input[formControlName="name"]').click();
     cy.get('input[formControlName="description"]').click();

@@ -9,7 +9,7 @@
                     <div class="card-header border-0 container d-flex justify-content-center">
                         <div class="d-flex flex-column ">
                             <div class="row d-flex justify-content-center">
-                                <button class="btn btn-settings col-sm-4 mb-2 {{menuItem.class}}"
+                                <button class="btn btn-settings col-sm-4 mb-2 {{menuItem.class}}" id="{{menuItem.id}}"
                                     *ngFor="let menuItem of menuItems" [routerLink]="[menuItem.path]">
                                     <i class="{{ menuItem.icon }}  {{menuItem.class}}"></i>
                                     &nbsp; {{ menuItem.title }}

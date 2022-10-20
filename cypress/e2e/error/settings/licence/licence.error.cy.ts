@@ -16,14 +16,14 @@ describe('Licence Error', () => {
 
   it('Validate List Licence Error', () => {
     cy.intercept('GET', '/licence', { forceNetworkError: true }).as('getAllLicence');
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.valiteToastText('licencias', 'Sucedio un error al listar las licencias');
   });
 
   it('Create New Licence by User ERROR', () => {
     cy.intercept('POST', '/licence', { forceNetworkError: true }).as('createLicence');
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('#btn-new-licence').click();
     cy.wait('@getAllUsers');
@@ -42,7 +42,7 @@ describe('Licence Error', () => {
 
   it('Create New Licence List Users Error', () => {
     cy.intercept('GET', '/users', { forceNetworkError: true }).as('getAllUsers');
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('#btn-new-licence').click();
     cy.get('@getAllUsers');
@@ -50,7 +50,7 @@ describe('Licence Error', () => {
   });
 
   it('Validate Create Licence Message Error Inputs Restriction', () => {
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.get('#btn-new-licence').click();
     cy.wait('@getAllUsers');
     cy.get('input[formControlName=dateRange]').click();
@@ -88,7 +88,7 @@ describe('Licence Error', () => {
   });
 
   it('Validate Update Licence Message Error Inputs Restriction', () => {
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('input[formControlName=description]').clear().click();
     cy.get('#btn-update-licence').should('be.disabled').click({ force: true });
@@ -111,7 +111,7 @@ describe('Licence Error', () => {
 
   it('Update Licence By User Error ', () => {
     cy.intercept('PATCH', '/licence', { forceNetworkError: true }).as('updateLicence');
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-licence').click();
@@ -124,7 +124,7 @@ describe('Licence Error', () => {
       'getAllLicence',
     );
     cy.intercept('DELETE', '/licence/*', { forceNetworkError: true }).as('deleteLicence');
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('.swal2-confirm').click();
