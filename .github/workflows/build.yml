@@ -61,7 +61,7 @@ jobs:
   e2e-testing-mobile:
     name: E2E Mobile Cypress
     needs: build
-    runs-on: windows-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
         with:
@@ -127,7 +127,7 @@ jobs:
   e2e-testing-desktop:
     name: E2E Desktop Cypress
     needs: build
-    runs-on: windows-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
         with:
