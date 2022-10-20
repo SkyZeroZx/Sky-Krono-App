@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -34,7 +34,7 @@ jobs:
   unit-test:
     name: Unit Test Jasmine/Karma
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -59,9 +59,9 @@ jobs:
           name: coverage-unit-test
           path: coverage-unit-test/*
   e2e-testing-mobile:
-    name: E2E Desktop Mobile
+    name: E2E Mobile
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -99,9 +99,9 @@ jobs:
           name: e2e-screenshots-mobile
           path: cypress/screenshots/*   
   e2e-testing-desktop:
-    name: E2E Desktop Cypress
+    name: E2E Desktop
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -186,7 +186,7 @@ jobs:
   sonarcloud:
     name: SonarCloud
     needs: [build, unit-test]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
