@@ -86,7 +86,7 @@ jobs:
           browser: chrome
           spec: cypress/e2e/**/**/**
           config-file: cypress.config.ts
-      - name: 'Upload Videos E2E Mobile'
+      - name: 'Upload Video E2E Mobile'
         uses: actions/upload-artifact@v3
         continue-on-error: true
         with:
@@ -97,7 +97,7 @@ jobs:
         continue-on-error: true
         with:
           name: e2e-screenshots-mobile
-          path: cypress/screenshots/*
+          path: cypress/screenshots/*   
   e2e-testing-desktop:
     name: E2E Desktop Cypress
     needs: build
