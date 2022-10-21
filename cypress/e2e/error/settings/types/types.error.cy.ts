@@ -142,13 +142,13 @@ describe('Type Error', () => {
       'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=minutes]',
     )
       .click()
-      .type('00');
+      .type('12');
 
     cy.get(
       'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
     )
       .click()
-      .type('00');
+      .type('12');
 
     cy.get('input[formControlName=description]').type('Mock Description');
     cy.get('input[formControlName=backgroundColor]')

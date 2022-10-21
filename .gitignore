@@ -18,6 +18,8 @@
 /coverage-unit-test
 /coverage-e2e
 .nyc_output
+/cypress/videos/*
+/cypress/screenshots/*
 
 
 # profiling files

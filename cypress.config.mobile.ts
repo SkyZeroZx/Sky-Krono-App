@@ -19,8 +19,8 @@ export default defineConfig({
       api: 'https://api-sky-krono.skyzerozx.com',
     },
     dateRange: {
-      dateInit: '21',
-      dateEnd: '25',
+      dateInit: '25',
+      dateEnd: '26',
     },
     users: {
       admin: {
