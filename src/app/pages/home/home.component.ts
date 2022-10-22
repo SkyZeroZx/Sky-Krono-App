@@ -4,7 +4,6 @@ import { StatusAttendance } from '../../common/interfaces';
 import { Util } from '../../common/utils/util';
 import { Constant } from '../../common/constants/Constant';
 import { AttendanceService } from '../../services/attendance/attendance.service';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -62,12 +61,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   validLastAttendance([lastAttendance]: StatusAttendance[]): void {
-    if (
-      new Date(lastAttendance.date)
-        .toLocaleString('en-US', { timeZone: environment.TIME_ZONE })
-        .substring(0, 10) !==
-      new Date(this.currentDate).toLocaleString('en-US').substring(0, 10)
-    ) {
+    if (lastAttendance.date.substring(0, 10) !== this.currentDate.substring(0, 10)) {
       this.dayOfWeek--;
     }
   }

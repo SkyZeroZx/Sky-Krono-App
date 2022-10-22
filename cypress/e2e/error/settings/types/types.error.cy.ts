@@ -164,7 +164,7 @@ describe('Type Error', () => {
     cy.valiteToastText('tipo', 'Sucedio un error al registrar el nuevo tipo');
   });
 
-  it('Vlidate Update Type Error', () => {
+  it('Validate Update Type Error', () => {
     cy.intercept('PATCH', '/type', { forceNetworkError: true }).as('updateType');
     cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
@@ -172,5 +172,88 @@ describe('Type Error', () => {
     cy.get('#btn-update-type').click();
     cy.wait('@updateType');
     cy.valiteToastText('tipo', 'Sucedio un error al actualizar el tipo');
+  });
+
+  it('Validate Update Type Inputs Message Restriction', () => {
+    cy.get('#btn-types').click();
+    cy.wait('@getAllTypes');
+    cy.get('i.tim-icons.icon-pencil').first().click();
+    cy.get('input[formControlName=description]').click();
+
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).click().clear();
+
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).click().clear();
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).click().clear();
+
+    cy.get('input[formControlName=description]').click().clear();
+
+
+    cy.get('#required-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere descripción');
+      });
+
+    cy.get('#required-start')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora inicio');
+      });
+
+    cy.get('#required-end')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora de fin');
+      });
+
+    cy.get('input[formControlName=description]').type('12');
+    cy.get('#minlength-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 5 caracteres');
+      });
+
+    // Type invalid range hour
+
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('25');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get('input[formControlName=description]').click();
+    cy.get('#invalid-range-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Rango de horas no permitido');
+      });
   });
 });

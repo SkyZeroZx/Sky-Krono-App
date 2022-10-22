@@ -72,7 +72,7 @@ describe('User Profile Funcionality', () => {
       });
   });
 
-  it.only('Validate upload new photo user profile', () => {
+  it('Validate upload new photo user profile', () => {
     cy.intercept('POST', '/users/photo', { fixture: 'response/response-ok' }).as(
       'uploadPhoto',
     );

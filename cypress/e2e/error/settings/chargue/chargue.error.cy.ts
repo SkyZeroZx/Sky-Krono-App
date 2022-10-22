@@ -83,4 +83,42 @@ describe('Chargue Error', () => {
         expect(text.trim()).equals('La longitud minima es 2 caracteres');
       });
   });
+
+  it('Validate Update Chargue Message Error Inputs Restriction', () => {
+    cy.get('#btn-chargue').click();
+    cy.get('i.tim-icons.icon-pencil').first().click();
+    cy.get('input[formControlName=name]').clear().click();
+    cy.get('input[formControlName=description]').clear().click();
+    cy.get('input[formControlName=name]').clear().click();
+    cy.get('input[formControlName=description]').clear().click();
+    
+    cy.get('#required-name')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere nombre');
+      });
+
+    cy.get('#required-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere descripción');
+      });
+    cy.get('#btn-update-chargue').should('be.disabled');
+    cy.get('input[formControlName=name]').type('a');
+    cy.get('input[formControlName=description]').type('a');
+
+    cy.get('#minLenght-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 2 caracteres');
+      });
+
+    cy.get('#minLenght-name')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 2 caracteres');
+      });
+
+    cy.get('#btn-update-chargue').should('be.disabled');
+  });
 });
