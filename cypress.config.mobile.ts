@@ -20,7 +20,7 @@ export default defineConfig({
     },
     dateRange: {
       dateInit: '25',
-      dateEnd: '26',
+      dateEnd: '27',
     },
     users: {
       admin: {

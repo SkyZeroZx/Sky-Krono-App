@@ -96,6 +96,8 @@ jobs:
         with:
           name: e2e-screenshots-mobile
           path: cypress/screenshots/*
+      - name: 'Coverage Summary Mobile'
+        run: npm run e2e:coverage
   e2e-testing-desktop:
     name: E2E Cypress Desktop
     needs: build
