@@ -17,7 +17,7 @@ const ROUTER_COMMON = [
   },
   {
     path: '/contacts',
-    title: 'Contactos',
+    title: 'contactos',
     id: 'sibar-contacts',
     icon: 'fa-solid fa-users',
     class: 'azure',
