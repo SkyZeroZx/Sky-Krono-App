@@ -44,6 +44,7 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
 - [PWA](#ejecutando-como-pwa-)
 - [Desarrollo](#desarrollo-%EF%B8%8F)
   - [Unit-Test](#unit-test)
+  - [E2E-Test](#e2e-test)
 - [Web-Authentication](#web-authn-fingerprint-)
 - [Despligue](#despliegue-)
   - [Build](#build)
@@ -179,6 +180,34 @@ _La carpeta con la cobertura del codigo se creara en la raiz del proyecto con la
 
 ![Unit Test Coverage](/docs/unit-test/unit-test-1.jpg)
 
+### E2E-Test
+
+_Para ejecutar todos los E2E Test desarrollados en Cypress y reporte de cobertura se tienen dos comandos_
+
+_Previamente configurar los archivos `cypress.config.mobile.ts` y `cypress.config.ts`_
+
+_Para ejecutar en vista desktop ejecutar :_
+
+```
+ npm run e2e:ci
+```
+
+_Para ejecutar en vista mobile(PWA) ejecutar :_
+
+```
+ npm run e2e:ci:mobile
+```
+
+_Al finalizar tendremos un reporte de los test ejecutados_
+
+![E2E Test 1](/docs/e2e/e2e-1.jpg)
+
+_Se generara la carpeta `coverage-e2e` con la cobertura de codigo del proyecto_
+
+_Adicionalmente puede visualizar los videos recopilados por cypress en la carpeta `cypress/videos`_
+
+![E2E Test 2](/docs/e2e/e2e-2.jpg)
+
 ## Web Authn FingerPrint 👨🏻‍💻
 
 _Cuenta con soporte para logeo mediante huella dactilar o patron/pin del dispostivo movil usando el estandar web authn_
@@ -271,8 +300,11 @@ _Se realizo un CD mediante las github actions para desplegar mediante FTP en un 
 
 _Se creo la carpeta `.github/workflows` con el archivo `build.yml` que contiene los pasos para desplegar mediante GitHub Actions nuestro CI_
 
+_Adicionalmente se generan artifacts con los reportes y evidencias de nuestro CI/CD para posterior conservación_
+
 ![CI 1](/docs/ci/ci-1.jpg)
 
+![CI 1](/docs/ci/ci-2.jpg)
 
 ## Construido con 🛠️
 

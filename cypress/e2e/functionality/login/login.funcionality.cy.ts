@@ -16,7 +16,7 @@ describe('Login Funcionality', () => {
       cy.get('.content').realSwipe('toRight', optionsSwipe);
     }
     cy.get('.sidebar-wrapper').find('p').contains('opciones').click();
-    cy.get('button').contains('Perfil').click();
+    cy.get('#btn-user-profile').click();
     cy.get('#userFingerPrint').click();
     cy.get('.swal2-confirm').click();
     // if (isMobile()) {

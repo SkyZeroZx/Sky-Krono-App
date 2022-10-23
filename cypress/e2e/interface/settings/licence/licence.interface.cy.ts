@@ -14,7 +14,7 @@ describe('Licence Interface', () => {
   });
 
   it('Validate Licence Interface', () => {
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.get('#title')
       .invoke('text')
       .then((text) => {
@@ -40,7 +40,7 @@ describe('Licence Interface', () => {
   });
 
   it('Delete Licence By User Interface', () => {
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('i.tim-icons.icon-simple-remove').first().click();
 

@@ -46,10 +46,26 @@ Cypress.Commands.add(
       force: true,
     });
     // Select Date Range BsDatePicker
-    cy.get('span').contains(dateInit).first().click({ force: true });
-    cy.get('span').contains(dateInit).first().click({ force: true });
-    cy.get('span').contains(dateEnd).first().click({ force: true });
-    cy.get('span').contains(dateEnd).first().click({ force: true });
+    cy.get('div.bs-datepicker-body > table > tbody > tr  > td > span')
+      .not('.disabled')
+      .contains(dateInit)
+      .first()
+      .click({ force: true });
+    cy.get('div.bs-datepicker-body > table > tbody > tr  > td > span')
+      .not('.disabled')
+      .contains(dateInit)
+      .first()
+      .click({ force: true });
+    cy.get('div.bs-datepicker-body > table > tbody > tr  > td > span')
+      .not('.disabled')
+      .contains(dateEnd)
+      .first()
+      .click({ force: true });
+    cy.get('div.bs-datepicker-body > table > tbody > tr  > td > span')
+      .not('.disabled')
+      .contains(dateEnd)
+      .first()
+      .click({ force: true });
   },
 );
 

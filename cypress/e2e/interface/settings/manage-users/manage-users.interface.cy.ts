@@ -9,7 +9,7 @@ describe('Manage User Interface', () => {
       cy.get('.content').realSwipe('toRight', optionsSwipe);
     }
     cy.get('.sidebar-wrapper').find('p').contains('opciones').click();
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
   });
 
   it('Validate Manage User Interface', () => {

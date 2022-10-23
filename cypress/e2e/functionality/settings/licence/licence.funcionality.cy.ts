@@ -16,7 +16,7 @@ describe('Licence Funcionality', () => {
 
   it('Create New Licence by User OK', () => {
     cy.intercept('POST', '/licence').as('createLicence');
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('#btn-new-licence').click();
     cy.wait('@getAllUsers')
@@ -34,7 +34,7 @@ describe('Licence Funcionality', () => {
 
   it('Update Licence By User OK ', () => {
     cy.intercept('PATCH', '/licence').as('updateLicence');
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-licence').click();
@@ -49,7 +49,7 @@ describe('Licence Funcionality', () => {
     cy.intercept('DELETE', '/licence/*', { fixture: 'response/response-ok' }).as(
       'deleteLicence',
     );
-    cy.get('button').contains('Permisos').click();
+    cy.get('#btn-licence').click();
     cy.wait('@getAllLicence');
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('.swal2-confirm').click();

@@ -14,14 +14,14 @@ describe('Type Error', () => {
 
   it('Validate List Types Error', () => {
     cy.intercept('GET', '/type', { forceNetworkError: true }).as('getAllTypes');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.valiteToastText('tipos', 'Error al listar tipos');
   });
 
   it('Validate Delete Type Error', () => {
     cy.intercept('DELETE', '/type/*', { forceNetworkError: true }).as('deleteType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('.swal2-confirm').click();
@@ -30,15 +30,21 @@ describe('Type Error', () => {
   });
 
   it('Validate Create New Type Inputs Message Restriction', () => {
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('#btn-new-type').click();
     cy.get('input[formControlName=description]').click();
+
     cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
     ).click();
+
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).click();
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
     ).click();
 
     cy.get('input[formControlName=borderColor]').click();
@@ -82,20 +88,29 @@ describe('Type Error', () => {
       });
 
     // Type invalid range hour
-    cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('12');
-    cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('25');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('12');
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('25');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('12');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('12');
 
     cy.get('input[formControlName=description]').click();
     cy.get('#invalid-range-hour')
@@ -105,27 +120,35 @@ describe('Type Error', () => {
       });
   });
 
-  it.only('Validate Create New Type Error', () => {
+  it('Validate Create New Type Error', () => {
     cy.intercept('POST', '/type', { forceNetworkError: true }).as('createType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('#btn-new-type').click();
-
     // Type values in type timepicker
     cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('00');
-    cy.get(
-      '.hour > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('00');
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('00');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > :nth-child(1) > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('00');
 
     cy.get(
-      ':nth-child(2) > .ng-untouched > table > tbody > :nth-child(2) > .form-group.ng-star-inserted > .form-control',
-    ).type('12');
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .type('12');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .type('12');
 
     cy.get('input[formControlName=description]').type('Mock Description');
     cy.get('input[formControlName=backgroundColor]')
@@ -141,13 +164,96 @@ describe('Type Error', () => {
     cy.valiteToastText('tipo', 'Sucedio un error al registrar el nuevo tipo');
   });
 
-  it('Vlidate Update Type Error', () => {
+  it('Validate Update Type Error', () => {
     cy.intercept('PATCH', '/type', { forceNetworkError: true }).as('updateType');
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-type').click();
     cy.wait('@updateType');
     cy.valiteToastText('tipo', 'Sucedio un error al actualizar el tipo');
+  });
+
+  it('Validate Update Type Inputs Message Restriction', () => {
+    cy.get('#btn-types').click();
+    cy.wait('@getAllTypes');
+    cy.get('i.tim-icons.icon-pencil').first().click();
+    cy.get('input[formControlName=description]').click();
+
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).click().clear();
+
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).click().clear();
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).click().clear();
+
+    cy.get('input[formControlName=description]').click().clear();
+
+
+    cy.get('#required-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere descripción');
+      });
+
+    cy.get('#required-start')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora inicio');
+      });
+
+    cy.get('#required-end')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora de fin');
+      });
+
+    cy.get('input[formControlName=description]').type('12');
+    cy.get('#minlength-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 5 caracteres');
+      });
+
+    // Type invalid range hour
+
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+    cy.get(
+      'timepicker[formcontrolname=start]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('25');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get(
+      'timepicker[formcontrolname=end]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get('input[formControlName=description]').click();
+    cy.get('#invalid-range-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Rango de horas no permitido');
+      });
   });
 });

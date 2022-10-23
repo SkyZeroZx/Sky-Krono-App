@@ -15,7 +15,7 @@ describe('Manage User Funcionality', () => {
     cy.intercept('POST', '/auth/reset-password', { fixture: 'response/response-ok' }).as(
       'resetPassword',
     );
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('input[formControlName=filter]').type(reset.username);
     cy.get('i.tim-icons.icon-refresh-02').first().click();
@@ -29,7 +29,7 @@ describe('Manage User Funcionality', () => {
     cy.intercept('DELETE', '/users/*', { fixture: 'response/response-ok' }).as(
       'deleteUser',
     );
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('input[formControlName=filter]').type(reset.username);
     cy.get('i.tim-icons.icon-simple-remove').first().click();
@@ -41,7 +41,7 @@ describe('Manage User Funcionality', () => {
 
   it('Valite Create New User Ok [MOCK]', () => {
     cy.intercept('POST', '/users', { fixture: 'response/response-ok' }).as('createUser');
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('#btn-create-user').click();
 
@@ -59,7 +59,7 @@ describe('Manage User Funcionality', () => {
 
   it('Validate Update User Ok', () => {
     cy.intercept('PATCH', '/users').as('updateUser');
-    cy.get('button').contains('Usuarios').click();
+    cy.get('#btn-manage-users').click();
     cy.get('@getAllUsers');
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-user').click();

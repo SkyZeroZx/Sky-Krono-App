@@ -14,7 +14,7 @@ describe('Chargue Funcionality', () => {
 
   it('Create New Chargue OK', () => {
     cy.intercept('POST', '/chargue').as('createChargue');
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.wait('@getAllChargues');
     cy.get('#btn-new-chargue').click();
 
@@ -29,7 +29,7 @@ describe('Chargue Funcionality', () => {
     cy.intercept('DELETE', '/chargue/*', { fixture: 'response/response-ok' }).as(
       'deleteChargue',
     );
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('.swal2-confirm').click();
     cy.wait('@deleteChargue');
@@ -38,7 +38,7 @@ describe('Chargue Funcionality', () => {
 
   it('Update Chargue OK', () => {
     cy.intercept('PATCH', '/chargue').as('updateChargue');
-    cy.get('button').contains('Cargos').click();
+    cy.get('#btn-chargue').click();
     cy.get('i.tim-icons.icon-pencil').first().click();
     cy.get('#btn-update-chargue').click();
     cy.wait('@updateChargue');

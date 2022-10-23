@@ -13,7 +13,7 @@ describe('Type Funcionality', () => {
   });
 
   it('Validate Type Interface', () => {
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.get('#title')
       .invoke('text')
       .then((text) => {
@@ -37,7 +37,7 @@ describe('Type Funcionality', () => {
   });
 
   it('Validate Delete Type Interface', () => {
-    cy.get('button').contains('Tipos').click();
+    cy.get('#btn-types').click();
     cy.wait('@getAllTypes');
     cy.get('i.tim-icons.icon-simple-remove').first().click();
     cy.get('#swal2-title')
