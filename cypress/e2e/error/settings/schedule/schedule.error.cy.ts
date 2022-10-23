@@ -172,25 +172,33 @@ describe('Schedule Error', () => {
     cy.get('#btn-schedule').click();
     cy.wait('@getAllSchedule');
     cy.get('i.tim-icons.icon-pencil').first().click();
-    cy.get('[formControlName=name]').clear();
-    cy.get('[formControlName=description]').clear();
-    cy.get('[formControlName=toleranceTime]').clear();
+    cy.get('[formControlName=name]').click().clear();
+    cy.get('[formControlName=description]').click().clear();
+    cy.get('[formControlName=toleranceTime]').click().clear();
 
     cy.get(
       'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
-    ).clear();
+    )
+      .clear()
+      .click();
 
     cy.get(
       'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
-    ).clear();
+    )
+      .clear()
+      .click();
 
     cy.get(
       'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
-    ).clear();
+    )
+      .clear()
+      .click();
 
     cy.get(
       'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
-    ).clear();
+    )
+      .clear()
+      .click();
 
     cy.get('#required-schedule-name')
       .invoke('text')
