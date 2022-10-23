@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
-import { ROUTES, ROUTES_VIEWER } from '../../common/menuItems';
+import { ROUTES, ROUTES_EMPLOYEE } from '../../common/menuItems';
 import { CalendarAdminComponent } from '../../pages/calendar-admin/calendar-admin.component';
 import { SettingsComponent } from '../../pages/settings/settings.component';
 import { AuthService } from '../../services/auth/auth.service';
@@ -78,10 +78,10 @@ fdescribe('NavigationBarComponent', () => {
     component.getRouterOfRoles();
     expect(component.menuItems).toEqual(ROUTES);
     spyOn(authService, 'getItemToken').and.callFake(() => {
-      return 'viewer';
+      return 'employee';
     });
     component.getRouterOfRoles();
-    expect(component.menuItems).toEqual(ROUTES_VIEWER);
+    expect(component.menuItems).toEqual(ROUTES_EMPLOYEE);
   });
 
   it('Validate tabNavigation', fakeAsync(() => {

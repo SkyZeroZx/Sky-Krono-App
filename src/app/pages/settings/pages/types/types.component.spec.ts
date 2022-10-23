@@ -10,7 +10,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
-import { FilterType } from '../../../../common/pipes/filterType.pipe';
+import { FilterType } from '../../../../common/pipes/filter-type.pipe';
 import { TypeService } from '../../../../services/type/type.service';
 import { CreateTypesComponent } from './components/create-types/create-types.component';
 import { UpdateTypesComponent } from './components/update-types/update-types.component';

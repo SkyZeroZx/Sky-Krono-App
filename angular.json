@@ -172,6 +172,21 @@
             }
           }
         },
+        "e2e-ci-mobile": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "browser": "chrome",
+            "configFile": "cypress.config.mobile.ts",
+            "devServerTarget": "sky-krono-app:serve-coverage",
+            "headless": true,
+            "watch": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sky-krono-app:serve-coverage:production"
+            }
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
@@ -204,7 +219,6 @@
       }
     }
   },
-  "defaultProject": "sky-krono-app",
   "cli": {
     "analytics": false
   }

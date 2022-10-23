@@ -10,7 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { ChargueRouter } from './chargue.routing';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { FilterChargue } from '../../../../common/pipes/filterChargue.pipe';
+import { FilterChargue } from '../../../../common/pipes/filter-chargue.pipe';
 
 @NgModule({
   declarations: [

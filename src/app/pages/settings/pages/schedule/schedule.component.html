@@ -10,14 +10,14 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input type="text" placeholder="Nombre" formControlName="name" class="form-control">
+                                <input type="text" placeholder="Nombre" formControlName="filter" class="form-control">
                             </div>
                         </div>
                     </div>
                 </form>
 
                 <div class="card-header">
-                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateSchedule()">
+                    <button id="btn-new-schedule" type="button" class="btn info" (click)="showModalCreateSchedule()">
                         <a><i class="fa-solid fa-clock" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
@@ -43,7 +43,7 @@
                             </tr>
                         </thead>
                         <tbody *ngFor="let schedule of listSchedule |      
-                        filterSchedule : [ scheduleForm.getRawValue().name ]  | 
+                        filterSchedule : [ scheduleForm.getRawValue().filter ]  | 
                         paginate:{itemsPerPage: 5, currentPage:p}">
                             <tr>
                                 <td>
@@ -71,7 +71,7 @@
                                 <td class="center">
                                     {{schedule.toleranceTime}} m
                                 </td>
-                                <td class="center" [swal]="{
+                                <td class="center badge" [swal]="{
                                     title : schedule.notificationIsActive ? 'Deshabilitar' : 'Habilitar',
                                     text: schedule.notificationIsActive ? 
                                     'Esta seguro que desea deshabilitar las  notificaciones para': 

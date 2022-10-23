@@ -1,4 +1,4 @@
-<form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+<form [formGroup]="updateUserForm">
   <div class="modal-body">
     <div class="row">
       <div class="col-sm-4">
@@ -26,15 +26,11 @@
         <div class="form-group">
           <label for="labelName" class="col-form-label">Nombres</label>
           <input type="text" class="form-control" formControlName="name" oninput="alpha(this)" maxlength="80"
-          placeholder="Nombre"
-          
-          >
+            placeholder="Nombre">
           <div *ngIf="updateUserForm.controls.name.invalid && updateUserForm.controls.name.touched">
-            <small id="requiredNombres" class="text-left" *ngIf="updateUserForm.controls.name.errors?.required">
+            <small id="required-name" class="text-left" *ngIf="updateUserForm.controls.name.errors?.required">
               Se requiere ingresar nombres</small>
-            <small id="patternNombres" class="text-left" *ngIf="updateUserForm.controls.name.errors?.pattern">
-              El nombre ingresado tiene formato invalido</small>
-            <small id="minlengthNombres" class="text-left" *ngIf="updateUserForm.controls.name.errors?.minlength">
+            <small id="minlength-name" class="text-left" *ngIf="updateUserForm.controls.name.errors?.minlength">
               La longitud minima del nombre es de 2 caracteres</small>
           </div>
         </div>
@@ -43,15 +39,12 @@
         <div class="form-group">
           <label for="labelFatherLastName" class="col-form-label">Apellido Paterno</label>
           <input type="text" class="form-control" formControlName="fatherLastName" oninput="alpha(this)"
-          placeholder="Apellido Paterno"
-            maxlength="120">
+            placeholder="Apellido Paterno" maxlength="120">
           <div *ngIf="updateUserForm.controls.fatherLastName.invalid && updateUserForm.controls.fatherLastName.touched">
-            <small id="requiredPaterno" class="text-left"
+            <small id="required-father-lastname" class="text-left"
               *ngIf="updateUserForm.controls.fatherLastName.errors?.required">
               Se requiere ingresar apellido paterno</small>
-            <small id="patternPaterno" class="text-left" *ngIf="updateUserForm.controls.fatherLastName.errors?.pattern">
-              El apellido paterno ingresado tiene formato invalido</small>
-            <small id="minlengthPaterno" class="text-left"
+            <small id="minlength-father-lastname" class="text-left"
               *ngIf="updateUserForm.controls.fatherLastName.errors?.minlength">
               La longitud minima del apellido paterno es de 2 caracteres</small>
           </div>
@@ -61,16 +54,12 @@
         <div class="form-group">
           <label for="labelMotherLastName" class="col-form-label">Apellido Materno</label>
           <input type="text" class="form-control" formControlName="motherLastName" oninput="alpha(this)"
-          placeholder="Apellido Materno"
-            maxlength="120">
+            placeholder="Apellido Materno" maxlength="120">
           <div *ngIf="updateUserForm.controls.motherLastName.invalid && updateUserForm.controls.motherLastName.touched">
-            <small id="requiredMotherLastName" class="text-left"
+            <small id="required-mother-lastname" class="text-left"
               *ngIf="updateUserForm.controls.motherLastName.errors?.required">
               Se requiere ingresar apellido materno</small>
-            <small id="patternMotherLastName" class="text-left"
-              *ngIf="updateUserForm.controls.motherLastName.errors?.pattern">
-              El apellido materno ingresado tiene formato invalido</small>
-            <small id="minlengthMotherLastName" class="text-left"
+            <small id="minlength-mother-lastname" class="text-left"
               *ngIf="updateUserForm.controls.motherLastName.errors?.minlength">
               La longitud minima del apellido materno es de 2 caracteres</small>
           </div>
@@ -95,7 +84,7 @@
           <label for="labelRole" class="col-form-label">Rol</label>
           <select id="inputEstado" class="form-control" formControlName="role">
             <option [value]="'admin'">admin</option>
-            <option [value]="'viewer'">viewer</option>
+            <option [value]="'employee'">empleado</option>
           </select>
         </div>
       </div>
@@ -103,14 +92,11 @@
       <div class="col-sm-4">
         <div class="form-group">
           <label for="labelPhone" class="col-form-label">Celular</label>
-          <input type="text" class="form-control" formControlName="phone" maxlength="9" placeholder="celular"/>
+          <input type="text" class="form-control" formControlName="phone" maxlength="9" placeholder="celular" oninput="process(this)" />
           <div *ngIf="updateUserForm.controls.phone.invalid && updateUserForm.controls.phone.touched">
-            <small id="requiredMotherLastName" class="text-left" *ngIf="updateUserForm.controls.phone.errors?.required">
+            <small id="required-phone" class="text-left" *ngIf="updateUserForm.controls.phone.errors?.required">
               Se requiere ingresar celular <br /></small>
-            <small id="patternMotherLastName" class="text-left" *ngIf="updateUserForm.controls.phone.errors?.pattern">
-              El celular ingresado tiene formato invalido <br /></small>
-            <small id="minlengtMotherLastName" class="text-left"
-              *ngIf="updateUserForm.controls.phone.errors?.minlength">
+            <small id="minlength-phone" class="text-left" *ngIf="updateUserForm.controls.phone.errors?.minlength">
               La longitud minima del celular es de 9 caracteres</small>
           </div>
         </div>
@@ -124,10 +110,6 @@
           <ng-select [items]="listChargue" [closeOnSelect]="true" [hideSelected]="true" bindValue="id"
             [clearable]="false" bindLabel="name" placeholder="Seleccionar cargo" formControlName="codChargue">
           </ng-select>
-          <div *ngIf="updateUserForm.controls.codChargue.invalid && updateUserForm.controls.codChargue.touched">
-            <small id="requiredChargue" class="text-left" *ngIf="updateUserForm.controls.codChargue.errors?.required">
-              Se requiere seleccionar cargo</small>
-          </div>
         </div>
       </div>
 
@@ -141,17 +123,13 @@
               <span> - {{item.description}}</span>
             </ng-template>
           </ng-select>
-          <div *ngIf="updateUserForm.controls.codSchedule.invalid && updateUserForm.controls.codSchedule.touched">
-            <small id="requiredSchedule" class="text-left" *ngIf="updateUserForm.controls.codSchedule.errors?.required">
-              Se requiere seleccionar horario</small>
-          </div>
         </div>
       </div>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button id="btnUpdateUser" type="submit" class="btn btn-primary"
+    <button id="btn-update-user" type="submit" class="btn btn-primary" (click)="updateUser()"
       [disabled]="updateUserForm.invalid">Actualizar</button>
   </div>
 </form>

@@ -6,9 +6,12 @@
                     <label for="labelName" class="col-form-label">Nombre</label>
                     <input type="text" placeholder="Nombre" class="form-control" formControlName="name" maxlength="255">
                     <div *ngIf="updateChargueForm.controls.name.invalid && updateChargueForm.controls.name.touched">
-                        <small id="requiredName" class="text-left"
+                        <small id="required-name" class="text-left"
                             *ngIf="updateChargueForm.controls.name.errors?.required">
                             Se requiere nombre</small>
+                        <small id="minLenght-name" class="text-left"
+                            *ngIf="updateChargueForm.controls.name.errors?.minlength">
+                            La longitud minima es 2 caracteres</small>
                     </div>
                 </div>
             </div>
@@ -19,17 +22,20 @@
                         maxlength="255" />
                     <div
                         *ngIf="updateChargueForm.controls.description.invalid && updateChargueForm.controls.description.touched">
-                        <small id="requiredDescription" class="text-left"
+                        <small id="required-description" class="text-left"
                             *ngIf="updateChargueForm.controls.description.errors?.required">
                             Se requiere descripción</small>
+                        <small id="minLenght-description" class="text-left"
+                            *ngIf="updateChargueForm.controls.description.errors?.minlength">
+                            La longitud minima es 2 caracteres</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="modal-footer">
-        <button type="submit" id="btnUpdateChargue" class="btn btn-primary" (click)="updateChargue()"
+        <button type="submit" id="btn-update-chargue" class="btn btn-primary" (click)="updateChargue()"
             [disabled]="updateChargueForm.invalid">Actualizar
             Cargo</button>
     </div>

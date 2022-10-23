@@ -6,10 +6,10 @@
                     <label for="recipient-name" class="col-form-label">Nombre</label>
                     <input type="text" placeholder="Nombre" class="form-control" formControlName="name" maxlength="150">
                     <div *ngIf="createScheduleForm.controls.name.invalid && createScheduleForm.controls.name.touched">
-                        <small id="requiredScheduleName" class="text-left"
+                        <small id="required-schedule-name" class="text-left"
                             *ngIf="createScheduleForm.controls.name.errors?.required">
                             Se requiere nombre</small>
-                        <small id="minLenghtScheduleName" class="text-left"
+                        <small id="minlength-schedule-name" class="text-left"
                             *ngIf="createScheduleForm.controls.name.errors?.minlength">
                             La longitud minima es 5 caracteres</small>
                     </div>
@@ -22,10 +22,10 @@
                         maxlength="200">
                     <div
                         *ngIf="createScheduleForm.controls.description.invalid && createScheduleForm.controls.description.touched">
-                        <small id="requiredScheduleDescription" class="text-left"
+                        <small id="required-schedule-description" class="text-left"
                             *ngIf="createScheduleForm.controls.description.errors?.required">
                             Se requiere descripción</small>
-                        <small id="minLenghtScheduleDescription" class="text-left"
+                        <small id="minlength-schedule-description" class="text-left"
                             *ngIf="createScheduleForm.controls.description.errors?.minlength">
                             La longitud minima es 5 caracteres</small>
                     </div>
@@ -38,7 +38,7 @@
                         min="0">
                     <div
                         *ngIf="createScheduleForm.controls.toleranceTime.invalid && createScheduleForm.controls.toleranceTime.touched">
-                        <small id="requiredScheduleDescription" class="text-left"
+                        <small id="required-schedule-toleranceTime" class="text-left"
                             *ngIf="createScheduleForm.controls.toleranceTime.errors?.required">
                             Se requiere tiempo de tolerancia</small>
                     </div>
@@ -48,12 +48,12 @@
 
         <div class="d-flex  justify-content-center">
             <div class="form-group hour">
-                <label for="labelHourEntry">Hora Entrada</label>
+                <label for="label-hour-entry">Hora Entrada</label>
                 <timepicker formControlName="entryHour" [showMeridian]="false" [showSpinners]="true"
                     (isValid)=" isInvalidRangeHour()">
                 </timepicker>
                 <div *ngIf="createScheduleForm.controls.entryHour.errors?.required">
-                    <small id="requiredScheduleEntryHour" class="text-left">
+                    <small id="required-schedule-entry-hour" class="text-left">
                         Se requiere una hora de entrada</small>
                 </div>
             </div>
@@ -65,13 +65,13 @@
                     (isValid)=" isInvalidRangeHour()">
                 </timepicker>
                 <div *ngIf="createScheduleForm.controls.exitHour.errors?.required">
-                    <small id="requiredScheduleExitHour" class="text-left">
+                    <small id="required-schedule-exit-hour" class="text-left">
                         Se requiere una hora de salida</small>
                 </div>
             </div>
         </div>
 
-        <div class="d-flex  justify-content-center" *ngIf="isInvalidRangeHour()">
+        <div class="d-flex  justify-content-center" *ngIf="isInvalidRangeHour()" id="invalid-range-hour">
             <small>Rango de horas no permitido</small>
         </div>
 
@@ -80,7 +80,7 @@
             <div class="col-sm-6 days">
                 <label for="labelSelectDays" class="col-form-label">Seleccione Dias</label>
                 <div class="btn-group">
-                    <label class="btn  btn-day-inactive" formControlName="monday" btnCheckbox tabindex="0"
+                    <label class="btn  btn-day-inactive" formControlName="monday" btnCheckbox tabindex="0" 
                         [ngClass]="createScheduleForm.value.monday ? 'btn-day-active' : 'btn-day-inactive' "
                         role="button">Lu</label>
 
@@ -115,7 +115,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" [disabled]="createScheduleForm.invalid || isInvalidRangeHour()"
+        <button type="submit" id="btn-create-schedule" class="btn btn-primary" [disabled]="createScheduleForm.invalid || isInvalidRangeHour()"
             (click)="createSchedule()">Crear Horario</button>
     </div>
 </form>

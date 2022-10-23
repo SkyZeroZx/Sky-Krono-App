@@ -2,7 +2,14 @@
   "extends": "../tsconfig.json",
   "include": ["**/*.ts"],
   "compilerOptions": {
-    "sourceMap": true,    
-    "types": ["cypress", "node","jasmine", "cypress-file-upload"]
+    "sourceMap": true,
+    "types": [
+      "cypress",
+      "node",
+      "jasmine",
+      "cypress-file-upload",
+      "@4tw/cypress-drag-drop",
+      "cypress-real-events"
+    ]
   }
 }

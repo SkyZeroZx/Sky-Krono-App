@@ -7,7 +7,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgxContactListModule } from 'ngx-contact-list';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
-import { PhonePipe } from '../../common/pipes/phone.pipe';
+import { PhonePipe } from '../../common/pipes/format-phone.pipe';
 import { UserService } from '../../services/users/user.service';
 import { ManageUsersMock } from '../settings/pages/manage-users/manage-users.mock.spec';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
@@ -103,9 +103,9 @@ fdescribe('ContactsComponent', () => {
 
   it('Validate isImage', () => {
     const user: any = { photo: null };
-    expect(component.isImage(user)).toEqual('../assets/img/none.png');
+    expect(component.isImage(user)).toEqual('./assets/img/none.png');
     user.photo = '';
-    expect(component.isImage(user)).toEqual('../assets/img/none.png');
+    expect(component.isImage(user)).toEqual('./assets/img/none.png');
     user.photo = 'www.example.com/image/test.jpg';
     expect(component.isImage(user)).toEqual(user.photo);
   });

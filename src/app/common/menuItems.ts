@@ -3,67 +3,76 @@ import { RouteInfo } from './interfaces';
 export const ROUTES: RouteInfo[] = [
   {
     path: '/home',
-    title: 'Inicio',
+    title: 'inicio',
+    id: 'sibar-home',
     icon: 'fa-solid fa-house',
     class: 'azure',
   },
   {
     // TEMPORAL USE CLOCK REPLACE FOR ALARM CLOCK
     path: '/attendance',
-    title: 'Asistencia',
+    title: 'asistencia',
+    id: 'sibar-attendance',
     icon: 'fa-solid fa-clock',
     class: 'azure',
   },
   {
     path: '/contacts',
     title: 'Contactos',
+    id: 'sibar-contacts',
     icon: 'fa-solid fa-users',
     class: 'azure',
   },
   {
     path: '/calendar-admin',
-    title: 'Calendario',
+    title: 'calendario',
+    id: 'sibar-calendar-admin',
     icon: 'fa-regular fa-calendar',
     class: 'yellow',
   },
   {
     path: '/settings',
-    title: 'Opciones',
+    title: 'opciones',
+    id: 'sibar-settings',
     icon: 'fa-solid fa-gear',
     class: 'azure',
   },
 ];
 
-export const ROUTES_VIEWER: RouteInfo[] = [
+export const ROUTES_EMPLOYEE: RouteInfo[] = [
   {
     path: '/home',
-    title: 'Inicio',
+    title: 'inicio',
+    id: 'sibar-home',
     icon: 'fa-solid fa-house',
     class: 'azure',
   },
   {
-    // TEMPORAL USE CLOCK REPLACE FOR ALARM CLOCK
     path: '/attendance',
-    title: 'Asistencia',
+    title: 'asistencia',
+    id: 'sibar-attendance',
     icon: 'fa-solid fa-clock',
     class: 'azure',
   },
   {
     path: '/contacts',
-    title: 'Contactos',
+    title: 'contactos',
+    id: 'sibar-contacts',
     icon: 'fa-solid fa-users',
     class: 'azure',
   },
   {
     path: '/calendar-view',
-    title: 'Calendario',
-    icon: 'icon-calendar-60',
+    title: 'calendario',
+    id: 'sibar-calendar-view',
+    icon: 'fa-regular fa-calendar',
     class: 'yellow',
   },
   {
     path: '/user-profile',
-    title: 'Perfil',
-    icon: 'icon-badge',
+    title: 'perfil',
+    id: 'sibar-user-profile',
+    icon: 'fa-solid fa-gear',
     class: 'azure',
   },
 ];

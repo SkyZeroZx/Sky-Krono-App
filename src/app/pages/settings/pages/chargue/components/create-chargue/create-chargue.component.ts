@@ -26,11 +26,11 @@ export class CreateChargueComponent implements OnInit {
     this.createChargueForm = this.fb.group({
       name: new FormControl(
         '',
-        Validators.compose([Validators.required, Validators.minLength(5)]),
+        Validators.compose([Validators.required, Validators.minLength(2)]),
       ),
       description: new FormControl(
         '',
-        Validators.compose([Validators.required, Validators.minLength(5)]),
+        Validators.compose([Validators.required, Validators.minLength(2)]),
       ),
     });
   }

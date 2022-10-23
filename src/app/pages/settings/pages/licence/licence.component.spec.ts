@@ -10,7 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
 import { getDatepickerConfig } from '../../../../common/config/Datepicker';
-import { FilterLicence } from '../../../../common/pipes/filterLicence.pipe';
+import { FilterLicence } from '../../../../common/pipes/filter-licence.pipe';
 import { LicenceService } from '../../../../services/licence/licence.service';
 import { LicenceComponent } from './licence.component';
 import { LicenceMock } from './licence.mock.spec';

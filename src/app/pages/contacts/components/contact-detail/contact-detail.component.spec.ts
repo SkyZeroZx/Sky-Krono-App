@@ -7,7 +7,7 @@ import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxContactListModule } from 'ngx-contact-list';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { PhonePipe } from '../../../../common/pipes/phone.pipe';
+import { PhonePipe } from '../../../../common/pipes/format-phone.pipe';
 import { UserService } from '../../../../services/users/user.service';
 import { ContactsMock } from '../../contacts.mock.spec';
 import { ContactsRouter } from '../../contacts.routing';

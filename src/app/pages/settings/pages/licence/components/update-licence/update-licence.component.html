@@ -3,27 +3,20 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="labelDateRange" class="col-form-label">Fechas</label>
+                    <label for="label-dateRange" class="col-form-label">Fechas</label>
                     <input readonly type="text" placeholder="Rango de Fechas" class="form-control" bsDaterangepicker
-                        formControlName="dateRange" 
-                        [minDate]="minDate"
-                        [bsConfig]="{ 
+                        formControlName="dateRange" [minDate]="minDate" [bsConfig]="{ 
                         rangeInputFormat :'YYYY-MM-DD' , 
                         dateInputFormat: 'YYYY-MM-DD' ,
                         containerClass:'theme-blue',  
                         displayOneMonthRange: true
                     }">
-                    <div
-                        *ngIf="updateLicenceForm.controls.dateRange.invalid && updateLicenceForm.controls.dateRange.touched">
-                        <small id="requiredUser" class="text-left"
-                            *ngIf="updateLicenceForm.controls.dateRange.errors?.required">
-                            Se requieren fechas</small>
-                    </div>
+
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label for="labelUser" class="col-form-label">Usuario</label>
+                    <label for="label-user" class="col-form-label">Usuario</label>
                     <input type="text" class="form-control" formControlName="fullName">
 
                 </div>
@@ -40,10 +33,10 @@
                         maxlength="255" />
                     <div
                         *ngIf="updateLicenceForm.controls.description.invalid && updateLicenceForm.controls.description.touched">
-                        <small id="requiredDescription" class="text-left"
+                        <small id="required-description" class="text-left"
                             *ngIf="updateLicenceForm.controls.description.errors?.required">
                             Se requiere descripción</small>
-                        <small id="requiredDescriptionMinLength" class="text-left"
+                        <small id="minlength-description" class="text-left"
                             *ngIf="updateLicenceForm.controls.description.errors?.minlength">
                             Se requiere al menos 5 caracteres</small>
                     </div>
@@ -58,7 +51,7 @@
 
 
     <div class="modal-footer">
-        <button type="submit" id="btnCreateChargue" class="btn btn-primary" (click)="updateLicence()"
+        <button type="submit" id="btn-update-licence" class="btn btn-primary" (click)="updateLicence()"
             [disabled]="updateLicenceForm.invalid">Crear
             Licencia</button>
     </div>

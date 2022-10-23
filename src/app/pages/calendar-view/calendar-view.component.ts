@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, EventClickArg } from '@fullcalendar/core';
 import { listLocales } from 'ngx-bootstrap/chronos';
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -9,6 +9,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import { FullCalendarElement } from '@fullcalendar/web-component';
 
 @Component({
   selector: 'app-calendar-view',
@@ -18,12 +19,14 @@ import interactionPlugin from '@fullcalendar/interaction';
 export class CalendarViewComponent implements OnInit {
   locale = 'es';
   locales = listLocales();
-  // Modal para visualizar el detalle de nuestra tarea
+
   @ViewChild('modaViewTask', { static: false })
-  public modaViewTask: ModalDirective;
+  readonly modaViewTask: ModalDirective;
+  @ViewChild('calendar')
+  readonly calendarRef: ElementRef<FullCalendarElement>;
   dateSelect: EventClickArg;
   taskViewOk: boolean = false;
-  // Configuramos las opciones de calendarOptions segun nuestros requerimientos
+
   calendarOptions: CalendarOptions = {
     contentHeight: 'auto',
     headerToolbar: {
@@ -50,11 +53,12 @@ export class CalendarViewComponent implements OnInit {
     this.listTaskByUser();
   }
 
-  // Llamamos al servicios que nos lista la tareas por usuario ( segun el usuario logeado)
   listTaskByUser() {
     this.taskService.getTaskByUser().subscribe({
       next: (res) => {
-        this.calendarOptions.events = res;
+        const calendarApi = this.calendarRef.nativeElement.getApi();
+        calendarApi.removeAllEvents();
+        calendarApi.addEventSource(res);
       },
       error: (_err) => {
         this.toastrService.error('Sucedio un error al listar las tareas');
@@ -62,7 +66,6 @@ export class CalendarViewComponent implements OnInit {
     });
   }
 
-  // Metodo que escucha los click sobre las tareas en el calendario
   handleEventClick(selectInfo: EventClickArg) {
     const calendarApi = selectInfo.view.calendar;
     this.dateSelect = selectInfo;

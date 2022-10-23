@@ -118,7 +118,7 @@ fdescribe('AttedanceComponent', () => {
     expect(spyScheduleService).toHaveBeenCalled();
     expect(component.dayIsValid).toEqual(dayIsValid);
     expect(spyTotalSecondsOfSchedule).toHaveBeenCalledWith(entryHour, exitHour);
-    expect(component.rememberExitHour).toEqual(exitHour);
+    expect(component.userExitHour).toEqual(exitHour);
     expect(spyGetAttendanceToday).toHaveBeenCalled();
   });
 

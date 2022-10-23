@@ -10,14 +10,14 @@
       <div class="card  shadow border-0" [style]="darkTheme ? 'background: rgb(30 31 50)' : '' ">
         <div class="card-header bg-transparent pb-5">
           <div class="card-body px-lg-5 py-lg-5">
-            <div class="text-center text-muted mb-4">
+            <div class="text-center text-muted mb-4" id="title-credentials">
               <p>Ingrese sus credenciales</p>
             </div>
             <form [formGroup]="loginForm">
               <div class="form-group mb-3">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><em class=" tim-icons icon-email-85"></em></span>
+                    <span class="input-group-text"><em class="tim-icons icon-email-85" id="icon-email"></em></span>
                   </div>
                   <input class="form-control" formControlName='username' maxlength="50" placeholder="Email"
                     type="email">
@@ -32,7 +32,8 @@
               <div class="form-group">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><em class="tim-icons icon-lock-circle"></em></span>
+                    <span class="input-group-text"><em class="tim-icons icon-lock-circle"
+                        id="icon-password"></em></span>
                   </div>
                   <input class="form-control" autocomplete="off" formControlName='password' placeholder="Password"
                     type="password" />
@@ -45,14 +46,14 @@
                 </div>
               </div>
               <div class="text-center">
-                <button type="submit" (click)="onLogin()" class="btn btn-primary my-4"
+                <button type="submit" (click)="onLogin()" class="btn btn-primary my-4" id="btnLogin"
                   [disabled]="loginForm.invalid">Login</button>
-
               </div>
+
               <div class="text-center">
-                <button (click)="startAuthentication()" [disabled]="enableFingerPrint" id="fingerPrint"
-                  aria-label="FingerPrint-Authentication" class="btn btn-primary my-4">
-                  <em class="fas fa-fingerprint"></em></button>
+                <button (click)="startAuthentication()" [disabled]="enableFingerPrint" id="btn-fingerprint"
+                  aria-label="FingerPrint-Authentication" class="btn btn-primary">
+                  <em class="fas fa-fingerprint" id="icon-fingerPrint"></em></button>
               </div>
             </form>
           </div>
@@ -64,7 +65,7 @@
 
 
 <!--Sweet Alert Is First Login -->
-<swal #swalIsFirstLogin [title]="'¿Que acción desea realizar?'" [text]="'Se recomienda cambiar su contraseña'"
+<swal #swalIsFirstLogin [title]="'Es su primer login'" [text]="'Se recomienda cambiar su contraseña'"
   [icon]="'warning'" [showCancelButton]="true" [confirmButtonText]="'Confirmar'" [cancelButtonText]="'Cancelar'"
   (confirm)="confirmFirstLogin()" (dismiss)="dismissFirstLogin()">
 </swal>

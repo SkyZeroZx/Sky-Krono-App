@@ -3,7 +3,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Licencias</h3>
+                    <h3 class="mb-0" id="title">Licencias</h3>
                 </div>
                 <br />
                 <form [formGroup]="licenceForm">
@@ -18,12 +18,12 @@
                 </form>
 
                 <div class="card-header">
-                    <button id="newSchedule" type="button" class="btn info" (click)="showModalCreateLicence()">
+                    <button id="btn-new-licence" type="button" class="btn info" (click)="showModalCreateLicence()">
                         <a><i class="fa-solid fa-ticket-simple" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
                     &nbsp;&nbsp;&nbsp;
-                    <button id="pdfSchedule" type="button" class="btn danger">
+                    <button id="pdf-licence" type="button" class="btn danger">
                         <a> <i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
                     </button>
                 </div>
@@ -50,7 +50,7 @@
                                 </td>
 
                                 <td class="options">
-                                    <i (click)="showModalUpdateLicence(licence)" class="tim-icons  icon-pencil"></i>
+                                    <i (click)="showModalUpdateLicence(licence)" class="tim-icons icon-pencil"></i>
                                 </td>
                                 <td class="options" [swal]="{
                                     title: 'Eliminar Licencia',

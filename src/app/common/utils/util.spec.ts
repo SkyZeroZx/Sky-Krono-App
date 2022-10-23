@@ -37,13 +37,13 @@ fdescribe('Util', () => {
 
   xit('validate getRestDaysOfWeek', () => {
     const dayOfWeek = new Date('2022-09-12').getDay() + 1;
-    const listDate: Date[] = [
-      new Date('2022-09-13 00:00:00'),
-      new Date('2022-09-14 00:00:00'),
-      new Date('2022-09-15 00:00:00'),
-      new Date('2022-09-16 00:00:00'),
-      new Date('2022-09-17 00:00:00'),
-      new Date('2022-09-18 00:00:00'),
+    const listDate: string[] = [
+      new Date('2022-09-13 00:00:00').toDateString(),
+      new Date('2022-09-14 00:00:00').toDateString(),
+      new Date('2022-09-15 00:00:00').toDateString(),
+      new Date('2022-09-16 00:00:00').toDateString(),
+      new Date('2022-09-17 00:00:00').toDateString(),
+      new Date('2022-09-18 00:00:00').toDateString(),
     ];
     const listRestDaysOfWeek = Util.getRestDaysOfWeek(
       mockAttendanceHistoryUser,

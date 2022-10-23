@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environment';
 import { Constant } from '../constants/Constant';
 import { StatusAttendance } from '../interfaces';
 
@@ -36,14 +37,19 @@ export class Util {
     const newDate = new Date();
     const date =
       attendanceHistoryUser == undefined
-        ? new Date(newDate.setDate(newDate.getDate() - 1))
+        ? new Date(newDate.setDate(newDate.getDate()))
         : attendanceHistoryUser.date;
-    let arrayOfDate: Date[] = [];
+
+    let listRestOfDays: any[] = [];
     for (let i = 0; i < Constant.TOTAL_DAY_OF_WEEK - dayOfWeek; i++) {
       const result = new Date(date);
-      arrayOfDate.push(new Date(result.setDate(result.getDate() + i + 1)));
+      listRestOfDays.push(
+        new Date(result.setDate(result.getDate() + i + 1)).toLocaleString('en-US', {
+          timeZone: environment.TIME_ZONE,
+        }),
+      );
     }
-    return arrayOfDate;
+    return listRestOfDays;
   }
 
   static currentSeconds(): number {

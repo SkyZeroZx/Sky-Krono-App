@@ -1,0 +1,16 @@
+{
+    "id": 2,
+    "codChargue": 2,
+    "codSchedule": 2,
+    "username": "saivergx@gmail.com",
+    "role": "employee",
+    "createdAt": "2022-09-05T11:23:46.502Z",
+    "updateAt": "2022-10-12T04:44:50.000Z",
+    "name": "Employee",
+    "fatherLastName": "User",
+    "motherLastName": "Test",
+    "status": "HABILITADO",
+    "firstLogin": false,
+    "photo": null,
+    "phone": "961008127"
+}

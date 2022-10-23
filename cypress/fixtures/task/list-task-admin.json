@@ -1,0 +1,54 @@
+[
+  {
+    "id": 5,
+    "title": "TEST",
+    "description": "FSDFSDFSD",
+    "codType": 1,
+    "backgroundColor": "#6b70ff",
+    "borderColor": "#7462fe",
+    "display": "BLOCK",
+    "start": "2022-09-22T04:00:00",
+    "end": "2022-09-22T06:00:00",
+    "startDate": "2022-09-22",
+    "endDate": "2022-09-22"
+  },
+  {
+    "id": 6,
+    "title": "New",
+    "description": "Jgkgiiggi",
+    "codType": 3,
+    "backgroundColor": "#d6d663",
+    "borderColor": "#c5f56b",
+    "display": "BLOCK",
+    "start": "2022-10-08T04:00:00",
+    "end": "2022-10-08T07:00:00",
+    "startDate": "2022-10-08",
+    "endDate": "2022-10-08"
+  },
+  {
+    "id": 7,
+    "title": "Nivel Alto Test",
+    "description": "sdfsdfsdfs",
+    "codType": 4,
+    "backgroundColor": "#f95d8c",
+    "borderColor": "#fe6c6c",
+    "display": "BLOCK",
+    "start": "2022-10-01T03:00:00",
+    "end": "2022-10-01T23:44:00",
+    "startDate": "2022-10-01",
+    "endDate": "2022-10-01"
+  },
+  {
+    "id": 8,
+    "title": "fdsfsdfsdfsdfsdfdsf",
+    "description": "cxgfdgfd",
+    "codType": 4,
+    "backgroundColor": "#f95d8c",
+    "borderColor": "#fe6c6c",
+    "display": "BLOCK",
+    "start": "2022-10-01T03:00:00",
+    "end": "2022-10-01T23:44:00",
+    "startDate": "2022-10-01",
+    "endDate": "2022-10-01"
+  }
+]

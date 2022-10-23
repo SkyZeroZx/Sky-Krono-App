@@ -39,7 +39,7 @@ export class ScheduleComponent implements OnInit {
 
   createScheduleFrom(): void {
     this.scheduleForm = this.fb.group({
-      name: new FormControl(''),
+      filter: new FormControl(''),
     });
   }
 

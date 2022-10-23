@@ -135,7 +135,7 @@ fdescribe('NavbarComponent', () => {
 
   it('Validate getTitle', () => {
     spyOn(component.location, 'prepareExternalUrl').and.returnValue('#/home');
-    expect(component.getTitle()).toEqual('Inicio');
+    expect(component.getTitle()).toEqual('inicio');
 
     spyOn(component.location, 'prepareExternalUrl').and.returnValue('contact-detail');
     expect(component.getTitle()).toEqual('Detalle de Contacto');

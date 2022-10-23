@@ -1,0 +1,38 @@
+[
+  {
+    "codType": 1,
+    "description": "Nivel Bajo",
+    "backgroundColor": "#6b70ff",
+    "borderColor": "#7462fe",
+    "start": "04:00:00",
+    "end": "06:00:00",
+    "display": "BLOCK"
+  },
+  {
+    "codType": 2,
+    "description": "Pruebas",
+    "backgroundColor": "#3950fe",
+    "borderColor": "#869efe",
+    "start": "02:00:00",
+    "end": "09:00:00",
+    "display": "BLOCK"
+  },
+  {
+    "codType": 3,
+    "description": "Medium",
+    "backgroundColor": "#d6d663",
+    "borderColor": "#c5f56b",
+    "start": "04:00:00",
+    "end": "07:00:00",
+    "display": "BLOCK"
+  },
+  {
+    "codType": 4,
+    "description": "Nivel Alto",
+    "backgroundColor": "#f95d8c",
+    "borderColor": "#fe6c6c",
+    "start": "03:00:00",
+    "end": "23:44:00",
+    "display": "BLOCK"
+  }
+]

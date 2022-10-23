@@ -45,20 +45,20 @@
     <ng-container *swalPortal="swalPortalTargets.footer">
         <div class="d-flex flex-row">
             <div class="p-2 mr-4 mt-1">
-                <a class="email" href="mailto:{{userPreview.username}}">
+                <a class="email" id="email" href="mailto:{{userPreview.username}}">
                     <i class="fa-solid fa-envelope fa-2xl"></i>
                 </a>
             </div>
 
             <div class="p-2 mr-4 mt-1">
-                <a class="phone" href="tel:+51{{userPreview.phone}}">
+                <a class="phone" id="phone" href="tel:+51{{userPreview.phone}}">
                     <i class="fa-solid fa-phone fa-2xl"></i>
                 </a>
             </div>
 
             <div class="p-2 mr-4" style="margin-top:1px !important;">
                 <a href="https://wa.me/+51{{userPreview.phone}}?text=Hola%20quiero%20contactarme%20?" class="whatsapp"
-                    target="_blank">
+                    id="whatsapp" target="_blank">
                     <i class="fa-brands fa-whatsapp fa-2xl"></i>
                 </a>
             </div>

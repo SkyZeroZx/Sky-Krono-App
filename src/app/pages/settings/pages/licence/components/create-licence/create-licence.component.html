@@ -8,7 +8,7 @@
                         formControlName="dateRange" [minDate]="minDate">
                     <div
                         *ngIf="createLicenceForm.controls.dateRange.invalid && createLicenceForm.controls.dateRange.touched">
-                        <small id="requiredUser" class="text-left"
+                        <small id="required-dateRange" class="text-left"
                             *ngIf="createLicenceForm.controls.dateRange.errors?.required">
                             Se requieren fechas</small>
                     </div>
@@ -23,7 +23,7 @@
                     </ng-select>
                     <div
                         *ngIf="createLicenceForm.controls.codUser.invalid && createLicenceForm.controls.codUser.touched">
-                        <small id="requiredUser" class="text-left"
+                        <small id="required-user" class="text-left"
                             *ngIf="createLicenceForm.controls.codUser.errors?.required">
                             Se requiere usuario</small>
                     </div>
@@ -41,11 +41,11 @@
                         maxlength="255" />
                     <div
                         *ngIf="createLicenceForm.controls.description.invalid && createLicenceForm.controls.description.touched">
-                        <small id="requiredDescription" class="text-left"
+                        <small id="required-description" class="text-left"
                             *ngIf="createLicenceForm.controls.description.errors?.required">
                             Se requiere descripción</small>
 
-                        <small id="requiredDescriptionMinLength" class="text-left"
+                        <small id="minlength-description" class="text-left"
                             *ngIf="createLicenceForm.controls.description.errors?.minlength">
                             Se requiere al menos 5 caracteres</small>
                     </div>
@@ -57,7 +57,7 @@
 
 
     <div class="modal-footer">
-        <button type="submit" id="btnCreateChargue" class="btn btn-primary" (click)="createLicence()"
+        <button type="submit" id="btn-create-licence" class="btn btn-primary" (click)="createLicence()"
             [disabled]="createLicenceForm.invalid">Crear
             Licencia</button>
     </div>

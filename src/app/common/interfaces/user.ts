@@ -48,7 +48,7 @@ export interface ChangePassword {
   newPassword: string;
 }
 
-export type Roles = 'admin' | 'viewer';
+export type Roles = 'admin' | 'employee';
 
 export interface UserReport {
   id: number;

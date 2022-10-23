@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ContactsRouter } from './contacts.routing';
 import { NgxContactListModule } from 'ngx-contact-list';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
-import { PhonePipe } from '../../common/pipes/phone.pipe';
+import { PhonePipe } from '../../common/pipes/format-phone.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({

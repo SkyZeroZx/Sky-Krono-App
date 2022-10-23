@@ -13,7 +13,9 @@ export class IsLogged implements CanActivate {
     console.log('Auth Guard IsLogin');
     return this.authService.user$.pipe(
       take(1),
-      map((user: UserLoginResponse) => (user ? true : false)),
+      map((user: UserLoginResponse) =>
+        user ? (console.log('user', user), true) : (console.log('user', false), false),
+      ),
     );
   }
 }

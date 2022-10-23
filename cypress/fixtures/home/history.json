@@ -1,0 +1,110 @@
+{
+  "currentDate": "2022-10-11 22:42",
+  "listHistoryStatusAttendance": [
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 0,
+      "date": "2022-10-11T23:37:31.334Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 0,
+      "date": "2022-10-10T23:37:31.334Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-10-09T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 1,
+      "isAbsent": 0,
+      "date": "2022-10-08T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 1,
+      "isAbsent": 0,
+      "date": "2022-10-07T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 1,
+      "isAbsent": 0,
+      "date": "2022-10-06T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-10-05T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-10-04T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-10-03T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-10-02T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-10-01T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-09-29T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-09-27T00:00:00.000Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-09-15T09:15:00.151Z",
+      "isDayOff": 0
+    },
+    {
+      "isActive": 0,
+      "isLater": 0,
+      "isAbsent": 1,
+      "date": "2022-09-15T05:00:00.000Z",
+      "isDayOff": 0
+    }
+  ]
+}

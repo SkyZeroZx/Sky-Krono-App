@@ -65,7 +65,7 @@ export class UpdateTaskComponent implements OnInit {
         this.listTypes = res;
       },
       error: (_err) => {
-        this.toastrService.error('Error al listar usuarios');
+        this.toastrService.error('Error al listar tipos');
       },
     });
   }

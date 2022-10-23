@@ -4,7 +4,7 @@
 
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 id="titleAttendance" class="mb-3">Asistencia</h3>
+                    <h3 id="title-attendance" class="mb-3">Asistencia</h3>
                     <h5><strong>{{ date | date:'fullDate' }}</strong></h5>
                 </div>
             </div>
@@ -29,16 +29,16 @@
                 </div>
 
                 <div class="card-header border-0   d-flex justify-content-center" *ngIf="!dayIsValid">
-                    <h3 id="titleDayIsNotValid" class="mb-3">Hoy no trabajas</h3>
+                    <h3 id="title-day-not-valid" class="mb-3">Hoy no trabajas</h3>
                 </div>
 
                 <div class="card-header border-0   d-flex justify-content-center" *ngIf="dayIsValid">
-                    <button type="button" class="btn info" [swal]="swalRegisterEntryAttendance"
+                    <button type="button" class="btn info" [swal]="swalRegisterEntryAttendance" id="btn-entry"
                         *ngIf="isActiveEntryAttendance">
                         Entrada</button>
                 </div>
                 <div class="card-header border-0   d-flex justify-content-center" *ngIf="dayIsValid">
-                    <button type="button" class="btn info" [swal]="swalRegisterExitAttendance"
+                    <button type="button" class="btn info" [swal]="swalRegisterExitAttendance" id="btn-exit"
                         *ngIf="isActiveExitAttendance">
                         Salida</button>
                 </div>

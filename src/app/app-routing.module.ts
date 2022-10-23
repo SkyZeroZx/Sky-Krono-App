@@ -7,6 +7,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { FirstLogin } from './common/guards/first-login.guard';
 import { IsLogged } from './common/guards/is-logged.guard';
 import { CheckRole } from './common/guards/check-role.guard';
+import { RoleAdmin } from './common/guards/role-admin.guard';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     children: [
       {
         path: 'calendar-admin',
+        canActivate: [RoleAdmin],
         loadChildren: () =>
           import('./pages/calendar-admin/calendar-admin.module').then(
             (m) => m.CalendarAdminModule,
@@ -54,7 +56,8 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'gestion-usuarios',
+        path: 'manage-users',
+        canActivate: [RoleAdmin],
         loadChildren: () =>
           import('./pages/settings/pages/manage-users/manage-users.module').then(
             (m) => m.ManageUsersModule,
@@ -67,6 +70,7 @@ const routes: Routes = [
       },
       {
         path: 'schedule',
+        canActivate: [RoleAdmin],
         loadChildren: () =>
           import('./pages/settings/pages/schedule/schedule.module').then(
             (m) => m.ScheduleModule,
@@ -74,6 +78,7 @@ const routes: Routes = [
       },
       {
         path: 'chargue',
+        canActivate: [RoleAdmin],
         loadChildren: () =>
           import('./pages/settings/pages/chargue/chargue.module').then(
             (m) => m.ChargueModule,
@@ -95,11 +100,13 @@ const routes: Routes = [
       },
       {
         path: 'types',
+        canActivate: [RoleAdmin],
         loadChildren: () =>
           import('./pages/settings/pages/types/types.module').then((m) => m.TypesModule),
       },
       {
         path: 'licence',
+        canActivate: [RoleAdmin],
         loadChildren: () =>
           import('./pages/settings/pages/licence/licence.module').then(
             (m) => m.LicenceModule,

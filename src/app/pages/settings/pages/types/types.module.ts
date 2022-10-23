@@ -9,7 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TypesRouter } from './types.routing';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { FilterType } from '../../../../common/pipes/filterType.pipe';
+import { FilterType } from '../../../../common/pipes/filter-type.pipe';
 import { CreateTypesComponent } from './components/create-types/create-types.component';
 import { UpdateTypesComponent } from './components/update-types/update-types.component';
 

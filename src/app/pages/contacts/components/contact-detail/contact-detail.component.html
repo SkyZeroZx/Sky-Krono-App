@@ -16,7 +16,7 @@
                         <div class=" block block-three"></div>
                         <div class=" block block-four"></div>
                         <img alt="Perfil" class="avatar" [width]="200" [height]="200"
-                            [src]="contact.photo == null ? '../assets/img/none.png' : contact.photo" />
+                            [src]="contact.photo == null ? './assets/img/none.png' : contact.photo" />
                         <p class="full-name">
                             {{contact.name }}
                             <br />
@@ -67,7 +67,8 @@
                                 </label>
                                 <br />
                                 <label>
-                                    <a class="email" href="mailto:{{contact.username}}" style="text-decoration: none">
+                                    <a class="email" href="mailto:{{contact.username}}" style="text-decoration: none"
+                                        id="email-contact-detail">
                                         {{contact.username}}
                                     </a>
                                 </label>
@@ -82,7 +83,7 @@
                                     </strong>
                                 </label>
                                 <br />
-                                <label>{{contact.chargue}} </label>
+                                <label id="chargue-contact-detail">{{contact.chargue}} </label>
                             </div>
                         </div>
                         <div class="col-md-2 pr-md-1">
@@ -94,7 +95,7 @@
                                     </strong>
                                 </label>
                                 <br />
-                                <label>{{contact.role}} </label>
+                                <label id="role-contact-detail">{{contact.role}} </label>
                             </div>
                         </div>
                         <div class="col-md-2 pr-md-1">
@@ -105,7 +106,7 @@
                                 </strong>
                             </label>
                             <br />
-                            <label>{{contact.schedule}} </label>
+                            <label id="schedule-contact-detail">{{contact.schedule}} </label>
                         </div>
                     </div>
                 </div>

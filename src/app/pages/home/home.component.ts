@@ -19,7 +19,6 @@ export class HomeComponent implements AfterViewInit {
   dayOfWeek: number;
   totalDaysLater: number = 0;
   totalDaysAbsent: number = 0;
-  totalDaysOnTime: number = 0;
   totalDayOff: number = 0;
 
   constructor(
@@ -75,13 +74,6 @@ export class HomeComponent implements AfterViewInit {
     this.totalDaysAbsent = totalHistory.filter(({ isAbsent }) => isAbsent).length;
 
     this.totalDayOff = totalHistory.filter(({ isDayOff }) => isDayOff).length;
-
-    this.totalDaysOnTime =
-      this.totalDaysOfWeek +
-      this.dayOfWeek -
-      this.totalDaysLater -
-      this.totalDaysAbsent -
-      this.totalDayOff;
   }
 
   getClassStatus({ isAbsent, isLater, isDayOff }: StatusAttendance): string {
@@ -99,6 +91,4 @@ export class HomeComponent implements AfterViewInit {
 
     return 'fa-solid fa-check success';
   }
-
-  //<i class="fa-solid fa-minus"></i>
 }
