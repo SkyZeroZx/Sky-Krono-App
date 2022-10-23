@@ -15,6 +15,7 @@ export class FirstLogin implements CanActivate {
     }
     if (this.auth.getItemToken('firstLogin')) {
       this.router.navigate(['/change-password']);
+      return false;
     } else {
       return true;
     }

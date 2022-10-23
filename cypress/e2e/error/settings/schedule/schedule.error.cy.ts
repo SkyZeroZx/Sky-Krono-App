@@ -63,6 +63,217 @@ describe('Schedule Error', () => {
     cy.valiteToastText('horario', 'Sucedio un error al registrar el nuevo horario');
   });
 
+  it('Register Schedule Inputs Message Error Restriction', () => {
+    cy.get('#btn-schedule').click();
+    cy.wait('@getAllSchedule');
+    cy.get('#btn-new-schedule').click();
+    cy.get('[formControlName=name]').click();
+    cy.get('[formControlName=description]').click();
+    cy.get('[formControlName=toleranceTime]').click();
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).click();
+
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).click();
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).click();
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).click();
+
+    cy.get('#required-schedule-name')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere nombre');
+      });
+
+    cy.get('#required-schedule-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere descripción');
+      });
+
+    cy.get('#required-schedule-toleranceTime')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere tiempo de tolerancia');
+      });
+
+    cy.get('#required-schedule-entry-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora de entrada');
+      });
+
+    cy.get('#required-schedule-exit-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora de salida');
+      });
+
+    cy.get('[formControlName=name]').click().type('abc');
+    cy.get('[formControlName=description]').click().type('abc');
+
+    cy.get('#minlength-schedule-name')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 5 caracteres');
+      });
+
+    cy.get('#minlength-schedule-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 5 caracteres');
+      });
+
+    // Type invalid range hour
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('25');
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get('[formControlName=description]').click();
+
+    cy.get('#invalid-range-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Rango de horas no permitido');
+      });
+  });
+
+  it('Update Schedule Inputs Message Error Restriction', () => {
+    cy.get('#btn-schedule').click();
+    cy.wait('@getAllSchedule');
+    cy.get('i.tim-icons.icon-pencil').first().click();
+    cy.get('[formControlName=name]').clear();
+    cy.get('[formControlName=description]').clear();
+    cy.get('[formControlName=toleranceTime]').clear();
+
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).clear();
+
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).clear();
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    ).clear();
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    ).clear();
+
+    cy.get('#required-schedule-name')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere nombre');
+      });
+
+    cy.get('#required-schedule-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere descripción');
+      });
+
+    cy.get('#required-schedule-toleranceTime')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere tiempo de tolerancia');
+      });
+
+    cy.get('#required-schedule-entry-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora de entrada');
+      });
+
+    cy.get('#required-schedule-exit-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Se requiere una hora de salida');
+      });
+
+    cy.get('[formControlName=name]').click().type('abc');
+    cy.get('[formControlName=description]').click().type('abc');
+
+    cy.get('#minlength-schedule-name')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 5 caracteres');
+      });
+
+    cy.get('#minlength-schedule-description')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('La longitud minima es 5 caracteres');
+      });
+
+    // Type invalid range hour
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+    cy.get(
+      'timepicker[formcontrolname=entryHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('25');
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=hours]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get(
+      'timepicker[formcontrolname=exitHour]  > table > tbody > tr >  td >  input[aria-label=minutes]',
+    )
+      .click()
+      .clear()
+      .type('12');
+
+    cy.get('[formControlName=description]').click();
+
+    cy.get('#invalid-range-hour')
+      .invoke('text')
+      .then((text) => {
+        expect(text.trim()).equals('Rango de horas no permitido');
+      });
+  });
+
   it('Update Schedule ERROR', () => {
     cy.get('#btn-schedule').click();
     cy.wait('@getAllSchedule');

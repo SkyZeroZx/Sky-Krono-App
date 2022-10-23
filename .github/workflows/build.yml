@@ -76,7 +76,7 @@ jobs:
           key: ${{ github.sha }}
       - name: Install Cypress Dependences
         run: ./node_modules/.bin/cypress install --force
-      - name: Cypress E2E Test
+      - name: E2E Testing Mobile
         continue-on-error: true
         run: npm run e2e:ci:mobile
       - name: 'Upload Coverage E2E Mobile'
@@ -96,8 +96,6 @@ jobs:
         with:
           name: e2e-screenshots-mobile
           path: cypress/screenshots/*
-      - name: 'Coverage Summary Mobile'
-        run: npm run e2e:coverage
   e2e-testing-desktop:
     name: E2E Cypress Desktop
     needs: build
@@ -116,7 +114,7 @@ jobs:
           key: ${{ github.sha }}
       - name: Install Cypress Dependences
         run: ./node_modules/.bin/cypress install --force
-      - name: Cypress E2E Test
+      - name: E2E Testing Desktop
         continue-on-error: true
         run: npm run e2e:ci:mobile
       - name: 'Upload Coverage E2E Desktop'
@@ -136,136 +134,9 @@ jobs:
         with:
           name: e2e-screenshots-desktop
           path: cypress/screenshots/*
-  # e2e-testing-mobile:
-  #   name: E2E Mobile
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #     - uses: actions/cache@v3
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #     - name: 'UI Tests - Chrome - Desktop'
-  #       uses: cypress-io/github-action@v4
-  #       continue-on-error: true
-  #       with:
-  #         config: 'viewportWidth=390,viewportHeight=844,video=false'
-  #         start: npm run e2e:ci
-  #         wait-on: 'http://localhost:4200'
-  #         wait-on-timeout: 125
-  #         browser: chrome
-  #         spec: cypress/e2e/**/**/**
-  #         config-file: cypress.config.ts
-  #     - name: 'Upload Video E2E Mobile'
-  #       uses: actions/upload-artifact@v3
-  #       continue-on-error: true
-  #       with:
-  #         name: e2e-videos-mobile
-  #         path: cypress/videos/*
-  #     - name: 'Upload Screenshot E2E Mobile'
-  #       uses: actions/upload-artifact@v3
-  #       continue-on-error: true
-  #       with:
-  #         name: e2e-screenshots-mobile
-  #         path: cypress/screenshots/*
-  # e2e-testing-desktop:
-  #   name: E2E Desktop
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #     - uses: actions/cache@v3
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #     - name: 'UI Tests - Chrome - Desktop'
-  #       continue-on-error: true
-  #       uses: cypress-io/github-action@v4
-  #       with:
-  #         config: 'viewportWidth=1920,viewportHeight=1920,video=false'
-  #         start: npm run e2e:ci
-  #         wait-on: 'http://localhost:4200'
-  #         wait-on-timeout: 125
-  #         browser: chrome
-  #         spec: cypress/e2e/**/**/**
-  #         config-file: cypress.config.ts
-  #     - name: 'Upload Video E2E Desktop'
-  #       uses: actions/upload-artifact@v3
-  #       continue-on-error: true
-  #       with:
-  #         name: e2e-videos-desktop
-  #         path: cypress/videos/*
-  #     - name: 'Upload Screenshot E2E Desktop'
-  #       uses: actions/upload-artifact@v3
-  #       continue-on-error: true
-  #       with:
-  #         name: e2e-screenshots-desktop
-  #         path: cypress/screenshots/*
-  # e2e-test-chrome-desktop:
-  #   timeout-minutes: 24
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: cypress/browsers:node18.6.0-chrome105-ff104
-  #     options: --user 1001
-  #   needs: build
-  #   strategy:
-  #     # when one test fails, DO NOT cancel the other
-  #     # containers, because this will kill Cypress processes
-  #     # leaving the Dashboard hanging ...
-  #     # https://github.com/cypress-io/github-action/issues/48
-  #     fail-fast: false
-  #     matrix:
-  #       # run copies of the current job in parallel
-  #       containers: [1, 2 , 3 , 4 , 5]
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-
-  #     - uses: actions/cache@v3
-  #       id: restore-build
-  #       with:
-  #         path: ./*
-  #         key: ${{ github.sha }}
-
-  #     - name: 'UI Tests - Chrome - Desktop'
-  #       uses: cypress-io/github-action@v4
-  #       with:
-  #         config: 'viewportWidth=1920,viewportHeight=1920'
-  #         start: npm run e2e:ci
-  #         wait-on: 'http://localhost:4200'
-  #         wait-on-timeout: 120
-  #         browser: chrome
-  #         record: true
-  #         parallel: true
-  #         group: 'UI - Chrome - Mobile'
-  #         spec: cypress/e2e/**/**/**
-  #         config-file: cypress.config.ts
-  #       env:
-  #         CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-  #         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-  #         # Recommended: pass the GitHub token lets this action correctly
-  #         # determine the unique run id necessary to re-run the checks
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   sonarcloud:
     name: SonarCloud
-    needs: [build, unit-test]
+    needs: [build, unit-test, e2e-testing-desktop, e2e-testing-mobile]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -288,38 +159,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  # web-deploy:
-  #   name: Deploy
-  #   needs: [build, SonarCloud, unit-test]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 0
-  #     - name: Download Build Artifact
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: dist
-  #         path: dist
-  #     - name: Sync files
-  #       uses: sebastianpopp/ftp-action@releases/v2
-  #       with:
-  #         host: ftp.skyzerozx.com
-  #         user: ${{ secrets.FTP_USER }}
-  #         password: ${{ secrets.FTP_PASSWORD }}
-  #         localDir: dist/
-  #         options: '--delete --asci'
-  # - name: 📂 Sync files
-  #   uses: SamKirkland/FTP-Deploy-Action@4.3.2
-  #   with:
-  #     server: ftp.skyzerozx.com
-  #     username: skykrono@skyzerozx.com
-  #     password: ${{ secrets.FTP_PASSWORD }}
-  #     dry-run: true
-  #     protocol: ftps
-  #     state-name: /.sync-state.json
-  #     log-level: verbose
-  #     exclude: |
-  #       **/.git*
-  #       **/.git*/**
-  #       **/node_modules/*
+  web-deploy:
+    name: Deploy
+    needs: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          dry-run: true
+          protocol: ftps
+          state-name: /.sync-state.json
+          log-level: verbose
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/*

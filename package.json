@@ -15,7 +15,7 @@
     "e2e": "ng e2e",
     "sonar": "sonar-scanner",
     "dev:e2e:mobile": "npx cypress open --config viewportWidth=375,viewportHeight=667 --env mobileViewportWidthBreakpoint=600",
-    "dev:e2e:desktop": "ng s && npx cypress open --config viewportWidth=600,viewportHeight=1000",
+    "dev:e2e:desktop": "npx cypress open --config viewportWidth=1920,viewportHeight=1920 ",
     "unit-test": "ng test --code-coverage --browsers ChromeHeadless --watch=false",
     "e2e:ci": "ng run sky-krono-app:e2e-ci",
     "e2e:ci:mobile": "ng run sky-krono-app:e2e-ci-mobile",

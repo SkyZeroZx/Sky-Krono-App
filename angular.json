@@ -219,7 +219,6 @@
       }
     }
   },
-  "defaultProject": "sky-krono-app",
   "cli": {
     "analytics": false
   }
