@@ -6,10 +6,10 @@ export default defineConfig({
   screenshotsFolder: 'cypress/screenshots',
   fixturesFolder: 'cypress/fixtures',
   video: true,
-  viewportHeight: 844,
-  viewportWidth: 390,
+  viewportHeight: 969,
+  viewportWidth: 1669,
   experimentalStudio: true,
-  waitForAnimations : true,
+  waitForAnimations: true,
   defaultCommandTimeout: 40000,
   env: {
     mobileViewportWidthBreakpoint: 600,

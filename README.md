@@ -51,6 +51,7 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
   - [Docker](#docker)
 - [Analisis de Codigo](#analisis-de-codigo-)
 - [CI / CD](#integración-continua---despligue)
+- [Generar APK](#generar-apk)
 - [Construido](#construido-con-)
 
 ## Comenzando 🚀
@@ -119,9 +120,9 @@ _**Inicio** : Apartado para visualizar estado de las ultimas 2 semanas de asiste
 
 _**Asistencia** : Apartado para registrar la asistencia diaria del empleado asi como enviar alguna nota de registro en caso de ser necesario_
 
-_**Profile** : Apartado de perfil del sistema del usuario donde puede actualizar sus datos personales , habilitar notificaciones , fingerprint authentication , narbar mode y dark theme o light theme demanda (Se envia notificaciones push a los usuarios suscritos)_
+_**Profile** : Apartado de perfil del sistema del usuario donde puede actualizar sus datos personales , habilitar notificaciones , fingerprint authentication , nav bar mode y dark theme o light theme demanda (Se envia notificaciones push a los usuarios suscritos)_
 
-_**Contactos**: Vista en forma de lista de contactos de celular para visualizar los contactos existentes de manera facil como correo electronico , numero celular y WhatsApp_
+_**Contactos**: Vista en forma de lista de contactos de celular para visualizar los contactos existentes de manera facil como correo electronico , número celular y WhatsApp_
 
 _**Calendario** : Apartado con el calendario de tareas , registro de tareas , edicion , eliminacion (Se envia notificaciones push a los usuarios suscritos)_
 
@@ -306,6 +307,38 @@ _Adicionalmente se generan artifacts con los reportes y evidencias de nuestro CI
 
 ![CI 1](/docs/ci/ci-2.jpg)
 
+## Generar Apk
+
+_Para generar un APK y posteriormente publicarlo se usara bubblewrap , el cual nos permite generar nuestra apk apartir del TWA(Trusted Web Activites)_
+
+_Adicionalmente puede publicarse oficialmente en la PlayStore como un aplicación Android_
+
+_Previamente instalar el CLI de bubblewrap con el siguiente comando_
+
+```
+npm i -g @bubblewrap/cli
+```
+_Inicializar el proyecto con el el `manifest.webmanifest` y este previamente publicado como una PWA en dominio con HTTPS , ejecutar el comando:_
+
+```
+bubblewrap init --manifest=https://YOUR_WEB_URL/manifest.webmanifest
+```
+
+_Realizar los pasos que se indican en consola teniendo previamente configurado las propiedades adecuadas de una PWA_
+
+![Android 1](/docs/android/android-1.jpg)
+
+![Android 2](/docs/android/android-2.jpg)
+
+_Una vez finalizada la configuración ejecutar el siguiente comando_
+ 
+```
+bubblewrap build
+```
+![Android 3](/docs/android/android-3.jpg)
+
+_Más información https://developer.chrome.com/docs/android/trusted-web-activity/quick-start/_
+
 ## Construido con 🛠️
 
 _Las herramientas utilizadas son:_
@@ -321,6 +354,7 @@ _Las herramientas utilizadas son:_
 - [Prettier](https://prettier.io/) - Formateador de Codigo
 - [TabNine](https://www.tabnine.com/) - Autocompletador de Codigo
 - [WebAuthn](https://webauthn.io/) - Web Authentication
+- [BubbleWarp](https://github.com/GoogleChromeLabs/bubblewrap) - CLI para crear APK usando TWA apartir de una PWA
 - [Black DashBoard](https://www.creative-tim.com/product/black-dashboard-angular) - Plantilla Web Utilizada
 
 ## Versionado 📌
