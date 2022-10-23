@@ -200,7 +200,7 @@ _Para ejecutar en vista mobile(PWA) ejecutar :_
 
 _Al finalizar tendremos un reporte de los test ejecutados_
 
-![E2E Test 1](/docs/e2e/e2e-1.jpg)
+![E2E Test 1](/docs/e2e/e2e-1.JPG)
 
 _Se generara la carpeta `coverage-e2e` con la cobertura de codigo del proyecto_
 
@@ -214,7 +214,7 @@ _Cuenta con soporte para logeo mediante huella dactilar o patron/pin del dispost
 
 ![AUTH 1](/docs/web-authn/web-authn_1.jpg)
 
-_Para habilitarlo ir al profile del usuario logeado _
+_Para habilitarlo ir al profile del usuario logeado_
 
 ![AUTH 2](/docs/web-authn/web-authn_2.jpg)
 
