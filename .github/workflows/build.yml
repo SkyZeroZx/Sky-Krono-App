@@ -116,7 +116,7 @@ jobs:
         run: ./node_modules/.bin/cypress install --force
       - name: E2E Testing Desktop
         continue-on-error: true
-        run: npm run e2e:ci:mobile
+        run: npm run e2e:ci
       - name: 'Upload Coverage E2E Desktop'
         uses: actions/upload-artifact@v3
         with:

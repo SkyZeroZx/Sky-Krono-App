@@ -11,12 +11,12 @@ describe('Home Funcionality', () => {
     cy.get('#days-later > strong')
       .invoke('text')
       .then((text) => {
-        expect(text.trim()).equal('3 días');
+        expect(text.trim()).equal('4 días');
       });
     cy.get('#days-absent > strong')
       .invoke('text')
       .then((text) => {
-        expect(text.trim()).equal('4 días');
+        expect(text.trim()).equal('0 días');
       });
   });
 });

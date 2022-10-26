@@ -1,6 +1,13 @@
 {
-  "currentDate": "2022-10-25 23:41",
+  "currentDate": "2022-10-26 13:04",
   "listHistoryStatusAttendance": [
+    {
+      "isActive": 1,
+      "isLater": 0,
+      "isAbsent": 0,
+      "date": "2022-10-26T14:48:57.723Z",
+      "isDayOff": 0
+    },
     {
       "isActive": 0,
       "isLater": 1,
@@ -40,7 +47,7 @@
       "isActive": 1,
       "isLater": 1,
       "isAbsent": 0,
-      "date": "2022-10-21T02:57:31.870Z",
+      "date": "2022-10-20T00:00:00.000Z",
       "isDayOff": 0
     },
     {
@@ -61,7 +68,7 @@
       "isActive": 1,
       "isLater": 1,
       "isAbsent": 0,
-      "date": "2022-10-18T04:53:21.449Z",
+      "date": "2022-10-17T00:00:00.000Z",
       "isDayOff": 0
     },
     {
@@ -89,14 +96,7 @@
       "isActive": 1,
       "isLater": 0,
       "isAbsent": 0,
-      "date": "2022-10-13T23:41:03.596Z",
-      "isDayOff": 0
-    },
-    {
-      "isActive": 0,
-      "isLater": 0,
-      "isAbsent": 1,
-      "date": "2022-10-12T00:00:00.000Z",
+      "date": "2022-10-13T00:00:00.000Z",
       "isDayOff": 0
     }
   ]
