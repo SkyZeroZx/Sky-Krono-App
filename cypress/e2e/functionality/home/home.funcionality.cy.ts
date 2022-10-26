@@ -8,6 +8,7 @@ describe('Home Funcionality', () => {
 
   it('Validate Home count correct days absents and later', () => {
     cy.wait('@history');
+    cy.wait(2000)
     cy.get('#days-later > strong')
       .invoke('text')
       .then((text) => {
