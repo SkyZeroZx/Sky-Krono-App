@@ -43,5 +43,11 @@ export class SettingsComponent {
       id: 'btn-licence',
       icon: 'fa-solid fa-ticket-simple',
     },
+    {
+      path: '/report-attendance',
+      title: 'Reportes',
+      id: 'btn-reports-attendance',
+      icon: 'fa-solid fa-file',
+    },
   ];
 }

@@ -19,6 +19,7 @@ import '@cypress/code-coverage/support';
 import 'cypress-file-upload';
 import '@4tw/cypress-drag-drop';
 import 'cypress-real-events/support';
+require('cy-verify-downloads').addCustomCommand();
 
 //import '@cypress/code-coverage/support';
 

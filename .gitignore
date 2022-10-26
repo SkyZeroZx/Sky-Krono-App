@@ -20,6 +20,7 @@
 .nyc_output
 /cypress/videos/*
 /cypress/screenshots/*
+/cypress/downloads/*
 
 
 # profiling files

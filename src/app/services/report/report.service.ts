@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';
+import { ToastrService } from 'ngx-toastr';
 import { Constant } from 'src/app/common/constants/Constant';
+import 'jspdf-autotable';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReporteService {
-  public exportAsPDF(name, headers) {
-    // Pendiente agregar Add Filters in report
+  constructor(private toastrService: ToastrService) {}
+
+  exportAsPDF(name: string, headers: any[]) {
+    this.toastrService.info('Generando Reporte');
+
     let header = new Array<any>();
     header[0] = headers;
-    // Obtenemos los encabezados Object.keys(Constant.REPORT[0]);
-    let arrReport = Constant.REPORT.map((obj) => Object.values(obj));
+
+    let body = Constant.REPORT.map((obj) => Object.values(obj));
     let pdf = new jsPDF({
       orientation: 'landscape',
     });
@@ -23,13 +27,13 @@ export class ReporteService {
     (pdf as any).autoTable({
       styles: { fontSize: 7 },
       head: header,
-      body: arrReport,
+      body: body,
       theme: 'grid',
       didDrawCell: (_data) => {
         // This is intentional
       },
     });
     //  Metodo para abrir en otra pestaña pdf.output("dataurlnewwindow");
-    pdf.save(name + '_export_' + +new Date().getTime() + '.pdf');
+    pdf.save(name + '_export_' + new Date().getTime() + '.pdf');
   }
 }

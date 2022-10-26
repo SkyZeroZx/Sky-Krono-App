@@ -1,0 +1,103 @@
+<div class="content">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 id="title" class="mb-0">Reportes Asistencia</h3>
+                </div>
+                <br />
+                <form [formGroup]="reportAttendanceForm">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input readonly type="text" placeholder="Rango de Fechas" class="form-control"
+                                    bsDaterangepicker formControlName="dateRange">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <ng-select [items]="listUsers" [multiple]="false" [closeOnSelect]="true"
+                                    placeholder="Seleccionar Empleado" [clearable]="true" bindLabel="name"
+                                    bindValue="id" formControlName="id">
+                                </ng-select>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select id="input-status" class="form-control" formControlName="status">
+                                    <option value="">Elija Estado...</option>
+                                    <option [value]="'TARDE'">TARDE</option>
+                                    <option [value]="'FALTA'">FALTA</option>
+                                    <option [value]="'PUNTUAL'">PUNTUAL</option>
+                                    <option [value]="'DIA LIBRE'">DIA LIBRE</option>
+                                    <option [value]="'LICENCIA'">LICENCIA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="card-header">
+                    <button id="btn-pdf-attendance" type="button" class="btn danger"
+                        [disabled]="reportAttendanceForm.invalid" (click)="exportPdf()">
+                        <a> <i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                    </button>
+                </div>
+
+                <div class="table-responsive" style="padding:5px">
+                    <table class=" table ">
+                        <thead class=" text-primary">
+                            <tr>
+                                <th scope="col">Nombres Apellidos</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Entrada - Salida </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let attendance of listAttendance | 
+                        filterAttendanceReport:[
+                        reportAttendanceForm.getRawValue().status
+                        ] |   
+                        paginate:{itemsPerPage: 10, currentPage:p}">
+                            <tr>
+                                <td>
+                                    {{attendance.fullName}}
+                                </td>
+                                <td>
+                                    {{attendance.description}}
+                                </td>
+                                <td>
+                                    {{attendance.date }}
+                                </td>
+                                <td>
+                                    <div [ngSwitch]="attendance.status">
+                                        <span *ngSwitchCase="'PUNTUAL'"
+                                            class="badge badge-primary">{{attendance.status}}</span>
+                                        <span *ngSwitchCase="'FALTA'"
+                                            class="badge badge-danger">{{attendance.status}}</span>
+                                        <span *ngSwitchCase="'TARDE'"
+                                            class="badge badge-warning">{{attendance.status}}</span>
+                                        <span *ngSwitchCase="'DIA LIBRE'"
+                                            class="badge badge-light">{{attendance.status}}</span>
+                                        <span *ngSwitchCase="'LICENCIA'"
+                                            class="badge badge-info">{{attendance.status}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{attendance.entryTime+ " - " + attendance.exitTime}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container d-flex justify-content-center ">
+                    <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="paginator" [responsive]="true">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

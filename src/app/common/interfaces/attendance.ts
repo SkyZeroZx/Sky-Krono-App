@@ -20,3 +20,17 @@ export interface StatusAttendance {
   isAbsent: boolean;
   date: string;
 }
+
+export interface ReportAttendance {
+  description?: string;
+  status: string;
+  fullName: string;
+  date: string;
+  entryTime: string;
+  exitTime: string;
+}
+
+export interface SearchReportAttendance {
+  dateRange: string[];
+  id: string;
+}

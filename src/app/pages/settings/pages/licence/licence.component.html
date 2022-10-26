@@ -79,8 +79,7 @@
 
 <!-- Modal Create Licence -->
 <div bsModal class="modal fade" #modalCreateLicence="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllLicence(); showModalCreateLicenceOk = false" tabindex="-1" role="dialog"
-    aria-labelledby="dialog-static-name">
+    (onHidden)="showModalCreateLicenceOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
         <div class="modal-content card">
             <div class="modal-header">
@@ -90,7 +89,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-create-licence (close)="modalCreateLicence.hide()" *ngIf="showModalCreateLicenceOk">
+            <app-create-licence (close)="modalCreateLicence.hide();getAllLicence();" *ngIf="showModalCreateLicenceOk">
             </app-create-licence>
         </div>
     </div>
@@ -100,8 +99,8 @@
 
 <!-- Modal Update Licence-->
 <div bsModal class="modal fade" #modalUpdateLicence="bs-modal" [config]="{backdrop: 'static'}"
-    (wishEvent)="showModalUpdateLicenceOk = false" (onHidden)="getAllLicence() ; showModalUpdateLicenceOk = false"
-    tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    (wishEvent)="showModalUpdateLicenceOk = false" (onHidden)=" showModalUpdateLicenceOk = false" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
         <div class="modal-content card">
             <div class="modal-header">
@@ -111,7 +110,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-update-licence (close)="modalUpdateLicence.hide()" [inputLicence]="selectedLicence"
+            <app-update-licence (close)="modalUpdateLicence.hide();getAllLicence() ;" [inputLicence]="selectedLicence"
                 *ngIf="showModalUpdateLicenceOk">
             </app-update-licence>
         </div>

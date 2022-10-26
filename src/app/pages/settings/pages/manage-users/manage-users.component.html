@@ -29,7 +29,7 @@
                 </form>
 
                 <div class="card-header">
-                    <button id="btn-create-user"    type="button" class="btn info" (click)="showModalCreateUser()">
+                    <button id="btn-create-user" type="button" class="btn info" (click)="showModalCreateUser()">
                         <a><i class="fa fa-user-plus" aria-hidden="true"></i>
                             Nuevo</a>
                     </button>
@@ -137,7 +137,7 @@
 
 <!-- Modal Create User -->
 <div bsModal class="modal fade" #modalCreateUser="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllUsers(); createUserOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    (onHidden)="createUserOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
 
         <div class="modal-content card">
@@ -148,7 +148,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-create-user (close)="modalCreateUser.hide()" *ngIf="createUserOk"></app-create-user>
+            <app-create-user (close)="modalCreateUser.hide(); getAllUsers(); " *ngIf="createUserOk"></app-create-user>
         </div>
     </div>
 </div>
@@ -157,7 +157,7 @@
 
 <!-- Modal Edit User-->
 <div bsModal class="modal fade" #modalUpdateUser="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllUsers() ; editUserOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    (onHidden)="  editUserOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
         <div class="modal-content card">
             <div class="modal-header">
@@ -167,7 +167,8 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-update-user (close)="modalUpdateUser.hide()" [inputUser]="userSelected" *ngIf="editUserOk">
+            <app-update-user (close)="modalUpdateUser.hide(); getAllUsers();" [inputUser]="userSelected"
+                *ngIf="editUserOk">
             </app-update-user>
         </div>
     </div>

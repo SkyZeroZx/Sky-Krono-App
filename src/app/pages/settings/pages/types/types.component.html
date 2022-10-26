@@ -3,7 +3,7 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3  id="title" class="mb-0">Tipos de Tarea</h3>
+                    <h3 id="title" class="mb-0">Tipos de Tarea</h3>
                 </div>
                 <br />
                 <form [formGroup]="typeForm">
@@ -86,8 +86,7 @@
 
 <!-- Modal Create Type -->
 <div bsModal class="modal fade" #modalCreateType="bs-modal" [config]="{backdrop: 'static'}"
-    (onHidden)="getAllTypes(); showModalCreateTypeOk = false" tabindex="-1" role="dialog"
-    aria-labelledby="dialog-static-name">
+    (onHidden)="showModalCreateTypeOk = false" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
 
         <div class="modal-content card">
@@ -98,7 +97,7 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-create-types (close)="modalCreateType.hide()" *ngIf="showModalCreateTypeOk">
+            <app-create-types (close)="modalCreateType.hide();getAllTypes();" *ngIf="showModalCreateTypeOk">
             </app-create-types>
         </div>
     </div>
@@ -108,8 +107,8 @@
 
 <!-- Modal Update Type-->
 <div bsModal class="modal fade" #modalUpdateType="bs-modal" [config]="{backdrop: 'static'}"
-    (wishEvent)="showModalUpdateTypeOk = false" (onHidden)="getAllTypes() ; showModalUpdateTypeOk = false" tabindex="-1"
-    role="dialog" aria-labelledby="dialog-static-name">
+    (wishEvent)="showModalUpdateTypeOk = false" (onHidden)=" showModalUpdateTypeOk = false" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-xl">
         <div class="modal-content card">
             <div class="modal-header">
@@ -119,7 +118,8 @@
                     <span>&times;</span>
                 </button>
             </div>
-            <app-update-types (close)="modalUpdateType.hide()" [inputType]="selectedType" *ngIf="showModalUpdateTypeOk">
+            <app-update-types (close)="modalUpdateType.hide(); getAllTypes();" [inputType]="selectedType"
+                *ngIf="showModalUpdateTypeOk">
             </app-update-types>
         </div>
     </div>

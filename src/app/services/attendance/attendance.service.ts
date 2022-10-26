@@ -2,7 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { AttendanceHistoryUser, Attendance, Response } from '../../common/interfaces';
+import {
+  AttendanceHistoryUser,
+  Attendance,
+  Response,
+  ReportAttendance,
+  SearchReportAttendance,
+} from '../../common/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +34,14 @@ export class AttendanceService {
 
   registerExitAttendance(): Observable<Response> {
     return this.http.patch<Response>(`${environment.API_URL}/attendance`, null);
+  }
+
+  getAttendanceReport(
+    searchReportAttendance: SearchReportAttendance,
+  ): Observable<ReportAttendance[]> {
+    return this.http.post<ReportAttendance[]>(
+      `${environment.API_URL}/attendance/report`,
+      searchReportAttendance,
+    );
   }
 }

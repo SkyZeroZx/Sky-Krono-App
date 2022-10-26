@@ -53,11 +53,13 @@ export class HomeComponent implements AfterViewInit {
     this.lastWeek = listHistoryStatusAttendance
       .slice(this.dayOfWeek, this.dayOfWeek + this.totalDaysOfWeek)
       .reverse();
-
+   
     this.restDaysOfWeek = Util.getRestDaysOfWeek(
       this.currrentWeek.at(-1),
       this.dayOfWeek,
     );
+
+    console.log(' this.restDaysOfWeek' ,  this.restDaysOfWeek)
   }
 
   validLastAttendance([lastAttendance]: StatusAttendance[]): void {

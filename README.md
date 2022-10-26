@@ -51,13 +51,14 @@ _Adicionalmente funciona como PWA(Progresive Web App) que puede integrarse en cu
   - [Docker](#docker)
 - [Analisis de Codigo](#analisis-de-codigo-)
 - [CI / CD](#integración-continua---despligue)
+- [Generar APK](#generar-apk)
 - [Construido](#construido-con-)
 
 ## Comenzando 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-_Puede visualizar una Demo del Proyecto en el siguiente enlace : https://sky-krono-app.vercel.app/#/login_
+_Puede visualizar una Demo del Proyecto en el siguiente enlace : https://skykrono.skyzerozx.com/#/login_
 
 _**Administrador**_
 
@@ -119,9 +120,9 @@ _**Inicio** : Apartado para visualizar estado de las ultimas 2 semanas de asiste
 
 _**Asistencia** : Apartado para registrar la asistencia diaria del empleado asi como enviar alguna nota de registro en caso de ser necesario_
 
-_**Profile** : Apartado de perfil del sistema del usuario donde puede actualizar sus datos personales , habilitar notificaciones , fingerprint authentication , narbar mode y dark theme o light theme demanda (Se envia notificaciones push a los usuarios suscritos)_
+_**Profile** : Apartado de perfil del sistema del usuario donde puede actualizar sus datos personales , habilitar notificaciones , fingerprint authentication , nav bar mode y dark theme o light theme demanda (Se envia notificaciones push a los usuarios suscritos)_
 
-_**Contactos**: Vista en forma de lista de contactos de celular para visualizar los contactos existentes de manera facil como correo electronico , numero celular y WhatsApp_
+_**Contactos**: Vista en forma de lista de contactos de celular para visualizar los contactos existentes de manera facil como correo electronico , número celular y WhatsApp_
 
 _**Calendario** : Apartado con el calendario de tareas , registro de tareas , edicion , eliminacion (Se envia notificaciones push a los usuarios suscritos)_
 
@@ -158,11 +159,11 @@ _La PWA se encuentra configurada para ejecutarse en la vista de Login si no se e
 
 _Se cuenta con soporte de notificaciones Push integrado para el calendario tanto para escritorio como dispositivos moviles_
 
-_Se creo el archivo *src/custom-service-worker.js* para la gestion de evento de notificaciones personalizado_
+_Se creo el archivo `custom-service-worker.js` para la gestion de evento de notificaciones personalizado_
 
-![PWA 5](/docs/pwa/pwa_5.png)
-
-![PWA 6](/docs/pwa/pwa_6.png)
+<p align="center">
+<img src="docs/pwa/pwa_1.png" />
+</p >
 
 ## Desarrollo ⚙️
 
@@ -212,17 +213,15 @@ _Adicionalmente puede visualizar los videos recopilados por cypress en la carpet
 
 _Cuenta con soporte para logeo mediante huella dactilar o patron/pin del dispostivo movil usando el estandar web authn_
 
-![AUTH 1](/docs/web-authn/web-authn_1.jpg)
-
+<p align="center">
+<img src="/docs/web-authn/web-authn_1.jpg" />
+</p >
+ 
 _Para habilitarlo ir al profile del usuario logeado_
 
-![AUTH 2](/docs/web-authn/web-authn_2.jpg)
-
-![AUTH 4](/docs/web-authn/web-authn_4.jpg)
-
-_En caso el dispositivo se encuentre registro se tendra mensaje de informacion de registro_
-
-![AUTH 3](/docs/web-authn/web-authn_3.jpg)
+<p align="center">
+<img src="/docs/web-authn/web-authn_2.jpg" />
+</p >
 
 _Más informacion de Web Authn : https://webauthn.io/_
 
@@ -306,6 +305,40 @@ _Adicionalmente se generan artifacts con los reportes y evidencias de nuestro CI
 
 ![CI 1](/docs/ci/ci-2.jpg)
 
+## Generar Apk
+
+_Para generar un APK y posteriormente publicarlo se usara bubblewrap , el cual nos permite generar nuestra apk apartir del TWA(Trusted Web Activites)_
+
+_Adicionalmente puede publicarse oficialmente en la PlayStore como un aplicación Android_
+
+_Previamente instalar el CLI de bubblewrap con el siguiente comando_
+
+```
+npm i -g @bubblewrap/cli
+```
+
+_Inicializar el proyecto con el el `manifest.webmanifest` y este previamente publicado como una PWA en dominio con HTTPS , ejecutar el comando:_
+
+```
+bubblewrap init --manifest=https://YOUR_WEB_URL/manifest.webmanifest
+```
+
+_Realizar los pasos que se indican en consola teniendo previamente configurado las propiedades adecuadas de una PWA_
+
+![Android 1](/docs/android/android-1.jpg)
+
+![Android 2](/docs/android/android-2.jpg)
+
+_Una vez finalizada la configuración ejecutar el siguiente comando_
+
+```
+bubblewrap build
+```
+
+![Android 3](/docs/android/android-3.jpg)
+
+_Más información https://developer.chrome.com/docs/android/trusted-web-activity/quick-start/_
+
 ## Construido con 🛠️
 
 _Las herramientas utilizadas son:_
@@ -321,6 +354,7 @@ _Las herramientas utilizadas son:_
 - [Prettier](https://prettier.io/) - Formateador de Codigo
 - [TabNine](https://www.tabnine.com/) - Autocompletador de Codigo
 - [WebAuthn](https://webauthn.io/) - Web Authentication
+- [BubbleWarp](https://github.com/GoogleChromeLabs/bubblewrap) - CLI para crear APK usando TWA apartir de una PWA
 - [Black DashBoard](https://www.creative-tim.com/product/black-dashboard-angular) - Plantilla Web Utilizada
 
 ## Versionado 📌

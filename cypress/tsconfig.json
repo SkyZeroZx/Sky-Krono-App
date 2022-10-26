@@ -9,7 +9,8 @@
       "jasmine",
       "cypress-file-upload",
       "@4tw/cypress-drag-drop",
-      "cypress-real-events"
+      "cypress-real-events",
+      "cy-verify-downloads"
     ]
   }
 }

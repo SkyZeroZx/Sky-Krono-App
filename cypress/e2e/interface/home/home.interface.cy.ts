@@ -1,8 +1,8 @@
 describe('Home Interface', () => {
-  const { employee } = Cypress.env('users');
+  const { admin } = Cypress.env('users');
 
   beforeEach(() => {
-    cy.login(employee.username, employee.password);
+    cy.login(admin.username, admin.password);
   });
 
   it('Validate Home Interface', () => {
@@ -44,16 +44,15 @@ describe('Home Interface', () => {
       });
 
     // Validate Letter Titles of Last Attendance
-    cy.get(':nth-child(3) > .current-week-title')
-      .children()
-      .then((children) => {
-        expect(children[0].innerText).equal('L');
-        expect(children[1].innerText).equal('M');
-        expect(children[2].innerText).equal('X');
-        expect(children[3].innerText).equal('J');
-        expect(children[4].innerText).equal('V');
-        expect(children[5].innerText).equal('S');
-        expect(children[6].innerText).equal('D');
+    cy.get('.current-week-title > .last-week')
+      .then((element) => {
+        expect(element[0].innerText).equal('L');
+        expect(element[1].innerText).equal('M');
+        expect(element[2].innerText).equal('X');
+        expect(element[3].innerText).equal('J');
+        expect(element[4].innerText).equal('V');
+        expect(element[5].innerText).equal('S');
+        expect(element[6].innerText).equal('D');
       });
   });
 });

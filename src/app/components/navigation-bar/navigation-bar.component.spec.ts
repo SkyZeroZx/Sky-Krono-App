@@ -24,7 +24,6 @@ fdescribe('NavigationBarComponent', () => {
       declarations: [NavigationBarComponent],
       imports: [
         BrowserAnimationsModule,
-
         RouterTestingModule.withRoutes([
           { path: 'calendar-admin', component: SettingsComponent },
         ]),

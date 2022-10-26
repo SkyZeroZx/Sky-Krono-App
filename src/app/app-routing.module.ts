@@ -112,6 +112,14 @@ const routes: Routes = [
             (m) => m.LicenceModule,
           ),
       },
+      {
+        path: 'report-attendance',
+        canActivate: [RoleAdmin],
+        loadChildren: () =>
+          import('./pages/settings/pages/report-attendance/report-attendance.module').then(
+            (m) => m.ReportAttendanceModule,
+          ),
+      },
     ],
   },
   {

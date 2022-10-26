@@ -40,8 +40,8 @@
                 <div class="card-header border-0 container d-flex align-items-center flex-column">
                     <h4 id="title-last-week" class="mb-3 p-2">Semana Anterior</h4>
                     <div class="d-flex current-week-title">
-                        <strong class="name p-2" *ngFor="let day of  lastWeek">
-                            {{ day.date | date:'EEEEE':'-5UTC' }}
+                        <strong class="name p-2 last-week" *ngFor="let day of  lastWeek">
+                            {{ day.date | date:'EEEEE'}}
                         </strong>
                     </div>
                     <div class="d-flex">

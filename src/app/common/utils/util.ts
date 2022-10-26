@@ -34,6 +34,7 @@ export class Util {
   }
 
   static getRestDaysOfWeek(attendanceHistoryUser: StatusAttendance, dayOfWeek: number) {
+    const add = dayOfWeek == 0 ? 0 : 1;
     const newDate = new Date();
     const date =
       attendanceHistoryUser == undefined
@@ -44,7 +45,7 @@ export class Util {
     for (let i = 0; i < Constant.TOTAL_DAY_OF_WEEK - dayOfWeek; i++) {
       const result = new Date(date);
       listRestOfDays.push(
-        new Date(result.setDate(result.getDate() + i + 1)).toLocaleString('en-US', {
+        new Date(result.setDate(result.getDate() + i + add)).toLocaleString('en-US', {
           timeZone: environment.TIME_ZONE,
         }),
       );

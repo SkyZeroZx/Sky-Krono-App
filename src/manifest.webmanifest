@@ -4,56 +4,125 @@
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
+  "lang": "es",
   "scope": "./",
   "start_url": "./",
+  "description": "Sky Krono App By SkyZeroZx",
+  "categories": ["Attedance", "Schedule", "Assistant App Control"],
   "icons": [
     {
-      "src": "assets/icons/icon-72x72.png",
+      "src": "/assets/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-96x96.png",
+      "src": "/assets/icons/icon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-128x128.png",
+      "src": "/assets/icons/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-144x144.png",
+      "src": "/assets/icons/icon-144x144.png",
       "sizes": "144x138",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-152x152.png",
+      "src": "/assets/icons/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-192x192.png",
+      "src": "/assets/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-384x384.png",
+      "src": "/assets/icons/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/assets/icons/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-512x512.png",
+      "src": "/assets/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/screenshot1.png",
+      "sizes": "388x851",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshots/screenshot2.png",
+      "sizes": "388x851",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshots/screenshot3.png",
+      "sizes": "388x851",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshots/screenshot4.png",
+      "sizes": "388x851",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Asistencia",
+      "short_name": "Asistencia",
+      "url": "/#/attendance",
+      "description": "Puede marcar su asistencia diaria",
+      "icons": [
+        {
+          "src": "/assets/shortcuts/attendance/attendance-128x128.png",
+          "sizes": "128x128"
+        }
+      ]
+    },
+    {
+      "name": "Mi Perfil",
+      "short_name": "Perfil",
+      "url": "/#/user-profile",
+      "description": "Puede actualizar sus datos de perfil",
+      "icons": [
+        {
+          "src": "assets/shortcuts/profile/profile-128x128.png",
+          "sizes": "128x128"
+        }
+      ]
+    },
+    {
+      "name": "Contactos",
+      "short_name": "Contactos",
+      "url": "/#/contacts",
+      "description": "Puede ver sus contactos disponibles",
+      "icons": [
+        {
+          "src": "assets/shortcuts/contacts/contacts-128x128.png",
+          "sizes": "128x128"
+        }
+      ]
     }
   ]
 }
