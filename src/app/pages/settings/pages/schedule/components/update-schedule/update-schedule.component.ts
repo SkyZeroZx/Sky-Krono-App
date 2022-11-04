@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Schedule, UpdateSchedule } from '../../../../../../common/interfaces';
-import { Util } from '../../../../../../common/utils/util';
-import { ScheduleService } from '../../../../../../services/schedule/schedule.service';
+import { Schedule, UpdateSchedule } from '@core/interfaces';
+import { Util } from '@core/utils/util';
+import { ScheduleService } from '@service/schedule/schedule.service';
 
 @Component({
   selector: 'app-update-schedule',

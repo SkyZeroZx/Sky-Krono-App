@@ -10,7 +10,7 @@ import { BsDatepickerModule, BsDaterangepickerConfig } from 'ngx-bootstrap/datep
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
-import { getDatepickerConfig } from '../../../../common/config/Datepicker';
+import { getDatepickerConfig } from '../../../../common/config/datepicker.config';
 import { Constant } from '../../../../common/constants/Constant';
 import { filterAttendanceReport } from '../../../../common/pipes/filter-attendance-report.pipe';
 import { AttendanceService } from '../../../../services/attendance/attendance.service';

@@ -1,4 +1,3 @@
-import { defineFullCalendarElement } from '@fullcalendar/web-component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -10,13 +9,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
-import interactionPlugin from '@fullcalendar/interaction';
 import { of, throwError } from 'rxjs';
 import { TaskService } from '../../../../services/task/task.service';
-import { CalendarViewComponent } from '../../calendar-view.component';
 import { CalendarViewerMock } from '../../calendar-view.mock.spec';
 import { CalendarViewRouter } from '../../calendar-view.routing';
 import { CalendarViewDetailComponent } from './calendar-view-detail..component';

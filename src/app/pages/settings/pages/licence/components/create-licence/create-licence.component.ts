@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../../../../../../common/interfaces';
-import { LicenceService } from '../../../../../../services/licence/licence.service';
-import { UserService } from '../../../../../../services/users/user.service';
+import { User } from '@core/interfaces';
+import { LicenceService } from '@service/licence/licence.service';
+import { UserService } from '@service/users/user.service';
 
 @Component({
   selector: 'app-create-licence',

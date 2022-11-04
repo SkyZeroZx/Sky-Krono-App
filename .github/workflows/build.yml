@@ -58,82 +58,82 @@ jobs:
         with:
           name: coverage-unit-test
           path: coverage-unit-test/*
-  e2e-testing-mobile:
-    name: E2E Cypress Mobile
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - uses: actions/cache@v2
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-      - name: Install Cypress Dependences
-        run: ./node_modules/.bin/cypress install --force
-      - name: E2E Testing Mobile
-        continue-on-error: true
-        run: npm run e2e:ci:mobile
-      - name: 'Upload Coverage E2E Mobile'
-        uses: actions/upload-artifact@v3
-        with:
-          name: reports-e2e-mobile
-          path: coverage-e2e/*
-      - name: 'Upload Video E2E Mobile'
-        uses: actions/upload-artifact@v3
-        continue-on-error: true
-        with:
-          name: e2e-videos-mobile
-          path: cypress/videos/*
-      - name: 'Upload Screenshot E2E Mobile'
-        uses: actions/upload-artifact@v3
-        continue-on-error: true
-        with:
-          name: e2e-screenshots-mobile
-          path: cypress/screenshots/*
-  e2e-testing-desktop:
-    name: E2E Cypress Desktop
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - uses: actions/cache@v2
-        id: restore-build
-        with:
-          path: ./*
-          key: ${{ github.sha }}
-      - name: Install Cypress Dependences
-        run: ./node_modules/.bin/cypress install --force
-      - name: E2E Testing Desktop
-        continue-on-error: true
-        run: npm run e2e:ci
-      - name: 'Upload Coverage E2E Desktop'
-        uses: actions/upload-artifact@v3
-        with:
-          name: reports-e2e-desktop
-          path: coverage-e2e/*
-      - name: 'Upload Video E2E Desktop'
-        uses: actions/upload-artifact@v3
-        continue-on-error: true
-        with:
-          name: e2e-videos-desktop
-          path: cypress/videos/*
-      - name: 'Upload Screenshot E2E Desktop'
-        uses: actions/upload-artifact@v3
-        continue-on-error: true
-        with:
-          name: e2e-screenshots-desktop
-          path: cypress/screenshots/*
+  # e2e-testing-mobile:
+  #   name: E2E Cypress Mobile
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 16
+  #     - uses: actions/cache@v2
+  #       id: restore-build
+  #       with:
+  #         path: ./*
+  #         key: ${{ github.sha }}
+  #     - name: Install Cypress Dependences
+  #       run: ./node_modules/.bin/cypress install --force
+  #     - name: E2E Testing Mobile
+  #       continue-on-error: true
+  #       run: npm run e2e:ci:mobile
+  #     - name: 'Upload Coverage E2E Mobile'
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: reports-e2e-mobile
+  #         path: coverage-e2e/*
+  #     - name: 'Upload Video E2E Mobile'
+  #       uses: actions/upload-artifact@v3
+  #       continue-on-error: true
+  #       with:
+  #         name: e2e-videos-mobile
+  #         path: cypress/videos/*
+  #     - name: 'Upload Screenshot E2E Mobile'
+  #       uses: actions/upload-artifact@v3
+  #       continue-on-error: true
+  #       with:
+  #         name: e2e-screenshots-mobile
+  #         path: cypress/screenshots/*
+  # e2e-testing-desktop:
+  #   name: E2E Cypress Desktop
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 16
+  #     - uses: actions/cache@v2
+  #       id: restore-build
+  #       with:
+  #         path: ./*
+  #         key: ${{ github.sha }}
+  #     - name: Install Cypress Dependences
+  #       run: ./node_modules/.bin/cypress install --force
+  #     - name: E2E Testing Desktop
+  #       continue-on-error: true
+  #       run: npm run e2e:ci
+  #     - name: 'Upload Coverage E2E Desktop'
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: reports-e2e-desktop
+  #         path: coverage-e2e/*
+  #     - name: 'Upload Video E2E Desktop'
+  #       uses: actions/upload-artifact@v3
+  #       continue-on-error: true
+  #       with:
+  #         name: e2e-videos-desktop
+  #         path: cypress/videos/*
+  #     - name: 'Upload Screenshot E2E Desktop'
+  #       uses: actions/upload-artifact@v3
+  #       continue-on-error: true
+  #       with:
+  #         name: e2e-screenshots-desktop
+  #         path: cypress/screenshots/*
   sonarcloud:
     name: SonarCloud
     needs: [build, unit-test, e2e-testing-desktop, e2e-testing-mobile]

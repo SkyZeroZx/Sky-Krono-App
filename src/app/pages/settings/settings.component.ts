@@ -49,5 +49,11 @@ export class SettingsComponent {
       id: 'btn-reports-attendance',
       icon: 'fa-solid fa-file',
     },
+    {
+      path: '/charts-attendance',
+      title: 'Graficos',
+      id: 'btn-charts-attendance',
+      icon: 'fa-solid fa-chart-simple',
+    },
   ];
 }

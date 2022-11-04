@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '@service/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Injectable({

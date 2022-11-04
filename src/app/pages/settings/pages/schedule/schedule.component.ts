@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Schedule, UpdateSchedule } from '../../../../common/interfaces';
-import { ReporteService } from '../../../../services/report/report.service';
-import { ScheduleService } from '../../../../services/schedule/schedule.service';
+import { Schedule, UpdateSchedule } from '@core/interfaces';
+import { ReporteService } from '@service/report/report.service';
+import { ScheduleService } from '@service/schedule/schedule.service';
 
 @Component({
   selector: 'app-schedule',

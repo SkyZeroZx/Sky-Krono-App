@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Constant } from 'src/app/common/constants/Constant';
-import { User } from '../../../../common/interfaces';
-import { ReporteService } from '../../../../services/report/report.service';
-import { UserService } from '../../../../services/users/user.service';
+import { Constant } from '@core/constants/Constant';
+import { User } from '@core/interfaces';
+import { ReporteService } from '@service/report/report.service';
+import { UserService } from '@service/users/user.service';
 
 @Component({
   selector: 'app-manage-users',

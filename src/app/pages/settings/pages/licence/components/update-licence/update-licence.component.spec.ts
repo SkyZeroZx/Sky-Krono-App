@@ -10,7 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
-import { getDatepickerConfig } from '../../../../../../common/config/Datepicker';
+import { getDatepickerConfig } from '../../../../../../common/config/datepicker.config';
 import { LicenceService } from '../../../../../../services/licence/licence.service';
 import { UserService } from '../../../../../../services/users/user.service';
 import { LicenceMock } from '../../licence.mock.spec';

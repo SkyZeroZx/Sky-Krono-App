@@ -1,0 +1,45 @@
+<div class="content">
+  <div class="card shadow" [formGroup]="chartsForm">
+    <div class="card-header">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa-solid fa-calendar"></i>
+              </div>
+            </div>
+            <input type="text" placeholder="Fechas" class="form-control" bsDaterangepicker readonly [maxDate]="maxDate"
+              formControlName="dateRange">
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-5">
+          <div class="input-group">
+            <ng-select placeholder="Seleccionar Empleado" formControlName="id" id="user-select">
+              <ng-option *ngFor="let user of listUsers" [value]="user.id">
+                <img class="photo" [src]="user.photo ? user.photo : './././assets/img/none.png' " />
+                {{user.name + ' ' + user.fatherLastName + ' ' +
+                user.motherLastName}}
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-cards-attendance [listChartReport]="listChartReport"> </app-cards-attendance>
+  <app-bar-attendance [listChartReport]="listChartReport"></app-bar-attendance>
+
+  <div class=" row">
+    <div class="col-lg-6">
+      <app-pie-attendance [listChartReport]="listChartReport"></app-pie-attendance>
+    </div>
+    <div class=" col-lg-6">
+      <app-polar-attendance [listChartReport]="listChartReport"></app-polar-attendance>
+    </div>
+  </div>
+
+
+</div>

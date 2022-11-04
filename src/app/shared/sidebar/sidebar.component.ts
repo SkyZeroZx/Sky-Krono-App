@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES, ROUTES_EMPLOYEE } from 'src/app/common/menuItems';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { ThemeService } from '../../services/theme/theme.service';
+import { ROUTES, ROUTES_EMPLOYEE } from '@core/menuItems';
+import { AuthService } from '@service/auth/auth.service';
+import { ThemeService } from '@service/theme/theme.service';
 
 @Component({
   selector: 'app-sidebar',

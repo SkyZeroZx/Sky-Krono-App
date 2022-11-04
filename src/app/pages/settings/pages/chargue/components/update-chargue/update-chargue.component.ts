@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Chargue } from '../../../../../../common/interfaces';
-import { ChargueService } from '../../../../../../services/chargue/chargue.service';
+import { Chargue } from '@core/interfaces';
+import { ChargueService } from '@service/chargue/chargue.service';
 
 @Component({
   selector: 'app-update-chargue',

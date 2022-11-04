@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Licence } from '../../../../../../common/interfaces';
-import { LicenceService } from '../../../../../../services/licence/licence.service';
+import { Licence } from '@core/interfaces';
+import { LicenceService } from '@service/licence/licence.service';
 
 @Component({
   selector: 'app-update-licence',

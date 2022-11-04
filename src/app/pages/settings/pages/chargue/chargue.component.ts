@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Chargue } from '../../../../common/interfaces';
-import { ChargueService } from '../../../../services/chargue/chargue.service';
+import { Chargue } from '@core/interfaces';
+import { ChargueService } from '@service/chargue/chargue.service';
 
 @Component({
   selector: 'app-chargue',

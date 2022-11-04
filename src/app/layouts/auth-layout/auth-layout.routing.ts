@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { CheckLogin } from 'src/app/common/guards/check-login.guard';
-import { IsLogged } from 'src/app/common/guards/is-logged.guard';
+import { CheckLogin } from '@core/guards/check-login.guard';
+import { IsLogged } from '@core/guards/is-logged.guard';
 import { ChangePasswordComponent } from 'src/app/pages/change-password/change-password.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 

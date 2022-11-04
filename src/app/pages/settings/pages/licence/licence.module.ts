@@ -13,7 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { esLocale } from 'ngx-bootstrap/locale';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { getDatepickerConfig } from '../../../../common/config/Datepicker';
+import { getDatepickerConfig } from '../../../../common/config/datepicker.config';
 import { FilterLicence } from '../../../../common/pipes/filter-licence.pipe';
 
 defineLocale('es', esLocale);

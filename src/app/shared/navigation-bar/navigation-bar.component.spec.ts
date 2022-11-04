@@ -10,7 +10,7 @@ import { ROUTES, ROUTES_EMPLOYEE } from '../../common/menuItems';
 import { SettingsComponent } from '../../pages/settings/settings.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
-import { ComponentsMock } from '../components.mock.spec';
+import { SharedMock } from '../shared.mock.spec';
 import { NavigationBarComponent } from './navigation-bar.component';
 
 fdescribe('NavigationBarComponent', () => {
@@ -44,7 +44,7 @@ fdescribe('NavigationBarComponent', () => {
     themeService = TestBed.inject(ThemeService);
 
     component = fixture.componentInstance;
-    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
+    localStorage.setItem('user', JSON.stringify(SharedMock.userStorage));
     fixture.detectChanges();
   });
 

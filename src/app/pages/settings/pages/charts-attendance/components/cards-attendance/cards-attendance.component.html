@@ -1,0 +1,77 @@
+<div class="row align-items-center">
+
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Puntual</h5>
+                        <span class="h2 font-weight-bold mb-0 text-card-total">{{cardsAttendance.totalOnTime}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape">
+                            <i class="fa-solid fa-clock fa-2xl  text-time-states"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Tardanzas</h5>
+                        <span class="h2 font-weight-bold mb-0 text-card-total">{{cardsAttendance.totalLater}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape">
+                            <i class="fa-solid fa-clock fa-2xl fa-rotate-45 text-later-states"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Permisos</h5>
+                        <span class="h2 font-weight-bold mb-0 text-card-total ">{{cardsAttendance.totalLicence}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape icon-licence"  >
+                            <i class="fa-solid fa-clock fa-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Total Faltas</h5>
+                        <span class="h2 font-weight-bold mb-0 text-card-total">{{cardsAttendance.totalAbsent}}</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon icon-shape ">
+                            <i class="fa-solid fa-circle-xmark fa-2xl text-absent-states "></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>

@@ -4,8 +4,8 @@ import { listLocales } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Licence } from '../../../../common/interfaces';
-import { LicenceService } from '../../../../services/licence/licence.service';
+import { Licence } from '@core/interfaces';
+import { LicenceService } from '@service/licence/licence.service';
 
 @Component({
   selector: 'app-licence',

@@ -7,10 +7,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 import { ChargueRouter } from './chargue.routing';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { FilterChargue } from '../../../../common/pipes/filter-chargue.pipe';
+import { FilterChargue } from '@core/pipes/filter-chargue.pipe';
 
 @NgModule({
   declarations: [

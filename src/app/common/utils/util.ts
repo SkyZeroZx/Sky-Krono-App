@@ -1,6 +1,6 @@
 import { environment } from '../../../environments/environment';
-import { Constant } from '../constants/Constant';
-import { StatusAttendance } from '../interfaces';
+import { Constant } from '@core/constants/Constant';
+import { StatusAttendance } from '@core/interfaces';
 
 export class Util {
   static formatDateToHour(date): string {

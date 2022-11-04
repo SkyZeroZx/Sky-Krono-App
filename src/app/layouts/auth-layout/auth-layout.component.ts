@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ThemeService } from 'src/app/services/theme/theme.service';
+import { ThemeService } from '@service/theme/theme.service';
 
 @Component({
   selector: 'app-auth-layout',

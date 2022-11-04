@@ -7,7 +7,8 @@ import {
   ScheduleByUser,
   UpdateSchedule,
   Response,
-} from '../../common/interfaces';
+} from '@core/interfaces';
+
 @Injectable({
   providedIn: 'root',
 })

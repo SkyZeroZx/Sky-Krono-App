@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { ThemeService } from './services/theme/theme.service';
+import { ThemeService } from '@service/theme/theme.service';
 
 @Component({
   selector: 'app-root',

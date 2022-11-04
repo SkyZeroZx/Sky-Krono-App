@@ -1,8 +1,8 @@
 import { HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, finalize } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
-import { SpinnerService } from './spinner.service';
+import { AuthService } from '@service/auth/auth.service';
+import { SpinnerService } from '@service/interceptor/spinner.service';
 
 @Injectable({
   providedIn: 'root',

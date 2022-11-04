@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Constant } from 'src/app/common/constants/Constant';
+import { Constant } from '@core/constants/Constant';
 
 @Pipe({
   name: 'filterLicence',

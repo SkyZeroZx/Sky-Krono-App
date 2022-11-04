@@ -22,7 +22,6 @@ import { UserPhotoComponent } from './components/user-photo/user-photo.component
     NgbModule,
     ModalModule.forRoot(),
     MatSliderModule,
-    MatSlideToggleModule,
     MatNativeDateModule,
     MatRippleModule,
     MatSlideToggleModule,

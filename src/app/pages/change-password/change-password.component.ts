@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { ThemeService } from 'src/app/services/theme/theme.service';
+import { AuthService } from '@service/auth/auth.service';
+import { ThemeService } from '@service/theme/theme.service';
 import { Location } from '@angular/common';
 
 @Component({

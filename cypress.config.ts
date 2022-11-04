@@ -4,8 +4,8 @@ const { verifyDownloadTasks } = require('cy-verify-downloads');
 
 export default defineConfig({
   ...e2eConfig,
-  viewportHeight: 969,
-  viewportWidth: 1669,
+  viewportHeight: 844,
+  viewportWidth: 390,
   e2e: {
     experimentalStudio: true,
     setupNodeEvents(on, config) {

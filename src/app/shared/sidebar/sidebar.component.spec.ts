@@ -5,10 +5,9 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ROUTES_EMPLOYEE } from '../../common/menuItems';
-
 import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
-import { ComponentsMock } from '../components.mock.spec';
+import { SharedMock } from '../shared.mock.spec';
 import { SidebarComponent } from './sidebar.component';
 
 fdescribe('SidebarComponent', () => {
@@ -31,12 +30,12 @@ fdescribe('SidebarComponent', () => {
   }));
 
   beforeEach(() => {
-    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
+    localStorage.setItem('user', JSON.stringify(SharedMock.userStorage));
     fixture = TestBed.createComponent(SidebarComponent);
     authService = TestBed.inject(AuthService);
     themeService = TestBed.inject(ThemeService);
     component = fixture.componentInstance;
-    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
+    localStorage.setItem('user', JSON.stringify(SharedMock.userStorage));
     fixture.detectChanges();
   });
 

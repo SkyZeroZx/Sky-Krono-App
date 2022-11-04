@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Type } from '../../../../../../common/interfaces';
-import { Util } from '../../../../../../common/utils/util';
-import { TypeService } from '../../../../../../services/type/type.service';
+import { Type } from '@core/interfaces';
+import { Util } from '@core/utils/util';
+import { TypeService } from '@service/type/type.service';
 
 @Component({
   selector: 'app-update-types',

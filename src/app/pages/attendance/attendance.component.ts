@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { CountdownConfig, CountdownEvent } from 'ngx-countdown';
 import { ToastrService } from 'ngx-toastr';
-import { Attendance } from '../../common/interfaces';
-import { Util } from '../../common/utils/util';
-import { AttendanceService } from '../../services/attendance/attendance.service';
-import { ScheduleService } from '../../services/schedule/schedule.service';
+import { Attendance } from '@core/interfaces';
+import { Util } from '@core/utils/util';
+import { AttendanceService } from '@service/attendance/attendance.service';
+import { ScheduleService } from '@service/schedule/schedule.service';
 
 @Component({
   selector: 'app-attendance',

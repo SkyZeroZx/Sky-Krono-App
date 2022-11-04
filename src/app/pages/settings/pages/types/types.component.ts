@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Type } from '../../../../common/interfaces';
-import { TypeService } from '../../../../services/type/type.service';
+import { Type } from '@core/interfaces';
+import { TypeService } from '@service/type/type.service';
 
 @Component({
   selector: 'app-types',

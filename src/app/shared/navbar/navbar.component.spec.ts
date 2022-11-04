@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { of } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
-import { ComponentsMock } from '../components.mock.spec';
+import { SharedMock } from '../shared.mock.spec';
 import { NavbarComponent } from './navbar.component';
 
 fdescribe('NavbarComponent', () => {
@@ -38,7 +38,7 @@ fdescribe('NavbarComponent', () => {
     authService = TestBed.inject(AuthService);
     themeService = TestBed.inject(ThemeService);
     component = fixture.componentInstance;
-    localStorage.setItem('user', JSON.stringify(ComponentsMock.userStorage));
+    localStorage.setItem('user', JSON.stringify(SharedMock.userStorage));
     fixture.detectChanges();
     jasmine.getEnv().allowRespy(true);
   });

@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ChildrenOutletContexts } from '@angular/router';
-import { ThemeService } from 'src/app/services/theme/theme.service';
-import { slideInAnimation } from '../../common/animations/router-animations';
+import { ThemeService } from '@service/theme/theme.service';
+import { slideInAnimation } from '@core/animations/router-animations';
 
 @Component({
   selector: 'app-admin-layout',

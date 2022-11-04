@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { startAuthentication } from '@simplewebauthn/browser';
+import { PublicKeyCredentialRequestOptionsJSON } from '@simplewebauthn/typescript-types';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { ThemeService } from 'src/app/services/theme/theme.service';
-import { UserLoginResponse } from '../../common/interfaces';
+import { AuthService } from '@service/auth/auth.service';
+import { ThemeService } from '@service/theme/theme.service';
+import { UserLoginResponse } from '@core/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -82,7 +83,7 @@ export class LoginComponent implements OnInit {
 
   startAuthentication() {
     this.authService.startAuthentication(this.userStorage).subscribe({
-      next: async (res) => {
+      next: async (res: PublicKeyCredentialRequestOptionsJSON) => {
         try {
           const asseRep = await startAuthentication(res);
           Object.assign(asseRep, { username: this.userStorage });

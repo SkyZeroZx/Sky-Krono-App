@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EventClickArg } from '@fullcalendar/core';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/services/users/user.service';
-import { Type, User } from '../../../../common/interfaces';
-import { TaskService } from 'src/app/services/task/task.service';
+import { UserService } from '@service/users/user.service';
+import { Type, User } from '@core/interfaces';
+import { TaskService } from '@service/task/task.service';
 
 @Component({
   selector: 'app-update-task',

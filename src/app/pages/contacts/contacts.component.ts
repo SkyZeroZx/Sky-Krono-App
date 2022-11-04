@@ -2,8 +2,8 @@ import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../../common/interfaces';
-import { UserService } from '../../services/users/user.service';
+import { User } from '@core/interfaces';
+import { UserService } from '@service/users/user.service';
 
 @Component({
   selector: 'app-contacts',

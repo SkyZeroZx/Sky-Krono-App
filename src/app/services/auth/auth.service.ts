@@ -12,7 +12,7 @@ import {
   UserLogin,
   UserLoginResponse,
   Response,
-} from '../../common/interfaces';
+} from '@core/interfaces';
 
 const helper = new JwtHelperService();
 @Injectable({

@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { ROUTES } from 'src/app/common/menuItems';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { ThemeService } from '../../services/theme/theme.service';
-import { User } from '../../common/interfaces';
+import { ROUTES } from '@core/menuItems';
+import { AuthService } from '@service/auth/auth.service';
+import { ThemeService } from '@service/theme/theme.service';
+import { User } from '@core/interfaces';
 
 @Component({
   selector: 'app-navbar',

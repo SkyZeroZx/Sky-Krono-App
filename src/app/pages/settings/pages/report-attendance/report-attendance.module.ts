@@ -7,7 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { ReportAttendanceRouter } from './report-attendance.routing';
 import { BsDatepickerModule, BsDaterangepickerConfig } from 'ngx-bootstrap/datepicker';
-import { getDatepickerConfig } from '../../../../common/config/Datepicker';
+import { getDatepickerConfig } from '../../../../common/config/datepicker.config';
 import { defineLocale, esLocale } from 'ngx-bootstrap/chronos';
 import { filterAttendanceReport } from '../../../../common/pipes/filter-attendance-report.pipe';
 defineLocale('es', esLocale);

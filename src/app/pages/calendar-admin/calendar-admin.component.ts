@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { listLocales } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { TaskService } from 'src/app/services/task/task.service';
+import { TaskService } from '@service/task/task.service';
 import {
   CalendarOptions,
   DateRange,

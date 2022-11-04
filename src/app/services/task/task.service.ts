@@ -8,7 +8,7 @@ import {
   UserTask,
   Type,
   Response,
-} from 'src/app/common/interfaces';
+} from '@core/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

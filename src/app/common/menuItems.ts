@@ -1,4 +1,4 @@
-import { RouteInfo } from './interfaces';
+import { RouteInfo } from '@core/interfaces';
 
 const ROUTER_COMMON = [
   {

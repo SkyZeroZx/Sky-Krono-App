@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { FirstLogin } from './common/guards/first-login.guard';
-import { IsLogged } from './common/guards/is-logged.guard';
-import { CheckRole } from './common/guards/check-role.guard';
-import { RoleAdmin } from './common/guards/role-admin.guard';
+import { FirstLogin } from '@core/guards/first-login.guard';
+import { IsLogged } from '@core/guards/is-logged.guard';
+import { CheckRole } from '@core/guards/check-role.guard';
+import { RoleAdmin } from '@core/guards/role-admin.guard';
 
 const routes: Routes = [
   {
@@ -116,9 +116,17 @@ const routes: Routes = [
         path: 'report-attendance',
         canActivate: [RoleAdmin],
         loadChildren: () =>
-          import('./pages/settings/pages/report-attendance/report-attendance.module').then(
-            (m) => m.ReportAttendanceModule,
-          ),
+          import(
+            './pages/settings/pages/report-attendance/report-attendance.module'
+          ).then((m) => m.ReportAttendanceModule),
+      },
+      {
+        path: 'charts-attendance',
+        canActivate: [RoleAdmin],
+        loadChildren: () =>
+          import(
+            './pages/settings/pages/charts-attendance/charts-attendance.module'
+          ).then((m) => m.ChartsAttendanceModule),
       },
     ],
   },

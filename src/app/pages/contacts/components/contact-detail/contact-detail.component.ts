@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../../common/interfaces';
+import { User } from '@core/interfaces';
 
 @Component({
   selector: 'app-contact-detail',

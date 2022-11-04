@@ -4,7 +4,7 @@ import { listLocales } from 'ngx-bootstrap/chronos';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import esLocale from '@fullcalendar/core/locales/es';
-import { TaskService } from 'src/app/services/task/task.service';
+import { TaskService } from '@service/task/task.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';

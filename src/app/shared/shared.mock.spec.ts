@@ -1,4 +1,4 @@
-export class ComponentsMock {
+export class SharedMock {
   public static readonly userStorage = {
     id: 1,
     codChargue: 1,
