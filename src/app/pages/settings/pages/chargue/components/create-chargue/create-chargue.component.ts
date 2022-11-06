@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ChargueService } from '../../../../../../services/chargue/chargue.service';
+import { ChargueService } from '@service/chargue/chargue.service';
 
 @Component({
   selector: 'app-create-chargue',

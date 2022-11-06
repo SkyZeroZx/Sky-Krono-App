@@ -13,8 +13,8 @@
               formControlName="dateRange">
           </div>
         </div>
-        <div class="col-md-4"></div>
-        <div class="col-md-5">
+        <div class="col-md-5"></div>
+        <div class="col-md-4">
           <div class="input-group">
             <ng-select placeholder="Seleccionar Empleado" formControlName="id" id="user-select">
               <ng-option *ngFor="let user of listUsers" [value]="user.id">
@@ -41,5 +41,6 @@
     </div>
   </div>
 
+  <app-linear-attendance [listChartReport]="listChartReport"></app-linear-attendance>
 
 </div>

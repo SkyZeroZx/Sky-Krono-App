@@ -5,9 +5,9 @@ import { startRegistration } from '@simplewebauthn/browser';
 import { RegistrationCredentialJSON } from '@simplewebauthn/typescript-types';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../../environments/environment';
-import { AuthService } from '../../../../services/auth/auth.service';
-import { ThemeService } from '../../../../services/theme/theme.service';
-import { UserService } from '../../../../services/users/user.service';
+import { AuthService } from '@service/auth/auth.service';
+import { ThemeService } from '@service/theme/theme.service';
+import { UserService } from '@service/users/user.service';
 import Swal from 'sweetalert2';
 
 @Component({

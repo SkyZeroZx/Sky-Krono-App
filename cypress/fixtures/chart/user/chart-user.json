@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2022-11-03",
+    "later": "0",
+    "onTime": "1",
+    "absent": "0",
+    "licence": "0"
+  },
+  {
+    "date": "2022-11-04",
+    "later": "0",
+    "onTime": "0",
+    "absent": "1",
+    "licence": "0"
+  },
+  {
+    "date": "2022-11-05",
+    "later": "0",
+    "onTime": "1",
+    "absent": "0",
+    "licence": "0"
+  },
+  {
+    "date": "2022-11-06",
+    "later": "0",
+    "onTime": "1",
+    "absent": "0",
+    "licence": "0"
+  }
+]

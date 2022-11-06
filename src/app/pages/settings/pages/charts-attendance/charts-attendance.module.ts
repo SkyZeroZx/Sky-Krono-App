@@ -13,6 +13,7 @@ import { defineLocale, esLocale } from 'ngx-bootstrap/chronos';
 import { CardsAttendanceComponent } from './components/cards-attendance/cards-attendance.component';
 import { PolarAttendanceComponent } from './components/polar-attendance/polar-attendance.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { LinearAttendanceComponent } from './components/linear-attendance/linear-attendance.component';
 
 defineLocale('es', esLocale);
 @NgModule({
@@ -22,6 +23,7 @@ defineLocale('es', esLocale);
     PieAttendanceComponent,
     CardsAttendanceComponent,
     PolarAttendanceComponent,
+    LinearAttendanceComponent,
   ],
   imports: [
     CommonModule,

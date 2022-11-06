@@ -5,11 +5,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
-import {
-  BsDatepickerModule,
-  BsDaterangepickerConfig,
-  BsLocaleService,
-} from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule, BsDaterangepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule, ToastrService } from 'ngx-toastr';

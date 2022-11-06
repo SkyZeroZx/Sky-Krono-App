@@ -10,7 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { RouterModule } from '@angular/router';
 import { ManageUsersRouter } from './manage-users.routing';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { FilterPipeUser } from '../../../../common/pipes/filter-user.pipe';
+import { FilterPipeUser } from '@core/pipes/filter-user.pipe';
 
 @NgModule({
   declarations: [

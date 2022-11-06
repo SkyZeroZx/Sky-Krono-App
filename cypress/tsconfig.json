@@ -3,6 +3,11 @@
   "include": ["**/*.ts"],
   "compilerOptions": {
     "sourceMap": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2020", "dom"],
     "types": [
       "cypress",
       "node",
@@ -11,6 +16,9 @@
       "@4tw/cypress-drag-drop",
       "cypress-real-events",
       "cy-verify-downloads"
-    ]
+    ],
+    "paths": {
+      "@helper/*": ["cypress/helper/*"]
+    }
   }
 }

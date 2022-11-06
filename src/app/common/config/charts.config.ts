@@ -1,6 +1,17 @@
 import { ChartConfiguration } from 'chart.js';
 import { dateTimeFormatOptions } from './locale.config';
 
+const tooltipFormat = {
+  callbacks: {
+    title: function (titleItems : any) {
+      return new Date(titleItems[0].label).toLocaleDateString(
+        'es-PE',
+        dateTimeFormatOptions,
+      );
+    },
+  },
+};
+
 export const pieChartOptions: ChartConfiguration['options'] = {
   responsive: true,
   plugins: {
@@ -36,16 +47,7 @@ export const barChartOptions: ChartConfiguration['options'] = {
     },
   },
   plugins: {
-    tooltip: {
-      callbacks: {
-        title: function (titleItems) {
-          return new Date(titleItems[0].label).toLocaleDateString(
-            'es-PE',
-            dateTimeFormatOptions,
-          );
-        },
-      },
-    },
+    tooltip: tooltipFormat,
     legend: {
       position: 'bottom',
       labels: {
@@ -75,3 +77,25 @@ export const polarChartOptions: ChartConfiguration['options'] = {
 };
 
 export const labels: string[] = ['Faltas', 'Puntual', 'Tarde', 'Licencia'];
+
+export const lineChartOptions: ChartConfiguration['options'] = {
+  responsive: true,
+  elements: {
+    line: {
+      tension: 0.5,
+    },
+  },
+  plugins: {
+    tooltip: tooltipFormat,
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        padding: 20,
+      },
+    },
+    datalabels: {
+      color: '#FFFF',
+    },
+  },
+};

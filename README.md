@@ -129,13 +129,15 @@ _**Calendario** : Apartado con el calendario de tareas , registro de tareas , ed
 
 _**Gestion de Usuarios** : Apartado para la gestion de usuarios con un horario asignado , creacion , reseteo , edicion , eliminacion_
 
-_**Tipos** : Aprtado para registar los tipos de tareas a crear en el calendario con un color a demanda_
+_**Tipos** : Apartado para registar los tipos de tareas a crear en el calendario con un color a demanda_
 
 _**Cargos**: Apartado para crear el cargo representativo para los usuarios en el sistema_
 
 _**Licencias**:Apartado para registrar licencias de los empleados asi como vacaciones o según sea requerido_
 
 _**Horarios**: Apartado para registrar horarios de entrada/salida de los empleados_
+
+_**Graficos**: Apartado para visualizar los graficos como reportes de asistencias de los usuarios en un periodo de fechas_
 
   <p align="center">
 <img src="docs/demo/demo.gif" width="414" height="884"/></p>

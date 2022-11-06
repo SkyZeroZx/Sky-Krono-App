@@ -4,7 +4,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ROUTES_EMPLOYEE } from '../../common/menuItems';
+import { ROUTES_EMPLOYEE } from '../../common/routes/menuItems';
 import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';
 import { SharedMock } from '../shared.mock.spec';

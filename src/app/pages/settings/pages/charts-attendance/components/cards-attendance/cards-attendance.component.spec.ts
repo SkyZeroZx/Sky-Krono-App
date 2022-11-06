@@ -6,7 +6,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ChartsAttendanceMock } from '../../charts-attendance.mock.spec';
 import { CardsAttendanceComponent } from './cards-attendance.component';
 
-describe('CardsAttendanceComponent', () => {
+fdescribe('CardsAttendanceComponent', () => {
   let component: CardsAttendanceComponent;
   let fixture: ComponentFixture<CardsAttendanceComponent>;
 

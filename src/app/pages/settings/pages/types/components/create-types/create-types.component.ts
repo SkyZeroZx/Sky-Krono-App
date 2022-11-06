@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Type } from '../../../../../../common/interfaces';
-import { Util } from '../../../../../../common/utils/util';
-import { TypeService } from '../../../../../../services/type/type.service';
+import { Type } from '@core/interfaces';
+import { Util } from '@core/utils/util';
+import { TypeService } from '@service/type/type.service';
 
 @Component({
   selector: 'app-create-types',
@@ -33,14 +33,14 @@ export class CreateTypesComponent implements OnInit {
 
   createFormType() {
     this.createTypeForm = this.fb.group({
-      description: new FormControl(
+      description: [
         '',
         Validators.compose([Validators.required, Validators.minLength(5)]),
-      ),
-      backgroundColor: new FormControl('', Validators.compose([Validators.required])),
-      borderColor: new FormControl('', Validators.compose([Validators.required])),
-      start: new FormControl('', Validators.compose([Validators.required])),
-      end: new FormControl('', Validators.compose([Validators.required])),
+      ],
+      backgroundColor: ['', Validators.compose([Validators.required])],
+      borderColor: ['', Validators.compose([Validators.required])],
+      start: ['', Validators.compose([Validators.required])],
+      end: ['', Validators.compose([Validators.required])],
     });
   }
 

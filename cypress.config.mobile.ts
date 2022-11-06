@@ -10,6 +10,7 @@ export default defineConfig({
     experimentalStudio: true,
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config);
+      require('./cypress/plugins/index.ts').default(on, config)
       on('task', verifyDownloadTasks);
       // include any other plugin code...
 

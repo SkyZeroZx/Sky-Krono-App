@@ -15,44 +15,67 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-const fs = require('fs');
-const xlsx = require('node-xlsx').default;
-const PDF = require('pdf-parse');
-const path = require('path');
-import * as registerCodeCoverageTasks from '@cypress/code-coverage/task';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as os from 'os';
+import { comparePixelmatch } from './diffs';
+import { e2eConfig } from 'cypress.e2e.config';
+const osName = os.platform(); // "darwin", "linux", "win32"
+
+/**
+ * Finds the good "master" image to compare the new image to.
+ * @param {string} filename The new image filename
+ */
+const findBaseImage = (filename) => {
+  console.log('findBaseImage');
+  const baseFolder = e2eConfig.env.folderImagesChartsCompare;
+  const justFilename = path.basename(filename);
+  const platformSpecificBaseImage = path.join(baseFolder, osName, justFilename);
+  if (fs.existsSync(platformSpecificBaseImage)) {
+    return platformSpecificBaseImage;
+  }
+  // assume the image across all platforms looks the same
+  const baseImage = path.join(baseFolder, justFilename);
+  return baseImage;
+};
 
 export default (on, config) => {
   on('task', {
-    filesInDownload(folderName) {
-      return fs.readdirSync(folderName);
-    },
-    parseXlsx(filePath) {
-      return new Promise((resolve, reject) => {
-        try {
-          const jsonData = xlsx.parse(fs.readFileSync(filePath));
-          resolve(jsonData);
-        } catch (e) {
-          reject(e);
-        }
-      });
-    },
-    parsePdf({ patch, fileName }) {
-      const parsePdf = async (pdfName) => {
-        const pdfPathname = path.join(patch, pdfName);
-        let dataBuffer = fs.readFileSync(pdfPathname);
-        return await PDF(dataBuffer); // use async/await since pdf returns a promise
-      };
-      return parsePdf(fileName);
-      /*  return new Promise((resolve, reject) => {
-        try {
-         const jsonData = PDF.parse(fs.readFileSync(filePath));
-          resolve(jsonData);
-       
-        } catch (e) {
-          reject(e);
-        }
-      });*/
+    async compare({ filename, options }) {
+      console.log('Compare task ');
+      console.log('My route is ', filename);
+      if (!filename.endsWith('.png')) {
+        const msg = `Expected image filename "${filename}" to end with .png`;
+        console.error(msg);
+        throw new Error(msg);
+      }
+
+      const baseImage = filename;
+
+      const newImage = filename;
+      const baseImageWithoutExtension = path.basename(
+        e2eConfig.env.folderImagesChartsCompare + filename,
+        '.png',
+      );
+      const diffImage = `${baseImageWithoutExtension}-diff.png`;
+
+      console.log(
+        'comparing base image %s to the new image %s, diff image %s',
+        baseImage,
+        newImage,
+        diffImage,
+      );
+
+      const started = +new Date();
+      const result = comparePixelmatch(
+        baseImage,
+        newImage,
+        e2eConfig.env.folderImagesChartsCompare + 'diff/' + diffImage,
+      );
+      const finished = +new Date();
+      const elapsed = finished - started;
+      console.log('visual diff took %dms', elapsed);
+      return result;
     },
   });
-  return registerCodeCoverageTasks(on, config);
 };

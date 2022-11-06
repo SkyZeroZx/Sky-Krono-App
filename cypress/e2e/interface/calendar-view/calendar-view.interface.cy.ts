@@ -1,4 +1,4 @@
-import { isMobile, optionsSwipe } from '../../../helper/helper';
+import { isMobile, optionsSwipe } from '@helper/helper';
 
 describe('Calendar View Interface', () => {
   const { employee } = Cypress.env('users');

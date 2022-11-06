@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ROUTES, ROUTES_EMPLOYEE } from '../../common/menuItems';
+import { ROUTES, ROUTES_EMPLOYEE } from '../../common/routes/menuItems';
 import { SettingsComponent } from '../../pages/settings/settings.component';
 import { AuthService } from '../../services/auth/auth.service';
 import { ThemeService } from '../../services/theme/theme.service';

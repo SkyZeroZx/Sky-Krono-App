@@ -32,7 +32,7 @@ export class ChartsAttendanceComponent implements OnInit {
     totalAbsent: 0,
     totalLicence: 0,
   };
-  listUsers: User[];
+  listUsers: User[] = [];
 
   constructor(
     private attendanceService: AttendanceService,

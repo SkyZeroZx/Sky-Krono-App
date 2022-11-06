@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Schedule, UpdateSchedule } from '@core/interfaces';
-import { ReporteService } from '@service/report/report.service';
 import { ScheduleService } from '@service/schedule/schedule.service';
 
 @Component({
@@ -28,7 +27,6 @@ export class ScheduleComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private toastrService: ToastrService,
-    private reporteService: ReporteService,
     private scheduleService: ScheduleService,
   ) {}
 
@@ -39,7 +37,7 @@ export class ScheduleComponent implements OnInit {
 
   createScheduleFrom(): void {
     this.scheduleForm = this.fb.group({
-      filter: new FormControl(''),
+      filter: [''],
     });
   }
 

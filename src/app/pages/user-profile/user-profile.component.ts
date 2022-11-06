@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserService } from 'src/app/services/users/user.service';
+import { AuthService } from '@service/auth/auth.service';
+import { UserService } from '@service/users/user.service';
 
 @Component({
   selector: 'app-user-profile',

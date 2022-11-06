@@ -1,10 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { CalendarOptions, defineFullCalendarElement } from '@fullcalendar/web-component';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
-import interactionPlugin from '@fullcalendar/interaction';
+import { defineFullCalendarElement } from '@fullcalendar/web-component';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { esLocale } from 'ngx-bootstrap/locale';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -17,13 +13,6 @@ import { CalendarViewDetailComponent } from './components/detail/calendar-view-d
 import { CalendarViewRouter } from './calendar-view.routing';
 
 defineLocale('es', esLocale);
-// Importaciones de FullCalendarModule
-/*CalendarOptions.registerPlugins([
-  dayGridPlugin,
-  timeGridPlugin,
-  listPlugin,
-  interactionPlugin,
-]);*/
 defineFullCalendarElement();
 @NgModule({
   declarations: [CalendarViewComponent, CalendarViewDetailComponent],

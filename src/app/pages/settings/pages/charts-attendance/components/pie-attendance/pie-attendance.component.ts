@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ListChartReport } from '@core/interfaces/attendance';
 import { labels, pieChartOptions } from '@core/config/charts.config';
+import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-pie-attendance',

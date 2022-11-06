@@ -8,6 +8,8 @@ export const e2eConfig = {
   waitForAnimations: true,
   defaultCommandTimeout: 40000,
   env: {
+    folderImagesChartsCompare: 'cypress/images/', // folder images to compare with canvas charts
+    pixelmatchThreshold: 0.2, // Use to compare threshold with image of images
     mobileViewportWidthBreakpoint: 600,
     baseUrl: 'https://api-sky-krono.skyzerozx.com',
     service: {

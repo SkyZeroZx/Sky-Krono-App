@@ -1,4 +1,4 @@
-import { User, Chargue, Schedule } from '../../../../common/interfaces';
+import { User, Chargue, Schedule } from '@core/interfaces';
 
 export class ManageUsersMock {
   public static readonly userMock: User = {

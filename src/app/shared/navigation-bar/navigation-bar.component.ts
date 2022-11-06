@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES, ROUTES_EMPLOYEE } from '@core/menuItems';
+import { ROUTES, ROUTES_EMPLOYEE } from '@core/routes/menuItems';
 import { AuthService } from '@service/auth/auth.service';
 import { ThemeService } from '@service/theme/theme.service';
 

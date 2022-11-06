@@ -1,8 +1,8 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrService } from 'ngx-toastr';
-import { previewUrlFile } from '../../../../common/helpers/helper';
-import { UserService } from '../../../../services/users/user.service';
+import { previewUrlFile } from '@core/helpers/helper';
+import { UserService } from '@service/users/user.service';
 
 @Component({
   selector: 'app-user-photo',
@@ -17,7 +17,7 @@ export class UserPhotoComponent {
   @ViewChild('swalUploadPhoto')
   readonly swalUploadPhoto: SwalComponent;
   swalPhotoUser: string;
-  fileUserAvatar: any;
+  fileUserAvatar: File;
 
   constructor(
     public readonly swalPortalTargets: SwalPortalTargets,

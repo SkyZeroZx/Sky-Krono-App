@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from 'src/app/services/users/user.service';
-import { Chargue, Schedule, User } from '../../../../../../common/interfaces';
-import { ChargueService } from '../../../../../../services/chargue/chargue.service';
-import { ScheduleService } from '../../../../../../services/schedule/schedule.service';
+import { UserService } from '@service/users/user.service';
+import { Chargue, Schedule, User } from '@core/interfaces';
+import { ChargueService } from '@service/chargue/chargue.service';
+import { ScheduleService } from '@service/schedule/schedule.service';
 
 @Component({
   selector: 'app-update-user',

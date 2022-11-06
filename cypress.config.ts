@@ -4,12 +4,13 @@ const { verifyDownloadTasks } = require('cy-verify-downloads');
 
 export default defineConfig({
   ...e2eConfig,
-  viewportHeight: 844,
-  viewportWidth: 390,
+  viewportHeight: 969,
+  viewportWidth: 1669,
   e2e: {
     experimentalStudio: true,
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config);
+      require('./cypress/plugins/index.ts').default(on, config);
       on('task', verifyDownloadTasks);
       // include any other plugin code...
 

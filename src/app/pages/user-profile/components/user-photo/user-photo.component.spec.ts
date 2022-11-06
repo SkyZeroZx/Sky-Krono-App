@@ -49,11 +49,13 @@ fdescribe('UserPhotoComponent', () => {
   it('UserPhotoComponent create', () => {
     expect(component).toBeTruthy();
   });
-  let mockEventFile = {
+  let mockFile: File = null;
+  let mockEventFile: any = {
     target: {
-      files: ['sdfksdflksdklflsdkflsdkm'],
+      files: [mockFile],
     },
   };
+
 
   it('Validate userAvatarSelected OK', async () => {
     const funPreviewUrlFile = jasmine
@@ -62,7 +64,7 @@ fdescribe('UserPhotoComponent', () => {
     spyOnProperty(helper, 'previewUrlFile', 'get').and.returnValue(funPreviewUrlFile);
     await component.userAvatarSelected(mockEventFile);
     expect(component.swalPhotoUser).toEqual('Base64Mock');
-    expect(component.fileUserAvatar).toEqual('sdfksdflksdklflsdkflsdkm');
+    expect(component.fileUserAvatar).toEqual(mockFile);
     expect(funPreviewUrlFile).toHaveBeenCalled();
   });
 

@@ -12,7 +12,7 @@ import { CalendarAdminRouter } from './calendar-admin.routing';
 import { RouterModule } from '@angular/router';
 import { CalendarAdminComponent } from './calendar-admin.component';
 import { BsDatepickerModule, BsDaterangepickerConfig } from 'ngx-bootstrap/datepicker';
-import { getDatepickerConfig } from '../../common/config/datepicker.config';
+import { getDatepickerConfig } from '@core/config/datepicker.config';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 defineLocale('es', esLocale);

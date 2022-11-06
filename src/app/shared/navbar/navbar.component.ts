@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { ROUTES } from '@core/menuItems';
+import { ROUTES } from '@core/routes/menuItems';
 import { AuthService } from '@service/auth/auth.service';
 import { ThemeService } from '@service/theme/theme.service';
 import { User } from '@core/interfaces';
@@ -9,7 +9,7 @@ import { User } from '@core/interfaces';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   private listTitles: any[];
