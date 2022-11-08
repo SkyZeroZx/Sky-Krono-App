@@ -4,16 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { FirstLogin } from '@core/guards/first-login.guard';
-import { IsLogged } from '@core/guards/is-logged.guard';
-import { CheckRole } from '@core/guards/check-role.guard';
-import { RoleAdmin } from '@core/guards/role-admin.guard';
+import { AuthGuard } from '@core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'prefix',
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -31,11 +28,13 @@ const routes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    canActivate: [FirstLogin, CheckRole, IsLogged],
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: 'calendar-admin',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import('./pages/calendar-admin/calendar-admin.module').then(
             (m) => m.CalendarAdminModule,
@@ -43,6 +42,9 @@ const routes: Routes = [
       },
       {
         path: 'calendar-view',
+        data: {
+          role: ['employee'],
+        },
         loadChildren: () =>
           import('./pages/calendar-view/calendar-view.module').then(
             (m) => m.CalendarViewModule,
@@ -50,6 +52,9 @@ const routes: Routes = [
       },
       {
         path: 'user-profile',
+        data: {
+          role: ['employee', 'admin'],
+        },
         loadChildren: () =>
           import('./pages/user-profile/user-profile.module').then(
             (m) => m.UserProfileModule,
@@ -57,7 +62,9 @@ const routes: Routes = [
       },
       {
         path: 'manage-users',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import('./pages/settings/pages/manage-users/manage-users.module').then(
             (m) => m.ManageUsersModule,
@@ -65,12 +72,17 @@ const routes: Routes = [
       },
       {
         path: 'contacts',
+        data: {
+          role: ['employee', 'admin'],
+        },
         loadChildren: () =>
           import('./pages/contacts/contacts.module').then((m) => m.ContactsModule),
       },
       {
         path: 'schedule',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import('./pages/settings/pages/schedule/schedule.module').then(
             (m) => m.ScheduleModule,
@@ -78,7 +90,9 @@ const routes: Routes = [
       },
       {
         path: 'chargue',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import('./pages/settings/pages/chargue/chargue.module').then(
             (m) => m.ChargueModule,
@@ -86,27 +100,40 @@ const routes: Routes = [
       },
       {
         path: 'attendance',
+        data: {
+          role: ['employee', 'admin'],
+        },
         loadChildren: () =>
           import('./pages/attendance/attendance.module').then((m) => m.AttedanceModule),
       },
       {
         path: 'home',
+        data: {
+          role: ['admin', 'employee'],
+        },
         loadChildren: () => import('./pages/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'settings',
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import('./pages/settings/settings.module').then((m) => m.SettingsModule),
       },
       {
         path: 'types',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import('./pages/settings/pages/types/types.module').then((m) => m.TypesModule),
       },
       {
         path: 'licence',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import('./pages/settings/pages/licence/licence.module').then(
             (m) => m.LicenceModule,
@@ -114,7 +141,9 @@ const routes: Routes = [
       },
       {
         path: 'report-attendance',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import(
             './pages/settings/pages/report-attendance/report-attendance.module'
@@ -122,7 +151,9 @@ const routes: Routes = [
       },
       {
         path: 'charts-attendance',
-        canActivate: [RoleAdmin],
+        data: {
+          role: ['admin'],
+        },
         loadChildren: () =>
           import(
             './pages/settings/pages/charts-attendance/charts-attendance.module'

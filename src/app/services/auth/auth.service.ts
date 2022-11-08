@@ -7,12 +7,7 @@ import {
   PublicKeyCredentialCreationOptionsJSON,
   RegistrationCredentialJSON,
 } from '@simplewebauthn/typescript-types';
-import {
-  ChangePassword,
-  UserLogin,
-  UserLoginResponse,
-  Response,
-} from '@core/interfaces';
+import { ChangePassword, UserLogin, UserLoginResponse, Response } from '@core/interfaces';
 
 const helper = new JwtHelperService();
 @Injectable({

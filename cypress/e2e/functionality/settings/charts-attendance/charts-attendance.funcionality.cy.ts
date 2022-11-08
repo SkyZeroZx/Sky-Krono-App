@@ -29,21 +29,43 @@ describe('Login Funcionality', () => {
       looksTheSame('mobile/all/chart-pie-attendance.png', '#chart-pie-attendance');
       looksTheSame('mobile/all/chart-polar-attendance.png', '#chart-polar-attendance');
     } else {
+      looksTheSame('desktop/all/chart-bar-attendance.png', '#chart-bar-attendance');
+      looksTheSame('desktop/all/chart-linear-attendance.png', '#chart-linear-attendance');
+      looksTheSame('desktop/all/chart-pie-attendance.png', '#chart-pie-attendance');
+      looksTheSame('desktop/all/chart-polar-attendance.png', '#chart-polar-attendance');
     }
   });
 
   it('Selected User and Load Chart Attendance', () => {
-    cy.intercept('POST', '/attendance/chart-user', { fixture: 'chart/user/chart-user' }).as('getChartsByUser');
+    cy.intercept('POST', '/attendance/chart-user', {
+      fixture: 'chart/user/chart-user',
+    }).as('getChartsByUser');
     cy.get('ng-select[formcontrolname=id]').click().type(`${admin.name}{enter}`);
     cy.wait('@getChartsByUser');
     // Delay for animation CANVAS Ng2 Charts
     cy.wait(6000);
     if (isMobile()) {
       looksTheSame('mobile/user/chart-bar-attendance-user.png', '#chart-bar-attendance');
-      looksTheSame('mobile/user/chart-linear-attendance-user.png', '#chart-linear-attendance');
+      looksTheSame(
+        'mobile/user/chart-linear-attendance-user.png',
+        '#chart-linear-attendance',
+      );
       looksTheSame('mobile/user/chart-pie-attendance-user.png', '#chart-pie-attendance');
-      looksTheSame('mobile/user/chart-polar-attendance-user.png', '#chart-polar-attendance');
+      looksTheSame(
+        'mobile/user/chart-polar-attendance-user.png',
+        '#chart-polar-attendance',
+      );
     } else {
+      looksTheSame('desktop/user/chart-bar-attendance-user.png', '#chart-bar-attendance');
+      looksTheSame(
+        'desktop/user/chart-linear-attendance-user.png',
+        '#chart-linear-attendance',
+      );
+      looksTheSame('desktop/user/chart-pie-attendance-user.png', '#chart-pie-attendance');
+      looksTheSame(
+        'desktop/user/chart-polar-attendance-user.png',
+        '#chart-polar-attendance',
+      );
     }
   });
 });
